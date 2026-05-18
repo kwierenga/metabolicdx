@@ -1,0 +1,752 @@
+© American College of Medical Genetics and Genomics  ACMG TECHNICAL STANDARD
+
+     Laboratory analysis of acylcarnitines, 2020 update: a
+    technical standard of the American College of Medical
+
+                    Genetics and Genomics (ACMG)
+
+             Marcus J. Miller, PhD1, Kristina Cusmano-Ozog, MD2, Devin Oglesbee, PhD3 and
+                     Sarah Young, PhD4; ACMG Laboratory Quality Assurance Committee5
+
+Disclaimer: This technical standard is designed primarily as an educational resource for clinical laboratory geneticists to help them provide quality clinical
+ laboratory genetic services. Adherence to this technical standard is voluntary and does not necessarily assure a successful medical outcome. This technical
+standard should not be considered inclusive of all proper procedures and tests or exclusive of other procedures and tests that are reasonably directed to obtaining
+the same results. In determining the propriety of any specific procedure or test, the clinical laboratory geneticist should apply his or her professional judgment to
+
+                                                  the specific circumstances presented by the individual patient or specimen.
+Clinical laboratory geneticists are encouraged to document in the patient's record the rationale for the use of a particular procedure or test, whether or not it is in
+conformance with this technical standard. They also are advised to take notice of the date any particular technical standard was adopted, and to consider other
+relevant medical and scientific information that becomes available after that date. It also would be prudent to consider whether intellectual property interests
+
+                                                       may restrict the performance of certain tests and other procedures.
+
+Acylcarnitine analysis is a useful test for identifying patients with  underivatized acylcarnitines species and detection using a
+inborn errors of mitochondrial fatty acid -oxidation and certain       precursor-ion scan. Alternative methods utilize liquid chromato-
+organic acidemias. Plasma is routinely used in the diagnostic          graphic separation of isomeric and isobaric species and/or detection
+workup of symptomatic patients. Urine analysis of targeted             by selected reaction monitoring. These technical standards were
+acylcarnitine species may be helpful in the diagnosis of glutaric      developed as a resource for diagnostic laboratory practices in
+acidemia type I and other disorders in which polar acylcarnitine       acylcarnitine analysis, interpretation, and reporting.
+species accumulate. For newborn screening applications, dried
+blood spot acylcarnitine analysis can be performed as a multiplex      Genetics in Medicine (2021) 23:249­258; https://doi.org/10.1038/s41436-
+assay with other analytes, including amino acids, succinylacetone,     020-00990-1
+guanidinoacetate, creatine, and lysophosphatidylcholines. Tandem
+mass spectrometric methodology, established more than 30 years         Keywords: clinical genetic testing; fatty acid oxidation disorders;
+ago, remains a valid approach for acylcarnitine analysis. The          organic acidemias; acylcarnitine; tandem mass spectrometry
+method involves flow-injection analysis of esterified or
+
+                       BACKGROUND                                      (1) evaluation of symptomatic patients, (2) evaluation of
+Acylcarnitine profile (ACP) analysis is performed for the
+biochemical detection of disorders of mitochondrial fatty acid         asymptomatic (at-risk) siblings of known patients, (3) new-
+-oxidation (FAO) and organic acid metabolism.1,2 ACP
+results can be diagnostic for some disorders, such as medium-          born screening and follow-up testing, (4) prenatal diagnosis,
+chain acyl-CoA dehydrogenase (MCAD) deficiency; however,
+additional testing may be needed in other cases to obtain a            (5) postmortem evaluation.
+precise diagnosis.1­3 The conditions revealed by acylcarnitine
+analysis have in common the accumulation of short, medium,               Laboratories providing this analysis as a clinical service
+and/or long-chain acyl-CoA species, which are substrates for           most often do so using flow-injection analysis­tandem mass
+one of several carnitine acyl-CoA transferases expressed in            spectrometry (FIA-MS/MS) as the analytical platform.6,7
+different intracellular compartments.4,5 The resulting acylcar-
+nitine species are measured in the following clinical situations:      Newer MS/MS methods that include a liquid chromato-
+
+                                                                       graphic (LC) step to separate isobars and isomers are also
+                                                                       used.8­12 Other reported methodologies include gas
+                                                                       chromatography­mass spectrometry (GC-MS),13 radio high-
+                                                                       performance LC,14,15 and capillary electrophoresis.16 As is the
+
+                                                                       case for all complex metabolic profiles, appropriate
+
+1Department of Medical and Molecular Genetics, Indiana University School of Medicine, Indianapolis, IN, USA; 2Department of Pathology, Stanford University Medical Center,
+Stanford, CA, USA; 3Laboratory Medicine and Pathology, Mayo Clinic, Rochester, MN, USA; 4Department of Pediatrics, Duke University School of Medicine, Durham, NC, USA;
+5American College of Medical Genetics and Genomics, Bethesda, MD, USA. Correspondence: ACMG (documents@acmg.net)
+The Board of Directors of the American College of Medical Genetics and Genomics approved this technical standard on 24 August 2020.
+
+Submitted 21 September 2020; revised 21 September 2020; accepted: 22 September 2020
+Published online: 19 October 2020
+
+GENETICS in MEDICINE | Volume 23 | Number 2 | February 2021                   249
+                 ACMG TECHNICAL STANDARD                                                                                                                    MILLER et al
+
+                 acylcarnitine analysis requires both analytical proficiency and                  better diagnosed by plasma VLCFA and branched-chain fatty
+                 in-depth interpretation of results with informative reporting.                   acid analysis.20
+
+                  CLINICAL DESCRIPTION OF DISORDERS IDENTI-                                         Organic acidemias are a heterogeneous group of inborn
+                    FIED THROUGH ACYLCARNITINE ANALYSIS                                           errors of metabolism (IEM).21 Classic organic acidemias
+                                                                                                  typically present with recurrent episodes of acute life-
+                 ACP analysis detects disorders of mitochondrial FAO and                          threatening illness, hypo- or hypertonia, failure to thrive,
+                 organic acid metabolism. Examples of disorders that may be                       and developmental delay. Common acute manifestations
+                 detected by acylcarnitine analysis are listed in Tables 1 and 2.                 include vomiting, lethargy, coma, and seizures.
+                 Inborn errors of mitochondrial FAO disorders may present at
+                 any age, from birth to adulthood. They are associated with                         With rare exceptions, the diagnosis of these conditions is
+                 life-threatening episodes of metabolic decompensation after a                    almost exclusively a laboratory process, of which acylcarnitine
+                 period of inadequate caloric intake and/or intercurrent illness.                 analysis is a key component. A comprehensive metabolic
+                 Typical manifestations may include hypoketotic hypoglyce-                        evaluation may also include the analysis of plasma amino
+                 mia, liver disease, skeletal myopathy and cardiomyopathy,                        acids, urine organic acids, and plasma carnitine (free and
+                 and sudden unexpected death.17 ACP abnormalities have also                       total). Depending on the results of these studies, additional
+                 been described in peroxisomal disorders associated with                          testing may be warranted.
+                 impaired very long­chain fatty acid (VLCFA) -
+                 oxidation.18,19 However, this latter group of disorders are
+
+1234567890():,;                                                                                   Table 2 Inborn errors of metabolism detected by acylcarni-
+
+                                                                                                  tine profile analysis.
+
+                                                                                                  Organic acid disorders                   OMIMa            Gene
+
+                 Table 1 Inborn errors of metabolism detected by acylcarni-                       Ethylmalonic encephalopathy              602473           ETHE1
+                 tine profile analysis.                                                                                                    231670           GCDH
+                                                                                                  Glutaryl-CoA dehydrogenase deficiency    229100
+                 Fatty acid oxidation disorders        OMIMa      Gene                            (glutaric acidemia type I)               250620           FTCD
+                                                                                                  Glutamate formiminotransferase           246450
+                 Carnitine uptake defect               212140     SLC22A5                         deficiency (formiminoglutamic aciduria)  611283           HIBCH
+                                                                                                                                           243500
+                 Carnitine palmitoyltransferase I (CPT I) 255120  CPT1A                           3-Hydroxyisobutyryl-CoA hydrolase        203750           HMGCL
+                                                                                                  deficiency                               248360
+                 deficiency                                                                       3-Hydroxy-3-methylglutaryl-CoA lyase     610006           ACAD8
+                                                                                                  (HMG-CoA lyase) deficiency                                IVD
+                 Carnitine-acylcarnitine translocase   212138     SLC25A20                                                                 210200, 210210
+                                                                                                  Isobutyryl-CoA dehydrogenase deficiency  250950           ACAT1
+                 (CACT) deficiency                                                                Isovaleryl-CoA dehydrogenase deficiency  300438
+                                                                                                  (isovaleric acidemia)                                     MLYCD
+                 Carnitine palmitoyltransferase II     608836, 600649, CPT2                       -Ketothiolase (2-methylacetoacetyl-CoA   251000           ACADSB
+                                                                                                  thiolase, or 3-oxothiolase)              251120
+                 (CPT II) deficiency                   255110                                     Malonyl-CoA decarboxylase deficiency                      MCCC1,
+                                                                                                                                           251100           MCCC2
+                 Short-chain acyl-CoA dehydrogenase 201470        ACADS                           2-Methylbutyryl-CoA dehydrogenase        251110           AUH
+                                                                                                  (short/branched-chain acyl-CoA           277400
+                 (SCAD) deficiency                                                                dehydrogenase (SBCAD) deficiency)                         HSD17B10
+                                                                                                  3-Methylcrotonyl-CoA carboxylase (3-
+                 Medium-chain acyl-CoA                 201450     ACADM                           MCC) deficiency                                           MUT
+
+                 dehydrogenase (MCAD) deficiency                                                  3-Methylglutaconyl-CoA hydratase                          MCEE
+                                                                                                  deficiency
+                 Very long­chain acyl-CoA              201475     ACADVL                          2-Methyl-3-hydroxybutyryl-CoA                             MMAA
+                                                                                                  dehydrogenase (MHBD) deficiency                           MMAB
+                 dehydrogenase (VLCAD) deficiency                                                 (HSD10 mitochondrial disease)                             MMACHC,
+                                                                                                                                                            PRDX1
+                 Long-chain L-3-hydroxyacyl-CoA        609016     HADHA                           Methylmalonic acidemia (MMA):                             MMADHC
+                                                                                                   i Methylmalonyl-CoA mutase                               LMBRD1
+                 dehydrogenase (LCHAD) deficiency                                                                                                           ABCD4
+                                                                                                       deficiency                                           HCFC1
+                 Trifunctional protein (TFP) deficiency 609015    HADHA,
+                                                                                                   ii Methylmalonyl-CoA racemase                            HLCS
+                                                                  HADHB                                deficiency                                           BTD
+                                                                                                                                                            PCCA,
+                 Multiple acyl-CoA dehydrogenase       231680                                      iii Cobalamin metabolism disorders                       PCCB
+
+                 (MAD) deficiency (glutaric acidemia                                                cblA                                                    SUCLA2
+                                                                                                    cblB
+                 type II):                                                                                                                                  SUCLG1
+                                                                                                    cblC
+
+                 i -ETF                                           ETFA                            cblD                                     277410
+
+                 ii -ETF                                          ETFB                            cblF                                     277380
+
+                 iii ETF-ubiquinone oxidoreductase                ETFDH                           cblJ                                     614857
+
+                                                                                                  cblX                                     309541
+
+                 3-Hydroxyacyl-CoA dehydrogenase 231530           HADH                            Multiple carboxylase deficiency caused by deficiency of:
+
+                 (HADH) deficiency                                                                i Holocarboxylase synthetase             253270
+
+                                                                                                  ii Biotinidase                           253260
+
+                 Dienoyl-CoA reductase deficiency      616034     NADK2                           Propionyl-CoA carboxylase deficiency     606054
+
+                 caused by mitochondrial NAD kinase 2                                             (propionic acidemia)
+
+                                                                                                  Succinyl-CoA ligase deficiency
+
+                 deficiency                                                                       i Mitochondrial DNA depletion            612073
+
+                 Medium-chain 3-ketoacyl-CoA thiolase (MCKAT; MIM 602199) deficiency has          syndrome 5
+                 been reported in one patient61 and it is not known whether this disorder can be
+                                                                                                  ii Mitochondrial DNA depletion           245400
+                 detected by acylcarnitine analysis.
+                 aPhenotype MIM number.                                                           syndrome 9
+
+                                                                                                  aPhenotype MIM number.
+
+                 250                                                                                              Volume 23 | Number 2 | February 2021 | GENETICS in MEDICINE
+MILLER et al                                                          ACMG TECHNICAL STANDARD
+
+                         PREVALENCE                            previous document "Acylcarnitine profile analysis" by
+The combined incidence of these disorders is estimated to be   Rinaldo et al.30
+between 1:5,000 and 1:10,000 live births.22
+                                                                         PREANALYTICAL REQUIREMENTS
+                 MODE OF INHERITANCE
+A majority of IEM detectable by acylcarnitine analysis are     Specimen requirements
+inherited as autosomal recessive traits. Two X-linked
+disorders are potentially detected by acylcarnitine analysis.  Carnitine and its esters are found in virtually all biological
+The first is HSD10 mitochondrial disease (MIM 300438),         fluids. The clinical utility of an acceptable biological fluid will
+which is caused by a deficiency of a mitochondrial             depend upon the purpose of the analysis. Concentrations of
+ribonuclease P subunit, encoded by HSD17B10 (MIM               acylcarnitine species vary between sample types and plasma
+300256). This multifunctional protein has dehydrogenase        concentrations may not be reflective of tissue concentra-
+activity toward a range of substrates, including 2-methyl-3-   tions.10 Typical volumes of different sample types are shown
+hydroxybutyryl-CoA.23 The second is cobalamin disorder         in Table 3.
+type X (MIM 309541), caused by a deficiency of a global
+transcriptional coregulator encoded by HCFC1.24,25 It should   Plasma/serum
+be noted that acylcarnitine analysis may have low sensitivity  Heparinized plasma is the preferred sample type for the
+for detecting HSD10 mitochondrial disease,23 and the           diagnostic evaluation of symptomatic patients and asympto-
+sensitivity of acylcarnitine analysis to detect cobalamin      matic at-risk individuals. EDTA plasma or serum may also be
+disorder type IX has not been fully evaluated.                 accepted by testing laboratories as alternative sample types.
+
+                          METHODS                              Dried blood spot
+This laboratory technical standard was informed by a review
+of the literature, including any current guidelines, and       Dried blood spots (DBS) are used for newborn screening, and
+expert opinion. Resources consulted included PubMed            have utility in the clinical diagnostic setting, providing an
+(search terms: acylcarnitine quantitation, acylcarnitine       alternative to plasma. In comparison with plasma or serum,
+analysis, separation, UPLC, peroxisomal, prenatal, urine),     blood spots have higher concentrations of long-chain
+Clinical and Laboratory Standards Institute (CLSI) guide-      acylcarnitines and certain other species such as C2, C3, C4-
+lines26­28 and CLIA regulations, and the Centers for Disease   DC, and C5-OH, and lower free carnitine (C0).31 DBS may
+Control and Prevention (CDC) Morbidity and Mortality           therefore have a greater sensitivity for detecting carnitine
+Weekly Report on Good Laboratory Practices for Biochem-        palmitoyltransferase (CPT) IA deficiency (MIM 255120), a
+ical Genetics Testing and Newborn Screening for Inherited      disorder characterized by reduced concentrations of long-
+Metabolic Disorders.29 When the literature provided con-       chain acylcarnitines and elevated free carnitine.31 In contrast,
+flicting evidence about a topic or when there was              plasma may have greater sensitivity for diagnosing disorders
+insufficient evidence, the authors used expert opinion to      associated with an accumulation of long-chain acylcarnitines,
+inform the recommendations. Expert opinion included the        such as CPT II deficiency (MIM 600649, 608836, 255110) and
+coauthors of the document, members of the Biochemical          mitochondrial trifunctional protein deficiency (MIM
+Genetics Subcommittee of the Lab QA Committee, as well         609015).31,32
+as the experts consulted outside the workgroup and
+acknowledged in this document. Any conflicts of interest       Bile or bile spot
+for workgroup members or consultants are listed. The
+American College of Medical Genetics and Genomics              Postmortem screening can be performed in bile as a first-level
+(ACMG) Laboratory Quality Assurance Committee                  evaluation for sudden or unexpected death.33,34 Bile can be
+reviewed the document providing further input on the
+content, and a final draft was delivered to the ACMG Board     Table 3 Typical sample testing volumes for acylcarnitine
+of Directors for review and approval to send out for member    profile analysis.
+comment. The final draft of the document was posted on
+the ACMG website and an email link was sent to ACMG            Sample type                             Typical testing volume
+members inviting all to provide comment. All members'
+comments were assessed by the authors; additional evidence     Amniotic fluid (cell-free supernatant)  20 µL
+was also included, and our recommendations were amended        Amniocyte culture medium                50 µLa
+as deemed appropriate. Member comments and author              Bile (liquid specimen)                  2 µLb
+responses were reviewed by a representative of the             Bile dried spot (postmortem)            one 1/8-inch punchb
+Laboratory Quality Assurance Committee and the ACMG
+Board. The final document was approved by the ACMG             Blood dried spot (neonatal,             one 1/8-inch or 3/16-inch punch
+Board of Directors. This updated standard replaces the
+                                                               postmortem)                             50 µLa
+                                                               Cell culture medium
+
+                                                               Plasma/serum                            20 µL
+
+                                                               Urine                                   Variable; standardized to
+
+                                                                                                                    creatinine
+
+                                                               aSpotted on filter paper.
+                                                               bMay require dilution if profile is abnormal.
+
+GENETICS in MEDICINE | Volume 23 | Number 2 | February 2021                                                                       251
+ACMG TECHNICAL STANDARD                                            MILLER et al
+
+spotted onto filter paper and analyzed in the same manner          excretion of acylcarnitines,38 and may complicate interpreta-
+as DBS.                                                            tion of profiles. Renal impairment may cause an increase in
+                                                                   short and medium-chain dicarboxylic acid acylcarnitine
+Urine                                                              species (S. Young, unpublished observations, DUHS Bio-
+Urinary acylcarnitine analysis can be useful in the workup of      chemical Genetics Laboratory), whereas liver dysfunction may
+organic acidemias and FAO disorders35 associated with              cause an increase in long-chain dicarboxylic acid acylcarnitine
+accumulations of short- or medium-chain acylcarnitine              species.6
+species,36­39 which are efficiently excreted in the urine. This
+is most often applied in the case of glutaric acidemia type I, in  Clinical indications for testing
+which an elevation of glutarylcarnitine may be more readily        There are a variety of clinical indications for ACP analysis.
+discernible in urine compared with DBS or plasma.39 Long-          Most commonly, ACP analysis is obtained following an
+chain acylcarnitines have low solubility and hence low             abnormal newborn screen. ACP analysis can be helpful when
+concentrations in urine; urinary acylcarnitine analysis is not     an organic acidemia is suspected; findings often include
+helpful for the diagnosis of long-chain mitochondrial FAO          metabolic acidosis, poor feeding, and lethargy or encephalo-
+disorders. However, utility for diagnosing patients with           pathy. Note that for an organic acidemia, urine organic acid
+certain peroxisomal disorders has been suggested.19 In             analysis is the preferred method for diagnosis.44 For disorders
+patients with peroxisomal biogenesis disorders and D-              of fatty acid oxidation, typical clinical indications include
+bifunctional protein deficiency, an increase was reported in       hypoglycemia (in the absence of ketonuria), rhabdomyolysis,
+urinary long-chain dicarboxylic acid acylcarnitines, and to a      and cardiomyopathy. ACP analysis should also be considered
+lesser extent in very long­chain monocarboxylic acid               in the setting of low free carnitine, to evaluate for the
+species.19                                                         possibility of secondary carnitine deficiency, as well as in cases
+                                                                   where the acyl to free carnitine ratio is elevated.
+Cultured fibroblasts
+ACP performed in cultured fibroblasts incubated with fatty           Due to an increased risk of long-chain 3-hydroxyacyl-CoA
+acid substrates and carnitine can be useful for the diagnosis of   dehydrogenase or trifunctional deficiency, and possibly other
+FAO disorders.2,40,41                                              fatty acid oxidation disorders, ACP analysis may be obtained
+                                                                   in neonates with maternal complications of acute fatty liver of
+Amniotic fluid                                                     pregnancy and/or hemolysis, elevated liver enzymes, and low
+Acylcarnitine analysis in amniotic fluid has been used for the     platelet count (HELLP syndrome).45,46 Both CPT II deficiency
+prenatal diagnosis of certain IEM.42,43 This testing may be        and multiple acyl-CoA dehydrogenase deficiency (MADD)
+useful when there is a family history of IEM and molecular         can present in the neonatal period with cystic kidneys and
+studies were not obtained or were uninformative in the             other malformations;47 as these early presentations are often
+proband, and when performed in combination with one or             fatal, it is imperative to obtain the correct diagnosis for
+more additional independent tests.1                                genetic counseling.
+
+Conditions of sample collection, shipping, handling, and             ACP analysis should be considered in cases of sudden infant
+storage                                                            death or other unexpected death at any age, particularly if
+Plasma, serum, whole blood, and urine samples collected at         there was fasting or vomiting in the preceding hours, a history
+the time of acute illness have the greatest sensitivity for        of Reye syndrome, or if fatty infiltration of the liver is noted
+detecting fatty acid oxidation disorders and organic acid-         on autopsy. ACP analysis may be obtained in first-degree
+emias. At ambient temperature, plasma acylcarnitines are           relatives following the diagnosis of an FAO disorder or
+stable for less than two days and in DBS for less than two         organic acidemia in the proband. Finally, ACP analysis may
+weeks. At colder temperatures, specimens may be preserved          be followed over time in patients with known disorders of
+for longer. Short-chain species are more unstable compared         fatty acid oxidation or organic acidemias for monitoring the
+with long-chain species. Performing laboratories should            disease and compliance with treatment.
+define appropriate handling, shipping, and storage guidelines
+for their specific application.                                               ANALYSIS OF ACYLCARNITINES
+
+Exogenous variables                                                Sample preparation
+Dietary factors such as medium-chain triglyceride                  Acylcarnitine analysis may be performed as a dedicated
+(MCT)­containing formulas, fasting, ketogenic diet, carnitine      standalone diagnostic test, or as a component of a multiplexed
+supplementation, and total parenteral nutrition may influence      method for newborn screening that includes analysis of other
+acylcarnitine profiles. Carnitine insufficiency lowers the         analytes such as amino acids, succinylacetone, guanidinoace-
+concentrations of acylcarnitines in body fluids and may            tate, creatine, and very long­chain lysophospholipids.7,48,49
+decrease the sensitivity of ACP testing. Conversely, carnitine     Acylcarnitines are most often analyzed as butyl-esters,2
+supplementation enhances blood concentrations and urinary          methyl-esters,32 or without derivatization.49 Esterification of
+                                                                   the carboxylic acid groups results in a fixed quaternary
+                                                                   positive charge on the carnitine moiety of acylcarnitine
+                                                                   species. This increases the sensitivity of the method in
+
+252                                                                Volume 23 | Number 2 | February 2021 | GENETICS in MEDICINE
+MILLER et al                                                        ACMG TECHNICAL STANDARD
+
+positive-ion mode, especially for dicarboxylic acids. However,      do not allow separation of isomeric and isobaric species,
+this approach requires specimen heating under acidic                which limits the diagnostic specificity of profiles generated by
+conditions, resulting in hydrolysis of acylcarnitine ester          these methods. However, when performed in combination
+bonds, reducing the levels of acylcarnitines and increasing         with other tests, such as urine organic acid or acylglycine
+the pool of free carnitine.50 Therefore, the derivatization         analysis, the differential diagnosis suggested by flow-injection
+conditions must be carefully controlled to minimize loss of         acylcarnitine profiles can usually be discerned. The isobaric
+acylcarnitines. The use of stable-isotope internal standards is     pairs differ depending on the derivatization method (Supple-
+also important to compensate for any losses that do occur.          mental Table 1). For example, C3-DC and C4-OH are isobaric
+                                                                    by the underivatized method, C3-DC and C5-OH by the
+  Plasma specimens are diluted with a mixture of deuterium-         methylation method, and C5-DC and C10-OH by the
+labeled internal standards dissolved in aqueous organic             butylation method. With flow-injection methods, when there
+solvent mixtures, with or without organic acid modifiers            is an elevated signal for an isobaric pair, a reflex test using an
+(e.g., formic acid). Commonly used internal standards include       alternative derivative can be used to identify which acylcarni-
+[2H3]-labeled C2, C3, C4, C8, C14, C16; [2H9]-labeled C5 and        tine species are elevated. Acylcarnitine species and the
+C14; and [2H6]-C5-DC. Other internal standards can be used,         corresponding mass of the derivatized (butylated or methy-
+but care must be taken not to interfere with the signal of a        lated) or nonderivatized molecular ions are listed in
+clinically relevant species (e.g., the butyl-ester of d3-C6 at m/z  Supplemental Table 1. Tolerance limits for the identification
+319 is only 1 Da from m/z 318, the molecular ion of                 by mass must be defined by the laboratory.
+hydroxyisovalerylcarnitine). Samples are centrifuged to
+remove protein precipitate and the supernatant containing           LC-MS/MS methods
+extracted acylcarnitines is transferred to another tube and         Liquid chromatography methods are used to enable more
+dried under nitrogen. Acylcarnitines are derivatized to their       sensitive and specific acylcarnitine identification. In this
+butyl-esters with 3 M HCl in n-butanol and heating at 65 °C         approach, specimens are subjected to LC prior to MS/MS
+for 15 minutes. Samples are again dried under nitrogen and          identification with the goal of separating isomeric or
+reconstituted with a solvent matrix. DBS are similarly              isobaric acylcarnitines and interferents. These methods
+prepared; acylcarnitines are extracted from one or more             can be performed on underivatized specimens, simplifying
+punches from the spot using methanol or acetonitrile                sample preparation and allowing concurrent quantification
+containing internal standards.                                      of free carnitine. Reversed phase LC generates the highest
+                                                                    chromatographic resolution of acylcarnitines,8,9 but hydro-
+Analytical methods                                                  philic interaction liquid chromatography (HILIC) methods
+Flow-injection analysis­tandem mass spectrometry with               have also been described that provide relatively rapid
+precursor-ion scan                                                  analysis times with simple sample preparations.10,11 LC-
+Acylcarnitine analysis by FIA positive-ion electrospray­            MS/MS acylcarnitine chromatograms are highly complex in
+tandem mass spectrometry (MS/MS) utilizes a precursor-ion           comparison with flow-injection profiles. For example, C8-
+scan to separate mono- and dicarboxylic acid species, 2 to 18       carnitine alone has 26 different hypothetical structural
+carbons in length. Butylated and underivatized acylcarnitines       isomers, each potentially having unique chromatographic
+are detected by precursors of m/z 85 with a scan from               properties.12 Numerous other acylcarnitines have one or
+approximately m/z 200 to 500. Methylated acylcarnitines are         more chiral centers, including all hydroxylated acylcarni-
+detected using a precursor-ion scan of m/z 99. This mode of         tines. These enantiomeric compounds generate multiple
+detection confers sufficient sensitivity and specificity to the     peaks by some LC-MS/MS methods.9 Pure analytic
+method without the need for chromatographic separation,             standards are not available for the majority of these
+allowing for a rapid analysis. FIA combined with a precursor-       compounds, challenging the confident assignment and
+ion scan has several advantages over methods that utilize a         quantification of the full range of acylcarnitines potentially
+selected reaction monitoring (SRM) mode of detection, with          detectable by LC-MS/MS methods. Even fewer isotopically
+or without chromatography. The whole profile of acylcarni-          labeled acylcarnitine standards exist, making it difficult to
+tine species with masses within the scan range can be               account for matrix effects. Considering these challenges,
+evaluated. Additionally, common drug artifacts, interfering         chromatographic methods are best used in the setting of
+compounds, and evidence of poor derivatization can be more          focused reflex testing or research studies.
+readily detected. For example, the parent-product ion pair for
+butylated C4-acylcarnitine species (m/z 288 > 85) can have a                          METHOD VALIDATION
+contribution from the [M + 1] isotope of butylated formimi-         Each laboratory must validate the performance characteristics
+noglutamate, which has a [M + H]+ of m/z 287.51 A                   of their specific analytical protocol and periodically verify its
+contribution from glutamate to the m/z 260 > 85 transition          performance in accordance with local regulations. In the
+can result in an inaccurate quantification of acetylcarnitine       United States, this includes CLIA and the College of
+(C2) by the butylation method.52 The use of a more specific         American Pathologists (CAP) requirements. Examples of
+transition (m/z 260 > 141) can be used to more accurately           published method validation approaches are provided by
+quantify butylated acetylcarnitine.53 Flow-injection methods
+
+GENETICS in MEDICINE | Volume 23 | Number 2 | February 2021         253
+ACMG TECHNICAL STANDARD                                          MILLER et al
+
+CLSI in several different documents (e.g., C24-A3: Statistical   Testing personnel
+Quality Control for Quantitative Measurement Procedures:         Appropriate training and ongoing competency requirements
+Principles and Definitions, 4th edition27 and C26-A: Liquid      for laboratory personnel performing ACP analysis must be
+Chromatography­Mass Spectrometry Methods; Approved               established and documented. MS/MS-based applications,
+Guidelines28) and ACMG technical standards, such as this         instrument optimization, method validation, and clinical
+one. Laboratories should also devise procedures to address       testing must be performed by personnel with specialized
+analytical values outside of their established criteria for      training in the operation of MS/MS.
+performance and for clinical specimens with ambiguous
+stability.                                                       Quality control
+                                                                 A positive and negative control should be prepared and
+Calibration and quantitation                                     analyzed with every batch of patient samples tested. The
+Stable-isotope internal standards are available from a variety   internal standard mix should also be analyzed separately with
+of commercial sources. These standards must be validated by      each batch.
+determining their recoveries from weighed, nonisotopic
+acylcarnitine standards for as many analytes as possible.          A QC program based on the quantitative analysis of normal
+Internal standards must be periodically revalidated at a         and abnormal control specimens should be implemented on a
+regular frequency to account for natural decay. Reference        regular basis. Target ranges for QCs should be established for
+standards are not available for all acylcarnitine species        each metabolite and used to accept or reject a given run. The
+detected by a profile analysis, such as the hydroxylated         internal standards in each specimen serve as a QC check for
+acylcarnitine species. Quantitation of these compounds           each specimen. The use of Westgard rules for clinical
+should be extrapolated by application of the calibration for     specimen analysis further controls the parameters for quality
+the nearest species of similar structure and m/z. The            patient diagnosis and reporting.54 A laboratory director or
+laboratory should determine their method's linear range,         designee should perform a monthly review and approval of
+analytical measurement range, and lower limit of detection for   control values.
+all clinically informative acylcarnitines, when possible. These
+performance characteristics should be verified on a regular      Proficiency testing
+basis as specified by CLIA.                                      Laboratories should participate in a PT program at time
+                                                                 intervals as required by regulating agencies. PT performance
+Reference intervals                                              should be monitored and insufficiencies requiring further
+Laboratory-specific, age-appropriate reference intervals for     investigation identified. Remedial action for laboratories
+all reported acylcarnitines should be established and            uncovered by PT performance should be documented. The
+periodically validated per applicable regulations (e.g., CLSI    CAP provides a commercially available, external proficiency
+EP28-A3c: Defining, Establishing, and Verifying Reference        testing service for quantitative plasma acylcarnitine analysis.
+Intervals in the Clinical Laboratory, Approved Guideline,        The European Research Network for Evaluation and
+3rd edition).26 When literature-based intervals are used,        Improvement of Screening, Diagnosis and Treatment of
+they must be verified by the laboratory before implementa-       Inherited Disorders of Metabolism (ERNDIM) also has a PT
+tion. For all applications, reference intervals should be        scheme for plasma and DBS acylcarnitines. The CDC
+established on the appropriate tissue, collection tube, and      provides a PT scheme for DBS. Scheduled interlaboratory
+matrix. For instance, the comparison of a pediatric result to    comparison (alternative PT) can be used when external
+a blood spot, plasma, or serum normative interval derived        proficiency testing is unavailable for certain tissues and
+from an adult population is inappropriate. Free carnitine        matrices.
+and short-chain acylcarnitine species are increased in
+postmortem blood samples34 and reference intervals for                 TEST INTERPETATION AND REPORTING
+this sample type should be generated using postmortem
+control samples.                                                 Interpretation
+                                                                 Results should be reviewed and interpreted by an ABMGG-
+Instrument quality cross-check                                   certified biochemical geneticist or other qualified individual.
+When more than one mass spectrometric instrument is used         Informative results are usually characterized by a pattern of
+to complete quantitative analyses for acylcarnitines, instru-    one or more elevated acylcarnitine species in comparison
+ment comparisons should be routinely performed, and              with age-matched reference ranges. Interpretation of results
+compatibility confirmed at regular intervals. This comparison    is based on pattern recognition, rather than on individual
+should include instruments implemented as a backup for           abnormal values (see Fig. 1). The differential diagnosis of
+emergency analyses. The process to confirm acceptable            abnormal results of species potentially representing multiple
+performance can include quality control (QC) comparisons,        isomers (C4, C5, C5-OH) is critical and cannot be
+proficiency testing (PT) evaluations, or interlaboratory         overstated.2,3 Basic acylcarnitine patterns associated with
+comparisons at the laboratory's discretion.                      various disease states are listed in Fig. 1. In addition to the
+                                                                 primary markers listed, calculation of ratios is useful in the
+                                                                 interpretation of abnormal results (Fig. 1). Examples of
+
+254                                                              Volume 23 | Number 2 | February 2021 | GENETICS in MEDICINE
+MILLER et al                                                                                                   ACMG TECHNICAL STANDARD
+
+              Clas s   Acylcarnitine                 1: CUD*
+                                                         2: CPT1A
+                                                              3: PA
+                                                                  4: MMA
+                                                                       5: SUCLA
+                                                                           6: SCAD
+                                                                                7: EE
+                                                                                    8: IBD
+                                                                                         9: IVA
+                                                                                             10: SBCAD
+                                                                                                  11: HADH
+                                                                                                      12: HIBCH
+                                                                                                           13: 3MCC
+                                                                                                               14: HMG
+                                                                                                                    15: BIO
+                                                                                                                        16: 3MG
+                                                                                                                             17: BKT
+                                                                                                                                 18: MHBD
+                                                                                                                                      19: MCT
+                                                                                                                                          20: MCAD
+                                                                                                                                               21: Malonic aciduria
+                                                                                                                                                   22: GA1
+                                                                                                                                                        23: NADK2
+                                                                                                                                                            24: VLCAD
+                                                                                                                                                                 25: Ketosis**
+                                                                                                                                                                     26: CPTII/CACT
+                                                                                                                                                                          27: LCHAD/TFP
+                                                                                                                                                                              28: MAD
+
+              C0***    Free carnitine                LH
+                                                     L
+              C2****     Acetyl                                                                                           H                               H
+              C3       Propionyl                               HHH                                                                                                        H
+                                                                                H                                                    HH                                   H
+               C4            Butyryl                                                 H?                        H
+              C5:1         Isobutyryl                                                      H                                                                             H?
+                                                                                                                                                HH                        H
+                              Tiglyl                                                            H
+                       3-Methylcrotonyl                                              H?
+
+              C5       Isovaleryl                                                                     H
+
+                       2-Methylbutyryl
+
+               C6      Hexanoyl                                                                                          HH                                                       H
+              C8:1     Octenoyl                                                                                          HH                            H
+               C8      Octanoyl                                                                                          HV
+
+              C10:2    Decadienoyl                                                                                                  H
+              C10:1      Decenoyl
+
+              C10      Decanoyl                                                                                                                                    H
+
+              C12:1    Dodecenoyl                                                                                                                         H
+               C12     Dodecanoyl
+                                                                                                                                                          H        H
+
+              C14:2    Tetradecadienoyl                                                                                                                HH          H
+
+              C14:1    Tetradecenoyl                                                                                                                   HH          H
+               C14     Tetradecanoyl
+                                                                                                                                                       HHH         H
+
+              C16:1    Hexadecenoyl                  L                                                                                                 HHH         H
+                                                     L
+               C16      Hexadecanoyl                 L                                                                                                 HHHHH
+              C18:2    Octadecadienoyl               L
+                                                     L                                                                                                 HHHHH
+
+              C18:1    Octadecenoyl                             V                                                                                      HHHHH
+                                                                     H
+              C18      Octadecanoyl                                                                                                                    HHHHH
+                                                          HHH
+              C3-DC        Malonyl                                                                                                                  H
+              C4-DC    Methylmalonyl                 H
+              C5-DC
+                           Succinyl
+                           Glutaryl
+
+              C6-DC    3-Methylglutaryl                                                                        H
+
+              C4-OH     3-Hydroxybutyryl                                                                 H                                                H
+                       3-Hydroxyisobutyryl
+                                                                                                            H
+
+                              3-Hydroxyisovaleryl                                                              HHHH
+              C5-OH
+                                                                                                                     HH
+                          3-Hydroxy-2-methylbutyryl
+
+              C14-OH Hydroxytetradecanoyl                                                                                                                       H
+
+              C16-OH 3-Hydroxyhexadecanoyl                                                                                                                      H
+
+              C18-OH   3-Hydroxyoctadecanoyl                                                                                                                    H
+                ratio            C3 / C2
+                ratio           C8 / C10                                                                          H
+                ratio
+                ratio        C14:1 / C12:1                                                                               H
+                ratio       C0 / (C16+C18)
+                          (C16+C18:1) / C2                                                                                                             HV       VV
+
+                                                                                                                                                             L
+
+                                                                                                                                                       V     HVV
+
+Fig. 1 Common acylcarnitine patterns associated with various disease states. H high, H? high but specific isomeric species are not clearly defined for
+this disorder, L low, V level varies from high-normal to elevated, *In CUD other acylcarnitine species are generally low. **C14:1/C12:1 is typically in the high-
+normal range or slightly elevated (< 3). ***For many listed disorders, C0 can be low due to secondary carnitine depletion. ****Low C2 may also be
+observed in other fatty acid oxidation and amino acid metabolism disorders, secondary to factors such as low flux through the -oxidation pathway, and/or
+carnitine depletion. Note, in SUCLA2 deficiency, C4-DC elevations were shown to be succinylcarnitine, whereas methylmalonylcarnitine was within normal
+reference limits.60 1: CUD carnitine uptake deficiency, 2: CPT1A carnitine palmitoyltransferase I deficiency, 3: PA propionic acidemia, 4: MMA methylmalonic
+acidemia, 5: SUCLA succinyl-CoA ligase deficiency, 6: SCAD short-chain acyl-CoA dehydrogenase, 7: EE ethylmalonic encephalopathy, 8: IBD isobutyryl-CoA
+dehydrogenase deficiency, 9: IVA isovaleryl-CoA dehydrogenase deficiency, 10: SBCAD short/branched-chain acyl-CoA dehydrogenase deficiency, 11:
+HADH 3-hydroxyacyl-CoA dehydrogenase, 12: HIBCH 3-hydroxyisobutyryl-CoA hydrolase deficiency, 13: 3-MCC 3-methylcrotonyl-CoA carboxylase defi-
+ciency, 14: HMG HMG-CoA lyase deficiency, 15: BIO biotinidase or holocarboxylase synthetase deficiency, 16: 3MG 3-methylglutaconyl-CoA hydratase
+deficiency (AUH), 17: BKT -ketothiolase deficiency, 18: MHBD 2-methyl-3-hydroxybutyryl-CoA dehydrogenase deficiency, 19: MCT supplementation with
+medium-chain triglycerides, 20: MCAD medium-chain acyl-CoA dehydrogenase deficiency, 21: Malonic aciduria malonyl-CoA decarboxylase deficiency, 22:
+GA1 glutaric aciduria type 1, 23: NADK2 dienoyl-CoA reductase deficiency caused by mitochondrial NAD kinase 2 deficiency, 24: VLCAD very long­chain
+acyl-CoA dehydrogenase deficiency, 26: CPT II/CACT carnitine palmitoyltransferase II/carnitine-acylcarnitine translocase deficiency, 27: LCHAD/TFP long-
+chain L-3-hydroxyacyl-CoA dehydrogenase/trifunctional protein deficiency, 28: MAD multiple acyl-CoA dehydrogenase deficiency.
+
+GENETICS in MEDICINE | Volume 23 | Number 2 | February 2021                                                                                                                              255
+ACMG TECHNICAL STANDARD                                           MILLER et al
+
+commonly used ratios include C3/C2, which is elevated in          SUPPLEMENTARY INFORMATION
+propionic and methylmalonic acidemia and related dis-             The online version of this article (https://doi.org/10.1038/s41436-
+orders; C8/C10, which is elevated in MCAD deficiency; and         020-00990-1) contains supplementary material, which is available
+C14:1/C12:1, which is elevated in very long­chain acyl-CoA        to authorized users.
+dehydrogenase (VLCAD) deficiency, although mild eleva-
+tions of this ratio may also be observed in long-chain 3-         ACKNOWLEDGEMENTS
+hydroxyacyl-CoA dehydrogenase (LCHAD) and trifunc-                Members of the ACMG Biochemical Genetics Subcommittee and
+tional protein (TFP) deficiencies, and in ketosis. Informa-       the Laboratory Quality Assurance Committee reviewed and
+tive profiles may not always be detected in disorders where       endorsed this revised document.
+the accumulation of diagnostic species is a reflection of the
+residual activity of the defective enzyme, the dietary load of    DISCLOSURE
+carnitine and precursors, and the anabolic or catabolic           All authors (M.J.M., D.O., K.C-O., and S.Y.) work for clinical
+status of the patient. Modest abnormalities should be             laboratories that offer acylcarnitine analysis as a clinical service.
+correlated to the patient's carnitine levels as a status of
+carnitine insufficiency could affect the outcome of this          Publisher's note Springer Nature remains neutral with regard to
+analysis. It is important to correlate ACP results with other     jurisdictional claims in published maps and institutional
+laboratory findings, such as the urine organic acid profile       affiliations.
+and routine chemistries, and the demographic and clinical
+status of the patient. For instance, in premature infants,        REFERENCES
+elevations of short and medium-chain dicarboxylic acid
+species may be observed, presumably secondary to renal            1. Pasquali M, Longo N. Newborn screening and inborn errors of
+immaturity. In adults with late-onset CPT II or VLCAD                   metabolism. In: Rifai N, Horvath AR, Wittwer C, editors. Tietz textbook
+deficiency that presents as a myopathic phenotype, eleva-               of clinical chemistry and molecular diagnostics. 6th ed. St. Louis: Elsevier;
+tions of long-chain species can be subtle.                              2018. p. 1697­1730.
+
+  Several drugs may induce or mimic abnormal levels of one        2. Matern D. Acylcarnitines, including in vitro loading tests. In: Blau N,
+or more known acylcarnitine species;55,56 these include pivalic         Duran M, Gibson KM, editors. Laboratory guide to the methods in
+acid (a C5 isomer), valproic acid (a C8 isomer), cefotaxime (a          biochemical genetics. Berlin: Springer; 2008. p. 171­206.
+C16:1-OH isobar by the butyl-ester method). Other exogen-
+ous compounds could result in the appearance of atypical          3. Sweetman L, Millington DS, Therrell BL, et al. Naming and counting
+species, some of them at m/z values in close proximity to or            disorders (conditions) included in newborn screening panels. Pediatrics.
+even overlapping acylcarnitines of diagnostic significance.             2006;117:S308­314.
+Examples include 2-ethylhexanoic acid from plasticizers used
+in tubing used for extracorporeal membrane oxygenation and        4. Violante S, Ijlst L, Ruiter J, et al. Substrate specificity of human carnitine
+other procedures,57 and intravenous fluids containing dex-              acetyltransferase: Implications for fatty acid and branched-chain amino
+trose.58 Dietary artifacts are also possible, usually related to        acid metabolism. Biochim Biophys Acta. 2013;1832:773­779.
+food intake enriched with fatty acids (MCT oil, ketogenic
+diet).59                                                          5. Violante S, Ijlst L, van Lenthe H, de Almeida IT, Wanders RJ, Ventura FV.
+                                                                        Carnitine palmitoyltransferase 2: New insights on the substrate specificity
+Reporting                                                               and implications for acylcarnitine profiling. Biochim Biophys Acta.
+Important elements to include in patient reports are                    2010;1802:728­732.
+appropriate patient and specimen information, analyte
+values reported against reference limits, and interpretive        6. Millington DS. Tandem mass spectrometry in clinical diagnosis. In: Blau N,
+comments. As discussed above, interpretations should                    Duran M, Blaskovics ME, Gibson K, editors. Physician's guide to the
+integrate other lab findings (e.g., organic acids, free and             laboratory diagnosis of metabolic diseases. 2nd ed. Berlin: Springer;
+total carnitine, and/or amino acids), and take into                     2003. p. 57­75.
+consideration the clinical and dietary history, when applic-
+able and available. When abnormal results are detected, the       7. Chace DH, Kalas TA. A biochemical perspective on the use of tandem
+interpretation should include an overview of the results and            mass spectrometry for newborn screening and clinical testing. Clin
+their significance, quantitative results with age-appropriate           Biochem. 2005;38:296­309.
+reference ranges, a correlation to available clinical informa-
+tion, elements of differential diagnosis, recommendations         8. Minkler PE, Stoll MS, Ingalls ST, Kerner J, Hoppel CL. Validated method
+for additional biochemical testing and in vitro confirmatory            for the quantification of free and total carnitine, butyrobetaine, and
+studies (e.g., enzymatic analysis, molecular analysis), and a           acylcarnitines in biological samples. Anal Chem. 2015;87:8994­9001.
+phone number to reach the reporting laboratory with
+additional questions.                                             9. Peng M, Fang X, Huang Y, et al. Separation and identification of
+                                                                        underivatized plasma acylcarnitine isomers using liquid chromatography-
+                                                                        tandem mass spectrometry for the differential diagnosis of organic
+                                                                        acidemias and fatty acid oxidation defects. J Chromatogr A.
+                                                                        2013;1319:97­106.
+
+                                                                  10. Kivilompolo M, Ohrnberg L, Oresic M, Hyotylainen T. Rapid quantitative
+                                                                        analysis of carnitine and acylcarnitines by ultra-high performance-
+                                                                        hydrophilic interaction liquid chromatography-tandem mass
+                                                                        spectrometry. J Chromatogr A. 2013;1292:189­194.
+
+                                                                  11. Peng M, Liu L, Jiang M, et al. Measurement of free carnitine and
+                                                                        acylcarnitines in plasma by HILIC-ESI-MS/MS without derivatization. J
+                                                                        Chromatogr B Analyt Technol Biomed Life Sci. 2013;932:12­18.
+
+                                                                  12. Minkler PE, Stoll MSK, Ingalls ST, Hoppel CL. Correcting false positive
+                                                                        medium-chain acyl-CoA dehydrogenase deficiency results from newborn
+                                                                        screening; synthesis, purification, and standardization of branched-chain
+                                                                        C8 acylcarnitines for use in their selective and accurate absolute
+                                                                        quantitation by UHPLC-MS/MS. Mol Genet Metab. 2017;120:363­369.
+
+                                                                  13. Costa CG, Struys EA, Bootsma A, et al. Quantitative analysis of plasma
+                                                                        acylcarnitines using gas chromatography chemical ionization mass
+                                                                        fragmentography. J Lipid Res. 1997;38:173­182.
+
+256                                                               Volume 23 | Number 2 | February 2021 | GENETICS in MEDICINE
+MILLER et al                                                                       ACMG TECHNICAL STANDARD
+
+14. Kler RS, Jackson S, Bartlett K, et al. Quantitation of acyl-CoA and            36. Oglesbee D, He M, Majumder N, et al. Development of a newborn
+      acylcarnitine esters accumulated during abnormal mitochondrial fatty               screening follow-up algorithm for the diagnosis of isobutyryl-CoA
+      acid oxidation. J Biol Chem. 1991;266:22932­22938.                                 dehydrogenase deficiency. Genet Med. 2007;9:108­116.
+
+15. Schmidt-Sommerfeld E, Bobrowski PJ, Penn D, Rhead WJ, Wanders RJ,              37. Carrozzo R, Dionisi-Vici C, Steuerwald U, et al. SUCLA2
+      Bennett MJ. Analysis of carnitine esters by radio-high performance liquid          mutations are associated with mild methylmalonic aciduria, Leigh-
+      chromatography in cultured skin fibroblasts from patients with                     like encephalomyopathy, dystonia and deafness. Brain. 2007;
+      mitochondrial fatty acid oxidation disorders. Pediatr Res.                         130:862­874.
+      1998;44:210­214.
+                                                                                   38. Kobayashi H, Hasegawa Y, Endo M, Purevsuren J, Yamaguchi S. ESI-MS/
+16. Pormsila W, Morand R, Krähenbühl S, Hauser PC. Capillary                             MS study of acylcarnitine profiles in urine from patients with organic
+      electrophoresis with contactless conductivity detection for the                    acidemias and fatty acid oxidation disorders. J Chromatogr B Analyt
+      determination of carnitine and acylcarnitines in clinical samples. J               Technol Biomed Life Sci. 2007;855:80­87.
+      Chromatogr B Analyt Technol Biomed Life Sci. 2011;879:921­926.
+                                                                                   39. Tortorelli S, Hahn SH, Cowan TM, Brewster TG, Rinaldo P, Matern D. The
+17. Houten SM, Violante S, Ventura FV, Wanders RJ. The biochemistry and                  urinary excretion of glutarylcarnitine is an informative tool in the
+      physiology of mitochondrial fatty acid -oxidation and its genetic                  biochemical diagnosis of glutaric acidemia type I. Mol Genet Metab.
+      disorders. Annu Rev Physiol. 2016;78:23­44.                                        2005;84:137­143.
+
+18. Rizzo C, Boenzi S, Wanders RJ, Duran M, Caruso U, Dionisi-Vici C.              40. Shen JJ, Matern D, Millington DS, et al. Acylcarnitines in fibroblasts of
+      Characteristic acylcarnitine profiles in inherited defects of peroxisome           patients with long-chain 3-hydroxyacyl-CoA dehydrogenase deficiency
+      biogenesis: a novel tool for screening diagnosis using tandem mass                 and other fatty acid oxidation disorders. J Inherit Metab Dis.
+      spectrometry. Pediatr Res. 2003;53:1013­1018.                                      2000;23:27­44.
+
+19. Duranti G, Boenzi S, Rizzo C, et al. Urine acylcarnitine analysis by ESI-MS/   41. Roe DS, Yang BZ, Vianey-Saban C, Struys E, Sweetman L, Roe CR.
+      MS: a new tool for the diagnosis of peroxisomal biogenesis disorders.              Differentiation of long-chain fatty acid oxidation disorders using
+      Clin Chim Acta. 2008;398:86­89.                                                    alternative precursors and acylcarnitine profiling in fibroblasts. Mol
+                                                                                         Genet Metab. 2006;87:40­47.
+20. De Biase I, Tortorelli S, Kratz L, Steinberg SJ, Cusmano-Ozog K,
+      Braverman N. Laboratory diagnosis of disorders of peroxisomal                42. Bo R, Hasegawa Y, Yamada K, et al. A fetus with mitochondrial
+      biogenesis and function: a technical standard of the American College              trifunctional protein deficiency: Elevation of 3-OH-acylcarnitines in
+      of Medical Genetics and Genomics (ACMG). Genet Med.                                amniotic fluid functionally assured the genetic diagnosis. Mol Genet
+      2020;22:686­697.                                                                   Metab Rep. 2016;6:1­4.
+
+21. Rinaldo P. Organic acids. In: Blau N, Duran M, Gibson KM, editors.             43. Van Hove JL, Chace DH, Kahler SG, Millington DS. Acylcarnitines in
+      Laboratory guide to the methods in biochemical genetics. Berlin:                   amniotic fluid: application to the prenatal diagnosis of propionic
+      Springer; 2008. p. 137­169.                                                        acidaemia. J Inherit Metab Dis. 1993;16:361­367.
+
+22. Watson MS, Lloyd-Puryear MA, Mann MY, Rinaldo P, Howell RR.                    44. Gallagher RC, Pollard L, Scott AI, Huguenin S, Goodman S, Sun Q.
+      Newborn screening: toward a uniform screening panel and system, main               Laboratory analysis of organic acids, 2018 update: a technical standard of
+      report. Genet Med. 2006;8:12­252.                                                  the American College of Medical Genetics and Genomics (ACMG). Genet
+                                                                                         Med. 2018;20:683­691.
+23. Zschocke J. HSD10 disease: clinical consequences of mutations in the
+      HSD17B10 gene. J Inherit Metab Dis. 2012;35:81­89.                           45. Ibdah JA, Yang Z, Bennett MJ. Liver disease in pregnancy and fetal fatty
+                                                                                         acid oxidation defects. Mol Genet Metab. 2000;71:182­189.
+24. Yu H-C, Sloan JL, Scharer G, et al. An X-linked cobalamin disorder caused
+      by mutations in transcriptional coregulator HCFC1. Am J Hum Genet.           46. Liu J, Ghaziani TT, Wolf JL. Acute fatty liver disease of pregnancy: updates
+      2013;93:506­514.                                                                   in pathogenesis, diagnosis, and management. Am J Gastroenterol.
+                                                                                         2017;112:838­846.
+25. Scalais E, Osterheld E, Weitzel C, et al. X-linked cobalamin disorder
+      (HCFC1) mimicking nonketotic hyperglycinemia with increased both             47. Hackl A, Mehler K, Gottschalk I, et al. Disorders of fatty acid oxidation
+      cerebrospinal fluid glycine and methylmalonic acid. Pediatr Neurol.                and autosomal recessive polycystic kidney disease-different clinical
+      2017;71:65­69.                                                                     entities and comparable perinatal renal abnormalities. Pediatr Nephrol.
+                                                                                         2017;32:791­800.
+26. CLSI. Defining, establishing, and verifying reference intervals in the
+      clinical laboratory; approved guideline. 3rd ed. CLSI document EP28-A3c.     48. Haynes CA, De Jesús VR. Simultaneous quantitation of hexacosanoyl
+      Wayne, PA: Clinical and Laboratory Standards Institute; 2008.                      lysophosphatidylcholine, amino acids, acylcarnitines, and succinylacetone
+                                                                                         during FIA­ESI­MS/MS analysis of dried blood spot extracts for newborn
+27. CLSI. Statistical quality control for quantitative measurement procedures:           screening. Clin Biochem. 2016;49:161­165.
+      principles and definitions. 4th ed. CLSI guideline C24. Wayne, PA: Clinical
+      and Laboratory Standards Institute; 2016.                                    49. Asef CK, Khaksarfard KM, De Jesus VR. Non-derivatized assay for the
+                                                                                         simultaneous detection of amino acids, acylcarnitines, succinylacetone,
+28. CLSI. Liquid chromatography-mass spectrometry methods; approved                      creatine, and guanidinoacetic acid in dried blood spots by tandem mass
+      guideline. CLSI document, C62-A. Wayne, PA: Clinical and Laboratory                spectrometry. Int J Neonatal Screen. 2016;2:13.
+      Standards Institute; 2014.
+                                                                                   50. Johnson DW. Inaccurate measurement of free carnitine by the
+29. Centers for Disease Control and Prevention. Good laboratory practices                electrospray tandem mass spectrometry screening method for blood
+      for biochemical genetic testing and newborn screening for inherited                spots. J Inherit Metab Dis. 1999;22:201­202.
+      metabolic disorders. MMWR Recomm Rep. 2012;61:1­44.
+                                                                                   51. Malvagia S, La Marca G, Casetta B, et al. Falsely elevated C4-carnitine
+30. Rinaldo P, Cowan TM, Matern D. Acylcarnitine profile analysis. Genet                 as expression of glutamate formiminotransferase deficiency in tandem
+      Med. 2008;10:151­156.                                                              mass spectrometry newborn screening. J Mass Spectrom.
+                                                                                         2006;41:263­265.
+31. de Sain-van der Velden MGM, Diekman EF, Jans JJ, et al. Differences
+      between acylcarnitine profiles in plasma and bloodspots. Mol Genet           52. Chace DH, Kalas TA, Naylor EW. Use of tandem mass spectrometry for
+      Metab. 2013;110:116­121.                                                           multianalyte screening of dried blood specimens from newborns. Clin
+                                                                                         Chem. 2003;49:1797­1817.
+32. Van Hove JL, Kahler SG, Feezor MD, et al. Acylcarnitines in plasma
+      and blood spots of patients with long-chain 3-hydroxyacyl-coenzyme A         53. Scott D, Heese B, Garg U. Quantification of free carnitine and
+      dehydrogenase defiency. J Inherit Metab Dis. 2000;23:571­582.                      acylcarnitines in plasma or serum using HPLC/MS/MS. Methods Mol
+                                                                                         Biol. 2016;1378:11­19.
+33. Rashed MS, Ozand PT, Bennett MJ, Barnard JJ, Govindaraju DR, Rinaldo
+      P. Inborn errors of metabolism diagnosed in sudden death cases by            54. Miller WG, Sandberg S. Quality control of the analytical examination
+      acylcarnitine analysis of postmortem bile. Clin Chem.                              process. In: Rifai N, Horvath AR, Wittwer C, editors. Tietz textbook of
+      1995;41:1109­1114.                                                                 clinical chemistry and molecular diagnostics. 6th ed. St. Louis: Elsevier;
+                                                                                         2018. p. 121­156.
+34. Chace DH, DiPerna JC, Mitchell BL, Sgroi B, Hofman LF, Naylor EW.
+      Electrospray tandem mass spectrometry for analysis of acylcarnitines in      55. Abdenur JE, Chamoles NA, Guinle AE, Schenone AB, Fuertes AN.
+      dried postmortem blood specimens collected at autopsy from infants                 Diagnosis of isovaleric acidaemia by tandem mass spectrometry: false
+      with unexplained cause of death. Clin Chem. 2001;47:1166­1182.                     positive result due to pivaloylcarnitine in a newborn screening
+                                                                                         programme. J Inherit Metab Dis. 1998;21:624­630.
+35. Mueller P, Schulze A, Schindler I, Ethofer T, Buehrdel P, Ceglarek U.
+      Validation of an ESI-MS/MS screening method for acylcarnitine profiling      56. Vianey-Saban C, Boyer S, Levrat V, et al. Interference of ceoftaxime in
+      in urine specimens of neonates, children, adolescents and adults. Clin             plasma acylcarnitine profile mimicking an increase of 3-
+      Chim Acta. 2003;327:47­57.
+
+GENETICS in MEDICINE | Volume 23 | Number 2 | February 2021                        257
+ACMG TECHNICAL STANDARD                                                           MILLER et al
+
+      hydroxypalmitoleylcarnitine (C16:1-OH) using butyl esters. J Inherit        59. Iacobazzi V, Pasquali M, Singh R, et al. Response to therapy in carnitine/
+      Metab Dis. 2004;27(Suppl):94.                                                     acylcarnitine translocase (CACT) deficiency due to a novel missense
+57. Kratz LE, Albert JS. 2-Ethylhexanoic acid, found in common plasticizers,            mutation. Am J Med Genet A. 2004;126A:150­155.
+      leads to an artificial increase in C8 acylcarnitine levels in two neonates
+      treated with extracorporeal membrane oxygenation (ECMO). Clin Chim          60. Rizzo C, Boenzi S, Inglese R, et al. Measurement of succinyl-
+      Acta. 2016;461:59­60.                                                             carnitine and methylmalonyl-carnitine on dried blood spot by liquid
+58. Chace DH, De Jesus VR, Lim TH, Hannon WH, Spitzer AR. Tandem mass                   chromatography-tandem mass spectrometry. Clin Chim Acta.
+      spectrometric identification of dextrose markers in dried-blood spots             2014;429:30­33.
+      from infants receiving total parenteral nutrition. Clin Chim Acta.
+      2010;411:1806­1816.                                                         61. Kamijo T, Indo Y, Souri M, et al. Medium chain 3-ketoacyl-coenzyme A
+                                                                                        thiolase deficiency: a new disorder of mitochondrial fatty acid beta-
+                                                                                        oxidation. Pediatr Res. 1997;42:569­576.
+
+258                                                                               Volume 23 | Number 2 | February 2021 | GENETICS in MEDICINE
+

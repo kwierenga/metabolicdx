@@ -1,0 +1,1168 @@
+International Journal of
+
+Neonatal Screening
+
+Article
+
+A Novel Approach to Improve Newborn Screening for
+Congenital Hypothyroidism by Integrating Covariate-Adjusted
+Results of Different Tests into CLIR Customized
+Interpretive Tools
+
+Alexander D. Rowe 1,, Stephanie D. Stoway 1,2,, Henrik Åhlman 3, Vaneet Arora 4, Michele Caggana 5,
+Anna Fornari 2,6, Arthur Hagar 7 , Patricia L. Hall 7, Gregg C. Marquardt 8, Bobby J. Miller 8, Christopher Nixon 9,
+Andrew P. Norgan 2, Joseph J. Orsini 5, Rolf D. Pettersen 1, Amy L. Piazza 2, Neil R. Schubauer 8, Amy C. Smith 4,
+Hao Tang 10, Norma P. Tavakoli 5, Sainan Wei 4, Rolf H. Zetterström 3,11 , Robert J. Currier 12 , Lars Mørkrid 13,14
+and Piero Rinaldo 1,2,*
+
+Citation: Rowe, A.D.; Stoway, S.D.;      1 Norwegian National Unit for Newborn Screening, Division of Paediatric and Adolescent Medicine,
+Åhlman, H.; Arora, V.; Caggana, M.;           Oslo University Hospital, 0424 Oslo, Norway; alerow@ous-hf.no (A.D.R.);
+Fornari, A.; Hagar, A.; Hall, P.L.;           Stoway.stephanie@mayo.edu (S.D.S.); rdpetter@ous-hf.no (R.D.P.)
+Marquardt, G.C.; Miller, B.J.; et al.
+A Novel Approach to Improve              2 Biochemical Genetics Laboratory, Department of Laboratory Medicine and Pathology, Mayo Clinic,
+Newborn Screening for Congenital              Rochester, MN 55905, USA; a.fornari2@campus.unimib.it (A.F.); Norgan.andrew@mayo.edu (A.P.N.);
+Hypothyroidism by Integrating                 Piazza.amy@mayo.edu (A.L.P.)
+Covariate-Adjusted Results of
+Different Tests into CLIR Customized     3 Centre for Inherited Metabolic Diseases, Karolinska University Hospital, 17177 Solna, Sweden;
+Interpretive Tools. Int. J. Neonatal          henrik.ahlman@sll.se (H.Å.); rolf.zetterstrom@sll.se (R.H.Z.)
+Screen. 2021, 7, 23. https://doi.org/
+10.3390/ijns7020023                      4 Division of Laboratory Services, Kentucky Department for Public Health, Frankfort, KY 40601, USA;
+                                              Vaneet.Arora@ky.gov (V.A.); AmyC.Smith@ky.gov (A.C.S.); Sainan.Wei@ky.gov (S.W.)
+Academic Editor: Ralph Fingerhut
+                                         5 Wadsworth Center, New York State Department of Health, Albany, NY 12237, USA;
+Received: 10 February 2021                    michele.caggana@health.ny.gov (M.C.); joseph.orsini@health.ny.gov (J.J.O.);
+Accepted: 19 April 2021                       norma.tavakoli@health.ny.gov (N.P.T.)
+Published: 23 April 2021
+                                         6 Fondazione MBBM/Ospedale San Gerardo, University of Milano-Bicocca, 20900 Monza, Italy
+Publisher's Note: MDPI stays neutral     7 Georgia Department of Public Health, Atlanta, GA 30303, USA; arthur.hagar@dph.ga.gov (A.H.);
+with regard to jurisdictional claims in
+published maps and institutional affil-       patricia.hall@dph.ga.gov (P.L.H.)
+iations.                                 8 Division of Laboratory Pathology External Applications, Department of Information Technology, Mayo Clinic,
+
+Copyright: © 2021 by the authors.             Rochester, MN 55905, USA; Marquardt.gregg@mayo.edu (G.C.M.); Miller.bobby@mayo.edu (B.J.M.);
+Licensee MDPI, Basel, Switzerland.            Schubauer.neil@mayo.edu (N.R.S.)
+This article is an open access article   9 Virginia Department of General Services, Division of Consolidated Laboratory Services,
+distributed under the terms and               Richmond, VA 23219, USA; christopher.nixon@dgs.virginia.gov
+conditions of the Creative Commons       10 Genetic Disease Screening Program, California Department of Public Health, Richmond, CA 94804, USA;
+Attribution (CC BY) license (https://         Hao.Tang@cdph.ca.gov
+creativecommons.org/licenses/by/         11 Department of Molecular Medicine and Surgery, Karolinska Institutet, 17177 Stockholm, Sweden
+4.0/).                                   12 Department of Pediatrics, University of California, San Francisco, CA 94143, USA; Robert.Currier@ucsf.edu
+                                         13 Department of Medical Biochemistry, Division of Laboratory Medicine, Oslo University Hospital HF,
+                                              0424 Oslo, Norway; lamo2@ous-hf.no
+                                         14 Department of Medical Biochemistry, Institute for Clinical Medicine, University of Oslo, 0130 Oslo, Norway
+                                         * Correspondence: rinaldo@mayo.edu
+                                          These authors contributed equally to this work.
+
+                                         Abstract: Newborn screening for congenital hypothyroidism remains challenging decades after broad
+
+                                         implementation worldwide. Testing protocols are not uniform in terms of targets (TSH and/or T4)
+
+                                         and protocols (parallel vs. sequential testing; one or two specimen collection times), and specificity
+
+                                         (with or without collection of a second specimen) is overall poor. The purpose of this retrospective
+
+                                         study is to investigate the potential impact of multivariate pattern recognition software (CLIR) to
+
+                                         improve the post-analytical interpretation of screening results. Seven programs contributed reference
+
+                                         data (N = 1,970,536) and two sets of true (TP, N = 1369 combined) and false (FP, N = 15,201) positive
+
+                                         cases for validation and verification purposes, respectively. Data were adjusted for age at collection,
+
+                                         birth weight, and location using polynomial regression models of the fifth degree to create three-
+
+                                         dimensional regression surfaces. Customized Single Condition Tools and Dual Scatter Plots were
+
+                                         created using CLIR to optimize the differential diagnosis between TP and FP cases in the validation
+
+                                         set. Verification testing correctly identified 446/454 (98%) of the TP cases, and could have prevented
+
+Int. J. Neonatal Screen. 2021, 7, 23. https://doi.org/10.3390/ijns7020023  https://www.mdpi.com/journal/ijns
+Int. J. Neonatal Screen. 2021, 7, 23  2 of 20
+
+                                      1931/5447 (35%) of the FP cases, with variable impact among locations (range 4% to 50%). CLIR tools
+                                      either as made here or preferably standardized to the recommended uniform screening panel could
+                                      improve performance of newborn screening for congenital hypothyroidism.
+
+                                      Keywords: bioinformatics; Collaborative Laboratory Integrated Reports (CLIR); dual scatter plot;
+                                      congenital hypothyroidism; covariate-adjusted reference intervals; false positives; newborn screening;
+                                      single condition tool; thyroid-stimulating hormone; thyroxine
+
+                                      1. Introduction
+
+                                            Newborn screening (NBS) for congenital hypothyroidism (CH) has been performed
+                                      globally since the 1970s, but despite broad worldwide implementation and a limited range
+                                      of analytical methods, there is surprisingly little consensus around the testing protocols
+                                      in place for reporting abnormal results [1,2]. With the additional uncertainty around the
+                                      long-term benefits of treatment and follow-up for mild CH [3­5], a consensus approach to
+                                      interpretation of the initial screening results has evolved to a strategy of minimizing false
+                                      negative (FN) screening results [5,6]. The consequence for sites choosing to screen more
+                                      broadly than consensus guidelines recommend [7] is perhaps the highest false positive (FP)
+                                      rate of any NBS disorder [8], and there is a pervasive lack of standardized screening.
+
+                                            Currently, screening strategies for CH fall into two categories. On one end are the
+                                      majority of programs which screen using a first-tier thyroid-stimulating hormone (TSH)
+                                      algorithm, and on the other are those which measure thyroxine (T4) either in combination
+                                      with TSH or use TSH only as a second-tier screen when T4 is below a predetermined
+                                      threshold (for example the 10th percentile). Each algorithm has advantages and disad-
+                                      vantages, but all have a significant recall rate due to false positive results [2,9]. The false
+                                      positive results obtained in newborn screening for CH are mainly due to the variability
+                                      of T4 and TSH depending on time of specimen collection and prematurity. In healthy
+                                      term infants, there is a TSH surge at birth stimulating T4 secretion that peaks at 24­36
+                                      h and gradually falls in the first 4 weeks after birth [10]. Due to the immaturity of the
+                                      hypothalamic-pituitary-thyroid axis, preterm infants have smaller increases in serum TSH
+                                      and free T4 than do term infants leading to a disproportionate number of false positive
+                                      results for preterm infants who are tested by an algorithm that includes T4. In addition
+                                      to time of specimen collection, birth weight, and prematurity, other factors that could
+                                      influence T4 and TSH values include ethnicity, sex, maternal thyroid disease, maternal
+                                      iodine status, and medication [11­13]. The reported incidence of CH is 1 in 2000­4000 births
+                                      but has increased in recent years most likely due to lowering of TSH cut-offs, increasing
+                                      survival of preterm infants, and changes in population demographics [2,14­16]. Lowering
+                                      TSH cut-offs increases the detection of subclinical CH. However, detection and the need
+                                      for treatment for babies with subclinical CH are controversial [17,18]. While there are no
+                                      simple solutions to the dilemmas of CH newborn screening (i.e., selection of algorithm and
+                                      cut-offs and factoring the variables involved), reducing the high incidence of preventable
+                                      FP results, especially in premature newborns, is a more actionable endeavor.
+
+                                            Collaborative Laboratory Integrated Reports (CLIR) is a web application that main-
+                                      tains an interactive database of laboratory data contributed by multiple sites internationally.
+                                      The development of CLIR started in 2004 as multivariate pattern recognition software to
+                                      support Region 4 Stork (R4S), a performance improvement project focused on expanded
+                                      newborn screening by tandem mass spectrometry [19­21]. Upon completion of the R4S
+                                      project in 2012, the use of the software had evolved to include additional newborn screen-
+                                      ing testing scenarios [22]. The CLIR tools assist with the resolution of any condition with
+                                      an available set of confirmed cases (disease ranges) and enable users to arbitrate between
+                                      paired conditions (such as TP vs. FP cases) with overlapping laboratory results [20,22,23].
+                                      CLIR software enables adjustment of patient results by covariates such as birth weight
+                                      and age at collection [22] and compares them to continuous moving percentiles, rather
+Int. J. Neonatal Screen. 2021, 7, 23  3 of 20
+
+                                      than traditional discrete reference intervals. Moving percentiles are calculated from a
+                                      large body of normal data contributed by participating sites to the CLIR database and are,
+                                      therefore, able to describe the dynamic pattern of physiological variation for any marker
+                                      across a wide spectrum of covariates. This novel process allows users to interpret results
+                                      individualized for each patient and to better recognize a true pathological finding, rather
+                                      than a mere deviation from an arbitrary decision limit applied either unilaterally, or to
+                                      a broad partition bin. This process offers frequent opportunities to drive down the cost
+                                      of healthcare by reducing, or possibly eliminating, unnecessary patient follow-up and
+                                      laboratory testing, and NBS for CH, with its disproportionate share of FP results, is a prime
+                                      candidate for this approach.
+
+                                            We report here a retrospective study aimed at the creation of customized site-specific
+                                      tools for the comparison between three alternative testing models, with a focus on the
+                                      prevention of FP outcomes [21­23]. This study is an extension of our previous work con-
+                                      tributing to the pursuit of newborn screening performance improvement with a focus
+                                      on integrating the results of separate analytical tests performed on the same sample as
+                                      a merged biochemical profile, rather than as a collection of markers to be interpreted in
+                                      isolation. We describe several new features in CLIR (see Section 2.3­Section 2.6) and a
+                                      significant improvement in the adjustment builder allowing for the use of two covariates.
+                                      The rationale is to limit the effect of variations in, to name but a few, sample collection
+                                      routines, blood availability, hematocrit, analytical methods, instrumentation, and local
+                                      conditions, which lead to unnecessarily large variability when comparing sample measure-
+                                      ments, particularly against a fixed cutoff. In summary, the underlying hypothesis of this
+                                      retrospective study is that tools built with calculated ratios to unrelated markers measured
+                                      by different tests but from the same sample are a more reliable alternative to single marker
+                                      interpretation, since they may be proportionally influenced by the above-mentioned varia-
+                                      tions. This procedure could, thus, mitigate the variability and improve the specificity of
+                                      post-analytical interpretation.
+
+                                      2. Materials and Methods
+                                      2.1. Analytical Methods
+
+                                            Routine NBS data for up to 12 markers were obtained retrospectively from the seven
+                                      programs (five from the US and two from Europe) listed in the header of Table 1. For this
+                                      study, we selected the primary markers of five conditions included in the Recommended
+                                      Uniform Screening Panel (RUSP) [24,25] and screened for by a single marker, plus galacto-
+                                      cerebrosidase activity (GALC, Krabbe disease). Acid -glucosidase (GAA, Pompe disease)
+                                      and C26:0-lysophosphatidylcholine (C26, X-ALD) were also included initially as markers
+                                      of two other RUSP conditions but were later excluded because a significant proportion
+                                      of values were missing in the Validation dataset of the only program that was measuring
+                                      them during the time frame of this study. For proof of concept, citrulline (CIT), tyrosine
+                                      (TYR), propionylcarnitine (C3), and palmitoylcarnitine (C16) were chosen from the larger
+                                      available panel of amino acids and acylcarnitines because CIT is an amino acid that is less
+                                      likely to be influenced by total parenteral nutrition [26], TYR is strongly affected by pre-
+                                      maturity [27], and both C3 and C16 concentrations are abundant species in neonatal dried
+                                      blood spot but also display a strong age-dependency [28]. Instrumentation, methods, and
+                                      choices of reagents were according to local protocols; most but not all relied on Neobase
+                                      non-derivatized kit for MS/MS and Genetic Screening Processor (GSP®) kits purchased
+                                      from Perkin Elmer (Turku, Finland).
+Int. J. Neonatal Screen. 2021, 7, 23                                                                                     4 of 20
+
+                                      Table 1. First tier markers contributed by participating locations.
+
+Marker  Unit                          California Norway         Sweden      Georgia Kentucky New York Virginia
+
+TSH     M[UI]/L                       +            +1           +           +         +                    -2        -2
+
+T4      µg/dL                         -            -            -           +         +                    +         +
+
+IRT     µg/dL                         +            -            -           +         +                    +         +
+
+17OHP   ng/mL                         +            +3           +           +         +                    +         +
+
+C3      nmol/mL                       +4           +4           +4          +4        +5                   +5        +5
+
+C16     nmol/ml                       +4           +4           +4          +4        +5                   +5        +5
+
+CIT     nmol/mL                       +4           +4           +4          +4        +5                   + 5,6     +5
+
+TYR     nmol/mL                       +4           +4           +4          +4        +5                   + 5,6     +5
+
+BIOT    ERU                           +            +7           +8          +         -9                   -9        -9
+
+GALT    U/g[Hb]                       +            -            +           +         -9                   -9        -9
+
+TRECS   copies/µL                     +            -            -           -         -                    +         -
+
+GALC nmol/mL/hr                       -            -            -           -         -                    +         -
+
+Measured in this study                10           8            8           10        8                    9         7
+
+Legend: Testing by US programs was performed before 15 March 2015. (1) results converted from whole blood to plasma by applying
+a ×2.2 conversion factor; (2) performed as second-tier test; (3) results converted from nmol/L in whole blood to ng/mL in plasma by
+applying sequentially the conversion factors ×0.3304611 and ×2.2; (4) underivatized MS/MS method; (5) derivatized method MS/MS
+method; (6) results converted from mg/dL to nmol/mL by applying the conversion factors ×57.1 (citrulline) and ×55.2 (tyrosine); (7)
+fluorometry assay, results expressed as nmol/mL/min then converted to ERU by applying a ×0.2 conversion factor; (8) fluorometry assay,
+results expressed as the percentage of the daily median; (9) measured but with qualitative assay (positive/negative). Abbreviations (in
+
+alphabetical order): 17OHP, 17-hydroxy progesterone; BIOT, Biotinidase activity; C3, propionylcarnitine; C16, palmitoylcarnitine; CIT,
+
+citrulline; ERU, enzyme response unit; GALC, galactocerebrosidase activity; GALT, galactose-1-phosphate uridyl transferase activity; IRT,
+
+immunoreactive trypsinogen; T4, total thyroxine; TRECS, T-cell receptor excision circles; TSH, thyroid-stimulating hormone; TYR, tyrosine.
+
+                                      2.2. Reference Data
+
+                                            The seven programs were selected to represent three alternative first-tier testing
+                                      strategies: (1) TSH only (California, Norway, and Sweden); (2) TSH and T4 (Georgia and
+                                      Kentucky); and (3) T4 followed by TSH as second-tier test (New York and Virginia). United
+                                      States programs provided normal profiles (i.e., cases reported as screening negative for
+                                      congenital hypothyroidism) with a collection date before 14 March 2015. This protocol
+                                      complied with the section 12 provision of the Newborn Screening Saves Lives reautho-
+                                      rization act of 2014 that went into effect on 15 March 2015 [29], limiting research uses of
+                                      non-identified results. Table 2 shows a summary of the contributions by each site and
+                                      the total count of uploaded reference cases. The programs included in this study collect
+                                      only one screen routinely, with local protocols for low-birth-weight infants and those in
+                                      the NICU.
+
+                   Table 2. Summary of reference data at the time of submission and after exclusion criteria.
+
+Samples submitted  California             Norway       Sweden      Georgia  Kentucky  New York             Virginia    Total
+ Covariate errors
+   Marker errors     537,225              223,168       90,021     272,832   232,017   389,109             226,164   1,970,536
+Samples excluded       4126                 1093           -         6787      5164      7173                3150     27,493
+     % excluded         45                   259           -           78      7345      2508                  35     10,270
+                       4171                 1352           -         6865     12,509     9681                3185     37,763
+Samples uploaded      0.8%                  0.6%                     2.5%      5.4%      2.5%                1.4%      1.9%
+                                                         0.0%
+                     533,054              221,816       90,021     265,967   219,508   379,428             222,979   1,932,773
+
+                                            Each de-identified profile was expected to include four covariates: age at collection
+                                      in hours, birth weight in grams, gestational age in weeks (not available for the Georgia
+                                      cohort), and sex. Exclusion criteria were then applied as follows: (1) missing covariates;
+                                      (2) Age > 1 yr. (8760 h); (3) Birth weight < 250 and >10,000 g; (4) Marker results shown
+                                      as zero, negative values, and combined with non-numerical characters ("unsatisfactory,"
+                                      "null," "<" or ">"). These instances are listed in Table 2 as marker errors. Any of these
+                                      criteria determined the exclusion of the entire case, which overall corresponded to less
+                                      than 2% of the initial data. When age was listed with a value between zero and one hour, it
+                                      was rounded up to one. Further removal of individual analyte values is described below.
+Int. J. Neonatal Screen. 2021, 7, 23                                                                                              5 of 20
+
+                        Throughout this paper, we have used local definitions for cases that were confirmed as TP.
+                        As general guidance, we consider a TP to be an infant that was identified with abnormal
+                        results by NBS and subsequently confirmed to have a targeted disorder. FP results are those
+                        infants who were identified with abnormal results by NBS and were not confirmed to have
+                        a targeted disorder, either by confirmatory testing or repeat NBS, based on local protocols.
+
+                        2.3. Automated Removal of Reference Outliers by the Data Validation Tool
+
+                              Following the removal of ineligible cases, location data were formatted separately as
+                        comma separated value (.csv) files and submitted to CLIR using an automated process
+                        called the Data Validation Tool. At first, all data were uploaded without any filtering
+                        to establish a cumulative median. To avoid interference by data already uploaded by
+                        programs worldwide to the production environment (https://clir.mayo.edu; accessed
+                        21 April 2021), this analysis was performed in a development and testing environment
+                        inside the Mayo Clinic firewall that was free of any additional data. Next, the same
+                        files were uploaded individually, and each marker was plotted against the cumulative
+                        reference intervals.
+
+                              Figure 1 shows the processing of all data from California (N = 533,054). All data above
+                        and below the 99th percentile and 1st percentile, respectively, are shown individually as
+                        outliers (blue dots). The high and low thresholds to consider a marker value to be an
+                        outlier are shown as grey dotted lines above and below the central part of the plot. The
+                        line above is equal to 5 multiples of the cumulative median, the line below is equal to
+                        0.2 (one fifth) multiples of the cumulative median, respectively. Removal of the outliers
+                        is executed by selecting an interactive function called Outlier Removal, not shown in the
+                        figure. As expected, no profile had all values classified as outliers, so the total count of
+Int. J. Neonatal Screen. 2021, 7s, xaFmORpPlEeEsRrReEmVIEaWined the same but counts by individual markers inevitabl6yofd2i1ffer after the
+                        removal of outliers.
+
+Figure 1. CLDFiIagRtuarDeVaa1l.tidaCaLVtIioRanlDidtaoatoatl.iVoCanolildoTarotciooolnd(iTnpogroeils-(peamrneb-deadnpddoedspto-isnot-utohuteltilteioerrprrpeeammnoeovl.va(la)P.la)Ln.eegLleAeng)d::epEnrxeda-o:muEptllxieearomfreopmultoelvieoarlfrceoomumotplvaiaerlirsborynetmhbeeotwCvLeaeIlRnby the CLIR
+Data Validaptiroelnimtionaorly. rCefoerleonrcecoradnignegs (ibsaseemd obnedeldigeibdleicnastehs)eatnodpdaptaanfreolm. (thPealnaregleAst )s:inpgrlee-coohuotrltie(Cr arleifmornoiva,aNl c=o5m33p,0a5r4i)s. on between
+preliminary(PraenfeelreBn):cpeosrta-onugtleiesr (rbemasoevdal.oPnerceelnigt ivballueecsaasbeosv)e athnedfilde aratangfersormeferthtoetlhaerpgreosptosrtiinongloef ccaoshe orerstu(ltCs athlaiftowrenriear,eN- = 533,054).
+(Panel B): pomsto-voeudtfloier rearcehmmoavrkaelr..Percent values above the file ranges refer to the proportion of case results that were removed
+
+for each marker.                      2.4. Automated Removal of Reference Outliers by the Reference Data Review Tool
+
+                                            The process outlined above is independent of covariates. To factor in age and birth
+                                      weight and remove an additional layer of outliers, CLIR offers a function called Reference
+                                      Data Review. By selecting a marker, a certain covariate (for the examples shown in Figure
+                                      2, the markers are TSH on the left and T4 on the right side), the covariate age (Panels
+Int. J. Neonatal Screen. 2021, 7, 23  6 of 20
+
+                                    2.4. Automated Removal of Reference Outliers by the Reference Data Review Tool
+
+                                           The process outlined above is independent of covariates. To factor in age and birth
+                                    weight and remove an additional layer of outliers, CLIR offers a function called Reference
+                                    Data Review. By selecting a marker, a certain covariate (for the examples shown in Figure 2,
+                                    the markers are TSH on the left and T4 on the right side), the covariate age (Panels
+                                    A,B,E,F, range 1­168 h), the birth weight (Panels C,D,G,H, range 250­5000 g), and a display
+Int. J. Neonatal Screen. 2021, 7, x FORoPpEtEiRonRE(VinIEdWividual points by location, color codes are shown as inserts in Panel7Bo,fE2),1 the
+                                    distribution of the marker over the range of the covariate is displayed with the ability to
+                                    overlay continuous moving percentiles.
+
+FigFuigreur2e. 2C.LCILRIRReRfeefreernecneceRRevevieiewwtotoooll((pprree--aanndd ppoosstt--oouuttlliieerrrreemmoovvaallbbyymmoovvinigngpeprecrecnetnilteisle).sL).eLgeengden: Od:uOtliuetrlireermroevmaol vbayl by
+thethCeLCIRLIReRferfeernecneceDDataataRRevevieiewwttoooollffoorr mmaarkers TSSHH aannddTT44..AAftfetrerthteheDDataataVaVlaidliadtiaotniotnootol,oal,fairsfitristteriatetiroantionf oouftoliuertlier
+
+remreomvoavl a(>l (9>99t9hthpeprecrecnentitlieleaanndd<<11ssttppeerrccentile; ssoorrtteeddbbyyaaggeeppaanneelslsAAanadndE;Es;osrotertdedbybbyirbtihrtwhewigehigt hptanpealns eClsaCndanGd) wGa)swas
+perpfeorrfmoremdedtottoratrnasnistiiotinonfrforommththeeuunnififoorrmmaanndd iinneevviittaabbllyyffllaatt--llinineeddreremmoovvalaol foof uotuliteliresrasbaobvoevaenadnbdelboewlotwhethmeumltiupllteispolefs of
+memdeiadnia(nM(MoMoM) l)imlimitsitstotoaarerceocoggnnizizaabblleebbiioollooggiiccaall ttrreenndd aaccccoorrddiinnggtotoththeeseselelcetcetdedcocvoavraiartiea.teC.oCloorlocrodciondginogf loofcaloticoantsioins s is
+emeabmnedbdeTdd4ed.d(ePidnainpnealpnAaen)l:e(OlBBv)e((rTTlSaSyHHo))faainnndddiEEvi((dTTu44a)).l.CpCooolionlortsrssbaaryereloaascssaistgiiognnnedeadnbdybymcocouovnuitnngitnipndeerdsceceesncnteidlneindsgi(nfoigrrsdot eritrdeeararntdaionandr)eaonrfeoTtnStoHhteothsvaeemrseaomnfoeerwfToeSreHkTSH
+and(16T84.h()PoafnaegleAa)t:cOolvleecrtliaoynoinf i1n-dhiivnicdruemalepnotsin. Ptserbcyenloticlaestisohnoawnndimn aolvl ipnagnpelesracreen:t9il9etsh(pfierrscteintetirlaet(itohnic)koefrTdSoHtteodvreerdolnineew),eek
+(16987.h5)thofpaegrceeanticleo,ll9e5ctthiopnericne1n-thilei,n9c0rtehmpeenrtcse.nPtieler,ce7n5tthilepserscheonwtilne,in50atlhl pearnceelnstialree(:b9la9cthk cpoenrtciennutoilues(ltihniec)k, e2r5tdhoptteerdcernetdileli,ne),
+
+97.150tthhppeerrcceennttile, 955ththpperecrecnetnilteil,e2,.950ththpperecrecnetnilteil,e1,s7t5ptherpceenrtcielent(itlhei,c5k0etrhdpoettrecdenretidleli(nbela).c(kPcaonneltiBn)u: oMuosvlinge)p, 2er5ctehnptielersceonftile,
+10tThSpHerbcyenagtielea,f5tethr speecrocnedntiitleer,a2ti.o5nthopf erercmeonvtialel ,o1fsvtaplueercseonuttisleid(ethtihcekpererdipohtteerdalrpederlciennet)i.le(sP.a(nPealnBel):CM): oOvvinerglapyeorcfeinndtiilveisdoufaTl SH
+bypaogientasftbeyr lsoeccaotniodniatenrdatmioonvionfgrepmerocvenatliolefsv(afilruset sitoeruattsiiodne, ptheerfporemripedhearfatelrpreermceonvtailleosf. o(PuatlnieerlsCb)y: Oagvee)rolafyTSoHf inovdeivr itdhueablirptohints
+
+   weight range 250­5000 g in 25 g increments. (Panel D): Final moving percentiles of TSH by birth weight after the second
+byiltoercaattiioonn oafnrdemmoovvailnogfpvearlcueenstoiluests(ifidrestthietepraertiiopnh,epraelrpfoerrmceendtilaefst.e(rPraenmelosvEa­lHof):oTu4tlpieerrscebnytialegse)foolfloTwSiHngotvheer stahme ebiprtrhocwesesight
+randgeesc2r5ib0e­d50in00pganinels25Ag,Di.ncrements. (Panel D): Final moving percentiles of TSH by birth weight after the second iteration
+of removal of values outside the peripheral percentiles. (Panels E­H): T4 percentiles following the same process described
+
+in panels (A,D).                      Moving percentiles are generated by another CLIR tool called Reference Range by Co-
+
+                                      variate. It requires the selection of one marker and one continuous covariate with the option
+
+                                      to separate data according to a categorical covariate (Male/Female; not used for TSH or T4
+
+                                      but applied to 17OHP and related ratios), a covariate range, and a unit of increment chosen
+
+                                      according to data density as shown in Table 3. Increasing increments are required to avoid
+Int. J. Neonatal Screen. 2021, 7, 23                                                                      7 of 20
+
+                                            Moving percentiles are generated by another CLIR tool called Reference Range by
+                                      Covariate. It requires the selection of one marker and one continuous covariate with the
+                                      option to separate data according to a categorical covariate (Male/Female; not used for TSH
+                                      or T4 but applied to 17OHP and related ratios), a covariate range, and a unit of increment
+                                      chosen according to data density as shown in Table 3. Increasing increments are required
+                                      to avoid gaps (zero data for a given value of covariate) and enhance the smoothness of
+                                      the moving percentiles. Ranges where <1% of data are reviewed by manual removal of
+                                      obvious outliers based on a visual projection of the trend from the closest range with
+                                      moving percentiles.
+
+                                      Table 3. Selection of unit increment by data density for the establishment of moving percentiles.
+
+                                      Continuous          Unit of  Covariate    End of    Proportion  Unit of
+                                       Covariate         Measure    Interval    Interval
+                                                                                          of Data (%) a Increment
+
+                                                                   1­168        1 week    97.70%      1
+
+                                      Age at collection  hours     169­552      1 month   1.48%       6
+                                                                   553­4380     6 months  0.80%       24
+
+                                                                   4381­8760    1 year    0.01%       n/a
+
+                                      Birth weight       grams      250­5000    n/a       99.86%      25
+                                                                   5001­10,000  n/a
+                                                                                          0.14%       n/a
+
+                                      Legend: a calculated for the marker propionylcarnitine (C3) as it is included in the dataset of all seven locations
+                                      (see Table 1). The total count of C3 values after outlier removal by the Validation tool is N = 1,846,537. n/a,
+                                      percentiles not calculated.
+
+                                            Moving percentiles are generated on demand and can be influenced by the choice of
+                                      average model (simple-default, weighted, count adjusted, and a combination of weighted
+                                      and count adjusted), moving average window range (3, 5, and 7 increments), and smoothing
+                                      iterations (1× to 5×). In this study (see Figure 2), the choice of parameters for all markers
+                                      were: (a) simple average, (b) average of 7 increments, and (c) 5 smoothing iterations.
+
+                                      2.5. Minimum-Maximum Normalization of Moving Percentiles
+
+                                            To overlay and compare unitless trends by covariates of different markers, the values
+                                      for each increment are transformed using a normalization process described previously [10].
+                                      Briefly, this calculation transforms case scores so that the maximum value for the group is
+                                      100 and the minimum is 0 (zero). Each result is calculated by subtracting from the score
+                                      the lowest of all scores, dividing it by the range of values (highest minus lowest), and
+                                      multiplying by 100. This formula preserves the relative distance between values and is
+                                      ideal to compare different markers. See the results section for an illustration of how it
+                                      was used.
+
+                                      2.6. Ratio Explorer
+
+                                            Ratios to TSH and T4 with all other markers measured by at least one location were
+                                      created automatically by the Ratio Explorer function, which also calculated unadjusted
+                                      reference intervals. The outlier removal was limited to the primary markers, so there was
+                                      no further processing by the Reference Data Review tool. The choice of denominator for
+                                      individual ratios was based on the marker with the higher cumulative unadjusted median.
+                                      Overall, 23 ratios were established and are shown in Supplemental Tables S2 and S3.
+
+                                      2.7. Adjustment Builder
+
+                                            Within this study, analytes exhibited variation across two continuous covariates,
+                                      age and birth weight, as well as between locations. TSH was normalized based on the
+                                      following statistical regression techniques to account for these sources of variation. Data
+                                      were collected from multiple locations and then binned across a two-dimensional grid
+                                      corresponding to age and birth weight. Medians and standard deviations were calculated
+                                      within each bin. Polynomial regression models of the fifth degree (quintic) that incorporated
+Int. J. Neonatal Screen. 2021, 7, 23                                                                                 8 of 20
+
+                                      values of a marker or ratio, age, and birth weight values in addition to a location factor
+                                      were fit to both binned parameters to create three-dimensional percentile surfaces. Marker
+                                      transformations were selected by an automated comparison between optimal Box- [30]
+                                      and log base 10 performed by the CLIR Adjustment Manager function where an overall
+                                      weighted score is calculated based on four criteria ranked from highest to lowest in this
+                                      order: (a) symmetry of outlier distribution above and below the median plane; (b) total
+                                      count of outliers; (c) R-squared value of the standard deviation; and (d) R-squared value of
+                                      the median. A Box-Cox transformation was applied to TSH and a log base 10 transformation
+                                      was applied to age and birth weight values to provide the best fit of the regression surfaces
+                                      to the data. Regression outliers were identified and eliminated using a Tukey fence value
+                                      of 2 multiplied by the interquartile range (IQR). The resultant regression models were
+                                      used to calculate Z-scores, and the Z-score formula was applied to all reference and case
+                                      data to normalize TSH values across the range of both covariates and across all locations.
+                                      For T4 values, after fitting quintic polynomial models to both the median and standard
+                                      deviation bins, a log base 10 transformation was applied to T4, age, and birth weight
+                                      values to provide the best possible fit of both regression surfaces. Since the polynomial
+                                      regression has a high order (quintic), it is essential to control the behavior and the ends
+                                      of the covariate range to avoid occurrence of the Runge phenomenon [30]. Outliers were
+                                      eliminated by Tukey fences and a Z-score formula was obtained and applied to all T4
+                                      values. All calculated ratios included in the study were processed in a comparable manner
+                                      to account for variation across age, birth weight, and location.
+
+                                      2.8. Study Cohort
+
+                                            Participating locations contributed two sets of true positive (TP) and false positive (FP)
+                                      cases, as resolved according to local protocols. The counts of cases are shown in Table 4.
+
+Table 4. Classification and distribution of true and false positive cases in the Validation and Verification datasets after
+application of the same exclusion criteria applied to reference data.
+
+                                      Abnormal Markers
+
+              TSH H + T4 L                TSH H             T4 L                 Total Counts by Location
+
+Validation TP      FP                 TP         FP     TP        FP    TP   %a   FP   %a                  All   %a   T/F
+                                                                                                                     Ratio
+
+California    -    -                  162        92     -         -     162  18%  92   0.90%               254   2%  1.76
+
+Norway        -    -                  47         48     -         -     47   5%   48   0.50%               95 0.80% 0.98
+
+Sweden        -    -                  65         31     -         -     65   7%   31   0.30%               96 0.80% 2.1
+
+Georgia       122  1549               98   2635         39        3676  259  28% 7860  74%                 8119 71% 0.03
+
+Kentucky      72   49                 47   668          9         232   128  14%  949  9%                  1077  9%  0.13
+
+New York      113  119                43   162          31        747   187  20% 1028  10%                 1215 11% 0.18
+
+Virginia      46   187                12         86     9         275   67   7%   548  5%                  615   5%  0.12
+
+Total         353  1904               474  3722         88        4930  915  8% 10,556 92% 11,471
+
+Verification
+
+California    -    -                  143        82     -         -     143  31%  82   1.80%               225   4%  1.74
+
+Norway        -    -                  18         31     -         -     18   4%   31   0.70%               49    1%  0.58
+
+Sweden        -    -                  60         41     -         -     60   13%  41   0.90%               101   2%  1.46
+
+Georgia       30   467                34   996          24        803   88   19% 2266  49%                 2354 46% 0.04
+
+Kentucky      10   4                  8          52     2         71    20   4%   127  3%                  147   3%  0.16
+
+New York      46   119                37   161          12        377   95   21% 657   14%                 752 15% 0.14
+
+Virginia      25   179                3    122          2         1140  30   7% 1441   31%                 1471 29% 0.02
+
+Total         111  769                303  1485         40        2391  454  9% 4645   91%                 5099
+
+Legend: Counts represent cases after application of exclusion criteria (see text). H, high (TSH > 14.22 m[IU]/L, 99th percentile of this
+study); L, low (T4 < 9.45 µg/dL, 1st percentile of this study); FP, false positive cases; TP, true positive cases. (a) Percentage of the total
+
+number of cases by location and category in the dataset.
+
+                                            The Validation (training) set included cases from variable start dates between 2011
+                                      and 2013 and ended on 30 June 2014. For the reason described earlier, the Verification
+                                      (testing) set covered the period 1 July 2014to 14 March 2015 with one exception: Kentucky,
+                                      which ended the collection of cases on 31 December 2014. Sweden, however, contributed
+Int. J. Neonatal Screen. 2021, 7, 23  9 of 20
+
+                                      all TP and FP cases of the years 2017 and 2018 to the Validation and Verification group,
+
+                                      respectively. No additional information was either provided or sought regarding confir-
+
+                                      matory testing and clinical outcome to avoid interfering with the de-identified status of
+
+Int. J. Neonatal Screen. 2021, 7, x FORinPEdEivRiRdEuVaIlEcWases. Repeat samples are likely to be included, but no effort was made t1o0lionf k21
+                                      and compare profiles from the same case.
+
+                                            Cases were sorted on the basis of a single or two abnormal findings, not according to
+
+                                      the cutoff values utilized by each program at the time of testing, but rather in comparison
+                                      totoththeeuunnaaddjujustseteddppeercrecenntitlielessesetsatabblilsihshededininththisisstsutuddyyaaftfetrerththeefifninalalstsetpepoof fagageeananddbbiritrhth
+                                     wweiegighht tououtltileirerrermemovoavla(lT(STHSH>>999t9hthpeprecrecnetnilteileofo1f41.42.222mm[U[UI]/I]L/L; ;TT44<<11ssttppeercrecenntitlieleoof f9.94.545
+                                      µµgg//ddLL)).. TThheettoottaallnnuummbbeerrooffccaasseesswwaass1166,5,57700,,6699%%ooffththeemmininththeeVValaidlidataitoinongrgoruoupp. .TTPP
+                                      cacasesessrereppreresesennteteddlelessssththaann1100%%oof falalllcacsaessesininboboththcochohoortrst,s,bbuut tththereerewwasasaasusubsbtsatnantitailal
+                                      ddififfefreernenceceininththeetrturue/e/ffaalslseeppoossitiitviveerraatitoiossbbeetwtweeennpproroggrarammsstetestsitninggoonnlylyfofor rTTSSHH(m(medediainan
+                                     11.7.788, ,rarannggee00.9.988­­22.1.100) )aannddththooseseaalslosouusisninggTT44eietihthererasasfifrisrts-t-ororsesceocnodnd-t-iteirertetsetst(m(medediainan
+                                      00.1.133, ,rarnagnege0.03.0­30­.108.1).8)U. nUandajudsjutesdterdefreerfeenrceenacnedanddisedaisseearsaengreasngweesrewcerreeatcerdeaatuetdomauatoicmalalyti-
+                                      focraltlhyefomratrhkeerms aarnkderrsatainods craaltciuoslacteadlcuasladteedscarsibdeedsecrairblieedr aeanrdliaereasnhdoawrne sinhoSwupnpilnemSuepnptalle-
+                                     TmabelnestaSl1T­aSb6l.eSs iSd1e­bSy6.sSidideecboymspidaerisconmspbaertiwsoenesnbTePtwaenednFTPPcaansdesFfPorceaasecshfcoornedaicthiocnoanrdei-
+                                      shtiown nariensShuopwpnleimn eSnutpapl FleimguernetsaSl 1F­igSu3.res S1­S3.
+
+                                      22.9.9. .CCoovvaariraiateteDDisitsrtirbibuutitoionnoof fTTrurue eanadndFaFlaslesePPosoistiitvieveCCasaesses
+
+                                            FFigiguurere3 3shsohwows as daednesintysitpyloptlooft aogfeaagtecoaltleccotliloenctaionnd abnirdthbwirethighwteoigf hthteotfrutheeantrdufealasned
+                                     pfoaslisteivpeocsaitsievseicnatshees VinaltihdeatVioanlidseattiloisntesdetinlisTtaebdlein4T. Iatbcllee4a.rlIyt cshleoawrlys tshheodwisspthroepdoirstpiornopatoer-
+                                      atgiognreagteataiogngroefgfaatlisoenpoofsfiatlisveepcoassietsivwe hcaesnetshwe haegne tahtecoalgleecattiocnolilnecntieownbinornneswcbloosrentsoc1lohse, 1to
+                                     w1ehek, 1, owr e<e2k5,0o0rg<2o5f0b0irgthowf beiirgthhtw. eight.
+
+                                      FFigiguurere33. .CCoovvaariraiateteddisitsrtirbibuutitoionnoof fththeeVValaidliadtaiotinonseste.tL. Legeegnendd: C: Coovvaariraitaeteddenensistiytypploltoot foffaflaslesepposoistiitvieve
+                                      (N(N==1100,5,55566) )aannddtrturueeppoosistiitvivee(N(N==991155) )cacasesessfrforommththeeVValaidliadtaitoinonseste.t.(P(Paanneel lAA):):FFalasleseppoosistiitvivese;s;
+                                      (P(PananelelBB):):TTrruuee ppoossiittiivveess.. KKeernrneel lddenesnistiytyesetismtimataiotino(nK(DKED)Efu) nfuctniocntio[3n1][3w1]aswuassedustoedcatlocuclaaltceuplaroteb-
+                                      ptarhobebilasitbaymilditeeyandsseittnhysefitiunynpfcuutintocuntniooitnf veoaaflcuehaeccsl.haTschsla,esassnc,daalneitdiwsitlaowsgda1si0sdpoilnsapythleaedyYeudsaixunisgsinaagncdaonlciotnoneutaorruporlnopttl.hoTet.hXTehauxeniusitnoviftatvlhuaeeluspelaosrte.
+                                      arCeotlhoer sgarmadeieansttshaerienrpeulattuivneittovaclausees.coTuhnets. cale is log10 on the Y axis and linear on the X axis of the
+                                      plot. Color gradients are relative to case count.
+
+                                      22.1.100. .PPooststAAnnaalylytitciacal lInIntetreprprerteitviveeTTooolosl:sS: SininglgeleCConondidtiitoinonToToolosls
+                                            FFoor rththe epuprupropsoeseofobfubiuldilidnginSginSginleglCeoCnodnitdioitnioTnooTlos,oVlsa,lVidaaltiidoanticoansecsawseesrewseorretesdoritnedsixin
+
+                                      tasrixgettarcgoentdciotinodnistiaosnfsoallsowfosll:o(wa)sC: (Ha)TCSHHTTS4H, trTu4e, tprouseitpivoesictiavseescawsietshwhiitghhhTiSgHh TaSnHd laonwd Tlo4w;
+                                      (bT)4F; (PbT) FSPHTTS4H, fTa4ls,efaplsoesiptiovseiticvaesecsaswesitwh ihthighhigThSHTSaHndanldowlowT4T; 4(c;)(cC)HCHTSTHSH, t,rtureuepposoistiitvivee
+                                      cacasesesswwitihthhhigighhTTSSHH(T(T44eietihtheerrnnoot tmmeaeasusurerdedoor rnnoormrmala)l;)(;d(d) )FFPPTTSHSH, f,aflaslesepposoistiitviveecacsaesses
+                                      wwitihthhhigighhTTSSHH(T(T44eietihtherernnoot tmmeaeasusurerdedoor rnnoormrmala)l;)(;e()e)CCHHTT44, t,rturueeppoosistiitviveecacasesseswwitihthloloww
+                                      TT44aannddTTSSHHnnoormrmala;la; nandd(f()f)FFPPTT4,4f,aflaslesepposoistiitviveecacsaesseswwitihthlolwowTT44anadndTTSHSHnonromrmala.lT. Thhee
+                                       process to create a Single Condition Tool has been described previously [20,32]. Briefly, it
+                                       consists of a sequential selection of: (a) configuration parameters (scoring and correction
+                                       factor strategies); (b) location; (c) high and low markers (displayed only if provided by a
+                                       given location, then chosen on the basis of a degree of overlap between reference and
+                                       condition-specific disease ranges of less than 50%); (d) adjustments (standardized to
+Int. J. Neonatal Screen. 2021, 7, 23  10 of 20
+
+                                       process to create a Single Condition Tool has been described previously [20,32]. Briefly, it
+                                       consists of a sequential selection of: (a) configuration parameters (scoring and correction
+                                       factor strategies); (b) location; (c) high and low markers (displayed only if provided
+Int. J. Neonatal Screen. 2021, 7, x FOR PbEyERa RgEivVeIEnWlocation, then chosen on the basis of a degree of overlap between ref1e1reonf c2e1
+                                       and condition-specific disease ranges of less than 50%); (d) adjustments (standardized to
+                                       age/birth weight/location with two exceptions: inclusion of sex for 17OHP and related
+                                       rGaAtioLsCaancdtiavditjyusitnmcleundtefdorinagthe/ebNiretwh wYeoirgkhttofoolrs)m; (aer)kmerasrukneriqeuxecetoptaiolnocsa(tfioornc,efdorzeerxoamscpolree
+                                       GwAheLnCthacetipvriitmy ainryclmudaerdkeirnitshneoNt aebwnYoromrkatl)o,oalns)d; ((ef)) imntaerrkperreteaxtcioepntgiounids e(floinrecse.dTzheerothsrceosrhe-
+                                       wolhdefnotrhaenpirnimfoarmryamtivareksecroirseniostsaebtnhoarlmfwaal)y, abnedtw(fe)einnttehreprloetwateisotnsgcourideeolifnaesc.aTseheinththreesVhoalldi-
+                                       fdoartiaonnincofohromrtatainved szceorroe.iIsfsoent ehaolrfwmaoyrbeectawseeesnhtahde aloswcoesrtesocforzeeroof,aaccaosemimn tohneoVcacluidrraetinocne
+                                       wpatclod3wTfdohoonfQoiiSecirrtfhdcstHraeifmho(iooeesttl,i>rrnnhiiaaofklvteds3otauonneieaQllicvtwldsnctoCayceiee,demoto)(aittr,vonplnohhzeaiafe-onfderetsnraociesrpicylCduoroistiatenikhn.taiol>lcoiveloidlIan3iykimflefilf)iQisdetoohmc,iacil,nrsooyo(tntantvieonhs)hndcui.hed-eaaoedemsro)lripAoyltliwtiiehydmfeikslnrorencidemiskeonniclhiefiserisastainxhoheilec,ldcyawoaoSttcane)mhhsolau.lnudediersAtppdmeoeiwpwtonlsneshetehlfnaheahSerrosdtomeesiuxailcisfcsdadtpsatetharmhetrplnulaohoaaetltetpflteshesnaodieltpcmfilrehSotseoFwewhieeeosrdsnieenhtgaafilgtibtsuostaotikalhvrylrtesfetludeeethzlaFqreCicSeSoeahuiovpgnor4iftoanoiua.unotfrosg,hlniTsrtdudeeaileieotleitdteeetoiocSlrivCa:iolbofo4pkste<moy.nfdaefa1Tncrilo1qmQosiTtdor.vhuseuoooi,aofaa(tAonwlanplisorsuoltletbodseiofine.(tseolorchcesopvTrocop:iftaubefofn<ohadrlro11sdeyttlriihlQs.ssei)to,te(,ieeAnnicvw(1aopcoplieb­synenionoo3etcfsdhwdQs.voCoisiitenrtiftiHi(thfmbivdlhteoielehirkynaTtfeeoiceta)oSnCi,onllviynHcs1nnlHeee)sy­--,,
+
+                                       22..1111.. PPoosstt AAnnaallyyttiiccaall IInntteerrpprreettiivvee TToooollss:: DDuuaall SSccaatttteerr PPlloottss
+
+                                             OOnnccee mmaattcchhiinnggppaairirssoof ftotooloslsfofroTr PTPanadnFdPFwPiwthitthhethsaemsaempheepnhoetnypoteyhpaedhbaedenbecerenacterde-,
+                                       tahteedy,wtheerey mweerrgeemd ebrygeadn abuytoanmaatuetdompraotecdessprinoctoesdsuianltotodoulsaal ntodotlhseannidnttoheanDiuntaol SacaDtutearl
+                                       PScloattt(eDrSPPlo),ta(Dn SinPs)t,raunminensttroufmdeinffteorefndtiifaflerdeinagtinaol dsiisagpnreovsiiosupsrleyvaiopupslliyedapsupcliceedsssfuuclclyestsofuthlley
+                                       ptoretvheenptrioenveonftifoanlsoefpfoaslsietivpeosoiutitvceomouetsco[2m0e,2s3[]2.0I,2n3a]. DInSaP,DthSeP,ruthleesruarleesdairfefedreifnfet rfernomt frtohme
+                                       SthinegSleinCgloenCdiotniodnitTioonolTs oboelcsabuesceatuhseertehlaetiroenlasthioipnsthoitphetorethfeererenfceerernancegerabnegceombeecsoimrreesleivrarenlt-
+                                       aesvathnte acsomthpearciosmonpatarkiseosnptlaakcesbpetlwaceenbettwwoeecnontwdiotiocnonrdanitgioens. rIafntghees.reIfsuthltefarlelsuwltitfhailnls
+                                       twhiethrianngtheeorfanogverolafpov[2e0rl]a, pth[e2r0e],itshneroesicsonroe smcordeifimcaotdioifnic,aatinodn,thanerdeftohreer,efnoorea,snsoigansmsiegnnt-
+                                       tmoeenithtoereiotnheroorntehoerotthheeor tchoenrdciotniodnit.ioHn.oHwoewveerv, eirf, tihf ethreesreuslut litsiseietihtehrerbbeelolowwoorraabboovvee
+                                       the area of oovverlap, it ttrriggers a ssccooree mmooddiifificcaation tthat iiss pprrooppoorrttiioonal ttoo tthhee ddeeggrreeee ooff
+                                       separation from the range ooff tthhee ootthheerr ccoonnddiittiioonn.. Figure 44 iilllluussttrraattees tthhee iimmpprroovveemmeenntt iinn
+                                       the distribution of those cases that ccoould nnoot bbee aassssiiggnneedd ttoo eeiitthheerr ccoonnddiittiioonn,, aassiittuuaattiioonn
+                                       described as "Indeterminate."
+
+FFiigguurree44..IImmpprroovveeddddeefifinniittiioonnooffiinnddeetteerrmmiinnaattee ccaasseessbbyytthheeDDuuaallSSccaattteerrPPlloott..LLeeggeenndd:: DDuuaall SSccaatttteerr PPlloottccuussttoommiizzeedd ffoorr
+llooccaattiioonnGGeeoorgrgiaiaapapplpielidedtottohethdeifdfeirfefenrteianltidailagdniaogsnisobseistwbeeetwn eCeHn wCiHthwhiigthh ThSigHh aTnSdHloawndT4lo(CwHTT4S(HCHT4)TaSnHd Tfa4l)seapnodsiftailvsee
+cpaosseistiwveithcatsheesswamithe pthheensoatmypeep(hFePnToStyHpeT4(F).PTTheSHtotTa4l )c.oTuhnetstootfaclacsoesunfotrs torfuecapsoessitfiovretarnude pfaolsseitipvoesiatnivde fcaalsseespwoesrietiv1e17caanseds
+1w36e0re, r1e1sp7eacntidve1l3y.60T,hreecsopuencttivoef lIyn.dTehteermcoinuantteocfasInesdwetaesrm90in0,a4te6 (c3a9s%es) wtruase p90o0s,it4iv6e(s3a9n%d)8t5ru4 e(6p3o%s)itfiavlesse panosdit8iv5e4s.(6(3P%an)eflaAls)e:
+opbrloiugseiitnicavilrecdsl.ee(ssPi)ga; nnU.eplEpAaec)rh: orpriglioghtitn:isailndddiveeistdiegernmd.iiEnnaafctoheup(rblqooutthaisdcdroainvnditdsi:teiLdooninws feaorruerripgqhousta:sdicborlanens);itssUt:eLpnoptwewreirltehrfitCg: hHcto:TncSsoiHnstseTisn4tte(nwlitgiwthhtitbFhlPuCeTHcSiHTrcSlTHes4)T;(4pU(uplripgpehlret
+rciigrhclte:si)n; dLoetweremr lienfat:tene(bitohtehr ccoonnddiittiioonn.s(aPraenpeloBss)i:bnleew); Udepspigenr .leSfete: tceoxntsfiosrteandt ewscitrhipFtiPonTSoHf thTe4li(npeurdprlaewciinrcgl.es); Lower left:
+neither condition. (Panel B): new design. See text for a description of the line drawing.
+
+                                       In the original version of the software [20], the classification as indeterminate referred
+                                 to the entire upper right quadrant of the plot. When no cases are resolved as indetermi-
+                                 nate, indicating a complete separation between two conditions, each line is drawn at the
+                                 midpoint of the gap on each axis between values of the two conditions [32]. When overlap
+                                 takes place, the orthogonal lines shown in panel A were selected as follows: the vertical
+                                 line (blue) is drawn on the X-axis to the right of the lowest score for condition 2 (purple
+Int. J. Neonatal Screen. 2021, 7, 23  11 of 20
+
+                                            In the original version of the software [20], the classification as indeterminate referred
+                                      to the entire upper right quadrant of the plot. When no cases are resolved as indetermi-
+                                      nate, indicating a complete separation between two conditions, each line is drawn at the
+                                      midpoint of the gap on each axis between values of the two conditions [32]. When overlap
+                                      takes place, the orthogonal lines shown in panel A were selected as follows: the vertical line
+                                      (blue) is drawn on the X-axis to the right of the lowest score for condition 2 (purple dots,
+                                      false positives) that does not overlap with cases of condition 1 (blue dots, true positives),
+                                      which is indeed the criterion used to categorize cases as indeterminate; the horizontal line
+                                      (purple) on the Y-axis is drawn above the highest score for condition 1 that does not overlap
+                                      with cases of condition 2. While the XY coordinates of the indeterminate quadrant could
+                                      be quite variable [20], indeterminate cases are inevitably clustered tightly in the bottom left
+                                      corner of the quadrant (Figure 4). In a subsequent version of the software (code version
+                                      2.16 released on 7 August 2019; current version is 2.22.01 released on 12 January 2021), the
+                                      line coordinates described above become points of inflexion between two perpendicular
+                                      lines (Figure 3B), together creating a central rectangle that contains all indeterminate cases;
+                                      the bottom left and top right partial quadrants become neutral to the resolution of cases.
+                                      The ability to completely segregate the zone with indeterminate cases is needed to resolve
+                                      the distribution of cases when two perpendicular lines are not capable of separate the three
+                                      groups, an outcome that is required for the zoom function described below.
+
+                                      2.12. Zoom Function of the Dual Scatter Plot
+
+                                            A novel feature of this plot is introduced here for the first time, and is called Zoom
+                                      Plot. This function follows the same principles of the parent Dual Scatter Plot, but limits
+                                      the comparison of disease ranges only to the Validation cases included in the indeterminate
+                                      zone. As such, range separation is found in much smaller numerical differences that
+                                      would not be recognized within the full disease range. See the results section for a visual
+                                      representation of the impact of this functionality.
+
+                                      2.13. Dual Scatter Plot Runner
+
+                                            Verification cases were sorted into separate files according to the six conditions de-
+                                      scribed above and uploaded individually to the Dual Scatter Plot Runner. This tool operates
+                                      sequentially a Single Condition Tool and the associated Dual Scatter Plot. After a location-
+                                      specific tool is selected, users need to select the source of reference range values (either
+                                      cumulative or location; default is cumulative), filter (one or both conditions need to have
+                                      either an informative score or a non-zero score; default setting is that the true positive tool
+                                      must have an informative score), guidelines (as defined in the tool), and finally whether to
+                                      apply the zoom sorting of indeterminate cases (default is yes). The final step is selecting
+                                      the file to be processed; the computation time for the largest file of the Verification set
+                                      (N = 1140) was approximately 10 s, irrespective of hardware and browser.
+
+                                      3. Results
+                                      3.1. Minimum-Maximum Normalization of Moving Percentiles
+
+                                            Figure 5 is an objective illustration of why selection of static and/or binned cutoff
+                                      values is prone to excessive approximation when applied to newborn screening for con-
+                                      genital hypothyroidism. After normalization of the moving percentiles by min-max score
+                                      of more than 1 million data points, it becomes evident that even small increments of co-
+                                      variate (1 h up to 1 week of age and 25 g up to 5000 g) result in noticeable variations of
+                                      the peripheral percentiles, meaning that a given result could be misinterpreted, especially
+                                      in samples collected before 24 h of age and in premature cases born less than 2500 g of
+                                      weight. As expected, the two primary markers and consequently the calculated ratio
+                                      between them behave very differently, trending in opposite directions (TSH declining and
+                                      T4 increasing) in the first 48 h and especially across the entire spectrum of birth weight in
+                                      premature newborns.
+Int. J. Neonatal Screen. 2021, 7, 23                                                            12 of 20
+    Int. J. Neonatal Screen. 2021, 7, x FOR PEER REVIEW                                    13 of 21
+
+                         Int. J. Neonatal Screen. 2021, 7, x FOR PEER REVIEW  13 of 21
+
+FigFuigreur5e. N5.oNrmoramliazleizdedmmovoivninggpperecrecenntitlielessooffTTSSHH,, TT44,, aanndd tthhee TTSSHH//TT44rartaitoiobybyagaegeanadndbibrtihrtwh ewigehigt.hLt.egLeengde:n(dP:a(nPeal nAe)l: A):
+NoNrmoramlizaelidzemdomvoinvginpgeprceerncetinletislebsybaygaeg, er,arnagneg1e­11­61868h h(1(1wweeeke)k.)C. Coololorrcocoddininggooffmmaarrkkeerrssiisseemmbbeeddddeedd iinn tthhe plot. (Panell B):
+MoBv)i:nMg opveirncgenpteilrecsenbtyilebsirbthy wbiertighhwt,eriagnhgt,er2a5n0g­e5205000­g50. 0F0irgst. oFicrcsut rorcecnucrereonfcme aoxfimmauxmimvuamluev:aTluSeH: T: SaHge: 1aghea1nhd banirdthbwirtehight
+142w5egig; Tht41: 4a2Fg5ieggu3;r4eTh54.:aNangodremb3a4ilrizhtehdawnmdeoivbgiinhrgtthp3ew8r2cee5inggthi;lteTs3So8Hf2T5/SgHT;4,TTrS4aH,tai/noTd:4athrgaeetTi1oSH:ha/Tga4enrd1athbioiarbntyhdawgbeieraitnghdhwtbie1rit3gh2hw5teg1ig3.h2t5. Lge.gend: (Panel A):
+
+                    Normalized moving percentiles by age, range 1­168 h (1 week). Color coding of markers is embedded in the plot. (Panel
+
+              B): Moving percentiles byHHbieretnhnccweee,,itgthhhtee, raaalnlttgeeerrn25a0t­i5v00e0wg.eFipprsrrtoooppccooussrereeniiscsetthohfeemccarxreieamatuitomionnvaalanunde:drTeSrlHeila:ianagcneec1eohnoansnidmsibmuirtlhutaltnaenoeuosu, ms, uml-ulti-
+              weight 1425 g; T4: apgteliep34clehovcanoadvrbiaairrttihea-twaee-diagjdhutjsu3t8se2td5egdr;eTrfSeeHfre/eTrne4ncraecteioin:inatgeteer1rvvhaalalsns.d. birth weight 1325 g.
+
+                                                         Hence, the alternative we propose is the creation and reliance on simultaneous, mul-
+
+                                 33.2.2. .RReteifpfeerlreeencnoccveeaIIrnniatteer-vadajlussAtedddjjuruessfteteredednffcooerriAnAtgegere,v,aBlBisr.itrhth, W, WeiegihgthatnadndLoLcoactiaotnion
+
+                                 tchacthaellelelTedTFSdFt3SiAHhgi.H2Ageud./u/TdRrjTFruSeejieu4fH4gse6srtu6/rermtTrnsamase4hcthete6ieironoooIansnw,tth,titroMoersMer,wevsvrasaspeanlipssvnsepaeuiAcasegctaugdacitejtlaveliuirlvvrresrreetteeleethlyppldyhpya.r.rarf.etoeTTetrsscThsheecAaeenhenagnntcnetaecrta,tperaiBctpoaeeitrineotarireiotsrontfhafionno,sootrfWsinroomotmfohefnioetfgtahfhhaaotethtdetsfrtahejeruanateahpsdndastnlemsLjdousfostjfeoscpseuonatrlitsrmtspomimtoctalmneasaoualncttteitiutosionomlcaintanastauecltcdcaceatoudooulfmcomlmtbauroyptapTlmeaataaSdetrHradCeiifst,sdLoeoTbIrdnR4fyoT, bataraaSonnynHoTdCdlSa,LHsTsCIccR4,ooL,TrrtIaio4Rnno,gdtlaofnoodrl
+                                 bfaotrchbeacsatcllohefdessAeodlefjucsstetemldeecnmttedMaramkneaargrsekraetrnhsdatagcnaednngpeeerranfoteerrmaatnea tiarnnatneisnrfoatrecmrtaiavctietoinvreecpormoeprptaorwritshownehraenedraenscaoanruinatghuothroizreizdeduser
+                                 wuistherpwfrooirtphbaeptrcrhsoetpsaetoirfstssietcaleatciltseetdixcpmalearektxiepsreserastneisdleegcsetensleearcanttdse aasnnadvinestesarvathcetseivtehqreeupeaoqtruitoawntihowenrietwhanitthhauetthhboeersbizteefisdtt.fit.
+
+                                                   user with proper statistical expertise selects and saves the equation with the best fit.
+
+Figure 6. RegFirgeusrseio6.nRqegureaslsiitoyncqounaltirtyolcopnltorotlopfloctoovfacroivaatreiataedajdujustsetedd TTSSHH, ,TT4,4a,nadnTdSHT/STH4 r/aTtio4. rLaegtieon.dL: Beig-deinmden: sBioin-dalimploetns sional plots
+
+                    in a tri-dimensional space of adjusted reference intervals. (Panel A): TSH, Box-Cox transformation; (Panel B): T4, log10
+
+in a tri-dimetnrasnisofonramlastpioanc; e(Poanfeal dCj)u: TsSteHd/Tr4erfaetiroe,nBcoex-iCnotxetrrvanaslfso.rm(Paatinone.lPAri)m: aTrSyHco,vBaroiaxte-Cisoaxgetr(aringhstfolorwmerataixoisn),;s(ePcoanndealryB): T4, log10
+transformaticoonva; r(iPataeniseblirCth):wTeSigHht/(lTef4t lroawtieor ,axBios)x. T-Cheodxartkrabnlusefosurrmfaacetiroepnr.esPernitms taherymcedoivana,rliiagtheteirsbalugeesu(rfiagchest rleopwreesernat xonise), secondary
+covFinairgaiuatrtreei-i6ds.ibmRaineredgtnhrtsweiwsoosnesioatiaglnnhsdqptauar(dlacelediftteoyvlfoicaawotidonejnturrssoaatlbxeopdisvl)oer.etaTfnoehdfreebcneodlcvoaewarrkitnihabtetelemruvaeeaddsljisuua.nsr(,tfPreaeadcsnepTeercSletHAipvr,e)e:lTysT.4eS,nHatns, dtBhoTexSm-HCe/oTdx4iatrrnaa,tnilsoigf.ohLrtmeegraetbnioldun:e;B(siPu-darinfmaecleenBss)ri:oeTnp4ar,ellspoelgno1tt0sone
+andtratwnsofosrtmanadtiaornd; (dPeavniealtiCon):sTaSbHo/vTe4arnadtiob,eBloowx-Cthoex mtraendsifaonr,mreastipoenc.tPivreimlya. ry covariate is age (right lower axis), secondary
+
+   covariate is birth weight (left lower axis). The dark blue surface represents the median, lighter blue surfaces represent one
+
+   and two standard deviations aboFvige uanred b7eslohwowthse ma ecdoimanp, raersipseocntivoeflyu. nadjusted vs. adjusted reference intervals by in-
+                                 dividual location using the CLIR productivity tool called Reference Range Comparison.
+
+                                 The best example of improved consistency and comparability is found for TSH, where
+Int. J. Neonatal Screen. 2021, 7, x FOR PEER REVIEW  14 of 21
+
+Int. J. Neonatal Screen. 2021, 7, 23          Figure 7 shows a comparison of unadjusted vs. adjusted reference intervals by in1d3i-of 20
+                                       vidual location using the CLIR productivity tool called Reference Range Comparison. The
+                                       best example of improved consistency and comparability is found for TSH, where there
+                                      thwearse aw2a.s3-afo2ld.3-dfoiflfderdenifcfeerbeentcweebenetwtheeelnoctahteiolnocwaittihonthwe ihthigthheesthmigehdeisatnm(Gedeoiargnia(G, 8e.o2r3gia,
+                                      8m.23[ImU][/ILU)]a/nLd) tahnedotnheewointhe twheithlotwheeslto(wNeosrtw(aNyo, r3w.5a2ym, 3[I.5U2]/mL)[.IBUa]s/eLd).oBnadsiefdferoenndceifsfoerfetnimcees of
+                                      tiomf ecoolfleccotliloenct(iGoneo(rGgeiaormgieadmiaendaiagne aagt ecoaltleccotliloenct2io8n.72h8,.7Nho,rNwoaryw5a4y.45h4).4, thh)e, tthreentdresnidllus sil-lus-
+                                      trtarateteddininFFiigguurree66 ssuuppppoorrtt tthheeaarrgguummeennttththaat tsusuchchdidffieffreernecnecsehsohuoldulbdebeexpeexcpteecdt.eYde.tY, aeftt,earfter
+                                      nnoormrmaalilzizaatitoionnbbyyaannaaddjujussttmmeenntt tthhaatt iinncclluuddeedd hhaarrmmoonniizzaattiioonn bbyy llooccaattiioonn,,tthheeddiiffffeerreennccee at
+                                      YpthapYoleetlrometkrmhmk,eea,eenmadntdatideiaalfdilnffFeiFfaierlignereguevnulnreetretvelsseSiwSitl5t5uwau))asawwattiesioaaoleissnnmlitttmhthhiheneiaanahthtatallaetiirerkdkmmdeeaollaoyylnlmnmrirzieeozoafflaslstetiettocicccotntoosnsmomkkofnppnfTololTRewewtREteneCEnllymyC.rm.aAerAnetanhtgnnhooegotodshetdobhesloereobltnrgoweoingtcewtioaaecltnbeaadellCbenidflaefeiClxefifreafaeeomxlrniraefnpcomneilraecsnpea([ilss3naee3d[ea(3,3snN3Se4d,u]ee3.pw4NS-]u.epw-
+
+FigFuirgeu7re. R7.eRfeerfeenrecnecRe aRnagnegeCComomppaarirsiosonnooffTTSSHHaanndd TT44 rreeffeerreenncceerraannggeessininddrireidedblboloododspsoptostbsybcyoncotrnibtruibtiuntginsigtessi.teLse.gLenegde: nd:
+TheThheorhizoorinztoanl tgarlegernebenanbdanodveorvlaeyrslatyhsetchuemcuumlatuilvaetipveerpipehrieprhael rpaelrpceenrcteilnetsil(ebsro(bwrnow) onn) toonptoofpthoef itnhde iivniddiuvaidl usiatel ssi(tdeasr(kdagrrkeen).
+Locgarteieonn)s. Laorecantiootnasliagrneendotvaelritgincaeldlyvebretcicaaullsye btheceayuwseetrheesyowrterdelseofrttteodrliegfht toinridghestcinenddeisncgenodridnegroorfdtehreomf tehdeimanedseiapnarsaepteal-y in
+eacrhatpealyneinl. (ePaachneplaAn)e:lu. n(PaadnjuelstAed): TuSnHadrjuanstgeeds;T(SPHanrealnBg)e:sT; S(PHanraenl gBe)s: TafStHer raadnjugesstmaeftnetr faodrjaugstem(henoturfos)r, abgireth(hwoueirgsh),tb(igrrtahms)
+andwleoicgahttio(gnr,aemxsp)raenssdeldocaastiZo-ns,ceoxrpesre; s(Pseadnaesl CZ-)s: cuonraesd;j(uPsatnedelTC4):ruannagdejsu;s(tPeadnTe4l Dra)n:gTe4s;r(aPnagneesl Daf)t:eTr4ardajnugstems aefntet rfoardjaugsetm(heonut rs),
+birftohrwageeig(hhto(ugrrsa),mbsir)t,hanwdeilgohctat(igornam, esx)p, arensdselodcaatsioZn-,secxoprerse.ssed as Z-scores.
+
+                                 33.3.3. .DDuuaallSSccaatttteerr Plot Analyyssiiss
+
+                                        FFigiguurree88 sshhoows an exxaammpplleeooffththeeoouutptpuut tofotfhteheDDuaulaSlcSacttaetrtePrloPtloRtuRnnuenrnaefrtearftuepr-up-
+                                 loloaaddininggaafifilleeffrroomm tthhee VVeerriiffiiccaattiioonnccoohhoorrtt..TThheeuupplolaodaeddedfilfielceocnosnisstiesdteodf o46f 746fa7lsfealpseospitoivsietive
+                                 cacasesessfrforommGGeeoorrggiaiawwitithhbbootthhhhiigghhTTSSHH aanndd llooww TT44,, aanndd nnoott ssuurrpprriissiinnggllyy,, aallll ccaasseess wweerree in-
+Int. J. Neonatal Screen. 2021, 7, x FOR PpfEoipoEnrosRmfsioRtiraitEmvitVvieIveaEsstWeisvsfeeeoqqrfuuoterehnntehttiSieaailSnllyligynblgebyleyCthCotehonenDddDiutiaituoiloanSnlcTSaTotcotoaeoltrl.t.PeHHrloooPtwwl(oseeetvve(eesFrre,i,ge33u7F73r3iegoo4ufBftrh)tehea4menBmd)(8Z(a08on%0od%)mwZ)Powelrooee1mt5rr(eeFoPsfriogel2olsu1vtoreel(dvF9eia)gd.sufaarselsfe9a)l.se
+
+                                      FFiigguurere8.8R. eRsuelstufllotwfloowf thoefDthuealDScuaattlerScPalottteRruPnnloetr.RLuegnennedr:.RLeesogleuntidon: RbyesthoeluCtLioIRn DbuyatlhSecaCttLerIR Dual Scatter
+
+                                      Plot Runner of 467 FP cases with elevated TSH and low T4 from location Georgia (USA-GA). Single
+
+                                      CPolontdRitiuonnnTeoroloifs 4C6H7TFSPHcTa4sevserwsioitnh0e26lecvraeatetedd T1SFHebraunadryl2o0w21T, D4ufarloSmcatltoecraPtliootnCGHeToSrHgiTa4(vUs.SA-GA). Single
+                                      FCPoTnSdHitiTo4nveTrosoiolnis02C7HcreTaSteHd 1TF4evbreurasriyon200221.6Imcraegaeteisdsh1oFwenbruunaedryite2d0a2s1c, rDeauteadl SaucatotmteartiPcalolltyCH TSH T4 vs.
+                                      bFyPthTeSsHoftTw4avree.rCsoiolonr c0o2d7incgreaastfeodllo1wFs:eGbrreuya,rsyta2rt0; 2B1lu.eI,mpraogceesiss; Yshelolowwn: duenciesidoint;eGdreaesnc, rtoetaatles.d automatically
+
+                                      3b.y4.tChuemsoufltawtivaereO.uCtcoolmore ocfotdhienAgnaaslyfsoislloofwVse:riGficraetyi,onstSaertt; Blue, process; Yellow: decision; Green, totals.
+
+                                            Table 5 summarizes the resolution by Dual Scatter Plot Runner of true and false pos-
+                                      itive cases by location in the Verification dataset. Overall, 2% of the true positive cases
+                                      were resolved incorrectly, and 36% (range 17­50% by location) of false positive cases
+                                      could have been resolved properly as true negatives.
+Int. J. Neonatal Screen. 2021, 7, 23  3.5. Impact of the Zoom Function toward the Resolution of FP Cases
+
+                                            From the perspective of interpretation of an individual case, an outcome of Indeter-
+                                      minate is an abnormal result that would trigger further evaluation. After the Dual Scatter
+                                      Plot, 201 FP TSH T4 cases from location Georgia were classified as Indeterminate, b1u4totfh2e0
+                                      Zoom Plot shown in Figure 9 resolved correctly as false positives an additional 122 of
+                                      them (Panel B).
+
+FFiigguurree 99.. RReessoolluuttiioonn ooff IInnddeetteerrmmiinnaattee ccaasseess bbyy tthhee ZZoooomm PPlloott.. LLeeggeenndd:: ((PPaanneell AA)):: SSaammee DDuuaall SSccaatttteerr PPlloott ffoorr llooccaattiioonn
+GGeeoorrggiiaa aasssshhoowwnnininFFigiguurere4A4A, o, voevrelraliadidwwithithredreddiadmiaomnodnsdresprreepsreensteinngtiningdiinvdidivuiadlufaallsfeaplsoesiptiovseitcivaseecsafsreosmfrtohme VtehreifiVcaetriiofin-
+tcchaoethioIonnrdtce(oltohecromarttiion(lnaotceGazteiooonrngeiG.aQe, oucroagndidraa,itnciotosnnadFriePtidoTneSfiHFnPeTdT4Sa,HsNinT=4th,4Ne67le)=.g4eT6nh7de).oiTnfhsFeeirgitnuisrneert4th.ie(nPttoahnpeerltioBgph):tr9iqg0u0hatIdnqrduaeantdetrriamsnaitnmiastaeagcmnaisafiegcsna(itsfiieocenatFioiogfnuthroeef
+4In) dfreotmermthienaVtaelizdoanteio. nQcuoahdorratnotvsearrleaiddewfinitehdthase i2n01thIendleegteenrmdionfaFteigcuarsees4f.r(oPmanPealnBe)l: A90.0TIhnedientseerrmt iinnathteectaospesri(gsheteqFuigadurrean4t)
+ifsroammtahgenVifailciadtaiotinonofcothheorint toevresrelcatiidonwoitfhththeeli2n0e1s.Indeterminate cases from Panel A. The insert in the top right quadrant is a
+magnification of the intersection of the lines.
+
+                                 43..4D. iCsucumsusliaotnive Outcome of the Analysis of Verification Set
+                                 tproatsiiotNTinvaeeobwfclebaTso5SerHsnsubsaymcnrldmeoe/coanarritiniTzoge4nsfiointnrhdCtehrHiereeVdrseoeblrliulieofistociaoadlntmisopbonyosdttsDea.ntuIatnasirleretaSl.rycOeaotvcntaeesrtrheaPslel,l,dop2etr%toRegrourmfnatminhneeasrttairoolusfneotoprmfuoteeshaiteasinuvcdoreencfctaaheslnysees--
+                                 rwoeidrebriensdoilnvgedgilnocbourlrienct(lTyB, aGn)d[3356]%or(rfarnegeeT147­[3560]%, bbuyt lnoocaptiroong)roamf famlseeapsousriitnivgeTcBaGsesocrofurelde
+                                 Th4avfoerbsecerneernesinoglvpedurpproospeesrwlyaassitnrculeudneedgaitnivtehsi.s comparative study. As shown in Supple-
+                                 mental Figures S1­S3, TSH is a sensitive marker, and even if FP cases also show an ele-
+                                 vaTteadbleco5n. Rdeitsioolnutiroannogfec,atsheseybyalroecactlieoanrilnythseepVaerraifitecadtiofrnosmet.the range observed in affected
+
+                                      California  Norway  Sweden  Georgia Kentucky               New York  Virginia  Totals
+                                          TSH       TSH     TSH   TSH + T4 TSH + T4
+        First tier screening                                                                          T4       T4
+          Second tier test            9           7       8       8     6                           TSH      TSH      52
+                                                                                                                      30
+      Other markers (ratios)          2           2       2       6     6                              8       6      15
+  Single condition tools (SCT)                                                                         6       6
+                                      1           1       1       3     3                              3       3     454
+    Dual scatter plots (DSP)                                                                                           0
+                                      143         18      60      88    20                            95       30      4
+        True positive cases                                                                            -        -      4
+ Cases resolved as FP by SCT          -           -       -       -     -                              2        -      8
+ Cases resolved as FP by DSP                                                                           -        -    2%
+Cases resolved as FP by Zoom          -           -       -       2     -                              2       0
+Screens resolved as FP by CLIR                                                                       2%       0%     5447
+                                      -           -       -       4     -                                            774
+                   %                                                                                 657     1777    812
+                                      0           0       0       6     0                             17      107    345
+        False positive cases                                                                         133      180    1931
+ Cases resolved as FP by SCT          0%          0%      0%      7%    0%                            55       17    35%
+ Cases resolved as FP by DSP                                                                         205      304
+Cases resolved as FP by Zoom          82          31      41      2732  127                          31%     17%
+Screens resolved as FP by CLIR
+                                      4           6       -       637   3                                                    (40%)
+                   %                                                                                                         (42%)
+                                      3           -       5       489   2                                                    (18%)
+
+                                      33          3       8       229   -
+
+                                      40          9       13      1355  5
+
+                                      49%         29%     32%     50%   4%
+
+                                                  Legend: TN, true negative (normal screening).
+
+                                            The demographic characteristics and screening results of potential false negative
+                                      screens are summarized in Table 6.
+
+                                            It is important to note that per local protocols, each of these infants would have been
+                                      required to have additional screenings performed, as none of these screenings individually
+                                      would meet the requirements for a satisfactory test, based on age at collection and birth
+                                      weight. Six of eight screenings had a collection time of one hour and would have been
+                                      required to have another screen collected after 24 h of life. The remaining two were
+                                      collected close to one month of age. Six of these cases had a birth weight <1500 g. One was
+                                      missed by the Single Condition Tool, three failed to be recognized by the Dual Scatter Plot
+                                      and the other four by the Zoom tool.
+Int. J. Neonatal Screen. 2021, 7, 23                                                                          15 of 20
+
+                  Table 6. True positive screening results resolved as false positive by CLIR tools.
+
+Case  Site  Tool                       Age       Birth    Gest.  Sex     TSH  T4   Resolution Resolution Resolution
+                                      (Hours)  Weight     Age
+                                               (Grams)  (Weeks)          (m[IU]/L) (µg/dL) by SCT     by DSP  by Zoom
+
+Case 01 GA TSH T4                     1        1474     n/a      Male    54   2.1  Informative Indeterminate  FP
+                                               911
+Case 02 GA TSH T4                     1        2535     n/a      Female  53   4.1  Informative Indeterminate  FP
+                                               540
+Case 03 GA TSH T4                     1        669      n/a      Male    51   6.0  Informative Indeterminate  FP
+                                               437
+Case 04 GA TSH T4                     715      3010     n/a      Male    22   1.8  Informative Indeterminate  FP
+                                               515
+Case 05 GA  T4                        659               n/a      Male    8    4.8  Informative        FP      -
+
+Case 06 GA  T4                        1                 n/a      Female  13   4.6  NI                 -       -
+
+Case 07 NY TSH T4                     1                 39       Male    23   4.6  Informative        FP      -
+
+Case 08 NY TSH T4                     1                 30.1     Male    34   5.3  Informative        FP      -
+
+Legend: n/a, not available; NI, not informative; FP, false positive; -, not applicable. Values shown in italic and underscored are abnormal
+(TSH > 14.22 m[IU]/L; T4 < 9.45 µg/dL).
+
+                                      3.5. Impact of the Zoom Function toward the Resolution of FP Cases
+
+                                            From the perspective of interpretation of an individual case, an outcome of Indeter-
+                                      minate is an abnormal result that would trigger further evaluation. After the Dual Scatter
+                                      Plot, 201 FP TSH T4 cases from location Georgia were classified as Indeterminate, but the
+                                      Zoom Plot shown in Figure 9 resolved correctly as false positives an additional 122 of them
+                                      (Panel B).
+
+                                      4. Discussion
+
+                                            Newborn screening for CH relies almost entirely on the determination of the concen-
+                                      tration of TSH and/or T4 in dried blood spots. In rare cases, programs also measure thyroid
+                                      binding globulin (TBG) [35] or free T4 [36], but no program measuring TBG or free T4 for
+                                      screening purposes was included in this comparative study. As shown in Supplemental Fig-
+                                      ures S1­S3, TSH is a sensitive marker, and even if FP cases also show an elevated condition
+                                      range, they are clearly separated from the range observed in affected cases, a difference that
+                                      is exactly what CLIR tools are meant to recognize to improve specificity. This observation is
+                                      true for both CH TP cases (Supplemental Figure S1) and even more pronounced in CH TSH
+                                      T4 (Supplemental Figure S3, top panel; see also TSH disease percentiles in Supplemental
+                                      Tables S4­S6, respectively). On the other hand, the T4 ranges of CH T4 and FP T4 cases
+                                      are essentially the same (Supplemental Figure S2), suggesting that a combination of low
+                                      T4 and normal TSH ("OR" algorithm) is a problematic interpretation strategy to follow
+                                      and is likely the root cause behind the high number of false positives encountered by
+                                      programs using T4 as either first-tier or second-tier screening. The reliability of isolated low
+                                      T4 values should be reconsidered, but it is premature to suggest its outright elimination
+                                      from testing protocols, as the TSH/T4 ratio, even when T4 is normal, is very informative
+                                      and discriminative between TP and FP cases. When measuring both TSH and T4, further
+                                      evaluation is warranted when both markers are abnormal or only TSH (plus the TSH/T4
+                                      ratio) is informative. The strategy of T4 first-tier screening followed by TSH as second-tier
+                                      test could still be viable, but the TSH result should be the decision point with full overriding
+                                      control of the initial T4 result [37]. An exception could be considered for programs that
+                                      specifically aim to report newborns with central CH, a disorder characterized by normal
+                                      TSH levels but abnormally low T4 levels. In case financial resources are allocated to screen
+                                      for central CH, a presumably effective approach could be adding the measurement of total
+                                      or free thyroxine to TSH.
+
+                                            The performance improvement hypothesis of this retrospective study is based on two
+                                      premises: first, the calculation of ratios between primary CH markers and others that are
+                                      routinely measured to screen for unrelated conditions creates an informative multiplex
+                                      profile that could lead to the recognition of differences in the degree of overlap between
+                                      analyte ranges of TP and FP cases. A higher degree of separation for a given ratio could be
+                                      found unexpectedly, such as the ratios of TSH to Biotinidase activity and to Galactose-1-
+                                      phosphate uridyl transferase activity (both expressed as a percentage of the daily median)
+                                      as measured in Sweden (Supplemental Figure S1). Second, the physiological trends of
+Int. J. Neonatal Screen. 2021, 7, 23  16 of 20
+
+                                      markers of thyroid function in the neonatal period are so dynamic and fast-changing
+                                      that reliance on static cutoffs, with or without broad binning for age and birth weight, is
+                                      destined to lead to a frequently incorrect interpretation and unnecessary follow-up testing,
+                                      especially in extremely low birth weight premature newborns, as long as current practices
+                                      of collecting a dried blood spot sample immediately after birth are not revisited [38].
+
+                                            CLIR has been proven to achieve performance improvements for multiplex panels
+                                      measured by tandem mass spectrometry for inborn errors of amino acid, organic acid, and
+                                      fatty acid metabolism [20,21] and lysosomal disorders [22]. The validation of a second-tier
+                                      test for Pompe disease [23] was the first instance of finding clinical utility by merging
+                                      the results from two different analytical tests, the lysosomal and peroxisomal 10-plex
+                                      panel [39] and a creatine disorder panel [30]. The information technology infrastructure
+                                      needed to merge results of different tests is complex, but overall manageable by a variety
+                                      of approaches, with a greater obstacle to be found in automated matching of analytical
+                                      results with covariate information, often stored in a different system. Once such a goal is
+                                      broadly recognized to add value to the quality and performance of newborn screening, it
+                                      is likely that seamless solutions will become routinely available from instrument and/or
+                                      reagent manufactures once they have reached a business decision to make it available to
+                                      their customers.
+
+                                            In this study, the lack of uniformity of other markers available in addition to the three
+                                      models of testing for primary CH markers was pervasive. Only 17OHP, two amino acids,
+                                      and two acylcarnitines were available from all sites, and the latter were measured by either
+                                      one of two different MS/MS methods (Table 1). This situation, however, was turned into
+                                      an opportunity to showcase the flexibility of CLIR and to evaluate whether larger profiles
+                                      could perform better in terms of FP prevention. Anecdotally, the location with the smallest
+                                      available marker set also had the lowest percent improvement and was the only program
+                                      that did not have at least one more ratio in its customized panel beyond the five common
+                                      markers. The prevention of FP was split on average 2:2:1 between the Single Condition
+                                      Tools (cases with a non-informative score, likely to be a direct effect of the adjustment
+                                      for covariates), the traditional Dual Scatter Plot, and the novel function Zoom Plot. The
+                                      contribution of the new feature was as high as 83% of the preventable FP cases (California,
+                                      33 of 40) and as low as none (Kentucky, 0 of 5) (Table 5). Further studies with different
+                                      testing scenarios are needed to confirm the full clinical utility of this new function.
+
+                                            The FN screenings in this study are a concern, but they highlight the difficulty asso-
+                                      ciated with interpreting NBS results at the extremes of covariate ranges because of: (a)
+                                      minimal if not missing altogether reference data with comparably rare combinations of
+                                      covariates, causing unforeseen extrapolations in the creation of the adjustment. Based on
+                                      their demographics, each infant who had a missed screen would have had either subse-
+                                      quent or previous screenings. Considering Georgia's protocol for repeat screenings and
+                                      follow-up testing, subsequent normal screenings for CH would have resulted in the case
+                                      being resolved as normal for a child in the NICU. While specific case level data could not
+                                      be reviewed due to the deidentified nature of the study, it is extremely unlikely that these
+                                      missed screenings would result in missed diagnoses. After the completion of this study,
+                                      Georgia undertook a retrospective review of CH screening data to adjust cutoffs, with care
+                                      taken not to miss any cases. At 1 h of age, the TSH level now needs to be >100 uIU/mL to be
+                                      abnormal. As these cases were all from a similar time period, this is additional supporting
+                                      evidence that these infants would have been correctly identified and referred for treatment
+                                      if CLIR had been utilized. This scenario could be an underlying cause of why TSH values
+                                      in the 50­60 range (Table 6) were not interpreted correctly; (b) a possible bias within the
+                                      Dual Scatter Plot algorithm that might favor under certain circumstances the assignment
+                                      of a case to the condition in which similar covariate values are far more common (see
+                                      Figure 3). Overall, it appears from this study that performing newborn screening for CH
+                                      immediately after birth in a premature/sick newborn is prone to a variety of biological
+                                      and analytical artifacts that may result in harm greater than any benefit of early identi-
+                                      fication, also considering that CH might not be considered a time-critical condition [40].
+Int. J. Neonatal Screen. 2021, 7, 23  17 of 20
+
+                                      Protocols have been developed for screening in NICUs to minimize missed cases; however,
+                                      it may be reasonable to reevaluate the timing of collection with a goal of overall improved
+                                      screening performance (reduce FP and FN results), and less interference in the provision of
+                                      critical care.
+
+                                            No attempt was made to question the outcome classification by the contributing sites.
+                                      An exception was a case from Norway with a TSH value of 4.4 m[IU]/L that was initially
+                                      included in the Validation TP group, even if it was known to the program as a confirmed
+                                      false negative event. There were a few additional limitations of this study that deserve
+                                      to be mentioned as opportunities for improvement and as a source of learned lessons
+                                      guiding future prospective studies. First, there was no correlation to actual prevalence,
+                                      sensitivity, and specificity as sample exclusion criteria were applied inconsistently before
+                                      submission, such as removal of any abnormal result for other conditions vs. only of cases
+                                      with abnormal results for thyroid markers, further compounded by the post-submission
+                                      criteria driven by a lack of data completeness (Table 2). Second, there was no objective
+                                      way to compare programs to the others, as all had different panels, so each location was
+                                      evaluated separately with the most basic outcome of percentage of potentially missed
+                                      true positives and preventable false positives. There was no effort to exclude birth weight
+                                      in older patients, because overall, they represented only a very small proportion of the
+                                      study population (<1%, Table 3). Although not intrinsic to this post-analytical study, it
+                                      was challenging to rationalize how cases resolved as false positives could have markedly
+                                      elevated TSH values, well above the expected physiological response [41]. Finally, it
+                                      could have been helpful to link repeat samples to the initial samples and to integrate the
+                                      resolution by the tools with a longitudinal and integrated assessment of adjusted data. An
+                                      unresolved issue is up to what age it is still relevant to use the original birth weight in the
+                                      regression. Adjustment for age and location only is a viable option, but it was not included
+                                      within the scope of this study, since it does not apply to most samples.
+
+                                            In 2018, the concept of using CLIR to build a recommended uniform screening tool
+                                      (RUST) was introduced at the ISNS conference in Bratislava [42]. If even a single numerical
+                                      marker is chosen for each condition (or groups having overlapping phenotypes) included
+                                      in the uniform panel [24,25], screening for CH using either TSH, T4, or both could be
+                                      integrated with as many as 22 (or 45) calculated ratios without any additional analytical
+                                      effort. Further customization is certainly possible by individual programs using the CLIR
+                                      Tool Editor and includes the options to consider other commonly measured markers to
+                                      calculated ratios (tyrosine, valine, acetylcarnitine, and palmitoylcarnitine to name just a
+                                      few) and also to exclude low intensity markers (argininosuccinic acid, succinylacetone,
+                                      and any of the long chain hydroxyl acylcarnitine species). This universal panel is not
+                                      limited to CH and could be readily applied to any other RUSP condition currently screened
+                                      for by a single marker. The successful application of CLIR to the interpretation of very
+                                      heterogeneous combinations of markers screening for a single disorder also highlights a
+                                      major strength of the CLIR approach. While many advanced machine learning tools can
+                                      be trained on high-dimensional data, they are often dependent upon every input variable
+                                      in order to generate an interpretation. The realities of laboratory screening mean that
+                                      complete data are not always available at any given point. Being able to customize tools to
+                                      the data available in variable circumstances is a fundamental property of the CLIR design,
+                                      and one that gives a level of robustness in real-world usage which is highly sought after.
+                                      Based on the preliminary evidence obtained by this study, it is highly likely that such
+                                      granularity of biochemical fingerprinting could lead to performance improvement and
+                                      clinical utility consistent with the concept of precision newborn screening based upon
+                                      near-zero FP rates [22].
+Int. J. Neonatal Screen. 2021, 7, 23  18 of 20
+
+                                            Supplementary Materials: The following are available online at https://www.mdpi.com/article/
+                                            10.3390/ijns7020023/s1, Table S1: Unadjusted reference percentiles of measured markers, Table S2:
+                                            Unadjusted reference percentiles of calculated TSH ratios, Table S3: Unadjusted reference percentiles
+                                            of calculated T4 ratios, Table S4: Unadjusted extended percentiles of disease ranges for conditions
+                                            CH TSH and FP TSH, Table S5: Unadjusted extended percentiles of disease ranges for conditions CH
+                                            T4 and FP T4, Table S6: Unadjusted extended percentiles of disease ranges for conditions CH TSH T4
+                                            and FP TSH T4, Figure S1: Plot by Multiple Conditions comparing disease ranges of conditions CH
+                                            TSH and FP TSH, Figure S2: Plot by Multiple Conditions comparing disease ranges of conditions CH
+                                            T4 and FP T4, Figure S3: Plot by Multiple Conditions comparing disease ranges of conditions CH TSH
+                                            T4 and FP TSH T4, Figure S4: Single Condition Tool for condition CH TSH for location California,
+                                            Figure S5: Reference range comparison of unadjusted and adjusted values for marker TRECs.
+
+                                            Author Contributions: Conceptualization, A.D.R., S.D.S., H.Å., A.F., P.L.H., A.P.N., J.J.O., R.D.P.,
+                                            H.T., R.H.Z., R.J.C., L.M. and P.R.; Data curation, A.D.R., S.D.S., H.Å., A.F., P.L.H., G.C.M., B.J.M.,
+                                            C.N., J.J.O., A.L.P., N.R.S., A.C.S., H.T., N.P.T., R.H.Z., R.J.C., L.M. and P.R.; Formal analysis, A.D.R.,
+                                            S.D.S., H.Å., A.F., P.L.H., C.N., A.P.N., J.J.O., A.L.P., H.T., N.P.T., R.H.Z., R.J.C., L.M. and P.R.; Funding
+                                            acquisition, P.R.; Investigation, A.D.R., S.D.S., R.H.Z., R.J.C., L.M. and P.R.; Methodology, A.D.R.,
+                                            S.D.S., A.F., P.L.H., G.C.M., B.J.M., J.J.O., A.L.P., N.R.S., H.T., R.H.Z., R.J.C., L.M. and P.R.; Project
+                                            administration, R.H.Z., R.J.C., L.M. and P.R.; Resources, V.A., M.C., A.H., C.N., R.D.P., A.C.S.,
+                                            S.W. and P.R.; Software, A.D.R., S.D.S., A.F., G.C.M., B.J.M., A.L.P., N.R.S., R.J.C., L.M. and P.R.;
+                                            Supervision, V.A., M.C., A.H., R.D.P., S.W., R.H.Z., R.J.C., L.M. and P.R.; Validation, A.D.R., S.D.S.,
+                                            R.H.Z., R.J.C., L.M. and P.R.; Visualization, A.P.N. and P.R.; Writing--original draft, A.D.R., S.D.S.,
+                                            N.P.T., R.H.Z., R.J.C. and P.R.; Writing--review and editing, A.D.R., S.D.S., H.Å., V.A., M.C., A.F.,
+                                            A.H., P.L.H., G.C.M., B.J.M., C.N., A.P.N., J.J.O., R.D.P., A.L.P., N.R.S., A.C.S., H.T., N.P.T., S.W., R.H.Z.,
+                                            R.J.C., L.M. and P.R. All authors have read and agreed to the published version of the manuscript.
+
+                                            Funding: This work was supported in part by the T. Denny Sanford professorship fund, Mayo Clinic.
+
+                                            Institutional Review Board Statement: The study was conducted according to the guidelines of the
+                                            Declaration of Helsinki, and approved by the Institutional Review Board of Mayo Clinic (protocol
+                                            code PR12-009225-04, date of last continuing approval was 25 March 2021).
+
+                                            Informed Consent Statement: Patient consent was waived due to research use of results obtained
+                                            before 25 March 2015, the date when the section 12 provision of the Newborn Screening Saves Lives
+                                            reauthorization act of 2014 went into effect [29], limiting research uses of non-identified results.
+
+                                            Acknowledgments: We are grateful to Dietrich Matern (Mayo Clinic) for his thoughtful review of
+                                            the manuscript and to Freyr Jóhannsson (Landspitali, Reykjavik, Iceland) for creative suggestions to
+                                            edit Figure 7. Mark A. Morrissey contributed to the MS/MS data for the New York program.
+
+                                            Conflicts of Interest: The authors declare no conflict of interest.
+
+                                       Abbreviations
+
+                                            17OHP: 17-hydroxy progesterone, BIOT: Biotinidase, C16: palmitoylcarnitine, C3: propionylcarnitine,
+                                            CH: congenital hypothyroidism, CIT: citrulline, CLIR: Collaborative Laboratory Integrated Reports,
+                                            DSP, Dual Scatter Plot, FN: false negative, FP: false positive, GAA: Acid -glucosidase, GALC:
+                                            galactocerebrosidase, GALT: galactose-1-phosphate uridyl transferase activity, IQR: interquartile
+                                            range, IRT: immunoreactive trypsinogen, ISNS: International Society for Neonatal Screening, KDE:
+                                            Kernel density estimation, MS/MS: tandem mass spectrometry, NBS: newborn screening, NICU:
+                                            neonatal intensive care unit, R4S: Region 4 Stork, RUSP, recommended uniform screening panel, SCT:
+                                            Single Condition Tool, T4: thyroxine, TRECS: T-cell receptor excision circles, TP: true positive, TSH:
+                                            thyroid-stimulating hormone, TYR: tyrosine.
+
+References
+1. Grüters, A.; Krude, H. Detection and treatment of congenital hypothyroidism. Nat. Rev. Endocrinol. 2011, 8, 104­113. [CrossRef]
+
+       [PubMed]
+2. LaFranchi, S.H. Newborn screening strategies for congenital hypothyroidism: An update. J. Inherit. Metab. Dis. 2010, 33 (Suppl. 2),
+
+       S225­S233. [CrossRef]
+Int. J. Neonatal Screen. 2021, 7, 23  19 of 20
+
+3. Lain, S.J.; Bentley, J.P.; Wiley, V.; Roberts, C.L.; Jack, M.; Wilcken, B.; Nassar, N. Association between borderline neonatal
+       thyroid-stimulating hormone concentrations and educational and developmental outcomes: A population-based record-linkage
+       study. Lancet Diabetes Endocrinol. 2016, 4, 756­765. [CrossRef]
+
+4. Salerno, M.C.; Improda, N.; Capalbo, D. Management of endocrine disease--Subclinical hypothyroidism in children. Eur. J.
+       Endocrinol. 2020, 183, R13­R28. [CrossRef]
+
+5. Krude, H.; Blankenstein, O. Treating patients not numbers: The benefit and burden of lowering TSH newborn screening cut-offs.
+       Arch. Dis Child. 2011, 96, 121­122. [CrossRef]
+
+6. Alm, J.; Hagenfeldt, L.; Larsson, A.; Lundberg, K. Incidence of congenital hypothyroidism: Retrospective study of neonatal
+       laboratory screening versus clinical symptoms as indicators leading to diagnosis. Br. Med. J. 1984, 289, 1171­1175. [CrossRef]
+
+7. Van Trotsenburg, P.; Stoupa, A.; Léger, J.; Rohrer, T.; Peters, C.; Fugazzola, L.; Cassio, A.; Heinrichs, C.; Beauloye, V.; Pohlenz,
+       J. Congenital Hypothyroidism: A 2020­2021 Consensus guidelines update--An ENDO-European reference network initiative
+       endorsed by the European Society for Pediatric Endocrinology and the European Society for Endocrinology. Thyroid 2021, 31,
+       387­419. [CrossRef]
+
+8. Mehran, L.; Khalili, D.; Yarahmadi, S.; Amouzegar, A.; Mojarrad, M.; Ajang, N.; Azizi, F. Worldwide recall rate in newborn
+       screening programs for congenital hypothyroidism. Int. J. Endocrinol. Metab. 2017, 15, e55451. [CrossRef]
+
+9. Rose, S.R.; Brown, R.S.; Foley, T.; Kaplowitz, P.B.; Kaye, C.I.; Sundararajan, S.; Varma, S.K. Update of newborn screening and
+       therapy for congenital hypothyroidism. Pediatrics 2006, 117, 2290­2303.
+
+10. Counts, D.; Varma, S.K. Hypothyroidism in children. Pediatr. Rev. 2009, 30, 251­258. [CrossRef] [PubMed]
+11. Di Dalmazi, G.; Carlucci, M.A.; Semeraro, D.; Giuliani, C.; Napolitano, G.; Caturegli, P.; Bucci, I. A detailed analysis of the factors
+
+       influencing neonatal TSH: Results From a 6-year congenital hypothyroidism screening program. Front. Endocrinol. 2020, 11, 456.
+       [CrossRef]
+12. Korada, M.; Pearce, M.S.; Avis, E.; Turner, S.; Cheetham, T. TSH levels in relation to gestation, birth weight and sex. Horm. Res.
+       2009, 72, 120­123. [CrossRef] [PubMed]
+13. Moleti, M.C.; Di Mauro, M.; Sturniolo, G.; Russo, M.; Vermiglio, F. Hyperthyroidism in the pregnant woman: Maternal and fetal
+       aspects. J. Clin. Transl. Endocrinol. 2019, 16, 100190. [CrossRef] [PubMed]
+14. Rastogi, M.V.; LaFranchi, S.H. Congenital hypothyroidism. Orphanet J. Rare Dis. 2010, 5, 17. [CrossRef]
+15. Wassner, A.J.; Brown, R.S. Congenital hypothyroidism: Recent advances. Curr. Opin. Endocrinol. Diabetes Obes. 2015, 22, 407­412.
+       [CrossRef] [PubMed]
+16. Ford, G.; LaFranchi, S.H. Screening for congenital hypothyroidism: A worldwide view of strategies. Best Pract. Res. Clin.
+       Endocrinol. Metab. 2014, 28, 175­187. [CrossRef]
+17. Knowles, R.L.; Oerton, J.; Cheetham, T.; Butler, G.; Cavanagh, C.; Tetlow, L.; Dezateux, C. Newborn screening for primary
+       congenital hypothyroidism: Estimating test performance at different TSH thresholds. J. Clin. Endocrinol. Metab. 2018, 103,
+       3720­3728. [CrossRef]
+18. Lain, S.; Trumpff, C.; Grosse, S.D.; Olivieri, A.; Van Vliet, G. Are lower TSH cutoffs in neonatal screening for congenital
+       hypothyroidism warranted? Eur. J. Endocrinol. 2017, 177, D1­D12. [CrossRef]
+19. McHugh, D.M.; Cameron, C.A.; Abdenur, J.E.; Abdulrahman, M.; Adair, O.; Al Nuaimi, S.A.; Ahlman, H.; Allen, J.J.; Antonozzi, I.;
+       Archer, S.; et al. Clinical validation of cutoff target ranges in newborn screening of metabolic disorders by tandem mass
+       spectrometry: A worldwide collaborative project. Genet. Med. 2011, 13, 230­254. [CrossRef]
+20. Marquardt, G.; Currier, R.; McHugh, D.M.; Gavrilov, D.; Magera, M.J.; Matern, D.; Oglesbee, D.; Raymond, K.; Rinaldo, P.; Smith,
+       E.H.; et al. Enhanced interpretation of newborn screening results without analyte cutoff values. Genet. Med. 2012, 14, 648­655.
+       [CrossRef]
+21. Hall, P.L.; Marquardt, G.; McHugh, D.M.; Currier, R.J.; Tang, H.; Stoway, S.D.; Rinaldo, P. Postanalytical tools improve performance
+       of newborn screening by tandem mass spectrometry. Genet. Med. 2014, 16, 889­895. [CrossRef]
+22. Minter Baerg, M.M.; Stoway, S.D.; Hart, J.; Mott, L.; Peck, D.S.; Nett, S.L.; Eckerman, J.S.; Lacey, J.M.; Turgeon, C.T.; Gavrilov, D.;
+       et al. Precision newborn screening for lysosomal disorders. Genet. Med. 2018, 20, 847­854. [CrossRef]
+23. Tortorelli, S.; Eckerman, J.S.; Orsini, J.J.; Stevens, C.; Hart, J.; Hall, P.L.; Alexander, J.J.; Gavrilov, D.; Oglesbee, D.; Raymond, K.;
+       et al. Moonlighting newborn screening markers: The incidental discovery of a second tier test for Pompe disease. Genet. Med.
+       2018, 20, 840­846. [CrossRef]
+24. Watson, M.S.; Mann, M.Y.; Lloyd-Puryear, M.A.; Rinaldo, P.; Howell, R.R. (Eds.) Newborn screening: Toward a uniform screening
+       panel and system [Executive summary]. Genet. Med. 2006, 8, 1S­11S. [CrossRef] [PubMed]
+25. Health Resources & Services Administration. Recommend Uniform Screening Panel (RUSP). Available online: https://www.
+       hrsa.gov/advisory-committees/heritable-disorders/rusp/index.html (accessed on 21 December 2020).
+26. Clark, R.H.; Chace, D.H.; Spitzer, A.R. Effects of two different doses of amino acid supplementation on growth and blood amino
+       acid levels in premature neonates admitted to the neonatal intensive care unit: A randomized, controlled trial. Pediatrics 2007,
+       120, 1286­1296. [CrossRef] [PubMed]
+27. De Jesús, V.R.; Adam, B.W.; Mandel, D.; Cuthbert, C.D.; Matern, D. Succinylacetone as primary marker to detect tyrosinemia type
+       I in newborns and its measurement by newborn screening programs. Mol. Genet. Metab. 2014, 113, 67­75. [CrossRef] [PubMed]
+Int. J. Neonatal Screen. 2021, 7, 23  20 of 20
+
+28. Gavrilov, D.K.; Piazza, A.L.; Pino, G.; Turgeon, C.; Matern, D.; Oglesbee, D.; Raymond, K.; Tortorelli, S.; Rinaldo, P. The combined
+       impact of CLIR post-analytical tools and second tier testing on the performance of newborn screening for disorders of propionate,
+       methionine, and cobalamin metabolism. Int. J. Neonatal Screen. 2020, 6, 33. [CrossRef]
+
+29. Congress.gov. H.R.1281--Newborn Screening Saves Lives Reauthorization Act of 2014. Available online: https://www.congress.
+       gov/bill/113thcongress/house-bill/1281 (accessed on 21 December 2020).
+
+30. Mørkrid, L.; Rowe, A.D.; Elgstoen, K.B.P.; Olesen, J.H.; Ruijter, G.; Hall, P.L.; Tortorelli, S.; Schulze, A.; Kyriakopoulou, L.;
+       Wamelink, M.M.C.; et al. Continuous age- and gender-adjusted reference intervals of urinary markers for cerebral creatine
+       deficiency syndromes: A novel approach to the definition of reference intervals. Clin. Chem. 2015, 61, 760­768. [CrossRef]
+
+31. Sheather, S.J.; Jones, M.C. A reliable data-based bandwidth selection method for kernel density estimation. J. R. Stat. Soc. Ser. B
+       1991, 53, 683­690. [CrossRef]
+
+32. Rinaldo, P. R4S Collaborative Project: Post-Analytical Interpretive Tools. Mayo Clinic Laboratories Insights. Available on-
+       line: https://news.mayocliniclabs.com/2013/06/18/new-hot-topic-the-region-4-stork-r4s-collaborative-project-part-3-post-
+       analytical-interpretive-tools/ (accessed on 21 December 2020).
+
+33. Vogel, B.H.; Bonagura, V.; Weinberg, G.A.; Ballow, M.; Isabelle, J.; DiAntonio, L.; Parker, A.; Young, A.; Cunningham-Rundles, C.;
+       Fong, C.T.; et al. Newborn screening for SCID in New York State: Experience from the first two years. J. Clin. Immunol. 2014, 34,
+       289­303. [CrossRef]
+
+34. Amatuni, G.S.; Currier, R.J.; Church, J.A.; Bishop, T.; Grimbacher, E.; Anh-Chuong Nguyen, A.; Agarwal-Hashmi, R.; Aznar,
+       C.P.; Butte, M.J.; Cowan, M.J.; et al. Newborn Screening for Severe Combined Immunodeficiency and T-cell Lymphopenia in
+       California, 2010­2017. Pediatrics 2019, 143, e20182300. [CrossRef] [PubMed]
+
+35. Lanting, C.I.; van Tijn, D.A.; Loeber, J.G.; Vulsma, T.; de Vijlder, J.J.M.; Verkerk, P.H. Clinical effectiveness and cost-effectiveness
+       of the use of the thyroxine/thyroxine-binding globulin ratio to detect congenital hypothyroidism of thyroidal and central origin
+       in a neonatal screening program. Pediatrics 2005, 116, 168­172. [CrossRef] [PubMed]
+
+36. Soneda, A.; Adachi, M.; Muroya, K.; Asakura, Y.; Yamagami, Y.; Hirahara, F. Overall usefulness of newborn screening for
+       congenital hypothyroidism by using free thyroxine measurement. Endocr. J. 2014, 61, 1025­1030. [CrossRef]
+
+37. Matern, D.; Tortorelli, S.; Oglesbee, D.; Gavrilov, D.; Rinaldo, P. Reduction of the false positive rate in newborn screening by
+       implementation of MS/MS-based second tier tests: The Mayo Clinic experience (2004­2007). J. Inherit. Metab. Dis. 2007, 30,
+       585­592. [CrossRef] [PubMed]
+
+38. CLSI. Newborn Screening for Preterm, Low Birth Weight, and Sick Newborns, 2nd ed.; Wayne, P.A., Ed.; CLSI Guideline NBS03;
+       Clinical and Laboratory Standards Institute: Annapolis Junction, MD, USA, 2019.
+
+39. Tortorelli, S.; Turgeon, C.T.; Gavrilov, D.K.; Oglesbee, D.; Raymond, K.M.; Rinaldo, P.; Matern, D. Simultaneous testing for six
+       lysosomal storage disorders and X-adrenoleukodystrophy in dried blood spots by tandem mass spectrometry. Clin. Chem. 2016,
+       62, 1248­1254. [CrossRef]
+
+40. NewSTEPs List of Time-critical Disorders. Available online: https://www.newsteps.org/sites/default/files/case-definitions/qi_
+       source_document_time_critical_disorders_0.pdf (accessed on 4 February 2021).
+
+41. Fisher, D.A.; Odell, W.D. Acute release of thyrotropin in the newborn. J. Clin. Investig. 1969, 48, 1670­1677. [CrossRef]
+42. Rinaldo, P. Precision NBS Driven by Adjustment for Multiple Covariates. Available online: https://clir.mayo.edu/Resources/
+
+       Document/LoginView/186/18-10-15%20ISNS%20Bratislava.pdf (accessed on 7 February 2021).
+

@@ -1,0 +1,593 @@
+ORIGINAL RESEARCH ARTICLE Official journal of the American College of Medical Genetics and Genomics
+
+CAP/ACMG proficiency testing for biochemical genetics
+
+           laboratories: a summary of performance
+
+Devin Oglesbee, PhD1, Tina M. Cowan, PhD2, Marzia Pasquali, PhD3, Timothy C. Wood, PhD4,
+     Karen E. Weck MD5, Thomas Long, MPH6, Glenn E. Palomaki, PhD7 and on behalf of
+
+         the College of American Pathologists and American College of Medical Genetics
+
+              and Genomics, Biochemical and Molecular Genetics Resource Committee
+
+Purpose: Testing for inborn errors of metabolism is performed by         while clinical sensitivities ranged from 82.4 to 91.0%. Performance
+clinical laboratories worldwide, each utilizing laboratory-developed     was higher for US participants and for more recent challenges.
+procedures. We sought to summarize performance in the College of         Performance was lower for challenges with subtle findings or complex
+American Pathologists' (CAP) proficiency testing (PT) program            analytical patterns.
+and identify opportunities for improving laboratory quality. When
+evaluating PT data, we focused on a subset of laboratories that have     Conclusion: US clinical biochemical genetics laboratory proficiency
+participated in at least one survey since 2010.                          is satisfactory, with a minority of laboratories accounting for the
+                                                                         majority of errors. Our findings underscore the complex nature of
+Methods: An analysis of laboratory performance (2004 to 2014) on         clinical biochemical genetics testing and highlight the necessity of
+the Biochemical Genetics PT Surveys, a program administered by           continuous quality management.
+CAP and the American College of Medical Genetics and Genomics.
+Analytical and interpretive performance was evaluated for four tests:    Genet Med advance online publication 29 June 2017
+amino acids, organic acids, acylcarnitines, and mucopolysaccharides.
+                                                                         Key Words: analytic sensitivity; biochemical genetics; clinical
+Results: Since 2010, 150 laboratories have participated in at least one  sensitivity; inborn errors of metabolism; proficiency testing
+of four PT surveys. Analytic sensitivities ranged from 88.2 to 93.4%,
+
+                       INTRODUCTION                                      commonality shared with molecular genetics labo-
+Clinical biochemical genetics is a medical specialty devoted to          ratories and DNA-based testing for rare heritable conditions.
+diagnosing and treating inborn errors of metabolism (IEMs).              Despite the nonstandardized nature of laboratory testing,
+IEMs encompass a heterogeneous group of genetic conditions               molecular genetic testing quality is very high.4­11 Never-
+including disorders of amino acid (AA; e.g., phenylketonuria),           theless, biochemical genetic testing poses unique challenges to
+organic acid (OA; e.g., methylmalonic aciduria, MMA),                    the clinical laboratory, including the innate task of assessing
+mucopolysaccharide (MPS; e.g., Hurler syndrome), and fatty               multiple analytes in a single test, and the inter- and
+acid metabolism (e.g., medium-chain acyl-CoA dehydrogen-                 intrapatient metabolic variability due to genotype, clinical
+ase, MCAD, deficiency). Although individually rare, their                status, or other intrinsic and extrinsic factors. Thus, it is vital
+estimated combined incidence is as high as 1:800­1:2,500                 that laboratories perform extensive validation and ongoing
+births.1,2 Symptoms often appear early in life, but clinical             test monitoring to ensure the highest quality for patient care.
+outcomes are optimized by an early diagnosis and therapy
+instigation before irreversible damage has occurred.3                      Participation in proficiency testing (PT) is associated with
+                                                                         improved laboratory quality, particularly in the laboratory-
+  An IEM diagnosis is established through high-complexity,               developed test setting.12­14 External PT schemes for BGL
+laboratory-developed tests performed by a relatively small               testing were first introduced in the United States in the 1980s,
+number of laboratories worldwide, called clinical biochemical            with a review of outcomes highlighting the importance
+genetics laboratories (BGLs). Methods vary between labora-               of ongoing training, education, and quality oversight in
+tories, but they typically include high-pressure liquid                  the area of IEM diagnosis.15,16 Comprehensive PT is also
+chromatography, gas chromatography/mass spectrometry                     offered by the European Research Network for Evaluation and
+and/or liquid chromatography­tandem mass spectrometry                    Improvement of Screening, Diagnosis and Treatment of
+(LC-MS/MS). There are no US Food and Drug Administra-                    Inherited Disorders of Metabolism (ERNDIM), which
+tion­cleared tests for biochemical genetics testing, a                   reported a positive correlation between participation and
+
+1Department of Laboratory Medicine and Pathology, Mayo Clinic College of Medicine, Rochester, Minnesota, USA; 2Department of Pathology, Stanford University, School of
+Medicine, Palo Alto, California, USA; 3Department of Pathology, University of Utah School of Medicine, Salt Lake City, Utah, USA; 4Greenwood Genetics Center, Greenwood,
+South Carolina, USA; 5Department of Pathology and Laboratory Medicine, University of North Carolina at Chapel Hill, Chapel Hill, North Carolina, USA; 6Department of
+Biostatistics, College of American Pathologists, Northfield, Illinois, USA; 7Department of Pathology and Laboratory Medicine, Women and Infants Hospital, Alpert Medical School
+of Brown University, Providence, Rhode Island, USA. Correspondence: Devin Oglesbee (oglesbee.devin@mayo.edu)
+
+Submitted 20 February 2017; accepted 31 March 2017; advance online publication 29 June 2017. doi:10.1038/gim.2017.61
+
+GENETICS in MEDICINE | Volume 20 | Number 1 | January 2018                                           83
+ORIGINAL RESEARCH ARTICLE                                           OGLESBEE et al | CAP/ACMG biochemical genetics PT results
+
+laboratory quality.17 In 1993, the College of American              reviewed results and approved grading criteria. Acceptable
+Pathologists (CAP), in collaboration with the American              results were based on either the identification of a well-
+College of American Genetics and Genomics (ACMG),                   recognized, analytical profile, or a pathognomonic analyte
+introduced a BGL PT program that included the analysis of           level, depending on the circulated specimen, and correlation
+AAs, OAs, and MPS. The program was expanded in 2004 to              with the provided clinical scenario. A two-dimensional matrix
+include plasma acylcarnitine (AC) performance.                      of the graded responses stratified by time (columns) and
+                                                                    participants (rows) was created. These "heat maps" were used
+  Here, we present an analysis of the CAP/ACMG Bio-                 to compute analytic sensitivity (the proportion of abnormal
+chemical Genetics Resource Committee PT program from                analytes correctly identified) and clinical sensitivity (the
+more than 10 years of surveys (2004 through 2014). The              proportion of disorders correctly diagnosed) for all challenges.
+analysis was restricted to laboratories that had participated in
+at least one PT survey since 2010. This was done to allow             Calculations of clinical sensitivity included separate analyses
+for estimates of recent laboratory performance, but it also         for two types of false-negative results. One type occurs when
+permitted the examination of earlier PT performance in a            participants recognize a specimen as having an abnormal
+subset of active laboratories.                                      clinical interpretation but report the incorrect disorder (i.e., not
+                                                                    the intended response). The second type occurs when
+              MATERIALS AND METHODS                                 participants fail to recognize any clinical disorder and interpret
+                                                                    the result as "Normal, unaffected." This latter type is the classic
+BGL proficiency testing survey                                      false negative. The MPS survey had multiple challenges from
+The PT survey consists of five specimens distributed twice          unaffected individuals (six in total) and these were used to
+yearly (an A and B distribution) to laboratories in the United      calculate analytic specificity (the proportion of normal speci-
+States and abroad. Each mailing contained one specimen for          mens with no abnormal analytes reported) and clinical
+every analysis, including plasma or urine AA, urine OA,             specificity (the proportion of normal specimens correctly
+plasma AC, and urine MPS. A fifth specimen, excluded from           diagnosed as normal). Rates were compared using the chi-
+this analysis, is an ungraded educational challenge focusing        squared test with a two-tailed significance level of 0.05. The
+on less frequently encountered areas of AA, OA, or AC               95% confidence intervals for proportions were computed using
+testing. This report includes results from 21 BGL surveys from      the adjusted Wald asymptotic method.
+the 2004-B through 2014-B mailings.
+                                                                                                RESULTS
+  Most specimens were authentic plasma or urine samples
+from patients with clinically confirmed diagnoses. Occasionally,    Participants and tests challenged
+samples were from unaffected individuals, pooled samples, or        A total of 150 laboratories participated in the program for at
+spiked with one or more compounds to mimic a metabolic              least one of the AA, OA, AC, and MPS challenges since 2010,
+disorder. All plasma samples used had negative test results for     including 97 US and 53 international laboratories (North
+hepatitis B surface antigen, hepatitis C antibody, and HIV          America, South America, Asia, and Europe). Of these, 35
+antigen/antibody. Challenges were pretested by multiple             (23%) reported results for all four schemes (AA, OA, AC, and
+reference laboratories to verify suitability. Specimens were        MPS), while 49 (33%) participants reported results for only
+stored at - 20 °C or lower, and aliquots were shipped on dry        three schemes (25 for AA, OA, and AC and 23 for AA, OA,
+ice. A clinical history accompanied each challenge. Participants    and MPS). Among the 38 (25%) participants reporting results
+reported all diagnostically relevant analyte(s), the most likely    for two schemes, the most common pair was AA and OA (26
+diagnosis (clinical interpretation) based on analytic results and   participants) and among the 28 (19%) reporting results for
+clinical history, and by selecting answers from a predefined list.  only one scheme, the most common was AA (22).
+Information about testing methodology and results of analyte
+quantitation were requested but not required or graded.             AA proficiency testing
+Laboratories returned results within 30 days via an online          The AA challenges included specimens from individuals with
+result submission form or facsimile.                                phenylketonuria, maple syrup urine disease, various urea
+                                                                    cycle defects, cystinuria, and other AA transport disorders
+Data collection and analysis                                        (Supplementary Table S1 online). Results from 2013-A were
+Data were extracted from the CAP data management system             excluded due to sample degradation likely related to storage.
+and de-identified. These data encompassed participant results,      A total of 141 laboratories (91 US, 50 international) provided
+including those returned after the required submission date         responses, with the number of participants remaining
+and excluded from original Participant Summary Reports.             essentially constant since 2010 at around 95 participants.
+Each challenge's analytic and interpretative results were           Most participants (75% in 2010) used AA analyzers, but this
+graded as "Acceptable" or "Unacceptable" based on partici-          proportion dropped to 68% in 2014. LC-MS/MS was reported
+pant consensus (>80%) or, in a few instances, on the                by three laboratories in 2010 and by nine laboratories in 2014.
+consensus of reference laboratory results. Missing analytic
+results or missing clinical interpretations were not graded and       AA PT results are summarized in the heat map (Figure 1),
+were excluded from analysis. Members of the CAP/ACMG                which includes participant-specific performance over time
+Biochemical and Molecular Genetics Resource Committee               for both analytic and clinical interpretations (see also
+
+84                                                                  Volume 20 | Number 1 | January 2018 | GENETICS in MEDICINE
+CAP/ACMG biochemical genetics PT results | OGLESBEE et al                        ORIGINAL RESEARCH ARTICLE
+
+Supplementary Figure S1). The overall analytic sensitivity                      Two challenges with a maple syrup urine disease specimen
+for AA testing was 93.4% (1,552/1,661 responses), with                        were distributed in 2005 and 2011. Leucine quantitation
+the highest sensitivities (100%) observed for conditions                      (Figure 2a) was 18% lower in the later distribution (443 vs.
+related to phenylalanine, citrulline, and arginine metabolism,
+and the lowest for abnormalities in -alanine (87.3%) and                      a  2004 2005      2006               2007     2008           2009     2010     2011     2012     2013     2014
+-aminoadipic acid (86.2%). Stratified by geographic region,
+the analytic sensitivity was higher (Po0.001) among US                            BABABABABABABABABABAB
+(95.1%, 1,122/1,180) than among international participants                       AI AI AI AI AI AI AI AI AI AI AI AI AI AI AI AI AI AI AI AI AI
+(89.4%, 430/481). Among US participants, 53 (58%) had no
+incorrect responses for analytic sensitivity. Four of these 91                              X
+laboratories (4%) accounted for 14 errors (between 3 and 6
+each), representing 24% of all analytical errors. Among                                                         X
+international participants, 23 (46%) had no incorrect                                           X
+responses for analytic sensitivity; six of these 50 laboratories
+(12%) accounted for 22 errors (between 3 and 5 each)                                                            X
+representing for 43% of all analytic errors.                                     X
+                                                                                 X
+  The overall clinical sensitivity for all participants was 91.0%
+(1,514/1,663), but the clinical sensitivity was significantly                                   X
+higher among US participants (92.9%; 1,103/1,188) than
+international participants (86.5%; 411/475) (Po0.001). Clin-                                                                X
+ical sensitivity was highest for more easily recognizable
+conditions (phenylketonuria, 100%) and lowest for combined                                                                              X
+homocystinuria/methylmalonic aciduria (2008A, 76.3%).
+Despite compelling clinical scenarios, clinical sensitivity was                                                                         X
+also lower for several challenges where the differential                                                                                X
+diagnosis was broad, including 83.6% for homocystinuria                                                                                 X
+(2006A, cystathionine--synthase deficiency) and 84.0% for                                                                               X
+primary lactic acidemia (2008B). Incorrect clinical interpreta-
+tions were stratified by incorrect diagnosis (e.g., a sample with                X
+elevated citrulline mistakenly diagnosed as ornithine trans-
+carbamylase deficiency rather than citrullinemia) versus                                                                                                     X
+"normal" clinical interpretation. This latter group of false
+negatives represented 2.6% (44/1,663) of all interpretations                  b                    2006               2007     2008           2009     2010     2011     2012     2013     2014
+over the 10-year period. Among US laboratories, the rate of                          2004 2005   AB                 AB       AB             AB       AB       AB       AB       AB       AB
+2.4% (29/1,188) was not different from the 3.2% (15/475)                               BAB      AI AI              AI AI    AI AI          AI AI    AI AI    AI AI    AI AI    AI AI    AI AI
+found among international laboratories (P = 0.41). Since 2010,                       AI AI AI
+however, laboratories have improved with only one false-
+negative result occurring in more than 850 distinct clinical                                                                X
+interpretations. A summary of AA performance results along
+with 95% confidence intervals is provided in Table 1.                                                                       X
+                                                                                                                            X
+
+                                                                                 X          X
+
+                                                                                                                                             X
+                                                                                                      X
+
+                                                                                                      X                     X
+
+                                                                                                      X                  XX
+
+                                                                                                      X
+
+                                                                                    X                                       X
+
+                                                                                                                            X
+
+                                                                                                      X                     X
+
+                                                                                                      X
+
+                                                                                 X
+                                                                                                                X
+
+                                                                                 X
+
+                                                                                                X                           X
+
+                                                                                                                            X
+
+                                                                                 X
+
+Figure 1 Heat maps of CAP proficiency testing results for amino                                                 X
+acid challenges from 2004-B through 2014-B. (a) Heat map for amino               X
+acid proficiency testing for 50 international participants. (b) Heat map for
+amino acid proficiency testing for 109 US participants. Each row                                                            X
+represents results from a single laboratory while each column represents
+a specific response. Each pair of columns depicts grading results for the
+analytic (A) and interpretive (I) component of the challenge (e.g., columns
+1 and 2 show analytic and interpretive performance for the B distribution
+in 2004). Gray boxes indicate correct responses; black boxes, incorrect
+responses; white boxes, no response (or no participation). For clinical
+interpretations (I), a white X indicates that the incorrect interpretation
+was "Normal, unaffected" (i.e., false-negative result); while a solid black
+box indicates that an abnormality was recognized but was incorrect. The
+two solid gray columns indicate an ungraded sample (see text).
+
+GENETICS in MEDICINE | Volume 20 | Number 1 | January 2018                                                                                                                                       85
+ORIGINAL RESEARCH ARTICLE                                                   OGLESBEE et al | CAP/ACMG biochemical genetics PT results
+
+Table 1 Estimates of analytic sensitivity for the four schemes included in the biochemical genetic laboratories proficiency
+
+testing program stratified by laboratory location
+
+Scheme                 Location                    Analytic true positivea  Analytic false negativeb  P valuec
+
+Amino acids            US                          95.1% (1,122/1,180)      4.9% (58/1,180)           o0.001
+
+                                                   (93.9­96.3%)             (3.7­6.1%)
+
+                       International               89.4% (430/481)          10.6% (51/481)
+
+                                                   (86.7­92.2%)             (7.9­13.3%)
+
+Organic acids          US                          93.5% (942/1,007)        6.5% (65/1,007)           0.043
+
+                                                   (92.0­95.1%)             (4.9­8.0%)
+
+                       International               90.4% (369/408)          9.6% (39/408)
+
+                                                   (87.6­93.3%)             (6.7­12.4%)
+
+Acylcarnitine profile  US                          93.1% (471/506)          6.9% (35/506)             0.060
+
+                                                   (90.9­95.3%)             (4.7­9.1%)
+
+                       International               88.9% (192/216)          11.1% (24/216)
+
+                                                   (84.7­93.1%)             (6.9­15.3%)
+
+Mucopolysaccharides    US                          93.0% (318/342)          7.0% (24/342)             0.056
+
+                       (Screening)                 (90.3­95.7%)             (4.3­9.7%)
+
+                       International               88.2% (179/203)          11.8% (24/203)
+
+                       (Screening)                 (83.7­92.6%)             (7.4­16.3%)
+
+                       US                          91.4% (213/233)          8.6% (20/233)             0.0010
+
+                       (Fractionation)             (87.8­95.0%)             (5.0­12.2%)
+
+                       International               79.0% (94/119)           21.0% (25/119)
+
+                       (Fractionation)             (71.7­86.3%)             (13.7­28.3%)
+
+aProportion of correct abnormal analyte identified (analytic sensitivity). bProportion of incorrect abnormal analyte identified, or no abnormal analyte identified. cCompar-
+ison of analytic sensitivity between US and international participants.
+
+541 mol/l) but the coefficients of variation were comparable      fumarase deficiency (2005A, 96.6% and 2011A, 95.0%).
+(5.4 vs. 8.9%). Despite the leucine concentration reductions,     Performance was poor for specimens with modest meta-
+results were still significantly elevated and consistent with a   bolite elevations, such as MCAD deficiency (2010A, 83.6%
+diagnosis of maple syrup urine disease. Among the 60              and 2013A, 81.5%). However, the circulation of specimens
+laboratories participating in both challenges, 57 (95%)           originating from different donors with divergent clinical
+reported results within the 95% prediction interval               statuses complicated the investigation of poor performance, as
+(mean ± 1.96 standard deviations).                                was the case for MCAD deficiency.
+
+OA proficiency testing                                              The overall clinical sensitivity was 90.5% (1,301/1,437), and
+OA challenges included conditions such as MMA and                 was significantly higher among US (92.9%; 947/1,019) than
+propionic acidemia along with others (Supplementary               international (84.7%; 354/418) participants (Po0.001). Inter-
+Table S1). A total of 113 laboratories (73 US, 40 interna-        pretive performance was excellent for challenges that included
+tional) provided responses, with the participation increasing     specimens with prominent metabolite elevations and poor for
+from 75 in 2010 (53 US, 22 international) to 85 in 2014 (57       challenges containing specimens with complex or subtle
+US, 28 international). Analytic methods did not change            findings such as glutaric acidemia type II (2008B, 85.3%) or
+substantially over the 10-year study period. In 2014, 98% of      isobutyryl-CoA dehydrogenase deficiency (2006B, 75.0%).
+participants used gas chromatography/mass spectrometry,           Among 73 US participants, 36 (49%) had no interpretive
+with 94% employing solvent extraction for sample prepara-         errors; 29 (40%) had one or two errors, and one laboratory
+tion (50% ethylacetate, 40% ethylacetate/ether, 4% acetonitrile   accounted for nine errors. From 72 total errors, 43 (60%)
+or other solvents) and 6% using solid-phase extraction. Single    reflected an incorrect diagnosis and 29 (40%) were false
+laboratories reported using gas chromatography/mass spec-         negatives (normal diagnosis). Among 40 international
+trometry or LC-MS/MS methods.                                     participants, 12 (30%) had no incorrect clinical interpreta-
+                                                                  tions, but two had four errors and one had five errors. In this
+  OA performance results are summarized in Tables 1 and 2,        group, there were 64 errors, of which 35 (55%) were incorrect
+and in a heat map (Supplementary Figure S2). The overall          diagnoses but 29 (45%) were identified as normal.
+analytic sensitivity was 92.7% (1,311/1,415), with a higher rate
+in US (93.5%; 942/1,007) versus international (90.4%;               A single OA specimen of fumarase deficiency was
+369/408) laboratories (P = 0.043). Analytic performance was       distributed in 2005 and 2011, with quantitative data reported
+excellent for challenges with prominent abnormalities, such       by 25 and 30 participants, respectively (Figure 2b). Median
+as MMA (2012B, 100%), 5-oxoprolinuria (2009A, 100%), and          fumaric acid concentrations were 451 and 457 mmol/mol
+                                                                  creatinine for the 2005 and 2011 mailings, respectively. The
+
+86                                                                          Volume 20 | Number 1 | January 2018 | GENETICS in MEDICINE
+CAP/ACMG biochemical genetics PT results | OGLESBEE et al                                                                                                                      ORIGINAL RESEARCH ARTICLE
+
+                                   1000                                               a     Fumaric acid (mmol/mol creatinine) in 2011  5000                                                                       b
+                                     800
+                                     600Leucine (µmol/l) in 2011                                                                        1000
+                                     400                                                                                                 500
+
+                                                                                                                                        100
+                                                                                                                                         50
+
+                                       200                                                                                                                                 10
+                                       NR                                                                                                                                 NR
+
+                                                NR 200 400 600 800                    1000                                                                                     NR 10  50 100 500 1000 5000
+                                                            Leucine (µmol/l) in 2005
+                                                                                      c                                                                                        Fumaric acid (mmol/mol creatinine) in 2005
+                                     1000
+                                                                                                                                                                            4
+                                                                                                                                        Malonylcarnitine (nmol/mI) in 2012
+                                                                                                                                                                                                                     d
+
+Glutarylcarnitine (nmol/ml) in 2010  100                                                                                                                                    3
+
+                                                                                                                         2
+                                     10
+
+                                                                                                                                                                            1
+
+                                     1
+
+                                     0.2                                                                                                                                    0
+                                     NR                                                                                                                                   NR
+
+                                          NR  1            10  100                    1000                                                                                     NR 0   1  2  3                              4
+
+                                              Glutarylcarnitine (nmol/ml) in 2005                                                                                              Malonylcarnitine (nmol/ml) in 2008
+
+Figure 2 Comparisons of reported analyte quantitation from identical sample challenges provided in different years. (a) The reported
+leucine quantitation from the same maple syrup urine disease sample tested in 2005 (n = 93) and 2011 (n = 95). Lines represent the median (solid) and
+± 3 s.d. (dotted) values of participant responses for each year, with the darker gray box indicating acceptable performance. Sixty participants responded
+to both surveys. Open circles indicate the results falling within the computed prediction limits while dark circles are those results outside those limits for
+one or both distributions. Open circles just to the left of the y-axis or just above the x-axis represent results from laboratories reporting only in 2005 or
+2011, respectively. An arrow next to an observation indicates the reported value is higher (or lower) than the range depicted. (b) Fumarate quantitation
+from the same fumarase deficiency sample tested in 2005 (25 responses) and in 2011 (29 responses); 16 participants responded to both surveys. Lines,
+symbols, and shading are the same as for (a). (c) Glutarylcarnitine quantitation from the same specimen submitted in both 2008 (15 responses) and
+2012 (35 responses). There were insufficient data to compute prediction limits for 2008. Lines, symbols, and shading are the same as for (a). An arrow
+next to an observation indicates the reported value is higher (or lower) than the range depicted. (d). Malonylcarnitine quantitation from the same
+specimen submitted in both 2008 (26 responses) and 2012 (33 responses). Although individual laboratories tended to provide similar results for both
+challenges, those results differed significantly between laboratories. Thus, the prediction limits fall around a line rather than a point. Lines, symbols, and
+shading are the same as for (a).
+
+results indicate satisfactory agreement between participants                                utilizing butyl esters and the remainder using methyl esters or
+reporting quantitative values. There were a handful of outliers,                            underivatized compounds.
+yet their results were still indicative of fumarase deficiency.
+                                                                                              AC performance results are summarized in Tables 1 and 2
+AC proficiency testing                                                                      and in a heat map (Supplementary Figure S3). The
+AC challenges included disorders of fatty acid oxidation such                               overall analytic sensitivity was 91.8% (663/722), with 93.1%
+as MCAD deficiency, very long-chain acyl-CoA dehydrogen-                                    (471/506) in US laboratories and 88.9% (192/216) in interna-
+ase deficiency, and long-chain hydroxyacyl-CoA dehydrogen-                                  tional laboratories (P = 0.083). Analytic sensitivity was 100% for
+ase deficiency, as well as primary carnitine transporter defi-                              several challenges including MCAD, MMA/propionic acidemia,
+ciency, and organic acidemias such as MMA and propionic                                     and a recent very long-chain acyl-CoA dehydrogenase deficiency
+acidemia (Supplementary Table S1). A total of 65 labora-                                    challenge (2014A). The lowest analytic sensitivity (64.5%) was
+tories (42 US, 23 international) provided results, with the                                 seen for the 2009A challenge of long-chain hydroxyacyl-CoA
+number of participants rising from 43 in 2010 to 52 in 2014.                                dehydrogenase deficiency. Among all 65 participants, 29 (45%)
+By 2014, all laboratories were using (LC-MS/MS) with 91%                                    had no analytical errors. One or two errors were made by 19
+                                                                                            (29%) and 12 (18%) participants, respectively. Five laboratories
+
+GENETICS in MEDICINE | Volume 20 | Number 1 | January 2018                                                                                                                                                                    87
+ORIGINAL RESEARCH ARTICLE                                              OGLESBEE et al | CAP/ACMG biochemical genetics PT results
+
+Table 2 Estimates of clinical sensitivity for the four schemes included in the biochemical genetic laboratories proficiency
+testing program stratified by laboratory location, along with the rate of the two types of false-negative errors
+
+Schemes                Location  True positive                                        False negative             P valued
+Amino acids            US        Correct diagnosisa   Incorrect disorder identifiedb No disorder found: normalc  o0.001
+
+                                 92.9% (1,103/1,188)  4.7% (56/1,188)  2.4% (29/1,188)e
+
+                                 (91.4­94.3%)         (3.5­5.9%)       (1.6­3.3%)
+
+                       International 86.5% (411/475)  10.3% (49/475)   3.2% (15/475)
+
+                                 (83.5­89.6%)         (7.6­13.1%)      (1.6­4.7%)
+
+Organic acids          US        92.9% (947/1019)     4.2% (43/1019)   2.9% (29/1019)                            o0.001
+
+                                 (91.4­94.5%)         (3.0­5.5%)       (1.8­3.9%)
+
+                       International 84.7% (354/418)  8.4% (35/418)    6.9% (29/418)
+
+                                 (81.2­88.2%)         (5.7­11.0%)      (4.5­9.4%)
+
+Acylcarnitine profile  US        90.1% (462/513)      7.2% (37/513)    2.7% (14/513)                             0.0082
+
+                                 (87.5­92.7%)         (5.0­9.5%)       (1.3­4.1%)
+
+                       International 83.2% (188/226)  8.8% (20/226)    8.0% (18/226)
+
+                                 (78.3­88.1%)         (5.1­12.6%)      (4.4­11.5%)
+
+Mucopolysaccharides US           88.3% (227/257)      8.9% (23/257)    2.7% (7/257)                              o0.001
+
+                                 (84.4­92.3%)         (5.5­12.4%)      (0.7­4.7%)
+
+                       International 72.1% (106/147)  20.4% (30/147)   7.5% (11/147)
+
+                                 (64.69­79.4%)        (13.9­26.9%)     (3.2­11.7%)
+
+aProportion of participants correctly identifying the targeted disorder (clinical sensitivity). bProportion of participants incorrectly identifying a disorder other than the inten-
+ded target. cProportion of participants incorrectly providing a normal response for a challenge with a specific disorder. dComparison of clinical sensitivity between US and
+international participants. eAll false-negative results occurred prior to 2011.
+
+(three US and two international, or 8%) reported three or more     significant improvement in 2010 (one result of 189 nmol/ml
+errors, and these participants accounted for 16 of the 59 total    and 32 between 1 and 5 nmol/ml). Interlaboratory variability
+analytic errors (27%).                                             was also observed for malonylcarnitine (C3DC) measure-
+                                                                   ments obtained from a specimen submitted for challenges in
+  The overall clinical sensitivity for AC PT was 88.0%             2008 and 2012 (Figure 2d). While there was high inter-
+(650/739), but this rate was higher among US laboratories          laboratory variability in both 2008 and 2012, one outlier was
+(90.1%; 462/513) compared to international laboratories            identified among the 19 laboratories participating in both
+(83.2%; 188/226) (P = 0.010). For three challenges (2005B,         challenges. The remaining results were highly correlated
+2006A, and 2014A), all laboratories identified the correct         (N = 18, r = 0.84), indicating low intralaboratory variability
+abnormal analyte(s) (100% analytic sensitivity) and also           and the need for further standardization efforts.
+provided the correct clinical interpretation (100% clinical
+sensitivity). Challenges with lower clinical sensitivities either  MPS proficiency testing
+had nonspecific analytic findings compatible with more than        MPS challenges included Hurler/Hunter (MPS-I/II, graded
+one disorder (e.g., elevated C5OH in -ketothiolase deficiency      together), Sanfilippo (MPS-III), Morquio (MPS-IV), and Sly
+(77.5%); low free carnitine in carnitine uptake defect (75.7%)),   (MPS-VII) syndromes, as well as six normal individuals
+or had only modest analyte elevations, including both              (Supplementary Table S1). Results were reported for a
+challenges containing specimens from known patients with           screening assay for total MPS and/or a fractionation assay
+long-chain hydroxyacyl-CoA dehydrogenase deficiency                (elevations of keratan sulfate, dermatan sulfate, heparan
+(75.0% and 74.4%). Among the 65 participants, 23 (35%)             sulfate, and chondroitin sulfate). Overall, 72 laboratories
+had no interpretive errors during the 10-year period and 31        (42 US and 30 international) participated in the PT.
+(48%) had one or two errors. Eleven laboratories (17%) had         Dimethylmethylene blue binding assay (50%) was the most
+three or more errors; one with five and two with six. Among        common screening method, followed by toluidine blue (16%),
+these 89 errors, a subset reported that there was no disorder      Berry spot test (11%), and Alcian blue spot test (5%). Thin-
+identified; a false-negative result. The rates for this type       layer chromatography and electrophoresis were reported
+of error differed significantly by location (P = 0.001), with a    among fractionation methods in similar frequencies, but
+2.7% (14/513) and 8.0% (18/226) difference in the US and           LC-MS/MS increased to 11% by 2014.
+international participants, respectively (Table 2).
+                                                                     MPS performance is summarized in Tables 1 and 2 and
+  Among challenges constituting a specimen submitted for           in a heat map (Supplementary Figure S1). Two MPS-VII
+PT more than once, and for which results included quanti-          samples (2008A, 2011A) were excluded from analysis due
+tative AC values, concentrations for significant AC results are    to the lack of participant consensus (o80%). The com-
+shown in Figure 2c,d. Broad interlaboratory variation was          bined analytic sensitivity for all screening methods was
+observed for glutarylcarnitine (C5DC) in 2005 (four results        91.2% (497/545) with similar (P = 0.060) performance by US
+> 300 nmol/ml and 10 between 1 and 5 nmol/ml), with
+
+88                                                                     Volume 20 | Number 1 | January 2018 | GENETICS in MEDICINE
+CAP/ACMG biochemical genetics PT results | OGLESBEE et al        ORIGINAL RESEARCH ARTICLE
+
+(93.0%, 318/342) and international participants (88.2%,          dehydrogenase deficiency), diagnoses relying on the recogni-
+179/203). Screening performance was best for MPS-I/II            tion of a complex, multianalyte pattern (e.g., multiple acyl-Co
+(analytic sensitivity 96.5%; 164/170), but poorer for MPS-III    dehydrogenase deficiency) and ultrarare conditions (e.g.,
+(88.1%; 185/210). Analytic sensitivity for the fractionation     mevalonic aciduria). Importantly, the proportion of partici-
+assays was 87.2% (307/352) and performance was significantly     pants completely missing a definitive diagnosis was low, and
+higher (P = 0.001) for US (91.4%, 213/233) than for interna-     the majority of conditions were recognized as having
+tional (79.0%, 94/119) participants. The sensitivity of          abnormal biochemical profiles, even if the precise diagnosis
+fractionation assays was highest for MPS-III (95.7%; 132/138)    provided was deemed unacceptable in the PT scheme.
+and lowest for MPS-IV (78.8%; 63/80). Screening assays were
+more sensitive than fractionation methods for detecting an         Among the selected laboratories, performance over this study
+MPS abnormality. In particular, discrepancies were noted         period was steadily higher among US laboratories than
+between the screening and fractionation methods for the          international laboratories. The reason for this tendency is
+2010A challenge of MPS-II (100 vs. 83%) and the 2010B            unknown. Several factors between laboratories may account for
+challenge of MPS-IV (98 vs. 73%)                                 this correlation. In particular, there exist specialized US
+                                                                 laboratories (Clinical Biochemical Genetic Laboratories)
+  The overall clinical sensitivity was 82.4% (333/404), with a   devoted to the diagnosis and management of IEMs, and the
+significant difference (Po0.001) between US (88.3%, 227-         United States has accredited training for clinical biochemical
+/257) and international (72.1%, 106/147) laboratories. Clinical  genetic laboratory directors, overseen by the American Board of
+sensitivity was highest among MPS-III (Sanfilippo syndrome)      Medical Genetics and Genomics, that aims to ensure excellence
+challenges (88.2%; 135/153). The MPS-VII (Sly syndrome)          among laboratory directors through continuing education,
+challenges were the most problematic; two PT challenges          among other activities. International laboratories may not have
+lacked consensus for grading and the third had an overall        access to accredited training programs. Additionally, the
+clinical sensitivity of 79.3% (23/29).                           distribution of PT specimens may face sporadic delays
+                                                                 occurring during shipment to distant destinations thereby
+  For screening assays, 86% of laboratories (62/72) made one     affecting sample integrity and impacting interpretation. Indeed,
+or fewer analytical errors (56% had no errors, 31% had one       participating laboratories are requested to ensure that speci-
+error). In addition, 10 laboratories (14%) made two or more      mens arrive frozen and within their storage requirements.
+errors apiece and were responsible for 26 of the 48 errors       Nevertheless, adherence to this request relies on self-reported
+(54%). For the 49 laboratories utilizing fractionation assays,   observations that may be hindered by storage, unpacking, and
+33% (16) had no errors and 51% (25) had one error. The           repackaging at custom office locations. Finally, rare disease
+remaining eight laboratories (16%) made two or more errors       incidence differences among populations worldwide may lead
+apiece and were responsible for 20 of 45 errors (44%). Of the    to the occurrence that a common genetic condition in one part
+56 laboratories reporting interpretations, 70% (39/56) had       of the world is seldom observed, if at all, in another region.
+none or one interpretative error. The remaining 17 (30%)         Hence, laboratories can have divergent experiences with the full
+laboratories with two or more errors were responsible for 70%    spectrum of IEMs. Thus, difference in performance may be due
+(50 /71) of the errors.                                          to a combination of these or other factors.
+
+  Analytic specificity, calculated from results of the six         Because multiple factors probably contributed to perfor-
+normal samples, was 99.6% (254/255) for the screening assay      mance variance for both US and international laboratories, a
+and 93.9% (139/148) for the fractionation assay. Stratifying     central function of PT is to prompt assay troubleshooting,
+fractionation results by laboratory location revealed an         process refinement, and quality improvement when failures
+analytic specificity of 96.1% (99/103) among US and 88.9%        do occur. This includes prompting laboratories to review their
+(40/45) among international participants (P = 0.091). Overall,   processes for analyte extraction and derivatization, method
+85% (23/27) of US and 79% (15/19) of international               calibration, and instrument optimization. Analytic errors may
+laboratories had no analytic specificity errors. The corre-      also reflect limitations in available laboratory methods, such
+sponding clinical specificity was 89.0% (169/190) with no        as for MPS screening and fractionation where assay short-
+significant difference by laboratory location.                   comings are well recognized18 and addressed by emerging
+                                                                 new LC-MS/MS methods.19,20 Some errors may result from
+                         DISCUSSION                              constraints inherent to the PT process itself, where lower
+The vast majority of PT participants accurately identified       estimates of clinical sensitivity may be due to the lack of
+diagnostic abnormalities and correctly interpreted corre-        supporting clinical information or results of other laboratory
+sponding genetic conditions. Performance was excellent for       tests. This underscores the importance of clinical history
+challenges with prominent and characteristic biochemical         when interpreting analytic findings, as pointed out by other
+abnormalities, including samples from patients with classic      groups.21 Finally, because laboratories submit PT results
+genetic conditions such as phenylketonuria, MMA, and very        outside of their normal data transmission and reporting
+long-chain acyl-CoA dehydrogenase deficiency. In contrast,       protocols, inadvertent clerical errors may also occur.
+performance waned when challenges involved more subtle
+analytical findings (e.g., minimally elevated C16-OH AC            Incorrect interpretations also may have resulted from the
+concentrations seen in long-chain hydroxyacyl-CoA                strict requirement to report a specific diagnosis, even in cases
+
+GENETICS in MEDICINE | Volume 20 | Number 1 | January 2018       89
+ORIGINAL RESEARCH ARTICLE                                                    OGLESBEE et al | CAP/ACMG biochemical genetics PT results
+
+for which additional testing may be warranted in actual                            years of blinded proficiency surveys by the College of American
+practice. For example, a suspected case of MCAD deficiency                         Pathologists. Genet Med 2016;18:1206­1213.
+identified by OA analysis typically requires additional                      5. Lyon E, Schrijver I, Weck KE, et al. Molecular genetic testing for cystic
+confirmation by AC analysis, and positive MPS screening                            fibrosis: laboratory performance on the College of American Pathologists
+and fractionation results requires confirmation by enzyme                          external proficiency surveys. Genet Med. 2015;17:219­225.
+and/or DNA testing.21 Responses representing an incorrect                    6. Tafe LJ; for the CAP/ACMG Biochemical and Molecular Genetics Resource
+diagnosis (as opposed to a "normal" response in the face of a                      Committee. Molecular testing for the BRCA1 and BRCA2 Ashkenazi
+true abnormality) were classified as false-negative results for                    Jewish founder mutations: a report on the College of American
+this report. Although considered a PT failure, in practice an                      Pathologists proficiency testing surveys. Genet Med 2015;17:58­62.
+incorrect diagnosis still is likely to be followed by repeat                 7. Feldman GL; for the CAP/ACMG Biochemical and Molecular Genetics
+testing, additional studies, or gathering of additional clinical                   Resource Committee. Results of the College of American Pathology/
+or family history. Indeed, some diagnoses included in PT                           American College of Medical Genetics and Genomics external proficiency
+schemes, such as carnitine uptake defect (an AC challenge) or                      testing from 2006 to 2013 for three conditions prevalent in the
+glycine encephalopathy (a plasma AA challenge), may have                           Ashkenazi Jewish population. Genet Med 2014;16:695­702.
+been particularly challenging since these conditions are more                8. Richards CS, Palomaki GE, Lacbawan FL, et al. Three-year experience of a
+appropriately diagnosed in conjunction with other tests (free                      CAP/ACMG methods-based external proficiency testing program for
+and total carnitine and cerebrospinal fluid AA analysis,                           laboratories offering DNA sequencing for rare inherited disorders. Genet
+respectively). Nonetheless, despite the inherent constraints of                    Med 2014;16:25­32.
+PT, a correct diagnosis could most often unequivocally be                    9. Weck KE; for the CAP/ACMG Biochemical and Molecular Genetics
+assigned based on results of a single test.                                        Resource Committee. Molecular genetic testing for fragile X syndrome:
+                                                                                   laboratory performance on the College of American Pathologists
+  Among other PT programs available for BGLs, the European                         proficiency surveys (2001-2009). Genet Med 2012;14:306­312.
+consortium ERNDIM provides challenges for qualitative OA                     10. Palomaki GE, Richards CS. Assessing the analytic validity of molecular
+and urine MPS schemes that are similar to the CAP/ACMG                             testing for Huntington disease using data from an external proficiency
+program. As a comparison, reported ERNDIM performance (see                         testing survey. Genet Med 2012;14:69­75.
+http://www.erndim.org/home) for 2015 showed that accuracy                    11. Richards CS, Palomaki GE, Hegde M. Results from an external proficiency
+ranges from 60 to 89% for MPS and 85 to 100% for OA. Hence,                        testing program: 11 years of molecular genetics testing for myotonic
+the PT performance of laboratories observed in the CAP/ACMG                        dystrophy type 1. Genet Med 2016;18:1290­1294.
+scheme is similar to those found in other programs.                          12. McGovern MM, Benach M, Wallenstein S, Boone J, Lubin IM. Personnel
+                                                                                   standards and quality assurance practices of biochemical genetic testing
+  From this study, current clinical biochemical genetic labora-                    laboratories in the United States. Arch Pathol Lab Med 2003;127:71­76.
+tories demonstrated good overall performance on PT. Remain-                  13. Hudson KL, Murphy JA, Kaufman DJ, Javitt GH, Katsanis SH, Scott J.
+ing challenges for laboratories include the need for standardizing                 Oversight of US genetic testing laboratories. Nat Biotechnol 2006;24:
+laboratory methods and reagents, and ensuring that ongoing                         1083­1090.
+education enhances the awareness of genetic disorders, and their             14. Tan IK, Gajra B, Lim MS. External proficiency testing programmes in
+diagnostic profiles, thereby benefiting patient care.                              laboratory diagnoses of inherited metabolic disorders. Ann Acad Med
+                                                                                   Singapore 2006;35:688­693.
+SUPPLEMENTARY MATERIAL                                                       15. Hommes FA, Brewster MA, Burton BK, et al. Proficiency testing for
+Supplementary material is linked to the online version of the                      biochemical genetics laboratories: the first 10 rounds of testing. Am J
+paper at http://www.nature.com/gim                                                 Hum Genet 1990;46:1001­1004.
+                                                                             16. Hommes FA. Quality control for selective screening of inborn errors of
+ACKNOWLEDGMENTS                                                                    metabolism. Eur J Pediatr 1994;153(7 Suppl 1):S17­S22.
+We thank Pamela Provax (employee of the College of American                  17. Fowler B, Burlina A, Kozich V, Vianey-Saban C. Quality of analytical
+Pathologists, Northfield, IL) for providing support. We also thank                 performance in inherited metabolic disorders: the role of ERNDIM. J
+previous Biochemical Genetics Subcommittee members and                             Inherit Metab Dis 2008;31:680­689.
+patient donors who graciously provided authentic specimens to                18. Lukacs Z. Mucopolysaccharides. In: Blau N, Duran, M, Gibson, MK (eds).
+assess and improve laboratory quality.                                             Laboratory Guide to the Methods in Biochemical Genetics. Springer:
+                                                                                   Berlin, 2008:297­324.
+DISCLOSURE                                                                   19. Auray-Blais C, Bherer P, Gagnon R, et al. Efficient analysis of urinary
+The authors declare no conflict of interest.                                       glycosaminoglycans by LC-MS/MS in mucopolysaccharidoses type I, II and
+                                                                                   VI. Mol Genet Metab 2011;102:49­56.
+REFERENCES                                                                   20. Martell LA, Cunico RL, Ohh J, Fulkerson W, Furneaux R, Foehr ED.
+                                                                                   Validation of an LC-MS/MS assay for detecting relevant disaccharides
+1. Applegarth DA, Toone JR, Lowry RB. Incidence of inborn errors of                from keratan sulfate as a biomarker for Morquio A syndrome. Bioanalysis
+      metabolism in British Columbia, 1969-1996. Pediatrics 2000;105:e10.          2011;3:1855­1866.
+                                                                             21. Centers for Disease Control and Prevention. Good laboratory practices
+2. Sanderson S, Green A, Preece MA, Burton H. The incidence of inherited           for biochemical genetic testing and newborn screening for inherited
+      metabolic disorders in the West Midlands, UK. Arch Dis Child 2006;91:        metabolic disorders. MMWR Recomm Rep 2012;61(RR-2):1­44.
+      896­899.
+                                                                                           This work is licensed under a Creative Com-
+3. Berry SA. Newborn screening. Clin Perinatol 2015;42:441­453.
+4. Press RD, Eickelberg G, McDonald TJ, et al. Highly accurate molecular                   mons Attribution 4.0 International License. The
+
+      genetic testing for HFE hereditary hemochromatosis: results from 10    images or other third party material in this article are
+                                                                             included in the article's Creative Commons license, unless
+                                                                             indicated otherwise in the credit line; if the material is not
+
+                                                                             included under the Creative Commons license, users will
+
+                                                                             need to obtain permission from the license holder to
+
+                                                                             reproduce the material. To view a copy of this license, visit
+
+                                                                             http://creativecommons.org/licenses/by/4.0/
+
+                                                                             © The Author(s) 2018
+
+90                                                                           Volume 20 | Number 1 | January 2018 | GENETICS in MEDICINE
+

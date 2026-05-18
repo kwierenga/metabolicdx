@@ -1,0 +1,612 @@
+© American College of Medical Genetics and Genomics      ACMG TECHNICAL STANDARD
+
+Laboratory analysis of organic acids, 2018 update: a technical
+ standard of the American College of Medical Genetics and
+
+                              Genomics (ACMG)
+
+Renata C. Gallagher MD, PhD1, Laura Pollard, PhD2, Anna I. Scott, PhD3,4, Suzette Huguenin, PhD5,
+         Stephen Goodman, MD6, Qin Sun, PhD7; on behalf of the ACMG Biochemical Genetics
+                         Subcommittee of the Laboratory Quality Assurance Committee
+
+     Disclaimer: This laboratory standard is designed primarily as an educational resource for clinical laboratory geneticists to help them
+           provide quality clinical laboratory genetic services. Adherence to this standard is voluntary and does not necessarily assure
+
+       a successful medical outcome. This standard should not be considered inclusive of all proper procedures and tests or exclusive of
+       other procedures and tests that are reasonably directed to obtaining the same results. In determining the propriety of any specific
+      procedure or test, the clinical laboratory geneticist should apply his or her own professional judgment to the specific circumstances
+
+                                                        presented by the individual patient or specimen.
+    Clinical laboratory geneticists are encouraged to document in the patient's record the rationale for the use of a particular procedure or test,
+    whether or not it is in conformance with this standard. They also are advised to take notice of the date any articular standard was adopted,
+
+     and to consider other relevant medical and scientific information that becomes available after that date. It also would be prudent to
+                consider whether intellectual property interests may restrict the performance of certain tests and other procedures.
+
+Organic acid analysis detects accumulation of organic acids in urine     guidance for laboratory practices in organic acid analysis,
+and other body fluids and is a crucial first-tier laboratory test for a  interpretation, and reporting. In addition, new diagnostic biomar-
+broad spectrum of inborn errors of metabolism. It is also frequently     kers for recently discovered organic acidurias have been added.
+ordered as follow-up for a positive newborn screen result, as
+recommended by American College of Medical Genetics and                  Genet Med advance online publication 15 March 2018
+Genomics newborn screening ACTion sheets and algorithms. The
+typical assay is performed by gas chromatography­mass spectro-           Key Words: clinical genetic testing; gas chromatography­mass
+metry. These technical standards were developed to provide               spectrometry; organic acid; organic aciduria; technical standards
+
+                     1. INTRODUCTION                                     acids, both endogenous and exogenous, therefore urine is the
+Organic acids are analyzed in patients suspected of having a             preferred specimen type.
+broad range of metabolic disorders including inborn errors of
+amino acid, fatty acid, carbohydrate, neurotransmitter,                    Organic acids are extracted from urine using organic
+vitamin, sterol, mitochondrial energy, and purine and                    solvents or ion exchange methods, and their presence and
+pyrimidine metabolism. Organic acids are non-amine-con-                  abundance are determined by gas chromatography­mass
+taining, water-soluble compounds with one or more carboxyl               spectrometry (GC-MS). Over 500 organic acids have been
+groups as well as other functional groups (-keto, -hydroxyl),            identified in urine.1 Both qualitative and quantitative analyses
+and are intermediates of a large number of biochemical                   are appropriate for the detection of organic acidurias, with
+pathways. Organic acid analysis is performed to identify                 careful quality assessment and control. Diagnostic com-
+abnormal accumulation of one or more compounds resulting                 pounds are often significantly elevated in classic organic
+from an enzymatic or transporter deficiency. Exogenous                   acidurias, so a diagnosis is possible without quantitative
+compounds are also detected, and these may be relevant to the            methods. It is important to note that for some disorders
+clinical presentation. The kidneys efficiently excrete organic           diagnostic compounds may be normal or near-normal in
+                                                                         clinically well patients.1,2 Care must be taken to examine the
+
+1Department of Pediatrics, University of California, San Francisco, San Francisco, California, USA; 2Greenwood Genetic Center, Greenwood, South Carolina, USA; 3Department of
+Pathology, Stanford University Medical Center, Stanford, California, USA; 4Department of Pathology, Seattle Children's Hospital, Seattle, Washington, USA; 5Laboratory
+Corporation of America Holdings (LabCorp), Research Triangle Park, North Carolina, USA; 6Department of Pediatrics, University of Colorado School of Medicine, Aurora,
+Colorado, USA; 7Department of Molecular and Human Genetics, Baylor College of Medicine, Houston, Texas, USA. Correspondence: Qin Sun (qsun@bcm.edu)
+The Board of Directors of the American College of Medical Genetics and Genomics approved this technical laboratory standard on 22 January 2018.
+
+Submitted 8 February 2018; accepted 8 February 2018; advance online publication 15 March 2018. doi:10.1038/gim.2018.45
+
+GENETICS in MEDICINE | Volume 20 | Number 7 | July 2018                           683
+ACMG TECHNICAL STANDARD                                          GALLAGHER et al | Laboratory technical standard for organic acids analysis
+
+chromatogram for clinically significant compounds that may       Laboratories (2008 Edition, Revised February 2007), section
+be present in small amounts or obscured by coelution with        F7.7.6
+other compounds; proficiency testing programs have reported
+missed diagnoses from poor detection of low-abundance                                  3. BACKGROUND
+pathognomonic compounds.3 Quantitative analyses are parti-
+cularly useful for therapeutic monitoring of previously          3.1 Overview of diseases identified through urine organic
+diagnosed patients.1­5
+                                                                 acid analysis
+  Specific organic acids (e.g., methylmalonic acid, glutaric     Organic acidurias (also known as organic acidemias) are a
+acid, 3-hydroxyglutaric acid, orotic acid, and succinylacetone)  biochemically heterogeneous group of inborn errors of
+can be determined in blood or urine using other techniques       metabolism. They are characterized by the accumulation of
+that utilize stable isotope dilution and GC-MS or liquid         metabolites that are not present, or are only present in small
+chromatography­tandem mass spectrometry. These targeted          amounts, under normal physiological conditions. Abnormal-
+analyses should not replace a more comprehensive organic         ities detected by organic acid analysis include pathologically
+acid screen in the initial laboratory evaluation of undiagnosed  elevated quantities of normal metabolites, and compounds
+cases. This technical standard focuses on untargeted urine       produced by alternative biochemical pathways (e.g., succiny-
+organic acid analyses by GC-MS.                                  lacetone). The possible, or likely, diagnosis of a specific
+                                                                 organic aciduria, or other disorder, relies on pattern
+                         2. METHODS                              recognition and the determination of the presence, or absence,
+The laboratory technical standard was informed by a review       of expected compounds. An identified defect in organic acid
+of the literature, including any current guidelines, and expert  metabolism can be due to an enzyme deficiency; a disorder of
+opinion. Resources consulted included PubMed (search             cofactor biosynthesis, recycling, or modification; a transporter
+terms: organic acidemias, organic acid analysis methods,         defect; or nutritional deficiency. Disorders that may be
+organic acid extraction methods), the American College of        identified or suggested through abnormal urine organic acid
+Medical Genetics and Genomics (ACMG) Standards and               analysis include the classic organic acidemias due to inborn
+Guidelines for Clinical Genetics Laboratories, Clinical and      errors of amino acid metabolism (isovaleric acidemia [MIM
+Laboratory Standards Institute guidelines, CLIA regulations,     243500], methylmalonic acidemia[s], propionic acidemia
+and the Centers for Disease Control and Prevention               [MIM 606054], glutaric acidemia type I [MIM 231670]), as
+Morbidity and Mortality Weekly Report on Good Laboratory         well as other amino acid disorders (phenylketonuria [MIM
+Practices for Biochemical Genetics Testing and Newborn           261600], tyrosinemia type I [MIM 276700], alkaptonuria
+Screening for Inherited Metabolic Disorders. When the            [MIM 203500], 3-methylglutaconic aciduria type I [MIM
+literature provided conflicting evidence about a topic or when   250950], maple syrup urine disease [MIM 248600]). Abnor-
+there was insufficient evidence, the authors used expert         mal urine organic acids may also be consistent with disorders
+opinion to inform the recommendations. Expert opinion            of the urea cycle (suggested by elevated orotic acid), fatty acid
+included the coauthors of the document, members of the           oxidation (short-chain acyl-CoA dehydrogenase deficiency
+Biochemical Genetics Subcommittee of the Lab Quality             [MIM 201470], medium-chain acyl-CoA dehydrogenase
+Assurance Committee, as well as any experts consulted            deficiency [MIM 201450], multiple acyl-CoA dehydrogenase
+outside the workgroup and acknowledged in this document.         deficiency [MIM 231680]), energy metabolism (pyruvate
+Any conflicts of interest for workgroup members or               dehydrogenase deficiency, fumarase deficiency [MIM
+consultants are listed. The ACMG Laboratory Quality              606812], SUCLA2 deficiency [MIM 603921]), purine and
+Assurance Committee reviewed the document providing              pyrimidine metabolism (uridine monophosphate synthetase
+further input on the content, and a final draft was delivered    deficiency [MIM 613891], dihydropyrimidine dehydrogenase
+to the ACMG Board of Directors for review and approval to        deficiency [MIM 274270]), neurotransmission (aromatic L-
+send out for member comment. The final draft of the              amino acid decarboxylase deficiency [MIM 608643]), and
+document was posted on the ACMG website and an e-mail            others (ethylmalonic encephalopathy pMIM 602473), Cana-
+link was sent to ACMG members inviting all to provide            van disease [MIM 271900], glutathione synthetase deficiency
+comment. All members' comments were assessed by the              [MIM 266130], glycerol kinase deficiency [MIM 307030],
+authors and additional evidence was included and our             primary hyperoxaluria type I [MIM 259900] and type II
+recommendations were amended as deemed appropriate.              [MIM 260000]).7­9 Clinical indications for this testing are,
+Member comments and author responses were reviewed by a          therefore, diverse and include neonatal or late-onset acute
+representative of the Laboratory Quality Assurance Commit-       illness associated with hyperammonemia, hypoglycemia, and/
+tee and the ACMG Board. The final document was approved          or ketolactic acidosis; neurologic abnormalities including
+by the ACMG Board of Directors. This updated technical           seizures, ataxia, hypotonia, lethargy, coma, developmental
+standard replaces the previous version in Section F: Clinical    delay, or unexplained intellectual disability; failure to thrive;
+Biochemical Genetics, American College of Medical Genetics       pancreatitis; unexplained metabolic acidosis; unusual odor;
+and Genomics Standards and Guidelines for Clinical Genetics      macrocephaly; and liver failure.10,11 Some symptoms, includ-
+                                                                 ing lethargy and acidosis, can be due to exogenous
+                                                                 intoxication, and organic acid analysis may aid in diagnosis
+
+684                                                              Volume 20 | Number 7 | July 2018 | GENETICS in MEDICINE
+Laboratory technical standard for organic acids analysis | GALLAGHER et al  ACMG TECHNICAL STANDARD
+
+(e.g., ethylene glycol poisoning, ibuprofen overdose, and -                 4.3 Exogenous variables
+hydroxybutyric acid intoxication as distinct from succinic
+semialdehyde dehydrogenase deficiency [MIM 271980]).                        Diet, medication, and clinical state may contribute to an
+                                                                            abnormal organic acid profile.1 Dietary factors include total
+3.2 Incidence                                                               parenteral nutrition (isolated N-acetyltyrosine), gelatin (iso-
+The incidence of individual classical inborn errors of organic              lated adipic acid), medium-chain triglyceride oil supplemen-
+acid metabolism varies from 1 in 10,000 to 1 in 1,000,000 live              tation (dicarboxylic aciduria), infant formula (dicarboxylic
+births. Collectively, their incidence has been suggested to be              aciduria due to medium-chain triglyceride and other
+approximately 1 in 10,000­35,000 live births.8,12,13 This                   artifacts), and the ketogenic diet (ketoaciduria). Medications
+estimate, however, does not include other inborn errors of                  such as valproate, levetiracetam, aspirin, benzoic acid,
+metabolism (i.e., amino acid disorders, urea cycle disorders,               ibuprofen, acetaminophen, and many others can be the
+congenital lactic acidemias) for which diagnosis may also be                source of a wide variety of exogenous peaks.16 Treatment with
+suggested by organic acid analysis. All possible disease entities           certain medications may also be associated with increased
+included, the incidence of conditions for which informative                 production and excretion of organic acids with diagnostic
+organic acid profiles can be detected in urine is likely to be              relevance. For example, valproate treatment inhibits 3-
+higher than recognized. As a group, these defects are likely                methylcrotonyl-CoA carboxylase and results in elevated
+underdiagnosed.                                                             urinary excretion of 3-hydroxyisovaleric acid,17 a marker of
+                                                                            biotinidase deficiency and other disorders. Pyroglutamic acid
+3.3 Mode of inheritance                                                     (5-oxoproline) elevation, a marker of glutathione synthetase
+Most organic acidemias, and other inborn errors of                          deficiency, may also occur secondary to treatment with
+metabolism identified through organic acid analysis, are                    acetaminophen, vigabatrin, and other medications.18,19 Clin-
+inherited as autosomal recessive traits. X-linked disorders that            ical information may be required to determine if these are
+may be identified by urine organic acid analysis include the                relevant to the clinical presentation (e.g., ibuprofen overdose).
+amino acid and mitochondrial energy metabolism disorder, 2-                 Sample contamination can also lead to abnormal findings. For
+methyl-3-hydroxybutyryl-CoA dehydrogenase deficiency                        example, lubricants or soaps can result in elevations of
+(MIM 300438); the urea cycle disorder, ornithine transcarba-                glycerol (also elevated in glycerol kinase deficiency), palmitic
+mylase deficiency (MIM 311250); the energy metabolism                       acid, and stearic acid. Mild elevations of methylmalonic acid
+disorder, pyruvate dehydrogenase E1- deficiency (MIM                        can be secondary to intestinal bacteria metabolism or
+312170); and glycerol kinase deficiency (MIM 307030). The                   nutritional status (low infant or maternal B12 or folate).
+identification of an affected individual has important                      Compounds of bacterial origin can be enhanced with
+implications for other family members, who may also require                 prolonged sample storage at ambient temperature.20 Clinical
+urine organic acid analysis and additional genetic testing.                 history, diet, and medication should be considered to aid the
+                                                                            interpretation of the chromatographic findings.
+
+         4. PREANALYTICAL REQUIREMENTS                                      4.4 Clinical indications for testing
+
+4.1 Specimen requirements                                                   Urine organic acid analysis should be performed for patients
+Organic acids are preferably analyzed in urine. Urine                       suspected of having a wide range of disorders based on
+specimens are normalized to a fixed equivalent of creatinine                clinical symptoms and/or other laboratory abnormalities.
+to allow determination of relative concentration. Sample                    Clinical symptoms are varied and often nonspecific, as
+volume required for testing depends on the patient's                        described above in section 3.1, and can occur for the first
+hydration status. The minimal sample volume will also                       time at any age from the neonatal period to adulthood.
+depend on specifics of the organic extraction; typically 1­5 ml             Certain clinical findings may be associated with particular
+of specimen is recommended.                                                 disorders, such as macrocephaly in Canavan disease (MIM
+                                                                            271900) and glutaric acidemia type I (MIM 231670), and
+4.2 Conditions of sample collection, shipping, handling, and                neonatal liver disease in tyrosinemia type I (MIM 276700). A
+storage                                                                     family history of a previously affected sibling or an abnormal
+Urine is ideally collected at the time of acute illness. If the             newborn screen result may suggest a specific inborn error of
+patient is decompensated the urine should be obtained at the                metabolism.
+time of decompensation, as diagnostic metabolites are likely
+to be highest in this state.1,14 If the patient is not ill, a random          Organic acid analysis is required as part of newborn
+urine sample is appropriate.14,15 Urine should be collected in a            screening confirmatory testing when the differential diagnosis
+clean container without preservatives, frozen as soon as                    includes an organic aciduria(s) as well as other disorders.
+possible, and stored frozen until analyzed. Samples sent to the             Follow-up newborn screening recommended testing algo-
+laboratory from outside referral sources should be shipped on               rithms and ACTion (ACT) sheets are available at the ACMG
+dry ice via overnight courier. Urine samples are stable for                 website.21,22 Newborn screening platforms, analytes, analyte
+most organic acids for several years if stored at - 20 °C or                cutoffs, protocols, and algorithms differ widely. A "normal"
+lower.1                                                                     newborn screen, one in which none of the screened analytes
+                                                                            were outside of the established high and low cutoffs, should
+
+GENETICS in MEDICINE | Volume 20 | Number 7 | July 2018                     685
+ACMG TECHNICAL STANDARD                                              GALLAGHER et al | Laboratory technical standard for organic acids analysis
+
+not be considered diagnostic testing for any disorder screened       more sensitive targeted assays are necessary with stable
+by that program; diagnostic testing, including organic acid          isotope dilution using selected ion monitoring.29,30
+analysis and other testing, should be ordered if there is clinical
+suspicion for a particular disorder(s). There is worldwide           5.2 Calibration and quantitation
+interest in continued assessment and optimization of new-            Urine organic acid analysis should be performed using at least
+born screening, due to its benefit in early diagnosis of organic     one internal standard. The choice of internal standard varies
+acidurias and other conditions and programs may change               between laboratories but it should be uniquely identifiable,
+platforms and adjust cutoffs over time.23­27                         not present in human specimens, and resolvable from other
+                                                                     compounds by gas chromatography. The internal standard
+  For optimal interpretation, the laboratory should be made          controls for extraction efficiency, and allows the direct
+aware of the clinical indication for testing, the clinical state of  comparison of metabolite concentrations in patient specimens
+the patient at the time of the testing, as well as concurrent        to calibration standards. Commonly used internal standards
+medications and diet. The laboratory should have contact             include heptadecanoic acid, 2-phenylbutyric acid,31 tropic
+information for the ordering physician to aid interpretation, if     acid, pentadecanoic acid,15 2-ketocaproic acid,32 p-chloro-
+needed, and to communicate urgent and emergent results.              benzoic acid, and dimethylmalonic acid.33 A second internal
+Depending on the clinical situation, and in a diagnostic             standard added immediately before derivatization may help
+evaluation, organic acid analysis should be ordered with             assess instrument function; tetracosane is commonly used as a
+analyses of plasma amino acids, acylcarnitine profile, and           second standard.
+carnitine (free and total). Ideally, these tests should all be
+performed by the same laboratory, and the results integrated           Quantification of organic acid concentrations must be
+into an overall interpretation.                                      performed by comparison with a known reference or external
+                                                                     calibration standard(s) whenever possible. A calibration curve
+5. METHOD ESTABLISHMENT AND VALIDATION                               is prepared for each analyte quantified during the procedure,
+                                                                     covering the normal range and expected pathological values.
+5.1 Qualitative versus quantitative analysis                         The calibration curve should include several dilutions of the
+Urine organic analysis can be performed as a qualitative or          standard mix containing the organic acids quantified. To
+quantitative test and both methods are effective approaches          generate and update calibration curves, calibrators should be
+for establishing a diagnosis. Qualitative urine organic acid         carried through the entire specimen preparation process.
+analysis reports contain written descriptions of the observed        Usually, only a subset of organic acids is quantified, and most
+pattern with an overall interpretation. Quantitative urine           other organic acids are assessed qualitatively. Quantification
+organic analyses typically determine concentrations of               could be performed using a single quantifying ion for each
+selected metabolites through the use of numerous calibrators         compound. The peak area of the compound quantifying ion is
+and internal standards. Qualitative and quantitative analyses        normalized to the peak area of the internal standard ion and
+share multiple assay parameters. The volume of urine                 sample volume, and then quantitation is obtained using the
+analyzed generally contains a fixed amount of creatinine             calibration curve slope.32,34 The internal standards used are
+and, therefore, varies with patient hydration status. Abnormal       typically nonisotopic compounds unless specific organic acids
+metabolites are identified by both retention time28 and              are targeted. The use of solvent standards (i.e., standards
+fragmentation pattern in the mass spectrometer. Typically,           mixed directly in organic solvent and not carried through the
+each laboratory develops a custom library of compounds that          full extraction process) is inappropriate because these do not
+identify retention time and relative ion abundance based on          adequately control for different extraction efficiencies.20
+instrument parameters such as flow rate, column type,                Quantitation without the use of a specific reference standard
+column length, and elution ramp temperatures. Given the              is discouraged. However, for compounds for which quanti-
+challenges of manual organic acid extraction, internal               tative data is desired but no reference standard is available, the
+standards are necessary to ensure proper sample preparation          laboratory may compare peak response with that of a known
+(see section 5.2).                                                   quantity of internal standard to derive a relative concentra-
+                                                                     tion. In these cases, the metric should be clearly indicated on
+  Quantitative analysis offers certain benefits and caveats.         the report.
+Some clinicians find quantitative reports helpful for monitor-
+ing known patients. In this case, clinicians should be aware         5.3 Reference ranges
+that, in the absence of stable isotope dilution, or another          Reference ranges for all reported quantified compounds
+robust quantitative method, quantitative results may not be          should be established and periodically validated. Reference
+portable between laboratories so therapy monitoring should           ranges should be normalized to the creatinine concentration.
+be performed in one laboratory.1 For metabolites excreted in         When literature-based ranges are used they must also be
+low levels among clinically normal individuals, quantitative         periodically verified. Age-specific ranges should be deter-
+methods, along with reference values, may be helpful to              mined for compounds for which the concentration is known
+determine whether an analytical level is indicative of an            to vary with age.7,9,15 Optimally, each laboratory should
+inborn error of metabolism. However, pathological levels of          establish its own reference ranges based on its method.
+certain metabolites, such as mevalonic acid, may be minimal,
+and below the limit of detection of some methods, and thus,
+
+686                                                                  Volume 20 | Number 7 | July 2018 | GENETICS in MEDICINE
+Laboratory technical standard for organic acids analysis | GALLAGHER et al  ACMG TECHNICAL STANDARD
+
+5.4 Validation                                                                Extraction of organic acids from acidified urine (pH 1­2) is
+Validation of qualitative organic acid analysis utilizes urine              performed using organic solvents or ion-exchange solid-phase
+samples from unaffected controls and patients with previously               extraction. Traditional protocols use diethyl ether and/or
+confirmed inborn errors of metabolism. The proper identi-                   ethyl acetate as the preferred organic solvents.15,33 Alterna-
+fication of expected abnormal metabolites in abnormal                       tively, tetrahydrofuran shows higher sensitivities for polar
+control specimens (and absence in unaffected control speci-                 compounds than ethyl acetate.37 Solid phase extraction with
+mens) should be documented for as many inborn errors of                     strong anion exchange cartridges is sometimes favored to
+metabolism as is reasonably possible. Proficiency testing                   improve extraction of more polar compounds without urine
+programs are one source of confirmed abnormal samples.                      acidification, though it can have reduced extraction efficiency
+Specimen exchange between testing laboratories is also an                   of less polar, pathologically relevant metabolites.38,39 Less
+effective means of increasing exposure to rare diseases, and of             polar compounds such as orotic acid, succinylacetone, and
+validating a new method or instrument.                                      uracil may be poorly extracted depending on the specific
+                                                                            method used. A targeted quantitative analysis may be
+  For quantitative analysis, the laboratory should establish                warranted to query these specific metabolites. Alternatively,
+protocols to determine the linear range, analytical measure-                prior to acidification and extraction, an oximation step can
+ment range, and lower limit of quantification for all quantified            stabilize and improve detection of keto acids such as pyruvic
+compounds. Procedures should be in place for addressing any                 acid, -ketoglutaric acid, succinylacetone, and certain inter-
+values that fall outside of these performance limits. Initial               mediates of branched-chain amino acid metabolism: 2-
+validation should include analysis of the precision and                     ketoisocaproic acid, 2-keto-3-methylvaleric acid, and 2-
+recoveries for each quantified analyte. Performance charac-                 ketoisovaleric acid. Oximation may be performed routinely
+teristics (e.g., linearity, analytical measurement range, accu-             or under select circumstances, such as the clinical suspicion of
+racy, and precision) should be determined for all quantified                maple syrup urine disease (MIM 248600) or tyrosinemia type
+analytes and verified at appropriate, regular intervals.14                  I (MIM 276700).
+Instrument calibration should be validated and verified at
+regular intervals established by the laboratory and as required             6.2 Derivatization
+by CLIA. Calibration verification should also be performed                  Following extraction, an additional standard, often tetraco-
+following any major service to the instrument, or before the                sane, can be added to the specimen. Organic extracts are then
+use of a new lot of reagents.                                               evaporated to dryness under nitrogen and derivatized as
+                                                                            described below. Incomplete dryness can reduce derivatiza-
+5.5 Testing personnel                                                       tion efficiency.
+Appropriate training procedures and ongoing competency
+requirements for laboratory personnel performing organic                      Trimethylsilyl derivatives of organic acids in dried urine
+acid analysis must be established and documented. Organic                   extracts are formed by the addition of N,O-bis (trimethylsilyl)
+acid analysis is considered high-complexity testing, so                     trifluoroacetamide with 1% trimethylchlorosilane (BSTFA/
+personnel should, at minimum, satisfy CLIA requirements.                    TMCS) or similar commercial reagents. In a typical
+Specific training in peak identification and interpretation may             derivatization procedure, dried extracts are mixed with
+be necessary.                                                               BSTFA/TMCS and incubated at 65­90 °C for 10­30 minutes.
+                                                                            Alkane standards of known carbon chain length may be
+          6. ANALYSIS OF ORGANIC ACIDS                                      added to monitor chromatographic separation.
+
+6.1 Extraction of organic acids                                             6.3 Gas chromatography­mass spectrometry
+The volume of urine required for organic acid analysis is                   instrumentation
+dependent on its creatinine concentration. The sample                       Several instrument configurations are commercially available
+volume should be adjusted to reach a set creatinine amount,                 that separate compounds and enable identification by
+and dilution of concentrated samples performed as necessary.                chromatographic retention time and mass spectra. Separation
+A volume of urine equivalent to 0.25 mg (2.2 mol) of                        is most often carried out on a capillary column, and mass
+creatinine is typically used; various protocols call for 0.1 to             spectra obtained from either a quadrupole filter or ion trap
+0.4 mg of creatinine. One or more internal standards is added               mass spectrometer using electron impact ionization. Fixed
+to the specimen (see section 5.2), followed by the addition of              electron impact energy is applied to generate reproducible and
+an acid such as hydrochloric acid. Addition of sodium                       portable spectra. A small amount of sample (1­3 l) is
+chloride or urease prior to extraction can reduce the amount                typically injected. Application of a split inlet mode helps to
+of urea, which may interfere with other compounds.3,35                      avoid column overload with a split ratio of 1:15­70. Mass
+Urease treatment nonextraction methods are reported to                      spectral data are typically collected in full scan mode from m/
+increase detection of glycerol and glycerol-3-phosphate,                    z 50 to 550 to generate total ion current chromatograms.
+aiding in the diagnosis of fructose-1,6-bisphosphatase defi-                Selected ion monitoring may be used by methods that target
+ciency, and are capable of screening carbohydrates and amino                specific compounds.
+acids in addition to organic acids.35,36
+
+GENETICS in MEDICINE | Volume 20 | Number 7 | July 2018                     687
+ACMG TECHNICAL STANDARD                                          GALLAGHER et al | Laboratory technical standard for organic acids analysis
+
+6.4 Chromatogram analysis                                        6.5 Quality control
+                                                                 The mass spectrometer should be tuned prior to each batch of
+Total ion current chromatograms are analyzed by manual           patient samples analyzed, as described by the instrument
+interrogation of the spectral data. Compound identification is   manufacturer and required by the CAP. Procedures should be
+critical to the diagnosis of genetic disorders associated with   developed and documented for the routine evaluation of
+abnormal organic acid excretion and relies on the evaluation     system performance, as well as the detection and evaluation of
+of both their mass spectra and retention time. A computer        potential carryover effects. A quality control (QC) program
+library of mass spectra of known compounds is typically used     based on the analysis of normal and abnormal controls should
+to confirm the identity of metabolite peaks. A limited number    be implemented and performed with every batch of patient
+of commercial libraries (e.g., the National Institute of         specimens. Peak areas of internal standards should be
+Standards and Technology and Wiley) containing mass              monitored for extraction and derivatization efficiency in all
+spectra of trimethylsilyl derivatives of physiologic and drug-   patient and QC specimens. Thresholds for acceptance or
+related compounds are available for the identification of        rejection of QC data, and remedial actions in the event of a
+compounds and are compatible with most GC-MS manu-               QC failure, should be established and documented by the
+facturer software packages. These commercial reference           laboratory. QC data should be regularly monitored for overall
+libraries may not contain all compounds of interest to           trends that may affect test performance, and problems should
+biochemical genetics laboratories. The common, nonsyste-         be documented and remediated as appropriate. The use of
+matic chemical names may not be available in these reference     Westgard rules for clinical specimen analysis further specifies
+libraries. Laboratories are encouraged to modify commercial      the parameters for quality patient diagnosis and reporting.40
+reference libraries and develop in-house libraries on their own
+equipment, using pure organic acid standards and/or patient-     6.6 Proficiency testing
+derived peaks (once positive identification of a compound has    An ongoing proficiency testing program for organic acid
+been established). A minimal library in a biochemical genetics   analysis must be implemented and documented. A biannual
+laboratory should contain all of the compounds in the            proficiency testing program that evaluates both analytical and
+expanded newborn screening follow-up testing guideline by        interpretive/diagnostic proficiency is offered by the CAP and
+National Academy of Clinical Biochemistry and organic acid       supervised by the joint CAP/ACMG Genetic Biochemical and
+master list in the College of American Pathologists (CAP)        Molecular Genetic Resource Committee.28 An excellent
+Biochemical Genetics Survey.1,28 It is good laboratory practice  program for both qualitative and quantitative organic acid
+to continuously update the analytical library when new           analysis is also offered by the European Research Network for
+diagnostic compounds are reported in the literature.             evaluation and improvement of screening, Diagnosis and
+                                                                 treatment of Inherited disorders of Metabolism (ERNDIM;
+  The methods and criteria by which peaks are identified         http://www.erndimqa.nl).2,5,41 In addition to the official CAP
+must be documented in the laboratory. Although instrument        and ERNDIM testing, sample exchange between laboratories
+software can generate analyte match reports according to         and sharing of unusual data are valuable educational
+preset criteria, manual review of peaks and spectra is           resources.
+necessary to achieve accurate peak identification.1 Examina-
+tion of chromatographic retention times and/or relative              7. TEST INTERPRETATION AND REPORTING
+retention times to an internal standard is also necessary,
+particularly for the correct identification of isomers or        7.1 Interpretation
+spectrally similar compounds.9 Particular attention should       Urine organic acid analysis may be the most complex test
+be paid to regions of the chromatogram in which complete or      performed in many biochemical genetic laboratories. Inter-
+partial overlap of a clinically relevant peak with that of       pretation of urine organic acid results should be performed by
+another compound could hinder identification. Possible           an American Board of Medical Genetics and Genomics or
+critical organic acid overlaps include 3-hydroxybutyric acid/    other relevant medical board-certified laboratory director.
+3-hydroxyisobutyric acid, urea/4-hydroxybutyric acid, hex-       Clinically meaningful interpretation of organic acid results
+anoylglycine/4-hydroxyphenylacetic acid, ethylmalonic acid/      should be based on the overall pattern of metabolites present
+phosphoric acid, 3-methylglutaconic acid/3-hydroxyadipic         in abnormal quantities, rather than on individual abnormal-
+lactones, tiglylglycine/3-methylcrotonylglycine, orotic acid/    ities. The diagnostic sensitivity of organic acid analysis under
+cis-aconitic acid, and others.1,15 Modification of analytical    acute and asymptomatic clinical states may vary considerably.
+system parameters such as column type, elution temperature       Although certain diagnoses can be confidently suggested
+ramp, and run time may resolve some of these coeluting           based on an organic acid profile, there are limitations of this
+compounds. Examinations of postrun extraction ion chro-          test. Informative profiles may not always be detected in
+matograms and subtracted spectra are often helpful to clarify    disorders in which the excretion of diagnostic metabolites is a
+the composition of apparently complex peaks. Care must be        reflection of the residual activity of the defective enzyme, the
+taken to examine each chromatogram for the presence of           dietary load of precursors, and the anabolic/catabolic status of
+peaks that, when present even in small amounts, could be         the patient. For example, some individuals with glutaric
+clinically significant (e.g., hexanoylglycine, suberylglycine,   acidemia type I (MIM 231670) are considered to be "low
+succinylacetone, 2-methylcitric acid, and orotic acid).
+
+688                                                              Volume 20 | Number 7 | July 2018 | GENETICS in MEDICINE
+Laboratory technical standard for organic acids analysis | GALLAGHER et al                    ACMG TECHNICAL STANDARD
+
+Table 1 Recently described inborn errors of metabolism with abnormalities in urine organic acid analysis
+
+                  Disorder                                                                        Elevated metabolite(s)
+
+Aminoacylase 1 deficiency, MIM 609924 (ref. 44)                             N-acetyl amino acids
+
+Aromatic L-amino acid decarboxylase deficiency (primary or due to Vanilpyruvic acid, 3-O-methyldopa (3-methoxytyrosine), N-acetylvanilalanine,
+
+abnormal B6 level or metabolism), MIM 608643 (refs. 45,46)                  vanillactic acid
+
+Combined malonic and methylmalonic aciduria, MIM 614265 (ref. 47) Methylmalonic acid (larger amount), malonic acid
+
+3-OH-Isobutyryl-CoA hydrolase deficiency, MIM 250620 (ref. 48)              2,3-Dihydroxy-2-methylbutyric acida
+
+3-OH-3-Methylglutaryl-CoA synthase 2 deficiency, MIM 605911                 3,5-Dihydroxyhexanoic 1,5 lactone, trans-5-hedroxyhex-2-enoate, 4-hydroxy-6-
+
+(refs. 49,50)                                                               methyl-2-pyrone, 5-hydroxy-3-ketohexanoate, 3,5-dihydroxyhexanoate
+
+Methylmalonyl-CoA epimerase deficiency, MIM 251120 (ref. 51) Ketones, methylmalonic acid, 3-hydroxypropionic acid, methylcitric acid,
+
+                                                                            propionylglycine
+
+Combined D-2 and L-2-hydroxyglutaric aciduria, MIM 615182 (ref. 52) D- and L-2-hydroxyglutaric acid
+
+Cytosolic phosphoenolpyruvate carboxykinase deficiency, MIM                 Tricarboxylic acid cycle metabolites: fumaric acid, succinic acid, malic acid,
+
+261680 (ref. 53)                                                            -ketoglutaric acid, adipic acid, 3-hydroxysebacic acid, and
+
+                                                                            3-hydroxydodecanedioic acid
+
+Riboflavin transporter defect, MIM 211530 and MIM 211500 (ref. 54) Ethylmalonic acid, adipic acid, 2-hydroxyglutaric acid, suberic acid,
+
+                                                                            hexanoylglycine, and suberylglycine
+
+Short/Branched-chain acyl-CoA dehydrogenase deficiency, MIM                 2-Ethylhydracrylic acid, 2-methylbutyrylglycine
+
+610006 (refs. 55,56)
+Short-chain enoyl-CoA hydratase deficiency, MIM 616277 (ref. 48) 2,3-Dihydroxy-2-methylbutyric acida
+
+Succinate-CoA ligase (SUCLA2 and SUCLG1) deficiencies, MIM                  Methylmalonic acid, methylcitric acid, and others
+
+612073 and MIM 612224 (refs. 57,58)
+
+Succinic semialdehyde dehydrogenase deficiency, MIM 271980                  4-hydroxybutyric acid, 3,4-dihydroxybutryric acid, dicarboxylic Aciduria,
+
+(ref. 59)                                                                   4,5-dihydroxyhexanoic acid, and lactones (not present in -hydroxybutyric acid
+
+                                                                            intoxication)
+
+Xanthurenic aciduria, MIM 236800 (ref. 60)                                  Xanthurenic acid
+
+aFollow-up testing is indicated to look for urine acrylate conjugates, and molecular studies are recommended.48
+
+excretors" in that urinary glutaric acid and 3-hydroxyglutaric              helpful to clarify nonspecific organic acid elevations such as
+acid levels may not demonstrate significant abnormalities.42                tricarboxylic aciduria suggestive of mitochondrial dysfunc-
+Communication with the ordering physician to better under-                  tion, vanillactic acid suggestive of a neurotransmitter synth-
+stand the clinical, medication, and nutritional history may                 esis defect, or hypoglycemic ketonuria.
+help the laboratory director accurately interpret a complex
+chromatogram. Comprehensive tables are available in pub-                    7.2 Reporting
+lished literature and online to assist in interpretation of                 According to a 10-year review by ERNDIM, report quality
+organic acid findings.7,9,19,43 A brief table of recently                   and content varied greatly upon ambiguous findings in
+identified organic acidurias and their associated abnormal                  qualitative organic acid assay.5 Reports should be clear to a
+organic acids is provided here (Table 1).                                   nonspecialist. Patient reports must contain appropriate
+                                                                            patient and specimen information as contained in sections
+  A characteristic abnormal organic acid profile may not be                 C2.4, 2.4.1, and 2.4.2 of the American College of Medical
+sufficient to establish a definitive diagnosis. Other methods of            Genetics Standards and Guidelines for Clinical Genetics
+higher specificity and sensitivity based on stable isotope                  Laboratories (2008 Edition).6 Identification of all relevant
+labeled internal standards, selected ion monitoring, or                     compounds must be provided on the report, and quantity
+chemical ionization can overcome the limitations of standard                may be listed (as determined). Quantitative reports must
+organic acid analysis for the investigation of nonacutely ill or            include appropriate reference ranges (see section 5.3). The
+low excretor patients (e.g., targeted methods for the                       report may include a brief description of the method and a list
+determination of methylmalonic acid, 3-hydroxyglutaric acid,                of known analytes that are not well determined. When no
+or succinylacetone). In some instances targeted quantification              clinically significant abnormalities are detected, an organic
+of specific metabolites in other physiological fluid (cerebrosp-            acid analysis can be reported and interpreted in qualitative
+inal fluid, amniotic fluid, plasma, or serum) may be                        terms only. When abnormal results are detected, the detailed
+appropriate to clarify an ambiguous urine finding. Confirma-                interpretation should include an overview of the results and
+tion by an independent method is recommended whenever                       their potential significance, correlation with available clinical
+practical, such as molecular analysis, associated analyte                   information, a differential diagnosis, recommendations for
+determination, or in vitro enzyme assay (blood cells, cultured              additional confirmatory or other follow-up studies, and
+cells, or tissue biopsy). Such follow-up testing is particularly
+
+GENETICS in MEDICINE | Volume 20 | Number 7 | July 2018                                                                                                     689
+ACMG TECHNICAL STANDARD                                                           GALLAGHER et al | Laboratory technical standard for organic acids analysis
+
+contact information for the reporting laboratory. In the case                     15. Rinaldo P. Organic acids. In: Blau N, Duran M, Gibson KM (eds).
+of a new diagnosis the laboratory should attempt to reach the                           Laboratory Guide to the Methods in Biochemical Genetics. Springer:
+ordering physician to ensure the recommendations are                                    Berlin, Germany, 2008.
+communicated directly. If appropriate, referral of the patient
+to a metabolic center for further evaluation and management                       16. Rinaldo P. Organic acid analysis. In: Blau N, Duran M, Blaskovics ME (eds).
+should also be recommended, as this is likely to optimize the                           Laboratory Guide to the Methods in Biochemical Genetics. Springer:
+patient outcome.5                                                                       Berlin, Germany, 2007:137­169.
+
+ACKNOWLEDGMENTS                                                                   17. Luis PB, Ruiter JP, IJlst L, et al. Inhibition of 3-methylcrotonyl-CoA
+Members of the ACMG Biochemical Genetics Subcommittee and                               carboxylase explains the increased excretion of 3-hydroxyisovaleric acid in
+                                                                                        valproate-treated patients. J Inherit Metab Dis 2012;35:443­449.
+the Laboratory Quality Assurance Committee reviewed and
+                                                                                  18. Hunter RW, Lawson C, Galitsiou E, Gifford F & Neary JJ. Pyroglutamic
+endorsed the revised document. We thank Irene De Biase for                              acidosis in association with therapeutic paracetamol use. Clin Med (Lond)
+                                                                                        2016;16:524­529.
+assistance with section 5.2.
+                                                                                  19. Kumps A, Duez P & Mardens Y. Metabolic, nutritional, iatrogenic, and
+DISCLOSURE                                                                              artifactual sources of urinary organic acids: a comprehensive table. Clin
+The following authors direct laboratories that perform urine                            Chem 2002;48:708­717.
+
+organic acid analysis as a fee-for-service: L.P., A.I.S., S.H., S.G.,             20. Kumps A, Duez P, Genin J & Mardens Y. Gas chromatography-mass
+                                                                                        spectrometry analysis of organic acids: altered quantitative response for
+and Q.S. The other authors declare no conflict of interest.                             aqueous calibrators and dilute urine specimens. Clin Chem 1999;45(8 pt
+                                                                                        1):1297­1300.
+REFERENCES
+                                                                                  21. American College of Medical Genetics and Genomics. Newborn
+1. Dennis J, Dietzen PR, Whitley RJ, et al. Follow-up testing for metabolic             screening ACT sheets and confirmatory algorithms. https://www.acmg.
+      diseases identified by expanded newborn screening using tandem mass               net/ACMG/Publications/ACT_Sheets_and_Confirmatory_Algorithms/NBS_
+      spectrometry. In: Bennett MJ, (ed). National Academy of Clinical                  ACT_Sheets_and_Algorithm_Table/ACMG/Publications/ACT_Sheets_and_
+      Biochemistry, 2009. https://www.aacc.org/science-and-practice/practice-           Confirmatory_Algorithms/NBS_ACT_Sheets_and_Algorithms_Table.aspx?
+      guidelines/expanded-newborn-screening.                                            hkey = e2c16055-8cdc-4b22-a53b-b863622007c0. Accessed 6 July 2016.
+
+2. Peters V, Garbade SF, Langhans CD, et al. Qualitative urinary organic acid     22. Advisory Committee on Heritable Disorders in Newborns and Children.
+      analysis: methodological approaches and performance. J Inherit Metab              Recommended uniform screening panel. 2016. https://www.hrsa.gov/
+      Dis 2008;31:690­696.                                                              advisorycommittees/mchbadvisory/heritabledisorders/
+                                                                                        recommendedpanel/. Accessed 17 January 2017.
+3. Hoffmann G, Aramaki S, Blum-Hoffmann E, Nyhan WL & Sweetman L.
+      Quantitative analysis for organic acids in biological samples: batch        23. Wilson C, Knoll D, de Hora M, Kyle C, Glamuzina E & Webster D. The risk
+      isolation followed by gas chromatographic-mass spectrometric analysis.            of fatty acid oxidation disorders and organic acidemias in children with
+      Clin Chem 1989;35:587­595.                                                        normal newborn screening. JIMD Rep 2017;35:53­58.
+
+4. Goodman SI & Markey SP. Diagnosis of organic acidemias by gas                  24. Hörster F, Kölker S, Loeber JG, Cornel MC, Hoffmann GF & Burgard P.
+      chromatography­mass spectrometry. Lab Res Methods Biol Med 1981;6:                Newborn screening programmes in Europe, arguments and efforts
+      1­158.                                                                            regarding harmonisation: focus on organic acidurias. JIMD Rep 2017;32:
+                                                                                        105­115.
+5. Peters V, Bonham JR, Hoffmann GF, Scott C & Langhans CD. Qualitative
+      urinary organic acid analysis: 10 years of quality assurance. J Inherit     25. Shennar HK, Al-Asmar D, Kaddoura A & Al-Fahoum S. Diagnosis and
+      Metab Dis 2016;39:683­687.                                                        clinical features of organic acidemias: a hospital-based study in a single
+                                                                                        center in Damascus, Syria. Qatar Med J 2015;2015:9.
+6. American College of Medical Genetics and Genomics. Standards and
+      guidelines for clinical genetics laboratories. Section F7.7. 2008 edition,  26. Karam PE, Habbal MZ, Mikati MA, Zaatari GE, Cortas NK & Daher RT.
+      revised. 2007. https://www.acmg.net/docs/Section_F_2008_revision.pdf.             Diagnostic challenges of aminoacidopathies and organic acidemias in a
+                                                                                        developing country: a twelve-year experience. Clin Biochem 2013;46:
+7. Chalmers R & Lawson AM. Organic Acids in Man: Analytical Chemistry,                  1787­1792.
+      Biochemistry and Diagnosis of the Organic Acidurias. Chapman & Hall:
+      London, 1982.                                                               27. Lim JS, Tan ES, John CM, et al. Inborn error of metabolism (IEM)
+                                                                                        screening in Singapore by electrospray ionization-tandem mass spectro-
+8. Lehotay DC & Clarke JT. Organic acidurias and related abnormalities. Crit            metry (ESI/MS/MS): an 8 year journey from pilot to current program. Mol
+      Rev Clin Lab Sci 1995;32:377­429.                                                 Genet Metab 2014;113:53­61.
+
+9. de Almeida I & Duran M. Organic acids. In: Blau N, Duran M, Gibson KM,         28. Oglesbee D, Cowan TM, Pasquali M, et al. CAP/ACMG proficiency
+      Dionisi-Visi C (eds). Physician's Guide to the Diagnosis, Treatment, and          testing for biochemical genetics laboratories: a summary of performance.
+      Follow-up of Inherited Metabolic Diseases. Springer: Heidelberg,                  Genet Med 2018;20:83­90.
+      Germany, 2014:761.
+                                                                                  29. Prasad C, Salvadori MI & Rupar CA. Severe phenotypic spectrum of
+10. Blau N, Duran M & Blaskovics ME. Physician's Guide to the Laboratory                mevalonate kinase deficiency with minimal mevalonic aciduria. Mol
+      Diagnosis of Metabolic Diseases. Chapman & Hall Medical: London,                  Genet Metab 2012;107:756­759.
+      1996.
+                                                                                  30. Hoffmann GF, Sweetman L, Bremer HJ, et al. Facts and artefacts in
+11. Rinaldo P, Hahn SH & Matern D. Inborn errors of amino acid, organic                 mevalonic aciduria: development of a stable isotope dilution GCMS assay
+      acid, and fatty acid metabolism. In: Burtis CA, Ashwood ER, Bruns DE              for mevalonic acid and its application to physiological fluids, tissue
+      (eds). Tietz Textbook of Clinical Chemistry and Molecular Diagnostics, 4th        samples, prenatal diagnosis and carrier detection. Clin Chim Acta
+      edn. Elsevier Saunders: St. Louis, MO, 2005:2207­2247.                            1991;198:209­227.
+
+12. Seymour CA, Thomason MJ, Chalmers RA, et al. Newborn screening for            31. Jones PM & Bennett MJ. Urine organic acid analysis for inherited
+      inborn errors of metabolism: a systematic review. Health Technol Assess           metabolic disease using gas chromatography-mass spectrometry. Meth-
+      1997;1:i-iv,1­95.                                                                 ods Mol Biol 2010;603:423­431.
+
+13. Applegarth DA, Toone JR & Lowry RB. Incidence of inborn errors of             32. Duez P, Kumps A & Mardens Y. GC-MS profiling of urinary organic acids
+      metabolism in British Columbia, 1969-1996. Pediatrics 2000;105:e10.               evaluated as a quantitative method. Clin Chem 1996;42:1609­1615.
+
+14. Dietzen DJ, Rinaldo P, Whitley RJ, et al. National Academy of Clinical        33. Woontner M & Goodman SI. Chromatographic analysis of amino and
+      Biochemistry laboratory medicine practice guidelines: follow-up testing           organic acids in physiological fluids to detect inborn errors of metabolism.
+      for metabolic disease identified by expanded newborn screening using              Curr Protoc Hum Genet 2006;Chapter 17:Unit 17.2.
+      tandem mass spectrometry; executive summary. Clin Chem 2009;55:
+      1615­1626.                                                                  34. Kawana S, Nakagawa K, Hasegawa Y, Kobayashi H & Yamaguchi S.
+                                                                                        Improvement of sample throughput using fast gas chromatography
+                                                                                        mass-spectrometry for biochemical diagnosis of organic acid disorders.
+                                                                                        Clin Chim Acta 2008;392:34­40.
+
+                                                                                  35. Shoemaker JD & Elliott WH. Automated screening of urine samples for
+                                                                                        carbohydrates, organic and amino acids after treatment with urease. J
+                                                                                        Chromatogr 1991;562:125­138.
+
+690                                                                               Volume 20 | Number 7 | July 2018 | GENETICS in MEDICINE
+Laboratory technical standard for organic acids analysis | GALLAGHER et al      ACMG TECHNICAL STANDARD
+
+36. Kato S, Nakajima Y, Awaya R, et al. Pitfall in the diagnosis of fructose-         and expanded spectrum of mutations. J Inherit Metab Dis 2015;38:
+      1,6-bisphosphatase deficiency: difficulty in detecting glycerol-3-              459­466.
+      phosphate with solvent extraction in urinary GC/MS analysis. Tohoku J     50. Conboy E, Vairo F, Schultz M, et al. Mitochondrial 3-hydroxy-3-
+      Exp Med 2015;237:235­239.                                                       methylglutaryl-CoA synthase deficiency: unique presenting laboratory
+                                                                                      values and a review of biochemical and clinical features. JIMD Rep; e-pub
+37. Wittmann G, Karg E, Muhl A, Bodamer OA & Turi S. Comparison of                    ahead of print 14 October 2017.
+      tetrahydrofuran and ethyl acetate as extraction solvents for urinary      51. Waters PJ, Thuriot F, Clarke JT, et al. Methylmalonyl-coA epimerase
+      organic acid analysis. J Inherit Metab Dis 2008;31:73­80.                       deficiency: a new case, with an acute metabolic presentation and an
+                                                                                      intronic splicing mutation in the MCEE gene. Mol Genet Metab Rep
+38. Liu A, Kushnir MM, Roberts WL & Pasquali M. Solid phase extraction                2016;9:19­24.
+      procedure for urinary organic acid analysis by gas chromatography mass    52. Smith A, McBride S, Marcadier JL, et al. Severe neonatal presentation of
+      spectrometry. J Chromatogr B Analyt Technol Biomed Life Sci 2004;806:           mitochondrial citrate carrier (SLC25A1) deficiency. JIMD Rep 2016;30:
+      283­287.                                                                        73­79.
+                                                                                53. Santra S, Cameron JM, Shyr C, et al. Cytosolic phosphoenolpyruvate
+39. Mardens Y, Kumps A, Planchon C & Wurth C. Comparison of two                       carboxykinase deficiency presenting with acute liver failure following
+      extraction procedures for urinary organic acids prior to gas                    gastroenteritis. Mol Genet Metab 2016;118:21­27.
+      chromatography-mass spectrometry. J Chromatogr 1992;577:341­346.          54. Bosch AM, Abeling NG, Ijlst L, et al. Brown-Vialetto-Van Laere and Fazio
+                                                                                      Londe syndrome is associated with a riboflavin transporter defect
+40. Westgard J & Klee GG. Quality management. In: Burtis C, Ashwood EG                mimicking mild MADD: a new inborn error of metabolism with potential
+      (eds). Tietz Textbook of Clinical Chemistry, 3rd edn. WB Saunders:              treatment. J Inherit Metab Dis 2011;34:159­164.
+      Philadelphia, PA, 1999:384­419.                                           55. Alfardan J, Mohsen AW, Copeland S, et al. Characterization of new
+                                                                                      ACADSB gene sequence mutations and clinical implications in patients
+41. Fowler B, Burlina A, Kozich V & Vianey-Saban C. Quality of analytical             with 2-methylbutyrylglycinuria identified by newborn screening. Mol
+      performance in inherited metabolic disorders: the role of ERNDIM.               Genet Metab 2010;100:333­338.
+      J Inherit Metab Dis 2008;31:680­689.                                      56. Korman SH, Andresen BS, Zeharia A, Gutman A, Boneh A & Pitt JJ.
+                                                                                      2-ethylhydracrylic aciduria in short/branched-chain acyl-CoA dehydro-
+42. Viau K, Ernst SL, Vanzo RJ, Botto LD, Pasquali M & Longo N. Glutaric              genase deficiency: application to diagnosis and implications for the
+      acidemia type 1: outcomes before and after expanded newborn                     R-pathway of isoleucine oxidation. Clin Chem 2005;51:610­617.
+      screening. Mol Genet Metab 2012;106:430­438.                              57. El-Hattab AW & Scaglia F. SUCLA2-related mitochondrial DNA depletion
+                                                                                      syndrome, encephalomyopathic form with methylmalonic aciduria. In:
+43. Frauendienst-Egger G & Trefz F. Metagene: Metabolic & Genetic                     Pagon RA, Adam MP, Ardinger HH, et al. (eds). GeneReviews. University
+      Information Center. http://metagene.de/index.html. Accessed 8 July              of Washington: Seattle, WA, 1993.
+      2016.                                                                     58. Valayannopoulos V, Haudry C, Serre V, et al. New SUCLG1 patients
+                                                                                      expanding the phenotypic spectrum of this rare cause of mild
+44. Ferri L, Funghini S, Fioravanti A, et al. Aminoacylase I deficiency due to        methylmalonic aciduria. Mitochondrion 2010;10:335­341.
+      ACY1 mRNA exon skipping. Clin Genet 2014;86:367­372.                      59. Gibson KM, Goodman SI, Frerman FE & Glasgow AM. Succinic
+                                                                                      semialdehyde dehydrogenase deficiency associated with combined
+45. Lee HC, Lai CK, Yau KC, et al. Non-invasive urinary screening for aromatic        4-hydroxybutyric and dicarboxylic acidurias: potential for clinical
+      L-amino acid decarboxylase deficiency in high-prevalence areas: a               misdiagnosis based on urinary organic acid profiling. J Pediatr
+      pilot study. Clin Chim Acta 2012;413:126­130.                                   1989;114(4 pt 1):607­610.
+                                                                                60. Christensen M, Duno M, Lund AM, Skovby F & Christensen E.
+46. Abdenur JE, Abeling N, Specola N, et al. Aromatic L-aminoacid                     Xanthurenic aciduria due to a mutation in KYNU encoding
+      decarboxylase deficiency: unusual neonatal presentation and                     kynureninase. J Inherit Metab Dis 2007;30:248­255.
+      additional findings in organic acid analysis. Mol Genet Metab 2006;87:
+      48­53.
+
+47. Sloan JL, Johnston JJ, Manoli I, et al. Exome sequencing identifies ACSF3
+      as a cause of combined malonic and methylmalonic aciduria. Nat Genet
+      2011;43:883­886.
+
+48. Peters H, Ferdinandusse S, Ruiter JP, Wanders RJ, Boneh A & Pitt J.
+      Metabolite studies in HIBCH and ECHS1 defects: implications for
+      screening. Mol Genet Metab 2015;115:168­173.
+
+49. Pitt JJ, Peters H, Boneh A, et al. Mitochondrial 3-hydroxy-3-
+      methylglutaryl-CoA synthase deficiency: urinary organic acid profiles
+
+GENETICS in MEDICINE | Volume 20 | Number 7 | July 2018                         691
+

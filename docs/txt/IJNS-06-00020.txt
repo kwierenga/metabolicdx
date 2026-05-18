@@ -1,0 +1,427 @@
+            International Journal of
+
+          Neonatal Screening
+
+Article
+
+Post-Analytical Tools for the Triage of Newborn
+Screening Results in Follow-up Can Reduce
+Confirmatory Testing and Guide
+Performance Improvement
+
+Patricia L. Hall 1,* , Angela Wittenauer 1 and Arthur Hagar 2
+  1 Department of Human Genetics, Emory University, Atlanta, GA 30322, USA
+  2 Georgia Department of Public Health, Atlanta, GA 30303, USA
+ * Correspondence: patricia.l.hall@emory.edu
+
+  Received: 18 February 2020; Accepted: 12 March 2020; Published: 14 March 2020
+
+ Abstract: Georgia uses post-analytical tools through Collaborative Laboratory Integrated Reports
+ (CLIR) to triage abnormal newborn screening (NBS) results for follow-up. Condition specific tools are
+ used to assign each case a risk level, which is used to guide follow-up recommendations. Follow-up
+ recommendations include assessment by the child's primary care provider as well as testing, either a
+ repeat NBS or confirmatory testing. Triaging abnormal cases using these tools has been advantageous
+ in managing the workflow for the follow-up team, as well as prioritizing cases that appropriately
+ require more attention and resources. The initial goal in utilizing these tools was to reduce the amount
+ of confirmatory testing, particularly for disorders where there are many false positives. We assessed
+ the performance of these tools retrospectively for three of the most commonly detected conditions by
+ tandem mass spectrometry in Georgia: phenylketonuria, medium chain acyl-CoA dehydrogenase
+ deficiency and very long chain dehydrogenase deficiency. The post-analytical tools appropriately
+ assigned all true positive cases to the higher levels of follow-up testing and reduced the level of
+ intervention for a significant number of cases as well. Based on the experience gained from our
+ utilization of the tools in the follow-up program, we are well situated to move forward with using
+ the tools in a more prospective manner, and reduce the number of cases that will be reported, rather
+ than just assigning resources appropriately at follow-up. Post-analytical tools are an improvement
+ over trying to capture the variation in the newborn population using multiple cutoffs. It also easily
+ identifies significant abnormalities that are unrelated to inherited disease, such as large amino acid
+ elevations due to total parenteral nutrition.
+
+ Keywords: newborn screening; newborn screening follow-up; post-analytical tools;
+ performance improvement
+
+1. Introduction
+
+      As a public health program, newborn screening (NBS) encompasses much more than the laboratory
+and bedside tests that provides the result that either reassures or refers for further analysis [1]. Recently,
+NBS systems have encountered increased scrutiny, and an increased emphasis has been placed on
+performance improvement. In this environment, it is incumbent upon NBS systems to evaluate their
+performance and identify opportunities for improvement [2]. The laboratory is usually the primary
+target for performance improvement initiatives, as the metrics are readily available and changes at the
+laboratory can impact the largest number of patients quickly. Post-analytical tools have been used
+in NBS to improve positive predictive values (PPV) in the laboratory for many disorders [3­5]. The
+current iteration of post-analytical tools through Collaborative Laboratory Integrated Reports (CLIR;
+
+Int. J. Neonatal Screen. 2020, 6, 20; doi:10.3390/ijns6010020  www.mdpi.com/journal/ijns
+Int. J. Neonatal Screen. 2020, 6, 20  2 of 8
+
+www.clir.mayo.edu) have an extensive database of cases, and reference data which can be used to
+identify abnormal screens by comparison to confirmed cases, rather than deviation from the reference
+range [3]. Implementation of post-analytical tools in the laboratory setting can be dependent upon
+laboratory information systems and vendor support, making it a challenge for some programs which
+may be resource strapped. These challenges do not mean that such programs cannot still benefit from
+the utilization of such tools in other ways.
+
+      When there are abnormal results for a condition detected by NBS, the infant needs to be identified
+and recalled for follow-up. Standardized recommendations exist for testing and assessments that need
+to be done for specific disorders [6]. For conditions which can require immediate medical attention
+and intervention where there may exist a high probability of false positive (FP) results, additional
+triage is required to ensure infants who require follow-up receive the proper attention, CLIR tools
+have been important in follow-up for identifying these cases out of the cohort of FP screens. For many
+laboratory tests, different cutoffs, including higher "critical" or "panic" values can identify high priority
+laboratory results, but this approach is not always ideal for NBS, particularly for amino acid disorders.
+Many of the most significantly elevated values encountered in NBS are obvious FP results due to
+collection of a screen while an infant is receiving total parenteral nutrition (TPN) or from a central
+line [7,8]. All abnormal NBS results exist within the infant's clinical context, and developing robust
+algorithms to identify all of these situations is difficult. For some disorders, even mild elevations are
+practically diagnostic (succinylacetone in tyrosinemia type I [9], or alloisoleucine in maple syrup urine
+disease [9,10]).
+
+      In Georgia, laboratory testing for NBS disorders is performed at the state public health laboratory.
+Follow-up for all disorders except hemoglobinopathies is coordinated through Emory University.
+Hemoglobinopathy follow-up is coordinated through the Department of Public Health. Results are
+transmitted from the state laboratory to the follow-up team, into a custom-built database. This database
+generates lists of cases which require follow-up. Follow-up protocols are developed in consultation
+with specialists and approved by the medical director. The follow-up team is made up of registered
+nurses and a genetic counselor, who provide information to primary care providers and recommend
+testing based on the screening results utilizing established protocols. To triage follow-up, Georgia's
+follow-up team has been using post-analytical tools for over ten years. Initially, early versions of the
+Region 4 Stork tools were utilized to better prioritize screens that were positive for very long chain
+acyl-CoA dehydrogenase (VLCAD) deficiency. This decision was an attempt to prioritize cases that
+needed to be referred to metabolic specialists and also to reduce confirmatory testing in favor of repeat
+screens, and deal with the large number of carriers who have a biochemical phenotype [11]. Georgia
+has the same shortages of genetics professionals as the rest of the United States, and minimizing
+unneeded appointments is crucial. As post-analytical tools for more conditions became available,
+follow-up protocols were adjusted to accommodate them. In April 2018, we switched to the updated
+version, CLIR. This allowed for the adjustment based on age at collection and birth weight, as well as
+the easy creation of custom tools for our site, to account for different analytes and local protocols.
+
+      CLIR provides single condition tools (SCT) which generate an outcome in four possible categories.
+The lowest category is "uninformative" and corresponds to cases with an overall score of less than the
+first percentile. Cases between the 1st and 5th percentiles are "possibly", the 5th - 20th are "likely",
+and scores greater than the 20th percentile are "very likely". Percentiles are used to standardize scores
+between conditions, as the varying number of analytes used to produce a score make the raw numbers
+difficult to compare [3]. In our follow-up program, we assigned these scores to three categories--low,
+medium, and high risk. The correlation between these two scoring systems are shown in Table 1.
+When available, dual scatter plots (DSP) are also utilized to recommend follow-up testing, particularly
+for VLCAD deficiency. When a case on the DSP is in the "indeterminate" quadrant, or the "affected"
+quadrant, the child is referred for testing, including sequence analysis, while other cases are referred
+for repeat screens. Representative cases on the DSP are shown in Figure 1. In general, for normal birth
+weight infants with a positive screen for a condition such as phenylketonuria (PKU) or medium chain
+Int. J. Neonatal Screen. 2020, 6, 20                                                                                                                          3 of 8
+
+Inatc. yJ.lN-CeoonAataldSechreyend. r2o02g0e, n6,axsFeO(RMPCEEARDR)EVdIeEfiWciency, cases which fall into Georgia's low risk categor3yoafr8e
+ resolved with a repeat screen, while all other cases are referred for confirmatory testing. NICU infants
+
+raenfedrrleodwfobrirctohnwfiremigahtot r(y<t2e5st0i0ngg.)NinICfaUntisnhfaanvtes saenpdalroawte bpirothtowcoelisg.hCt (a<lc2u5l0a0tigo)ninoffatnhtes hrealveevasenpt aCraLtIeR
+psrcootroecsoilss.dCoanlecurolauttiionneloyf bthyeforellloewva-nutpCsLtaIffR, sacnodredsoiessdnoontedreoluaytinreslyulbtsybfeoilnlogwr-eupporstteadfft,oanthdedporeosvnidoetr.
+dReelapyorrteinsuglatsbnboerinmgalrreepsourlttesdtotothethcehipldro'svpidroerv.idReerpionrctliundgesabanroervmieawl orefscuolmtsmtoonthseymchpitlodm'ssporbosveirdveerd
+inincliundfaenscay.reTvhiewproesfecnocmemofocnonsycmernpitnogmssyombpsetorvmesd, einveinffaonrcay.sTcrheeenprienstehneceloowf croisnkccearnteignogrsyypmropmtopmtss,a
+
+erveecnomfomr eansdcarteieonn ifnorthteestlionwg, rainskd caotnesguolrtaytipornowmipthtsaanraepcpormopmreiantdeastpioenciafloirstt,easstinnege,daendd. Ncoonasulglotartiitohnm
+wcaitnhcaonvaerppalrloepvreinateuaslpiteiceisa,lnisotr, assubnseteitduetde.fNoroparlogfoesrsitihonmalcajundcgoevmeernatl.l Aevsesnutcuha,lictliiensi,cnalosrpseucbiasltisttustesefrovre
+
+parsocfeosnssiuonltalnjtusdtgoegmueidnet.fAolsloswuc-hu,pclaicntiicvailtisepseicniaulinsctesrstearivnesaitsucaotinosnusl.tants to guide follow-up activities
+
+in uncertain situations.
+        Table 1. Correlation between Collaborative Laboratory Integrated Reports (CLIR) single condition tool
+
+Tgaubildeel1i.nCesoarrnedlaGtieoonrgbieatwneewenboCronllsacbreoernatinivge(LNaBbSo)rfaotlolroywI-nutpegtrriaatgeedrRisekploervtesls(C. LIR) single condition
+
+tool gCuLidIReliSniensgalnedCGoneodrigtiioannTeowobloGrnuisdcreelienneing (NBS) followG-ueportrgiiaagFeorlilsokwle-uveplsT.riage Level
+
+CLIRUSniningfloerCmoantidvietion Tool Guideline  Georgia Follow-uLpowTrRiaisgke Level
+                                                                Low Risk
+           PossUibnlyinformative
+                     Possibly                                 MediuMmedRiuismk Risk
+
+             Likely Likely
+
+Very LiVkeelryy Likely                           High HRisgkh Risk
+
+       FFigiguurree 11.. DDuualalscsacatttetrerpplolot tfoforrvveerryy lloonngg cchhaaiinn aaccyyll--CCooAA ddeehhyyddrrooggeennaassee ((VVLLCCAADD)) vvss.. VVLLCCAADD
+       (h(heetteerroozzyyggoouuss)) ddeessiiggnneedd totorerdeduucecefaflsaelspeopsiotisviteiv(FeP()FNP)BSNrBesSurltessduultes tdoubeiotcohebmioicchalempriocfialleps rinofcialersrieinrs.
+       cTarhreieurps.pTerhleefut pcoprenrerleifst ccoonrfinremr eisd VcoLnCfiArmDecdarVriLerCsAcDasecsa.rTriheersboctatsoems. rTighhet cboortntoemr isricgohntfircmorendertruise
+       cpoonsfiirtimveed(TtrPu)ecpasoessitoivfeV(LTPC)AcDasedseofifcVieLnCcyA. DThdeefsiqcuieanrceyi.nTthheesmquidardeleinisthaenminidddetleerims ainnaintedzeotenremwinhaetree
+       zcoanreriewrshecraenncoatrrbieersdicsatinnngoutisbheeddifsrtoinmguTiPshceadsefsr.omIn TthPisceaxseasm. pInle,ththise erexdamdpialem, otnhde rreepdredsieanmtsonthde
+       rsecprreeesneinntgs cthaeses,carneedniisncglacsassiefi,eadnadsims colastssliikfieeldy aascmarorisetrl.ikAeclcyeasscdarartiee:r.2A02c0c/e0s1s/0d9a.te: 2020/01/09.
+
+      WWhhilieleppoosst-ta-annaalylytitcicaal ltotooolslsccaannbbeeuusseeddpprorossppeecctitviveelylytotoreredduucceeFFPPreressuultlstsininththeelalabbooraratotoryry, ,wwee
+hhaavveennoottbbeeeennaabblelettooiimmpplleemmeenntttthhisisiinnoouurrpprrooggrraammaatttthhiiss ttiimmee.. RReeppoorrtstsaarreeisisssuueeddttoopprroovvidideerrss
+aauutotommaatitcicaalllylybbyyththeelalabbininfoforrmmaatitoionnssyysstetemm, ,aattaapppprrooxximimaatetelylyththeessaammeetitmimeeaassththeeyyaarreetrtraannssmmitittetedd
+tototthheeffoollloloww--uuppddaatatabbaassee. .InInththeeinintetereresststsooffnnoottccoonnfufussininggpprroovvidideersrs, ,aannddccrreeaatitninggaassyysstetemmwwhheerree
+we are repeatedly telling them to disregard reports that are finalized as abnormal, all results receive
+
+follow-up recommendations, regardless of whether subsequent CLIR analysis by the follow-up team
+reports a high likelihood that the screen will be a FP or likely affected. Our main goal in utilizing
+CLIR tools for triage of follow-up cases is the appropriate utilization of resources in specialist clinics,
+Int. J. Neonatal Screen. 2020, 6, 20  4 of 8
+
+we are repeatedly telling them to disregard reports that are finalized as abnormal, all results receive
+follow-up recommendations, regardless of whether subsequent CLIR analysis by the follow-up team
+reports a high likelihood that the screen will be a FP or likely affected. Our main goal in utilizing CLIR
+tools for triage of follow-up cases is the appropriate utilization of resources in specialist clinics, as well
+as easing the burden on families including minimizing confirmatory testing. As a secondary benefit,
+it has given us familiarity with the tools, and a solid comparison data set for when implementation
+earlier in the screening process becomes possible.
+
+2. Materials and Methods
+
+      To evaluate the effectiveness of the current post-analytical tools for the triage of NBS results,
+we retrospectively extracted from our follow-up database all positive screens for four conditions:
+Phenylketonuria (PKU), maple syrup urine disease (MSUD), MCAD deficiency, and VLCAD deficiency
+for a 14-month period (04/01/2018­06/01/2019). These conditions were selected because they are among
+the most common detected by tandem mass spectrometry in Georgia, and enough screens and true
+positive (TP) cases were available for comparison. There were no TP cases of MSUD during the study
+period, however it was included in the population of screen positives as it is a large contributor of
+FP screens from tandem mass spectrometry (MS/MS) testing. From our database we extracted the
+data from the initial NBS, the outcome of the case, and whether the outcome was obtained from a
+repeat NBS or confirmatory testing. We also identified the post-analytical tool results (including DSP
+results for VLCAD screens) utilized by the follow-up team at the time of the initial triage. As new
+cases are added to the CLIR database constantly, identifying the CLIR results that were used at the
+time was important for accurate evaluation. The design of this study was reviewed and approved by
+the Georgia Department of Public Health Institutional Review Board.
+
+3. Results and Discussion
+
+      The total number of screens extracted for the study was 538. Initially, all screens were sorted
+into "isolated" screens, which were those which were abnormal for only a single condition--either
+PKU (n = 51), MCAD deficiency (n = 27), or VLCAD deficiency (n = 69), and "complex" screens,
+which were those that were abnormal for at least two conditions detected by MS/MS including at least
+one of the three targeted conditions (n = 391). Infants who expired before an outcome was recorded
+were excluded and repeat specimens on one child with Citrullinemia Type I post-diagnosis were also
+excluded. All isolated screens for each condition were included in this study. For the complex screens,
+they were first split according to birth weight (above or below 2500 g), and then 50 were randomly
+selected from each group. There was a total of 274 complex screens with birth weights < 2500 g, and
+117 complex screens with birth weights > 2500 g.
+
+      Summary data for the isolated screens for the three conditions are shown in Table 2, and a flow
+chart of results for the SCT used for all three conditions is shown in Figure 2. Among MS/MS conditions,
+MCAD deficiency has one of the highest PPVs, however there is an interference that can cause FP
+results, particularly in low birth weight infants [12]. Of the 27 positive screens for MCAD deficiency
+during the study period, 14 were confirmed to be TPs for a PPV of 51.9%. Ten were resolved as normal,
+and three remain unresolved, but are not immediately concerning for MCAD deficiency. Of the TP
+cases, all of them had informative scores using the CLIR tool at the time (11 were high risk by Georgia's
+categorization and three were medium risk). Of the 13 presumed FP screens, 10 were medium risk,
+and three were low risk. A repeat NBS was used to resolve two of these cases, while the remaining
+25 cases (14 TP and 11 FP) were all referred for confirmatory testing. A single case with a low risk
+(uninformative) score was referred for confirmatory testing rather than a repeat screen due to the age
+of the infant (> 2 months), and because the screen came near the end of an extended NICU stay.
+Int. J. Neonatal Screen. 2020, 6, x FOR PEER REVIEW                                                                                           5 of 8
+
+Int. J. Neonatal Screen. 2020, 6, 20                                                                                                          5 of 8
+
+Table 2. Summary results for isolated screens for MCAD deficiency, VLCAD deficiency, and PKU.
+
+*Potential positive predictive values (PPV) considers performance if all uninformative cases had not
+
+Tbaebelne r2e. pSourtmedm. ary results for isolated screens for MCAD deficiency, VLCAD deficiency, and PKU.
+
+*Potential positive predictive values (PPV) considers performance if all uninformative cases had not
+
+CCMoonbnCdnediAteiintDoinorepoArASSbtcebcnrdrone2ae.er7olemnrnsmasl  TP        TP Cases            CLIR               CLIR       Actual       Potential
+                                                                                                                 Uninformati      PPV            PPV
+                                                                     Cases Informative        Identification
+                                                                                                                    CLIvRe      Actual        Potential
+                                                                     TP Cases   TP Cases            CRLaItRe   Uninform3 ative
+                                                                                                                                 5P1P.V90%     5P8P.3V% *
+                                                                       14      Inf1o4rmative   Identification                                   (14/24)
+
+                                                                                                   1R0a0t%e
+
+MPCKAUD  2571                                                        1214      1214           110000%%         332              521.39.05%0%  65(6(183134..322./22%%/%41)9** )*
+                                                                                                                                              (122.0/1%9) *
+PKU      51                                                          12           12          100%             32               23.50%
+                                                                                                                                              2(.01%/51* )
+VLCAD    69                                                          1         1              100%              18                1.50%
+                                                                                                                                               (1/51)
+VLCAD    69                                                             1          1          100%             18               1.50%
+
+       Figure 2. Summary of single condition tool (SCT) results for isolated screens for medium chain
+       aFcyigl-uCroeA2.dSeuhmydmraorgyenoafssein(MgleCAcoDn)dditeiofinciteonocly(S(AC)T, )prheesnuyltlskefotorniusorilaat(ePdKsUcr)e(eBn)s, afnordmVeLdCiAumD cdheafiicnieanccyyl-
+       (CC)o.APodteenhtyiadlrcohgaenngaessei(nMfaClsAeDn)egdaetfiivceieonrcFyP(Are)s,uplhtseanryelwkehtoatnwuroiual(dPhKaUv)e(bBe)e,nanacdhVieLvCedAiDf adlleifnicfoiernmcayti(vCe).
+       rePsouteltnstwiael rcehraenpgoersteindfoaulste, annedgaatlilvuenoirnFfoPrmreasutilvtes arerseuwlthsawt ewreoutrledahteadveasbeneonrmacahl.ieved if all informative
+        results were reported out, and all uninformative results were treated as normal.
+      There were 51 total screens which were abnormal only for PKU. By our classification system,
+there wTheerree3w2 leorwe 5r1isktoctaslessc,raelelnosf which wweerree raebconmormmeanl doendlytofohravPeKaUr.eBpyeaotusrcrceleansscifoilclaetcitoend,swyshtiecmh,
+wtheerereawll enroer3m2allo.wThrirsekecwaseerse, callalsosfifiwehdicahs whiegrhe riescko,mwmhiecnhdwederteo ahlalvceonafirermpeeadt stocrbeenTcPocllaescetsedo,fwPhKiUch
+bwyecroenafilrlmnoartomrayl.teTshtirnege.wTehreercelmasasiinfiiendg a1s6hciagshesriwske,rewchlaicshsiwfieedreaaslml ceodnifuirmmreidskt.oTbhereTePocfatsheessoefwPeKreU
+rbecyocmonmfiernmdaetdortyothesatvinegr.eTpheaetrsecmreaeinisncgo1ll6ectaesde;s twweoredculeastsoiflioedwabsirmthedwiuemighrits, ka.nTdhoreneeobfetchaeusseewtheree
+mreoctohmermheanddaedcotnofihrmaveedrdepiaegantosscirseoenf sPKcoUll.eTctheeds;ettwhroeeducaesteos lwoewrebriertsholwveedigahst,naonrmd aolnoenbtehceaurespeetahte
+smcroeethnesr. hTahdearecmonafiinrimnegd1d3imagendoisuims orfisPkKcUa.sTeshewsertehreseoclavseeds wietrhe croensofilrvmedataosrynotermstianlgo.nTtwheorwepeereat
+nsocrmeeanls,.tTwhoerreemmaaiinniunngre1s3olmved,iuamndrinsiknecawseesrewaebrenorremsoalvl e(fidvwe ihthypceornpfhiremnaytloarlayntiensetmingia., Tawndo fwoeurre
+cnlaosrsmicaPl,KtUw)o. Froermisaoinlatuendresscorelveneds,, tahnedPPnVinefowr PeKreUasbcnroeermnianlg(wfivaes 2h3y.5p%er.phenylalaninemia, and four
+ classTichePrKeUw).erFeor69isoisloaltaetdedscrsecerenesn, tshtehPatPwV eforer PabKnUorsmcraelenfoinrgVwLCasA2D3.5d%efi. ciency. The utilization of
+post-aTnhaelryeticwael rteoo6l9s ifsoorlaVtLedCAscDredenefis ctiheantcywiesrea atwbnoosrtmagael fporrocVeLssCdAuDe dtoeftihceiepncreys.eTnhce ouftialibznaotiromnaolf
+bpiocsht-eamnaiclyatlicparlotfioloelssifnorheVtLerCoAzyDgoduefsiciniednicvyidisuaalstwanodstaagreobpursotceDsSsPdutoe dtoistchriempirneasteenbcetowfeaebnntohremseal
+cboinodchiteiomnisc.a[l1p3r]oOfifletshein69hestcerreoeznysgroeupsoirnteddivoiduut aalss aabnndoramroabl ufosrt VDLSPCAtoDd, iosncreimwiansatceonbfietrwmeeednttohbesee
+acbonnodrimtioanl,sr.e[1s3u]ltOinfgthine a69PPsVcrefoenr sVrLeCpAorDtedeofiuctieanscyabonfo1r.m5%alinfoirsoVlLatCeAd Dsc,roeennesw. Tashecosinnfgirlme TedP tcoasbee
+waabsnoasrmsiganl,erdesaumltiendgiuinmariPsPkVscfoorreVaLndCAprDocdeeefdiceidentcoycofnfi1.r5m%atinoriysotelastteindgsacrfteeernas.sTechoensdinsgclreeeTnPwcaasse
+awbnaos ramssaigl nfoerdVaLmCeAdDiudmefiricsikenscyo.reAatntdheprtiomceeeodfedthteoacnoanlfyisrmis,athoeryotuetsctoinmgeaoftfetrhaesDecSoPnfdorsctrheiesncawsaes
+waabsno"hrmetaelrofozryVgoLuCsA".DAdneafliyciseinscoyf.tAhitsthsaemtiemceaosef tahtethaneatliymseiso, tfhme aonuutcsocmripetopfrtehpeaDraStPiofnorcltahsisicfiaesde wthaes
+in"hiteiatelrsoczryeegnouass".VALnCaAlyDsisdoeffitchieisnscaymbeycDasSePatanthde tthime ereopfematan(cuoslclericptetdpraeppparoatxiiomnactlealsysi4fi8edh tlhaeteirn)itaisal
+"sincrdeeetnermasinVatLeC".ATDhidsecfhicainengceyinbcylaDssSifiPcaatniodn tshheowresptehaet p(ocotellnetcitaeldfoarpthperodxaimtaabtaesley to48exhpalnatdera)ndas
+im"inpdroevteermasinaadtde"it.ioTnhails ccahsaensgaereinadcldaesdsi.fiEcaigtihotneesnhocwassesthweepreotcelnatsisailfifeodr athselodwatraibsaksaentdo reexspoalvneddaansd
+niomrmpraolvbeyarsepaedadtistcioreneanlsc.aTswesenatrye-tahdrdeedca. sEeisghatedeenitchaesreas mweedreiucmlaossrihfiiegdh-arsislkoawssriigsnkmaenndt,raensdolbvyedthaes
+Int. J. Neonatal Screen. 2020, 6, 20                                                                 6 of 8
+
+DSP were either indeterminate or affected. These were all resolved with confirmatory testing, and
+none were affected. The remaining 27 cases were medium or high risk, but not informative by DSP,
+and were resolved as normal by a mix of confirmatory testing and repeat NBS. Six positive screens
+(all medium / high risk and informative by DSP) were confirmed to be carriers. As molecular testing
+was not pursued in all of these cases, there may be additional carriers in the population classified
+as unaffected. [14] The goal of NBS is not to identify carriers, thus all cases that were not TPs were
+classified as FPs, even if the reason for the abnormal biochemical abnormalities was identified. When
+adding cases to the CLIR database, we only upload those with confirmatory testing, rather than basing
+it off the CLIR prediction from the NBS.
+
+      The potential improvement in PPV was much better for PKU than for MCAD and VLCAD
+deficiency. FP screens for the two fatty acid oxidation disorders are often due to carriers with mild
+biochemical profiles, resulting in analyte deviations that impact only the primary markers and with
+overlap from TP cases. For PKU, the FP screens are often due to TPN, and even in cases where PKU is
+the only flagged elevation, other amino acids may have a characteristic pattern that can take greater
+advantage of the post-analytical tools. More complex profiles provide more chances for the tools to
+identify distinctive profiles for TP and FP screens. As a specific example, the second most important
+marker for the identification of PKU is tyrosine (which is decreased). FP screens for PKU do not have
+decreased tyrosine, while FP screens for MCAD or VLCAD typically have mild elevations of all key
+analytes, as the same biochemical pathway disturbances are being measured.
+
+      While the utilization of post-analytical tools has been effective for the triage of follow-up cases,
+our goal is to have them implemented during the screening process before the report has been released.
+It is hoped that by utilizing these tools earlier in the screening process, FP screens can be reduced.
+This creates less disruption for patients and their families and lowers the workload for participants
+throughout the NBS follow-up system. For low-risk screens with a high likelihood of being an FP,
+the ability to resolve them quickly and efficiently is advantageous. Retrospective calculations show
+significant potential improvements in isolated screens (Table 2).
+
+      The use of post-analytical tools appeared to show more potential improvement in the LBW
+population compared to the NBW group (Table 3). This may be due to abnormal screens in the smaller
+babies reflecting normal physiology in this population that cannot be accounted for with static reference
+ranges. CLIR's adjustments for age at collection and BW can more smoothly account for this variation
+and guide follow-up in this population. Due to TPN interference, particularly in premature infants, the
+complex screens contain a disproportionately large number of abnormalities for amino acid disorders.
+Based on Georgia's algorithms in place, 30 of the NBW screens and 29 of the LBW screens were resolved
+with repeat screens. In the NBW population, of the 42 screens that provided an informative score, 24 of
+these were abnormal only for PKU. In the LBW population, nine of the 18 screens were abnormal only
+for PKU. An inspection of the underlying results showed that most of these cases triggered outliers for
+tools designed to detect MSUD and other amino acid disorders. The creation of a tool or algorithm
+to flag results that are likely due to TPN could provide further assistance in the triage of these cases.
+Improvements in PPV from the complex screen population could not be calculated, as no TP cases
+for the targeted conditions originated from this group. Eliminating all screens with uninformative
+results could have resulted in 16% fewer abnormal screens in NBW infants and 64% fewer screens in
+the LBW cohort.
+
+Table 3. Correlation and performance of CLIR tools with complex screens. NA = Not applicable; there
+were no TP cases identified in either cohort.
+
+BW < 2500 g  Number of                      Average # of   TP Cases       CLIR            CLIR
+BW > 2500 g    Screens                Abnormal Conditions            Identified TP  Uninformative
+              Sampled                                           0
+                                             Per Screen         0          NA               32
+                   50                                                      NA                8
+                   50                             3.26
+                                                  3.04
+Int. J. Neonatal Screen. 2020, 6, 20  7 of 8
+
+      Our end goal is to implement CLIR as part of the testing algorithm to reduce FP screens at the
+laboratory level. The retrospective data we have obtained on the performance of CLIR tools with our
+screens in Georgia will be helpful as we move forward with this. While algorithms will still need to be
+developed and validated prior to complete implementation, studies such as this one link outcome to
+post-analytical tool results at a local level, which provides important information for decision making.
+Simple steps, such as making the decision to not report all uninformative cases could improve the PPV
+dramatically, particularly for amino acid disorders where TPN is a common confounding factor. In this
+study, not reporting uninformative cases for PKU would have improved the PPV of isolated screens
+from 23.5% to 63.2%. This means 32 cases would not have been reported, and the child would not have
+required any further medical intervention based on NBS results. In a situation where most infants do
+not have a disorder identifiable by NBS, resolving cases as normal as early in the process as possible is
+important for an efficient system.
+
+4. Conclusions
+
+      Post-analytical tools have been beneficial for the NBS follow-up program in Georgia. When
+utilized for follow-up purposes in the three disorders selected for this study, all TP cases had an
+informative score with the appropriate post-analytical tool. This allowed for prompt follow-up testing,
+and correct usage of repeat NBS to resolve cases with a lower likelihood of being a TP. Importantly,
+this has provided evidence that CLIR's tools appropriately identified cases that required follow-up
+attention. CLIR does not underestimate results, making it unlikely that a TP will be missed if it would
+have been identified using appropriately set cutoffs. Examination of these screens retrospectively has
+demonstrated that screens with multiple mild abnormalities introduce a disproportionate amount
+of FP results into the NBS system, and post-analytical tools can be an effective filtering method. For
+the three conditions included in this study, no confirmed abnormal results were on complex screens
+(defined as those abnormal for less than one condition detected by MS/MS). In many cases, there will
+be logical patterns to complex screens in true abnormals (multiple long chain acylcarnitine elevations
+can be present), and profiles typical of "complex FPs" can also be identified. Post-analytical tools can
+account for these FP screens, however additional granularity may be helpful, as not all FP results are
+the same. In particular, the common FP profiles for LBW infants differ from NBW infants, as seen by
+the differences in performance with complex screens in this study, and in the results obtained using
+post-analytical tools in each cohort.
+
+      The utilization of post-analytical tools in Georgia has allowed for effective triage of results, reduced
+the amount of confirmatory testing needed, standardized the communication of NBS results with
+providers and given a path forward for the implementation of these tools earlier in the screening
+process. These tools have provided structure for the follow-up of large groups of conditions, with
+expanding teams of specialists. The standardization of risk scores has been helpful for clinicians, rather
+than needing to keep track of multiple cutoff values, and scales of abnormal results, this information
+can be communicated quickly and effectively utilizing the CLIR score, and categorization. This model
+could be utilized in many state NBS labs, as there are common screening kits utilized, allowing for
+shared development work and tool maintenance if desired. The proof of concept shown here identifies
+another possible area of implementation for post-analytical tools if the IT requirements to utilize CLIR
+tools before results are reported cannot be easily implemented locally.
+
+Author Contributions: Conceptualization, P.L.H., A.W. and A.H.; Formal analysis, P.L.H.; Methodology, P.L.H.;
+Project administration, A.W.; Resources, A.H.; Writing--original draft, P.L.H.; Writing--review & editing, P.L.H.,
+A.W. and A.H. All authors have read and agree to the published version of the manuscript.
+
+Funding: This research received no external funding.
+
+Conflicts of Interest: The authors declare no conflicts of interest.
+Int. J. Neonatal Screen. 2020, 6, 20  8 of 8
+
+References
+
+1. Powell, C.M. What is Newborn Screening? N. C. Med. J. 2019, 80, 32­36. [CrossRef] [PubMed]
+2. Newborn Screenings and the Price of Being Wrong. Available online: http://projects.jsonline.com/news/2016/
+
+       12/11/the-price-of-being-wrong.html (accessed on 19 August 2019).
+3. Minter Baerg, M.M.; Stoway, S.D.; Hart, J.; Mott, L.; Peck, D.S.; Nett, S.L.; Eckerman, J.S.; Lacey, J.M.;
+
+       Turgeon, C.T.; Gavrilov, D.; et al. Precision newborn screening for lysosomal disorders. Genet. Med. 2018, 20,
+       847­854. [CrossRef] [PubMed]
+4. Hall, P.L.; Marquardt, G.; McHugh, D.M.S.; Currier, R.J.; Tang, H.; Stoway, S.D.; Rinaldo, P. Postanalytical
+       tools improve performance of newborn screening by tandem mass spectrometry. Genet. Med. 2014, 16,
+       889­895. [CrossRef] [PubMed]
+5. Marquardt, G.; Currier, R.; McHugh, D.M.S.; Gavrilov, D.; Magera, M.J.; Matern, D.; Oglesbee, D.;
+       Raymond, K.; Rinaldo, P.; Smith, E.H.; et al. Enhanced interpretation of newborn screening results
+       without analyte cutoff values. Genet. Med. 2012, 14, 648­655. [CrossRef] [PubMed]
+6. American College of Medical Genetics. ACT Sheets and Confirmatory Algorithms; ACMG: Bethesda, MD,
+       USA, 2011.
+7. Lin, H.J.; Kwong, A.M.; Carter, J.M.; Ferreira, B.F.; Austin, M.F.; Devarajan, K.; Coleman, R.J.; Feuchtbaum, L.B.;
+       Lorey, F.; Jonas, A.J. Extremely high phenylalanine levels in a newborn on parenteral nutrition:
+       Phenylketonuria in the neonatal intensive care unit. J. Perinatol. 2011, 31, 507­510. [CrossRef] [PubMed]
+8. Chace, D.H.; De Jesús, V.R.; Lim, T.H.; Hannon, W.H.; Clark, R.H.; Spitzer, A.R. Detection of TPN
+       contamination of dried blood spots used in newborn and metabolic screening and its impact on quantitative
+       measurement of amino acids. Clin. Chim. Acta 2011, 412, 1385­1390. [CrossRef] [PubMed]
+9. Stinton, C.; Geppert, J.; Freeman, K.; Clarke, A.; Johnson, S.; Fraser, H.; Sutcliffe, P.; Taylor-Phillips, S.
+       Newborn screening for Tyrosinemia type 1 using succinylacetone--A systematic review of test accuracy.
+       Orphanet J. Rare Dis. 2017, 12, 48. [CrossRef] [PubMed]
+10. Alodaib, A.; Carpenter, K.; Wiley, V.; Sim, K.; Christodoulou, J.; Wilcken, B. An improved ultra performance
+       liquid chromatography-tandem mass spectrometry method for the determination of alloisoleucine and
+       branched chain amino acids in dried blood samples. Ann. Clin. Biochem. 2011, 48, 468­470. [CrossRef]
+       [PubMed]
+11. Miller, M.J.; Burrage, L.C.; Gibson, J.B.; Strenk, M.E.; Lose, E.J.; Bick, D.P.; Elsea, S.H.; Sutton, V.R.; Sun, Q.;
+       Graham, B.H.; et al. Recurrent ACADVL molecular findings in individuals with a positive newborn screen
+       for very long chain acyl-coA dehydrogenase (VLCAD) deficiency in the United States. Mol. Genet. Metab.
+       2015, 116, 139­145. [CrossRef] [PubMed]
+12. Hall, P.L.; Wittenauer, A.; Hagar, A. Newborn screening for medium chain acyl-CoA dehydrogenase
+       deficiency: Performance improvement by monitoring a new ratio. Mol. Genet. Metab. 2014, 113, 274­277.
+       [CrossRef] [PubMed]
+13. Hesse, J.; Braun, C.; Behringer, S.; Matysiak, U.; Spiekerkoetter, U.; Tucci, S. The diagnostic challenge in
+       very-long chain acyl-CoA dehydrogenase deficiency (VLCADD). J. Inherit. Metab. Dis. 2018, 41, 1169­1178.
+       [CrossRef] [PubMed]
+14. Atkins, A.E.; Tarini, B.A.; Phillips, E.K.; Calhoun, A.R.U.L. Misclassification of VLCAD carriers due to
+       variable confirmatory testing after a positive NBS result. J. Commun. Genet. 2019, 10, 447­451. [CrossRef]
+       [PubMed]
+
+                              © 2020 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access
+                               article distributed under the terms and conditions of the Creative Commons Attribution
+                               (CC BY) license (http://creativecommons.org/licenses/by/4.0/).
+
