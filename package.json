@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint:data": "vitest run src/__tests__/data-integrity.test.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
@@ -18,6 +21,7 @@
     "@tailwindcss/vite": "^4.0.0",
     "@vitejs/plugin-react": "^4.3.1",
     "tailwindcss": "^4.0.0",
-    "vite": "^5.4.0"
+    "vite": "^5.4.0",
+    "vitest": "^4.1.6"
   }
 }
