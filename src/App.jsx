@@ -3385,7 +3385,8 @@ ${patterns.length?`\nBiochemical patterns active:\n${patterns.map(p=>`[${p.confi
 }
 
 // ─── REVIEW TAB ──────────────────────────────────────────────
-function ReviewTab({reviewer,setReviewer,narrative,onGenerateNarrative,narrativeBusy,narrativeErr,onSign,signed,results,entered}){
+function ReviewTab({reviewer,setReviewer,narrative,onNarrativeChange,onGenerateNarrative,narrativeBusy,narrativeErr,onSign,signed,results,entered}){
+
   const canSign=reviewer.name.trim().length>0&&reviewer.role.trim().length>0&&narrative.length>0;
   return(
     <div className="max-w-screen-lg mx-auto px-5 py-5 space-y-5">
@@ -3435,8 +3436,9 @@ function ReviewTab({reviewer,setReviewer,narrative,onGenerateNarrative,narrative
         </div>
         {narrativeErr&&<div className="text-xs text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{narrativeErr}</div>}
         {narrative?(
-          <textarea value={narrative} onChange={e=>setReviewer(p=>({...p,_narrative:e.target.value}))}
+          <textarea value={narrative} onChange={e=>onNarrativeChange(e.target.value)}
             disabled={signed} rows={8}
+
             className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm leading-relaxed outline-none focus:border-slate-400 resize-none font-serif disabled:bg-slate-50"
             style={{fontFamily:"Georgia, 'Times New Roman', serif"}}/>
         ):(
@@ -4350,7 +4352,9 @@ function CaseEditor({init,onSave,onBack,learnedWeights}){
           <ReviewTab
             reviewer={reviewer} setReviewer={v=>typeof v==="function"?setReviewer(v):setReviewer(v)}
             narrative={narrative}
+            onNarrativeChange={setNarrative}
             onGenerateNarrative={handleGenerateNarrative}
+
             narrativeBusy={narrativeBusy}
             narrativeErr={narrativeErr}
             onSign={handleSign}
