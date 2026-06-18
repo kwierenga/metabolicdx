@@ -1380,6 +1380,163 @@ function computeUoaRatios(uoa){
   return out;
 }
 
+// ─── DATA PLAUSIBILITY / QC GUARDRAILS ───────────────────────
+// Value-level sanity checks run independently of the differential. Catches
+// transcription, unit and decimal-point errors and physiologically impossible
+// combinations that would otherwise silently drive the scoring. This is distinct
+// from the existing "data adequacy" assessment, which only checks how MUCH was
+// entered (panel completeness) — here we check whether the entered numbers are
+// internally and physiologically coherent.
+const QC_UNIT_FACTOR = 50; // value > N× ULN (or < lo/N) → likely unit / decimal / transcription error
+// Markers that legitimately reach extreme multiples of the reference limit in disease
+// (pathognomonic overflow) — excluded from the high-multiple unit-error heuristic.
+const QC_EXTREME_OK = new Set(["NAA","5OxoPro","SA","MMA","uGAA","Orotic","OroticU","HGA",
+  "SAICAr","SSCys","MevA","D2HG","2OHglut","3OMD","VLA","Hcy","tHcy"]);
+function runQcChecks(values){
+  const out=[];
+  const num=(p,id)=>{const raw=values?.[p]?.[id];if(raw===""||raw==null)return null;const v=parseFloat(raw);return v;};
+  // 1. Non-numeric / negative values
+  for(const [p,analytes] of Object.entries(PANEL_ANALYTES)){
+    for(const a of analytes){
+      const raw=values?.[p]?.[a.id];
+      if(raw===""||raw==null) continue;
+      const v=parseFloat(raw);
+      if(isNaN(v)){ out.push({severity:"error",panel:p,ids:[a.id],message:`${a.name} (${p}): "${raw}" is not a number.`}); continue; }
+      if(v<0){ out.push({severity:"error",panel:p,ids:[a.id],message:`${a.name} (${p}) is negative (${v}) — not physiologically possible.`}); continue; }
+      // 2. Unit / decimal sanity (soft "verify" warning)
+      if(!QC_EXTREME_OK.has(a.id) && a.hi>0 && v>a.hi*QC_UNIT_FACTOR){
+        out.push({severity:"warn",panel:p,ids:[a.id],message:`${a.name} (${p}) = ${v} ${a.unit} is >${QC_UNIT_FACTOR}× the upper reference limit (${a.hi}). Verify units / decimal point / transcription.`});
+      } else if(a.lo>0 && v>0 && v<a.lo/QC_UNIT_FACTOR){
+        out.push({severity:"warn",panel:p,ids:[a.id],message:`${a.name} (${p}) = ${v} ${a.unit} is far below the lower reference limit (${a.lo}). Verify units / decimal point.`});
+      }
+    }
+  }
+  // 3. Carnitine internal consistency (CAR panel)
+  const ok=x=>x!==null&&!isNaN(x);
+  const cFree=num("CAR","CarFree"), cTotal=num("CAR","CarTotal"), cEst=num("CAR","CarEst"), cRatio=num("CAR","CarRatio");
+  if(ok(cFree)&&ok(cTotal)&&cFree>cTotal*1.05)
+    out.push({severity:"error",panel:"CAR",ids:["CarFree","CarTotal"],message:`Free carnitine (${cFree}) exceeds total carnitine (${cTotal}) — impossible (total must be ≥ free).`});
+  if(ok(cEst)&&ok(cTotal)&&cEst>cTotal*1.05)
+    out.push({severity:"error",panel:"CAR",ids:["CarEst","CarTotal"],message:`Esterified carnitine (${cEst}) exceeds total carnitine (${cTotal}) — impossible.`});
+  if(ok(cFree)&&ok(cEst)&&ok(cTotal)){
+    const sum=cFree+cEst;
+    if(Math.abs(sum-cTotal)>0.2*cTotal)
+      out.push({severity:"warn",panel:"CAR",ids:["CarFree","CarEst","CarTotal"],message:`Free + esterified carnitine (${sum.toFixed(1)}) does not reconcile with total (${cTotal}); expected free + esterified ≈ total.`});
+  }
+  if(ok(cRatio)&&ok(cFree)&&ok(cEst)&&cFree>0){
+    const implied=cEst/cFree;
+    if(Math.abs(implied-cRatio)>0.15+0.3*cRatio)
+      out.push({severity:"warn",panel:"CAR",ids:["CarRatio"],message:`Acyl/free carnitine ratio (${cRatio}) is inconsistent with esterified/free from entered values (${implied.toFixed(2)}).`});
+  }
+  // 4. Cross-panel free carnitine (AC C0 vs CAR CarFree should be the same analyte)
+  const c0=num("AC","C0");
+  if(ok(c0)&&ok(cFree)&&c0>0&&cFree>0){
+    const r=Math.max(c0,cFree)/Math.min(c0,cFree);
+    if(r>2)
+      out.push({severity:"warn",panel:"AC",ids:["C0","CarFree"],message:`Free carnitine differs markedly between the acylcarnitine panel (C0=${c0}) and the carnitine panel (CarFree=${cFree}). Confirm same specimen / units.`});
+  }
+  return out;
+}
+
+// ─── DIAGNOSTIC RATIO FLAGS ──────────────────────────────────
+// Surfaces which derived diagnostic ratios are abnormal, with a one-line
+// interpretation. Ratios already feed the score (computeAcRatios/Paa/Uoa); this
+// makes the ratio reasoning explicit and auditable rather than buried in scoring.
+const RATIO_INTERP = {
+  C8C10:"MCAD — C8 ≫ C10 (medium-chain FAO block)",
+  C14_1C16:"VLCAD — C14:1 elevated relative to C16",
+  C3C2:"Propionate disorders (PA / MMA)",
+  C0LC:"CPT-I deficiency — high free carnitine, low long-chain acyl",
+  C16OHC16:"LCHAD / TFP — disproportionate 3-OH-C16",
+  C5DCC8:"GA-I vs MCAD — C5DC ≫ C8 favours GA-I",
+  C5C3:"IVA — isovaleryl (C5) disproportionate to propionyl (C3)",
+  C14_1C14:"VLCAD — C14:1 exceeds C14",
+  C3C16:"Propionate axis relative to long-chain pool",
+  C14_1C12_1:"VLCAD — C14:1 / C12:1",
+  C16C18_1C2:"Long-chain FAO burden (CPT2 / CACT / VLCAD)",
+  C4OHC4:"SCHAD (HADH) — 3-OH-C4 disproportionate",
+  C16OHC18_1OH:"LCHAD vs TFP discrimination",
+  C14_1C12:"VLCAD — C14:1 exceeds C12",
+  PheTyr:"PKU / BH4 defect — Phe/Tyr (>3 suspicious, >10 classic)",
+  CitArg:"Citrullinemia (ASS1) — citrulline relative to arginine",
+  OrnCit:"HHH syndrome — ornithine high, citrulline low",
+  GlnAla:"Hyperammonemia axis — glutamine relative to alanine",
+  GlyCit:"Proximal UCD (NAGS / CPS1) — high glycine, low citrulline",
+  GlySer:"NKH (plasma proxy) — glycine ≫ serine",
+  LeuAla:"MSUD — branched-chain sum relative to alanine",
+  MetHcy:"Methionine / homocysteine axis (CBS vs MTHFR)",
+  C3Gly:"Propionic acidemia — propionylcarnitine / glycine",
+  LacPyr:"Lactate / pyruvate >25 — PDHC / respiratory chain",
+  OHGAtoGA:"GA-I — 3-OH-glutaric more specific than glutaric",
+  MMAtoMCA:"MMA vs PA — MMA ≫ methylcitrate favours MMA",
+  pGAACr:"GAMT deficiency — GAA / creatine elevated",
+};
+function diagnosticRatioFlags(values){
+  // Reconstruct the same enriched ratio set runAnalysis uses
+  const ac={...(values.AC||{}),...computeAcRatios(values.AC||{})};
+  const paa={...(values.PAA||{}),...computePaaRatios(values.PAA||{})};
+  const uoa={...(values.UOA||{}),...computeUoaRatios(values.UOA||{})};
+  const c3=parseFloat(values.AC?.C3), gly=parseFloat(values.PAA?.Gly);
+  if(!isNaN(c3)&&c3>0&&!isNaN(gly)&&gly>0) paa.C3Gly=String(c3/gly);
+  const misc={...(values.MISC||{})};
+  const pgaa=parseFloat(values.MISC?.pGAA), pcreat=parseFloat(values.MISC?.pCreat);
+  if(!isNaN(pgaa)&&pgaa>0&&!isNaN(pcreat)&&pcreat>0) misc.pGAACr=String(pgaa/pcreat);
+  const groups=[["AC",AC_RATIOS,ac],["PAA",PAA_RATIOS,paa],["UOA",UOA_RATIOS,uoa],["MISC",[{id:"pGAACr"}],misc]];
+  const flags=[];
+  for(const [panel,defs,src] of groups){
+    for(const def of defs){
+      const meta=ANALYTE_MAP[def.id]; if(!meta||!(meta.hi>0)) continue;
+      const raw=src?.[def.id]; if(raw==null||raw==="") continue;
+      const v=parseFloat(raw); if(isNaN(v)||v<=meta.hi) continue;
+      flags.push({id:def.id,panel,name:meta.name,value:v,hi:meta.hi,unit:meta.unit,fold:v/meta.hi,interp:RATIO_INTERP[def.id]||""});
+    }
+  }
+  return flags.sort((a,b)=>b.fold-a.fold);
+}
+
+// ─── DATA-DRIVEN INTERFERENCE / ARTIFACT DETECTION ───────────
+// Flags result patterns that commonly reflect an iatrogenic or pre-analytic cause
+// (diet, drug, specimen handling) BEFORE they are mistaken for a metabolic block —
+// even when the clinician has not selected the corresponding modifier. Complements
+// MODIFIERS (which suppress scores once a cause is known) by surfacing the suspicion
+// from the data itself. Conservative heuristics — advisory only.
+function detectArtifactSignals(values, activeModifiers=[]){
+  const mods=new Set(activeModifiers||[]);
+  const num=(p,id)=>{const raw=values?.[p]?.[id];if(raw===""||raw==null)return null;const v=parseFloat(raw);return isNaN(v)?null:v;};
+  const hiOf=id=>ANALYTE_MAP[id]?.hi??Infinity;
+  const high=(p,id,mult=1)=>{const v=num(p,id);return v!==null&&v>hiOf(id)*mult;};
+  const out=[];
+  // A. MCT oil / MCT formula / IV lipid (TPN) — broad medium-chain elevation
+  if(!mods.has("mct_supplement")&&!mods.has("tpn")){
+    const mc=["C6","C8","C10"].filter(id=>high("AC",id));
+    if(mc.length>=2){
+      const c8=num("AC","C8"),c10=num("AC","C10");
+      const nonMcadRatio=c8!==null&&c10!==null&&c8/c10<(ANALYTE_MAP.C8C10?.hi??2);
+      out.push({severity:"info",title:"Possible MCT / lipid (TPN) effect",suggestModifier:"mct_supplement",
+        detail:`Broad medium-chain elevation (${mc.join(", ")})${nonMcadRatio?" with a non-MCAD C8/C10 ratio":""}. MCT oil, MCT-containing formula or IV lipid can elevate C6–C10 and mimic MCADD. Confirm dietary/iatrogenic source; if an FAO disorder remains a concern, repeat off MCT/lipid and check urine acylglycines (hexanoylglycine).`});
+    }
+  }
+  // B. Valproate / pivalate — C4 and/or C5 elevation that co-elutes on FIA-MS/MS
+  if(!mods.has("valproate")&&!mods.has("pivalate_abx")&&!mods.has("pivalic_acid")){
+    const c4=high("AC","C4"), c5=high("AC","C5"), c8=high("AC","C8");
+    if(c4||c5){
+      out.push({severity:"info",title:"Possible valproate / pivalate artefact",suggestModifier:"valproate",
+        detail:`${[c4?"C4":"",c5?"C5":""].filter(Boolean).join(" and ")} elevated. Valproate generates valproylcarnitine (co-elutes with C4/C8) and pivalate-containing antibiotics generate pivaloylcarnitine (co-elutes with C5), mimicking SCAD / IVA${c8?" / MCAD":""}. These cannot be resolved by non-separatory FIA-MS/MS — confirm with chromatographic LC-MS/MS and urine acylglycines (isovalerylglycine for true IVA).`});
+    }
+  }
+  // C. Generalised acylcarnitine elevation — specimen degradation / handling
+  if(!mods.has("room_temp_delay")&&!mods.has("freeze_thaw")){
+    const measured=AC_ANALYTES.filter(a=>num("AC",a.id)!==null);
+    if(measured.length>=6){
+      const elevated=measured.filter(a=>high("AC",a.id)).length;
+      if(elevated/measured.length>=0.7)
+        out.push({severity:"info",title:"Possible specimen degradation",suggestModifier:"room_temp_delay",
+          detail:`${elevated} of ${measured.length} measured acylcarnitines are above range. A near-global elevation is more consistent with ester hydrolysis from delayed processing or repeated freeze–thaw than with a single metabolic block. Verify specimen handling and consider recollection.`});
+    }
+  }
+  return out;
+}
+
 // ─── BIOCHEMICAL PATTERN LIBRARY ────────────────────────────
 // Each pattern encodes a mechanistic axis used in biochemical genetics reasoning.
 // Mirrors the diagnostic frameworks in ACMG/SIMD guidelines, Saudubray et al. (IEM 6th ed.),
@@ -3735,6 +3892,161 @@ function ReportTab({caseLabel, createdAt, values, activePanels, activeModifiers,
   );
 }
 
+// ─── TRENDS / LONGITUDINAL TAB ───────────────────────────────
+// Compares the current case against prior saved cases sharing the same case
+// label (used as the patient identifier) to show how key analytes and the top
+// differential have moved over time — distinguishing a persistent disorder from
+// a transient elevation and showing treatment response.
+const TREND_KEY_ANALYTES = {
+  PAA:["Phe","Tyr","Met","Gly","Leu","Cit","Orn","Arg","Val","Hcy"],
+  UOA:["MMA","MCA","GA","3OHGA","IVG","Lactic","SA","Orotic","EMA"],
+  AC:["C0","C2","C3","C4","C5","C5DC","C5OH","C8","C10","C14_1","C16","C16OH"],
+  CAR:["CarFree","CarTotal"],
+  MISC:["Ammonia","Lactate","Glucose","tHcy","BHB"],
+};
+function fmtShort(iso){ if(!iso) return "—"; const d=new Date(iso); return isNaN(d.getTime())?"—":d.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"2-digit"}); }
+function TrendsTab({currentLabel,currentValues,currentResults,currentDate,currentId,allCases}){
+  const matchIds=useMemo(()=>(allCases||[])
+    .filter(c=>c.id!==currentId&&c.label&&currentLabel&&c.label.trim().toLowerCase()===currentLabel.trim().toLowerCase())
+    .map(c=>c.id),[allCases,currentLabel,currentId]);
+  const [loaded,setLoaded]=useState([]);
+  const [busy,setBusy]=useState(false);
+  const idsKey=matchIds.join(",");
+  useEffect(()=>{
+    let cancelled=false;
+    if(!matchIds.length){ setLoaded([]); return; }
+    (async()=>{
+      setBusy(true);
+      const full=await Promise.all(matchIds.map(id=>loadFullCase(id)));
+      if(cancelled) return;
+      setLoaded(full.filter(Boolean).map(c=>({
+        id:c.id,date:c.demo?.sampleDate||c.createdAt,values:c.values,
+        topDx:c.results?.[0]?.name||c.topDx||null,topScore:c.results?.[0]?.score??null})));
+      setBusy(false);
+    })();
+    return ()=>{cancelled=true;};
+  },[idsKey]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const timeline=useMemo(()=>{
+    const tl=[...loaded,{id:currentId||"current",date:currentDate,values:currentValues,
+      topDx:currentResults?.[0]?.name||null,topScore:currentResults?.[0]?.score??null,isCurrent:true}]
+      .filter(t=>t.values)
+      .sort((a,b)=>new Date(a.date||0)-new Date(b.date||0));
+    return tl;
+  },[loaded,currentValues,currentResults,currentDate,currentId]);
+
+  // Build the rows: any key analyte that is entered in ≥1 timepoint
+  const rows=useMemo(()=>{
+    const r=[];
+    for(const [panel,ids] of Object.entries(TREND_KEY_ANALYTES)){
+      for(const id of ids){
+        const meta=ANALYTE_MAP[id]; if(!meta) continue;
+        const series=timeline.map(t=>{const raw=t.values?.[panel]?.[id];const v=(raw===""||raw==null)?null:parseFloat(raw);return v===null||isNaN(v)?null:v;});
+        if(series.every(v=>v===null)) continue;
+        r.push({panel,id,meta,series});
+      }
+    }
+    return r;
+  },[timeline]);
+
+  const abn=(v,meta)=>v!==null&&meta&&((meta.hi>0&&v>meta.hi)||(meta.lo>0&&v<meta.lo));
+
+  if(matchIds.length===0){
+    return(
+      <div className="max-w-screen-lg mx-auto px-5 py-10 text-center">
+        <div className="text-4xl mb-3">📈</div>
+        <div className="text-sm font-semibold text-slate-600 mb-1">No prior timepoints for this patient</div>
+        <div className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+          Trends compares saved cases that share the same <span className="font-semibold">case label / patient ID</span>.
+          {currentLabel?<> Save another case with the label <span className="font-mono text-slate-600">“{currentLabel.trim()}”</span> (a different sample date) to build a longitudinal view.</>:<> Give this case a label to enable patient-level tracking.</>}
+        </div>
+      </div>
+    );
+  }
+  return(
+    <div className="max-w-screen-2xl mx-auto px-5 py-4 space-y-4">
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-bold text-slate-700">Longitudinal trend</span>
+        <span className="text-[11px] text-slate-400">patient “{currentLabel.trim()}” · {timeline.length} timepoint{timeline.length!==1?"s":""}{busy?" · loading…":""}</span>
+      </div>
+      {/* Top differential over time */}
+      <div className="bg-white border border-slate-200 rounded-xl overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-slate-100 bg-slate-50">
+              <th className="text-left px-3 py-2 font-bold text-slate-500 sticky left-0 bg-slate-50">Timepoint</th>
+              {timeline.map(t=>(
+                <th key={t.id} className="px-3 py-2 font-semibold text-slate-600 whitespace-nowrap">
+                  {fmtShort(t.date)}{t.isCurrent&&<span className="ml-1 text-[9px] text-blue-600 font-bold">CURRENT</span>}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-slate-100">
+              <td className="px-3 py-2 font-semibold text-slate-500 sticky left-0 bg-white">Top differential</td>
+              {timeline.map(t=>(
+                <td key={t.id} className="px-3 py-2 text-slate-700">
+                  {t.topDx?<span title={t.topDx}>{t.topDx.split("(")[0].trim()}{t.topScore!=null&&<span className="text-slate-400"> ({Math.round(t.topScore*100)})</span>}</span>:<span className="text-slate-300">—</span>}
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      {/* Analyte trends */}
+      {rows.length===0?(
+        <div className="text-center py-8 text-slate-400 text-sm">No key analytes recorded across these timepoints.</div>
+      ):(
+        <div className="bg-white border border-slate-200 rounded-xl overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-slate-100 bg-slate-50">
+                <th className="text-left px-3 py-2 font-bold text-slate-500 sticky left-0 bg-slate-50">Analyte</th>
+                <th className="text-left px-2 py-2 font-semibold text-slate-400 whitespace-nowrap">Ref</th>
+                {timeline.map(t=>(
+                  <th key={t.id} className="px-3 py-2 font-semibold text-slate-600 whitespace-nowrap text-right">{fmtShort(t.date)}{t.isCurrent&&<span className="ml-1 text-[9px] text-blue-600 font-bold">NOW</span>}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(row=>(
+                <tr key={row.panel+row.id} className="border-b border-slate-50 hover:bg-slate-50/60">
+                  <td className="px-3 py-1.5 sticky left-0 bg-white"><span className="text-[9px] text-slate-300 font-mono mr-1">{row.panel}</span><span className="font-medium text-slate-700">{row.meta.name.split("(")[0].trim()}</span></td>
+                  <td className="px-2 py-1.5 text-slate-400 whitespace-nowrap">{row.meta.lo>0?`${row.meta.lo}–`:"<"}{row.meta.hi}</td>
+                  {row.series.map((v,i)=>{
+                    const prev=i>0?row.series[i-1]:null;
+                    let arrow=null;
+                    if(v!==null&&prev!==null&&prev!==0){
+                      const ch=(v-prev)/prev;
+                      if(ch>0.15) arrow=<span className="text-rose-400" title={`+${Math.round(ch*100)}%`}>▲</span>;
+                      else if(ch<-0.15) arrow=<span className="text-emerald-500" title={`${Math.round(ch*100)}%`}>▼</span>;
+                      else arrow=<span className="text-slate-300">▬</span>;
+                    }
+                    return(
+                      <td key={i} className="px-3 py-1.5 text-right whitespace-nowrap">
+                        {v===null?<span className="text-slate-200">—</span>:(
+                          <span className={abn(v,row.meta)?"font-bold text-rose-600":"text-slate-600"}>
+                            {v}{arrow&&<span className="ml-1 text-[10px]">{arrow}</span>}
+                          </span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <div className="text-[11px] text-slate-400 leading-relaxed">
+        Values flagged <span className="text-rose-600 font-bold">red</span> are outside the reference range. Arrows compare each timepoint to the previous one
+        (<span className="text-rose-400">▲</span> ≥15% rise, <span className="text-emerald-500">▼</span> ≥15% fall). Trends are matched by case label and ordered by sample collection date.
+      </div>
+    </div>
+  );
+}
+
 // ─── CASE EDITOR ─────────────────────────────────────────────
 const PANELS=[
   {id:"PAA",label:"Plasma Amino Acids",analytes:PAA_ANALYTES},
@@ -3758,7 +4070,7 @@ function DxSelect({value, onChange, placeholder}){
   );
 }
 
-function CaseEditor({init,onSave,onBack,learnedWeights}){
+function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
   const [label,setLabel]=useState(init?.label??"");
   const [age,setAge]=useState(init?.age??"");
   const [clinicalNote,setClinicalNote]=useState(init?.clinicalNote??"");
@@ -3893,11 +4205,17 @@ function CaseEditor({init,onSave,onBack,learnedWeights}){
   const top=results?.filter(r=>r.score>0.02).slice(0,15)??[];
   const totalWarnings=top.reduce((s,r)=>s+(r.warnings?.length??0),0);
   const activePanels=new Set(Object.entries(values).filter(([,p])=>Object.values(p).some(v=>v!=="")).map(([k])=>k));
+  // QC guardrails (Feature 4) — recomputed from raw values
+  const qcIssues=useMemo(()=>runQcChecks(values),[values]);
+  const qcErrors=qcIssues.filter(i=>i.severity==="error").length;
+  // Trends (Feature 2) — prior saved cases sharing this label (patient ID)
+  const trendMatchCount=useMemo(()=>(allCases||[]).filter(c=>c.id!==init?.id&&c.label&&label&&c.label.trim().toLowerCase()===label.trim().toLowerCase()).length,[allCases,label,init?.id]);
 
   const TABS=[
-    {id:"data",     label:"Data",     avail:true},
+    {id:"data",     label:"Data",     avail:true, warn:qcErrors>0},
     {id:"results",  label:"Results",  avail:!!results, badge:results?`(${top.length})`:"", warn:totalWarnings>0},
     {id:"profile",  label:"Profile",  avail:entered>0},
+    {id:"trends",   label:"Trends",   avail:trendMatchCount>0, badge:trendMatchCount>0?`(${trendMatchCount+1})`:""},
     {id:"review",   label:"Review",   avail:!!results},
     {id:"report",   label:"Report",   avail:reportSigned},
   ];
@@ -4062,6 +4380,27 @@ function CaseEditor({init,onSave,onBack,learnedWeights}){
                 {hits.size} values extracted — blue cells. Review and correct before analyzing.
               </div>
             )}
+            {/* ── QC guardrails (Feature 4): value plausibility / consistency ── */}
+            {qcIssues.length>0&&(()=>{
+              const worst=qcIssues.some(i=>i.severity==="error")?"error":"warn";
+              return(
+                <div className={`rounded-xl border px-4 py-3 ${worst==="error"?"border-red-300 bg-red-50":"border-amber-300 bg-amber-50"}`}>
+                  <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5 ${worst==="error"?"text-red-700":"text-amber-700"}`}>
+                    <span>{worst==="error"?"⛔":"⚠"}</span> Data quality check — {qcIssues.length} issue{qcIssues.length>1?"s":""}
+                    <span className="font-normal normal-case tracking-normal text-slate-400 ml-1">verify before relying on the analysis</span>
+                  </div>
+                  <div className="space-y-1">
+                    {qcIssues.map((iss,i)=>(
+                      <div key={i} className={`flex items-start gap-2 text-xs ${iss.severity==="error"?"text-red-800":"text-amber-800"}`}>
+                        <span className="flex-shrink-0 mt-0.5">{iss.severity==="error"?"⛔":"⚠"}</span>
+                        <span>{iss.message}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
             <ModifierPanel active={activeModifiers} onChange={handleModifiers}/>
 
             {/* Known diagnosis */}
@@ -4110,6 +4449,12 @@ function CaseEditor({init,onSave,onBack,learnedWeights}){
           <div className="flex-1 overflow-y-auto">
             <ProfileTab values={values}/>
           </div>
+        )}
+
+        {tab==="trends"&&(
+          <TrendsTab currentLabel={label} currentValues={values} currentResults={results}
+            currentDate={demo?.sampleDate||init?.createdAt||new Date().toISOString()}
+            currentId={init?.id} allCases={allCases}/>
         )}
 
         {tab==="results"&&results&&(
@@ -4185,6 +4530,78 @@ function CaseEditor({init,onSave,onBack,learnedWeights}){
                       <div key={i} className={`flex items-start gap-2 text-xs ${iss.level==="warn"?"text-amber-800":"text-slate-600"}`}>
                         <span className="flex-shrink-0 mt-0.5">{iss.level==="warn"?"⚠":"ℹ"}</span>
                         <span>{iss.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* ── QC guardrails echo (Feature 4) ── */}
+            {qcIssues.length>0&&(()=>{
+              const worst=qcIssues.some(i=>i.severity==="error")?"error":"warn";
+              return(
+                <div className={`rounded-xl border px-4 py-3 ${worst==="error"?"border-red-300 bg-red-50":"border-amber-300 bg-amber-50"}`}>
+                  <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5 ${worst==="error"?"text-red-700":"text-amber-700"}`}>
+                    <span>{worst==="error"?"⛔":"⚠"}</span> Data quality check — {qcIssues.length} issue{qcIssues.length>1?"s":""}
+                    <span className="font-normal normal-case tracking-normal text-slate-400 ml-1">these affect interpretation</span>
+                  </div>
+                  <div className="space-y-1">
+                    {qcIssues.map((iss,i)=>(
+                      <div key={i} className={`flex items-start gap-2 text-xs ${iss.severity==="error"?"text-red-800":"text-amber-800"}`}>
+                        <span className="flex-shrink-0 mt-0.5">{iss.severity==="error"?"⛔":"⚠"}</span><span>{iss.message}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* ── Data-driven interference / artefact advisory (Feature 3) ── */}
+            {(()=>{
+              const signals=detectArtifactSignals(values,activeModifiers);
+              if(!signals.length) return null;
+              return(
+                <div className="rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 space-y-2">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-orange-700 flex items-center gap-1.5">
+                    <span>🧪</span> Possible pre-analytic / iatrogenic interference
+                    <span className="font-normal normal-case tracking-normal text-orange-400 ml-1">detected from the data — not yet flagged as a modifier</span>
+                  </div>
+                  {signals.map((s,i)=>(
+                    <div key={i} className="text-xs text-orange-900 leading-relaxed">
+                      <span className="font-bold">{s.title}.</span> {s.detail}
+                      {s.suggestModifier&&MODIFIER_MAP[s.suggestModifier]&&!activeModifiers.includes(s.suggestModifier)&&(
+                        <button onClick={()=>handleModifiers([...activeModifiers,s.suggestModifier])}
+                          className="ml-1 text-[11px] font-semibold text-orange-700 underline underline-offset-2 hover:text-orange-900">
+                          apply “{MODIFIER_MAP[s.suggestModifier].label}” modifier
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
+
+            {/* ── Diagnostic ratio flags (Feature 1) ── */}
+            {(()=>{
+              const flags=diagnosticRatioFlags(values);
+              if(!flags.length) return null;
+              return(
+                <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+                  <div className="px-4 py-2.5 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
+                    <span className="text-xs font-black uppercase tracking-wider text-slate-600">Diagnostic ratio flags</span>
+                    <span className="text-[10px] text-slate-400 ml-1">— derived ratios above their discriminating threshold</span>
+                  </div>
+                  <div className="divide-y divide-slate-100">
+                    {flags.map(f=>(
+                      <div key={f.id} className="flex items-start gap-3 px-4 py-2.5">
+                        <span className="text-[10px] font-black px-2 py-0.5 rounded-full border bg-rose-50 text-rose-700 border-rose-200 shrink-0 mt-0.5 whitespace-nowrap">
+                          {f.fold>=2?`${f.fold.toFixed(1)}×`:"↑"} ULN
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-bold text-slate-800">{f.name} <span className="font-normal text-slate-500">= {f.value.toFixed(f.value<1?3:2)}</span> <span className="text-[11px] text-slate-400">(ref ≤ {f.hi})</span></div>
+                          {f.interp&&<div className="text-[11.5px] text-slate-600 leading-snug">{f.interp}</div>}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -5106,7 +5523,7 @@ export default function App(){
         {screen==="list"&&<div className="h-full overflow-y-auto"><CaseList cases={cases} loading={listLoading} onOpen={openCase} onNew={()=>{setEditCase(null);setScreen("editor");}} onDelete={deleteCase} onRefresh={reload}/></div>}
         {screen==="model"&&<div className="h-full overflow-y-auto"><ModelView learnedWeights={learnedWeights} trainingExamples={trainingExamples}/></div>}
         {screen==="disorders"&&<div className="h-full overflow-hidden"><DisordersScreen onBack={()=>setScreen("home")}/></div>}
-        {screen==="editor"&&<div className="h-full flex flex-col overflow-hidden"><CaseEditor init={editCase} learnedWeights={learnedWeights} onSave={async()=>{await reload();setScreen("list");}} onBack={()=>setScreen("list")}/></div>}
+        {screen==="editor"&&<div className="h-full flex flex-col overflow-hidden"><CaseEditor init={editCase} learnedWeights={learnedWeights} allCases={cases} onSave={async()=>{await reload();setScreen("list");}} onBack={()=>setScreen("list")}/></div>}
       </div>
     </div>
   );
