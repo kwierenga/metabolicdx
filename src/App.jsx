@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import * as XLSX from "xlsx";
-import { createClient } from "@supabase/supabase-js";
+import { supabase, STORAGE_MODE } from "./lib/supabase.js";
+import AuthGate, { SignOutButton } from "./components/AuthGate.jsx";
 import { DISORDERS, KB_VERSION, KB_DATE } from "./disorders.js";
 export { DISORDERS, KB_VERSION, KB_DATE };
 
@@ -2076,18 +2077,114 @@ function fmtDate(iso){const d=new Date(iso);return d.toLocaleDateString("en-GB",
 function lrColor(lr){if(lr===null||lr===undefined)return"text-slate-400";if(lr>=5)return"text-emerald-700 font-bold";if(lr>=2)return"text-emerald-600";if(lr>=1)return"text-slate-500";if(lr>=0.5)return"text-amber-600";return"text-red-600 font-bold";}
 function wtDelta(adj,prior){const d=(adj-prior)/prior;if(Math.abs(d)<0.05)return null;return{pct:Math.round(d*100),up:d>0};}
 
+// ─── CLAUDE API CLIENT ───────────────────────────────────────
+// Single call path for every AI feature. The *model* is chosen server-side by
+// api/claude.js (which owns the allowlist and the max_tokens ceiling) — the
+// client only names the task. This keeps the model in one place and stops a
+// caller from asking the proxy for something the deployment does not permit.
+//
+// Note on max_tokens: current Claude models think by default, and max_tokens
+// bounds thinking + visible text together. The budgets below are sized with
+// that headroom; a low effort level keeps these mechanical tasks cheap.
+async function callClaude({task,system,messages,maxTokens,effort="low",format=null}){
+  let res;
+  try{
+    res=await fetch("/api/claude",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({task,system,messages,max_tokens:maxTokens,effort,format})});
+  }catch{
+    throw new Error("Could not reach the analysis service — check your connection.");
+  }
+  if(res.status===413) throw new Error("File is too large to send. Use a smaller image or crop to the results table.");
+  if(res.status===429) throw new Error("Rate limit reached — wait a minute and try again.");
+  let data;
+  try{ data=await res.json(); }
+  catch{ throw new Error(`Analysis service returned an unreadable response (HTTP ${res.status}).`); }
+  if(data.error) throw new Error(data.error.message||"Analysis service error.");
+  if(!res.ok) throw new Error(`Analysis service error (HTTP ${res.status}).`);
+  // Safety classifiers can decline a request outright; content is then empty or
+  // partial. Surface it rather than failing on an undefined content array.
+  if(data.stop_reason==="refusal")
+    throw new Error("The model declined this request. Rephrase, or enter the values manually.");
+  if(!Array.isArray(data.content)) throw new Error("Analysis service returned no content.");
+  if(data.stop_reason==="max_tokens")
+    throw new Error("Response was cut off before completing. Try a smaller report or fewer panels.");
+  return data.content.filter(b=>b.type==="text").map(b=>b.text).join("").trim();
+}
+
 // ─── CLAUDE EXTRACTION ───────────────────────────────────────
+// Extraction is schema-constrained rather than prompt-constrained. The model is
+// given an explicit output schema whose `id` enum is generated from the panel
+// definitions, so it is structurally unable to return an analyte ID the app does
+// not know, a non-numeric value, or a value for a derived ratio. Previously all
+// three were possible and failed *silently*: mergeExtracted() drops any id it
+// does not recognise, so a mis-mapped analyte simply vanished from the case.
+//
+// A flat array is used rather than a nested object because extraction is sparse
+// — a report contains a handful of the ~134 analytes, and an object schema with
+// `additionalProperties:false` would require every field on every response.
+export const EXTRACTABLE_IDS=Object.values(PANEL_ANALYTES).flat().map(a=>a.id);
+export const EXTRACTION_SCHEMA={
+  type:"object",
+  properties:{
+    values:{
+      type:"array",
+      description:"One entry per analyte with an explicit numeric value in the source. Omit analytes that are absent, qualitative, or below the reporting limit.",
+      items:{
+        type:"object",
+        properties:{
+          panel:{type:"string",enum:Object.keys(PANEL_ANALYTES),
+            description:"Panel the analyte belongs to."},
+          id:{type:"string",enum:EXTRACTABLE_IDS,
+            description:"Exact analyte identifier."},
+          value:{type:"number",description:"Numeric result as reported, in the panel's stated units."},
+        },
+        required:["panel","id","value"],
+        additionalProperties:false,
+      },
+    },
+  },
+  required:["values"],
+  additionalProperties:false,
+};
+
+// Fold the flat array back into the {panel:{id:value}} shape mergeExtracted
+// expects, discarding entries whose analyte does not belong to the named panel.
+function foldExtractedValues(parsed){
+  const out={};
+  let dropped=0;
+  for(const row of parsed?.values??[]){
+    const list=PANEL_ANALYTES[row?.panel];
+    if(!list||!list.some(a=>a.id===row.id)){dropped++;continue;}
+    if(typeof row.value!=="number"||!isFinite(row.value)){dropped++;continue;}
+    (out[row.panel]??={})[row.id]=row.value;
+  }
+  if(dropped) console.warn(`extraction: dropped ${dropped} row(s) with an unknown panel/analyte pairing`);
+  return out;
+}
+
 async function extractWithClaude(content){
-  const sys=`You are a metabolic laboratory data extractor. Extract all analyte numeric values from a lab report.
-Return ONLY valid JSON — no markdown fences, no explanation, no preamble.
-Format exactly: {"PAA":{"Phe":450},"UOA":{"MMA":120},"AC":{"C3":8.5}}
-Only include analytes with explicit numeric values in the source. Omit all others.
-Map analyte names/abbreviations to these exact IDs:\n${ANALYTE_ID_REFERENCE}`;
-  const res=await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system:sys,messages:[{role:"user",content}]})});
-  const data=await res.json();
-  if(data.error)throw new Error(data.error.message);
-  const text=data.content.filter(b=>b.type==="text").map(b=>b.text).join("");
-  return JSON.parse(text.replace(/```json|```/g,"").trim());
+  const sys=`You are a metabolic laboratory data extractor. Extract every analyte that has an explicit numeric result in the source.
+Report each value in the units printed on the report; do not convert units.
+Do not infer, estimate, or carry values across analytes.
+Do not return derived ratios (Phe/Tyr, C8/C10, lactate/pyruvate, etc.) — the application computes these itself.
+Analyte identifier reference:\n${ANALYTE_ID_REFERENCE}`;
+  const text=await callClaude({task:"extract",system:sys,
+    messages:[{role:"user",content}],maxTokens:8000,effort:"low",
+    format:{type:"json_schema",schema:EXTRACTION_SCHEMA}});
+  let parsed;
+  try{ parsed=JSON.parse(text); }
+  catch{
+    // The schema makes this near-impossible, but a truncated response is still
+    // possible — fall back to locating the object rather than failing outright.
+    const start=text.indexOf("{"), end=text.lastIndexOf("}");
+    if(start<0||end<start) throw new Error("No values could be read from this file.");
+    try{ parsed=JSON.parse(text.slice(start,end+1)); }
+    catch{ throw new Error("Extracted data was incomplete — enter the values manually."); }
+  }
+  const folded=foldExtractedValues(parsed);
+  if(!Object.keys(folded).length) throw new Error("No recognised analyte values were found in this file.");
+  return folded;
 }
 async function extractFromImage(b64,mt){return extractWithClaude([{type:"image",source:{type:"base64",media_type:mt,data:b64}},{type:"text",text:"Extract all metabolite values from this lab report image."}]);}
 async function extractFromText(txt){return extractWithClaude([{type:"text",text:"Extract all metabolite values from this lab data:\n\n"+txt}]);}
@@ -2095,16 +2192,9 @@ function xlsxToText(file){return new Promise((res,rej)=>{const r=new FileReader(
 function toB64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>res(e.target.result.split(",")[1]);r.onerror=()=>rej(new Error("Read failed"));r.readAsDataURL(file);});}
 
 // ─── STORAGE ─────────────────────────────────────────────────
-// ─── STORAGE ─────────────────────────────────────────────────
-// Supabase client initialised at module level.
-// VITE_ env vars are replaced by Vite at BUILD TIME — they must be set
-// in the Vercel environment before the build runs, not just at runtime.
-const _sbUrl  = import.meta.env.VITE_SUPABASE_URL  ?? "";
-const _sbKey  = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "";
-const sb = _sbUrl && _sbKey ? createClient(_sbUrl, _sbKey) : null;
-
-// Exposed so the UI can show a storage health indicator
-const STORAGE_MODE = sb ? "supabase" : "memory";
+// The Supabase client lives in ./lib/supabase.js — see the note there on why
+// there must be exactly one instance once authentication is in play.
+const sb = supabase;
 
 // In-memory fallback — data lost on page reload
 const _mem = {};
@@ -2163,9 +2253,13 @@ function hydrateResults(stripped){
 
 const CASES_KEY="mdx_cases_v2", TRAINING_KEY="mdx_training_v1";
 
+// Throws on a storage failure rather than returning []. An unreachable database
+// and an empty database are different things, and rendering both as "no cases"
+// hides outages — including an expired session, which under RLS makes every
+// read fail. Callers that must not fail hard catch it themselves.
 async function loadList(){
-  try{ const r=await dbGet(CASES_KEY); return r?JSON.parse(r.value):[]; }
-  catch(e){ console.warn("loadList error:",e.message); return []; }
+  const r=await dbGet(CASES_KEY);
+  return r?JSON.parse(r.value):[];
 }
 async function persistCase(c){
   const list=await loadList();
@@ -3532,13 +3626,8 @@ ${contextLines.length?contextLines.join("\n"):"None flagged"}
 ${!knownDx?`Top differential (scoring engine):\n${diffLines.join("\n")}`:""}
 ${patterns.length?`\nBiochemical patterns active:\n${patterns.map(p=>`[${p.confidence.toUpperCase()}] ${p.name}: ${p.hits.map(h=>h.label).join(" | ")}`).join("\n")}`:""}`;
 
-  const res=await fetch("/api/claude",{
-    method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:800,
-      messages:[{role:"user",content:prompt}]})});
-  const data=await res.json();
-  if(data.error) throw new Error(data.error.message);
-  return data.content.filter(b=>b.type==="text").map(b=>b.text).join("").trim();
+  return callClaude({task:"narrative",
+    messages:[{role:"user",content:prompt}],maxTokens:8000,effort:"medium"});
 }
 
 // ─── REVIEW TAB ──────────────────────────────────────────────
@@ -5409,17 +5498,28 @@ function DisordersScreen({onBack}){
 
 // ─── APP ─────────────────────────────────────────────────────
 export default function App(){
+  return <AuthGate>{session=><AppShell session={session}/>}</AuthGate>;
+}
+
+function AppShell({session}){
   const [screen,setScreen]=useState("home");
   const [cases,setCases]=useState([]);
   const [listLoading,setListLoading]=useState(true);
   const [editCase,setEditCase]=useState(null);
   const [trainingExamples,setTrainingExamples]=useState([]);
+  const [loadError,setLoadError]=useState(null);
 
   const reload=async()=>{
-    setListLoading(true);
-    await seedIfEmpty();
-    const [list,training]=await Promise.all([loadList(),loadTraining()]);
-    setCases(list);setTrainingExamples(training);setListLoading(false);
+    setListLoading(true); setLoadError(null);
+    try{
+      await seedIfEmpty();
+      const [list,training]=await Promise.all([loadList(),loadTraining()]);
+      setCases(list);setTrainingExamples(training);
+    }catch(e){
+      // Distinguish an outage from an empty caseload — see loadList().
+      setLoadError(e.message||"Could not load saved cases.");
+      setCases([]);setTrainingExamples([]);
+    }finally{ setListLoading(false); }
   };
   useEffect(()=>{reload();},[]);
 
@@ -5427,7 +5527,12 @@ export default function App(){
   const confirmedCount=trainingExamples.filter(ex=>ex.confirmedDxId).length;
 
   const openCase=async(id)=>{const c=await loadFullCase(id);if(c){setEditCase(c);setScreen("editor");}};
-  const deleteCase=async(id)=>{await removeCase(id);await removeTrainingExample(id);await reload();};
+  const deleteCase=async(id)=>{
+    // removeCase reads the index first, so it can fail on a storage outage.
+    try{ await removeCase(id); await removeTrainingExample(id); }
+    catch(e){ setLoadError(`Delete failed: ${e.message}`); }
+    await reload();
+  };
 
   return(
     <div style={{fontFamily:"'IBM Plex Sans','Segoe UI',sans-serif",background:"#f0f4f8"}} className="h-screen flex flex-col">
@@ -5459,8 +5564,25 @@ export default function App(){
           {STORAGE_MODE==="memory"&&(
             <span className="text-[10px] font-bold text-amber-400 border border-amber-600/50 rounded px-1.5 py-0.5" title="Supabase env vars not set at build time — saves lost on reload">⚠ MEMORY ONLY</span>
           )}
+          <SignOutButton email={session?.user?.email}/>
         </div>
       </header>
+
+      {/* A storage outage must not look like an empty caseload. */}
+      {loadError&&(
+        <div role="alert" className="flex-shrink-0 flex items-center gap-3 px-5 py-2 bg-red-50 border-b border-red-200">
+          <span className="text-red-500 text-sm">⚠</span>
+          <div className="text-xs text-red-800 flex-1 min-w-0">
+            <span className="font-bold">Saved cases could not be loaded.</span>{" "}
+            <span className="text-red-700">{loadError}</span>{" "}
+            <span className="text-red-600">Any cases shown may be incomplete — do not treat this list as empty.</span>
+          </div>
+          <button onClick={reload}
+            className="flex-shrink-0 text-[11px] font-semibold text-red-700 border border-red-300 rounded px-2 py-1 hover:bg-red-100 transition-colors">
+            Retry
+          </button>
+        </div>
+      )}
 
       <div className="flex-1 overflow-hidden">
         {screen==="home"&&(
