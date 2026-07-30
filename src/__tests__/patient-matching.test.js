@@ -12,7 +12,7 @@
 //      guessing. It must stay conservative — silently merging two different
 //      patients is a worse failure than splitting one.
 import { describe, it, expect } from "vitest";
-import { patientKey, nearMissKeys } from "../App.jsx";
+import { patientKey, nearMissKeys } from "../patient.js";
 
 describe("patientKey normalisation", () => {
   it("joins the labels the old trim+lowercase match would have split", () => {

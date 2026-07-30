@@ -6,15 +6,14 @@
 // the schema that makes that structurally impossible, and the fold step that
 // rejects anything that slips through anyway.
 import { describe, it, expect } from "vitest";
+import { EXTRACTION_SCHEMA, EXTRACTABLE_IDS } from "../App.jsx";
 import {
-  EXTRACTION_SCHEMA,
-  EXTRACTABLE_IDS,
   PANEL_ANALYTES,
   ANALYTE_MAP,
   AC_RATIOS,
   PAA_RATIOS,
   UOA_RATIOS,
-} from "../App.jsx";
+} from "../analytes.js";
 
 const itemProps = EXTRACTION_SCHEMA.properties.values.items.properties;
 

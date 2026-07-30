@@ -9,7 +9,8 @@
 //
 // Run: npm test
 import { describe, it, expect } from "vitest";
-import { runAnalysis, initValues, DISORDERS } from "../App.jsx";
+import { runAnalysis, initValues } from "../scoring.js";
+import { DISORDERS } from "../disorders.js";
 
 const ID = new Set(DISORDERS.map((d) => d.id));
 

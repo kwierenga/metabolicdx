@@ -9,16 +9,15 @@
 //
 // Run: npm run lint:data   (or npm test)
 import { describe, it, expect } from "vitest";
+import { DISORDERS } from "../disorders.js";
 import {
-  DISORDERS,
   ANALYTE_MAP,
   PANEL_ANALYTES,
   AC_RATIOS,
   PAA_RATIOS,
   UOA_RATIOS,
-  MODIFIERS,
-  CLINICAL_CONTEXTS,
-} from "../App.jsx";
+} from "../analytes.js";
+import { MODIFIERS, CLINICAL_CONTEXTS } from "../modifiers.js";
 
 const VALID_PANELS = ["PAA", "UOA", "AC", "CAR", "UAG", "MISC"];
 

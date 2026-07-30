@@ -29,7 +29,7 @@ import {
   getRef, refUrl, formatRef, shortRef, resolveRefs,
 } from "../references.js";
 import { DISORDERS } from "../disorders.js";
-import { ANALYTE_MAP } from "../App.jsx";
+import { ANALYTE_MAP } from "../analytes.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, "..", "..");
@@ -177,7 +177,15 @@ describe("fabricated citations do not return", () => {
     { pattern: /Turgeon\s+et\s+al/i, what: '"Turgeon et al." (no such JIMD 2014 paper)' },
     { pattern: /Rinaldo[^\n]*Eur\s*J\s*Pediatr/i, what: '"Rinaldo et al., Eur J Pediatr 2008" (no such paper)' },
   ];
-  const FILES = ["src/App.jsx", "src/disorders.js", "src/references.js"];
+  // The scoring layer: App.jsx plus the modules it was split into. When that
+  // split happened the cited comments moved with their code — the LR-product
+  // note to scoring.js, the context-prior note to modifiers.js — so scanning
+  // App.jsx alone would have left this guard pointing at an empty room.
+  const SCORING_FILES = [
+    "src/App.jsx", "src/analytes.js", "src/modifiers.js",
+    "src/patterns.js", "src/scoring.js", "src/qc.js", "src/patient.js",
+  ];
+  const FILES = [...SCORING_FILES, "src/disorders.js", "src/references.js"];
 
   for (const file of FILES) {
     for (const { pattern, what } of FABRICATED) {
@@ -200,13 +208,17 @@ describe("fabricated citations do not return", () => {
 
   it("the analytical ceiling is not attributed to the wrong year", () => {
     // Oglesbee is Genet Med 2018;20(1):83-90 (PMID 28661487); 2017 was online-first.
-    const text = readSrc("src/App.jsx");
-    const hits = text
-      .split("\n")
-      .map((line, i) => ({ line, n: i + 1 }))
-      .filter(({ line }) => /Oglesbee\s+2017/.test(line))
-      .filter(({ line }) => !/online-first|earlier comments/i.test(line));
-    expect(hits.map((h) => `App.jsx:${h.n}`), "Oglesbee cited as 2017").toEqual([]);
+    // Scoring layer only. disorders.js narratives cite Oglesbee's 2017
+    // online-first date in prose, and references.js records the year confusion
+    // deliberately; neither is the attribution this guards.
+    const hits = SCORING_FILES.flatMap((f) =>
+      readSrc(f)
+        .split("\n")
+        .map((line, i) => ({ line, n: i + 1, f }))
+        .filter(({ line }) => /Oglesbee\s+2017/.test(line))
+        .filter(({ line }) => !/online-first|earlier comments/i.test(line)),
+    );
+    expect(hits.map((h) => `${h.f}:${h.n}`), "Oglesbee cited as 2017").toEqual([]);
   });
 });
 
