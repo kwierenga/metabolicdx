@@ -3,11 +3,63 @@ import * as XLSX from "xlsx";
 import { supabase, STORAGE_MODE } from "./lib/supabase.js";
 import AuthGate, { SignOutButton } from "./components/AuthGate.jsx";
 import { DISORDERS, KB_VERSION, KB_DATE } from "./disorders.js";
+import {
+  REFERENCES, METHOD_REFS, PANEL_STANDARDS,
+  getRef, refUrl, formatRef, shortRef, resolveRefs,
+} from "./references.js";
 export { DISORDERS, KB_VERSION, KB_DATE };
+export { REFERENCES, METHOD_REFS, PANEL_STANDARDS };
 
 const FontLink = () => (
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 );
+
+// ─── PROVENANCE UI ───────────────────────────────────────────
+// Every number this engine uses to move a differential should be able to name
+// its source. These two components are how that source reaches the clinician:
+// RefLink for inline prose, SourceChips for the marker/method rows on a result.
+
+/** Inline "Author Year" citation linking out to PubMed. */
+function RefLink({k}){
+  const ref=getRef(k);
+  if(!ref) return null;
+  const url=refUrl(ref);
+  return(
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      title={formatRef(ref)}
+      className="text-blue-600 hover:text-blue-800 underline decoration-dotted underline-offset-2">
+      {shortRef(ref)}
+    </a>
+  );
+}
+
+/**
+ * Provenance chips for a list of ref keys. `unsourced` renders an explicit
+ * "no source" marker rather than rendering nothing — an unsourced number that
+ * looks identical to a sourced one is the failure mode this whole layer exists
+ * to prevent.
+ */
+function SourceChips({refs,unsourcedLabel="source not recorded",className=""}){
+  const resolved=resolveRefs(refs);
+  if(!resolved.length){
+    return(
+      <span className={`text-[9px] italic text-slate-400 ${className}`} title={`This value is not yet traced to a published source. See src/references.js.`}>
+        ⚠ {unsourcedLabel}
+      </span>
+    );
+  }
+  return(
+    <span className={`inline-flex flex-wrap gap-1 ${className}`}>
+      {resolved.map((r,i)=>(
+        <a key={i} href={refUrl(r)} target="_blank" rel="noopener noreferrer"
+          title={formatRef(r)}
+          className="text-[9px] px-1 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 font-medium">
+          {shortRef(r)}
+        </a>
+      ))}
+    </span>
+  );
+}
 
 // ─── REFERENCE DATA ──────────────────────────────────────────
 const PAA_ANALYTES = [
@@ -128,7 +180,7 @@ const CAR_ANALYTES = [
   {id:"CarFree",  name:"Free carnitine",        lo:20, hi:60,  unit:"µmol/L"},
   {id:"CarTotal", name:"Total carnitine",        lo:25, hi:75,  unit:"µmol/L"},
   {id:"CarEst",   name:"Esterified carnitine",   lo:0,  hi:25,  unit:"µmol/L"},
-  {id:"CarRatio", name:"Acyl/free carnitine ratio", lo:0, hi:0.4, unit:"ratio"},
+  {id:"CarRatio", name:"Acyl/free carnitine ratio", lo:0, hi:0.4, unit:"ratio", ref:["miller-2021-acylcarnitine"]},
 ];
 const UAG_ANALYTES = [
   {id:"HG",   name:"Hexanoylglycine",            lo:0, hi:0.5,  unit:"mmol/mol Cr"},
@@ -168,43 +220,43 @@ const MISC_ANALYTES = [
 export const ANALYTE_MAP = {};
 export const AC_RATIOS=[
   // Existing
-  {id:"C8C10",    name:"C8/C10 ratio",           lo:0, hi:2.0,  unit:"ratio"},  // MCAD: C8>>C10 → ratio high
-  {id:"C14_1C16", name:"C14:1/C16 ratio",        lo:0, hi:0.08, unit:"ratio"},  // VLCAD: C14:1 high vs C16
-  {id:"C3C2",     name:"C3/C2 ratio",            lo:0, hi:0.15, unit:"ratio"},  // PA/MMA: elevated
-  {id:"C0LC",     name:"C0/(C16+C18) ratio",     lo:0, hi:40,   unit:"ratio"},  // CPT1: high (low long-chain, high C0)
+  {id:"C8C10",    name:"C8/C10 ratio",           lo:0, hi:2.0,  unit:"ratio", ref:["miller-2021-acylcarnitine"]},  // MCAD: C8>>C10 → ratio high
+  {id:"C14_1C16", name:"C14:1/C16 ratio",        lo:0, hi:0.08, unit:"ratio", ref:["miller-2021-acylcarnitine"]},  // VLCAD: C14:1 high vs C16
+  {id:"C3C2",     name:"C3/C2 ratio",            lo:0, hi:0.15, unit:"ratio", ref:["miller-2021-acylcarnitine","gavrilov-2020-clir"]},  // PA/MMA: elevated
+  {id:"C0LC",     name:"C0/(C16+C18) ratio",     lo:0, hi:40,   unit:"ratio", ref:["miller-2021-acylcarnitine"]},  // CPT1: high (low long-chain, high C0)
   // New — evidence-based
-  {id:"C16OHC16", name:"C16-OH/C16 ratio",       lo:0, hi:0.04, unit:"ratio"},  // LCHAD: C16-OH disproportionately high; Ibdah et al., NEJM 1999
-  {id:"C5DCC8",   name:"C5DC/C8 ratio",          lo:0, hi:0.8,  unit:"ratio"},  // GA-I vs MCAD discriminator: GA-I C5DC>>C8; Kolker et al. 2006
-  {id:"C5C3",     name:"C5/C3 ratio",            lo:0, hi:0.15, unit:"ratio"},  // IVA: C5 disproportionate vs C3; distinguishes IVA from PA/MMA
-  {id:"C14_1C14", name:"C14:1/C14 ratio",        lo:0, hi:0.5,  unit:"ratio"},  // VLCAD: C14:1 > C14 is characteristic; Strauss et al. 2007
+  {id:"C16OHC16", name:"C16-OH/C16 ratio",       lo:0, hi:0.04, unit:"ratio", ref:["ibdah-1999-lchad"]},  // LCHAD: C16-OH disproportionately high; Ibdah et al., NEJM 1999
+  {id:"C5DCC8",   name:"C5DC/C8 ratio",          lo:0, hi:0.8,  unit:"ratio", ref:["kolker-2011-ga1"]},  // GA-I vs MCAD discriminator: GA-I C5DC>>C8; Kolker et al. 2006
+  {id:"C5C3",     name:"C5/C3 ratio",            lo:0, hi:0.15, unit:"ratio", ref:["miller-2021-acylcarnitine"]},  // IVA: C5 disproportionate vs C3; distinguishes IVA from PA/MMA
+  {id:"C14_1C14", name:"C14:1/C14 ratio",        lo:0, hi:0.5,  unit:"ratio", refPending:"Strauss et al. 2007"},  // VLCAD: C14:1 > C14 is characteristic; Strauss et al. 2007
   {id:"C3C16",    name:"C3/(C16+C18) ratio",     lo:0, hi:0.5,  unit:"ratio"},  // Useful PA/MMA axis relative to long-chain pool
   // Miller 2021 ACMG additions
-  {id:"C14_1C12_1",name:"C14:1/C12:1 ratio",      lo:0, hi:3.0,  unit:"ratio"},  // VLCAD: typically >3; mildly elevated in LCHAD/TFP and ketosis
-  {id:"C16C18_1C2",name:"(C16+C18:1)/C2 ratio",   lo:0, hi:0.25, unit:"ratio"},  // Long-chain FAO burden: CPT2/CACT/VLCAD elevate this; Miller 2021
+  {id:"C14_1C12_1",name:"C14:1/C12:1 ratio",      lo:0, hi:3.0,  unit:"ratio", ref:["miller-2021-acylcarnitine"]},  // VLCAD: typically >3; mildly elevated in LCHAD/TFP and ketosis
+  {id:"C16C18_1C2",name:"(C16+C18:1)/C2 ratio",   lo:0, hi:0.25, unit:"ratio", ref:["miller-2021-acylcarnitine"]},  // Long-chain FAO burden: CPT2/CACT/VLCAD elevate this; Miller 2021
   {id:"C4OHC4",   name:"C4-OH/C4 ratio",          lo:0, hi:0.6,  unit:"ratio"},  // SCHAD: C4-OH disproportionately elevated; HADH def
-  {id:"C16OHC18_1OH",name:"C16-OH/C18:1-OH ratio",lo:0, hi:2.0,  unit:"ratio"},  // LCHAD vs TFP: LCHAD has more C16-OH relative to C18:1-OH
-  {id:"C14_1C12", name:"C14:1/C12 ratio",         lo:0, hi:1.5,  unit:"ratio"},  // VLCAD: C14:1 > C12 characteristic; Miller 2021
+  {id:"C16OHC18_1OH",name:"C16-OH/C18:1-OH ratio",lo:0, hi:2.0,  unit:"ratio", ref:["ibdah-1999-lchad"]},  // LCHAD vs TFP: LCHAD has more C16-OH relative to C18:1-OH
+  {id:"C14_1C12", name:"C14:1/C12 ratio",         lo:0, hi:1.5,  unit:"ratio", ref:["miller-2021-acylcarnitine"]},  // VLCAD: C14:1 > C12 characteristic; Miller 2021
 ];
 
 // PAA derived ratios (calculated from entered values)
 export const PAA_RATIOS=[
-  {id:"PheTyr",   name:"Phe/Tyr ratio",           lo:0, hi:3.0,  unit:"ratio"},  // PKU/BH4: >3 suspicious, >10 classic PKU; van Spronsen 2017
+  {id:"PheTyr",   name:"Phe/Tyr ratio",           lo:0, hi:3.0,  unit:"ratio", ref:["sharer-2018-amino-acids"], refPending:"van Spronsen 2017"},  // PKU/BH4: >3 suspicious, >10 classic PKU; van Spronsen 2017
   {id:"CitArg",   name:"Cit/Arg ratio",            lo:0, hi:3.0,  unit:"ratio"},  // ASS1 (CITR1): >4 strongly supports; reported ratio 111 in classic case
-  {id:"OrnCit",   name:"Orn/Cit ratio",            lo:0, hi:3.0,  unit:"ratio"},  // HHH: Orn high, Cit low → ratio very high; Camacho et al. 2006
-  {id:"GlnAla",   name:"Gln/Ala ratio",            lo:0, hi:6.0,  unit:"ratio"},  // Hyperammonemia axis: Gln rises faster than Ala; Walker 2009
+  {id:"OrnCit",   name:"Orn/Cit ratio",            lo:0, hi:3.0,  unit:"ratio", ref:["camacho-2006-hhh"]},  // HHH: Orn high, Cit low → ratio very high; Camacho et al. 2006
+  {id:"GlnAla",   name:"Gln/Ala ratio",            lo:0, hi:6.0,  unit:"ratio", refPending:"Walker 2009"},  // Hyperammonemia axis: Gln rises faster than Ala; Walker 2009
   {id:"GlyCit",   name:"Gly/Cit ratio",            lo:0, hi:5.0,  unit:"ratio"},  // NAGS/CPS1 (no Cit, Gly rises): high Gly with low/normal Cit
-  {id:"GlySer",   name:"Gly/Ser ratio",            lo:0, hi:2.5,  unit:"ratio"},  // NKH (plasma proxy for CSF:plasma ratio): Gly>>Ser; Hamosh 1998
-  {id:"LeuAla",   name:"(Leu+Ile+Val)/Ala ratio",  lo:0, hi:4.0,  unit:"ratio"},  // MSUD: BCAA sum rises disproportionately vs Ala; Strauss 2006
-  {id:"MetHcy",   name:"Met/Hcy ratio",            lo:0, hi:5.0,  unit:"ratio"},  // CBS: both Met and Hcy high (ratio preserved or slightly high); MTHFR: Hcy high, Met low → ratio very low; Mudd 2001
+  {id:"GlySer",   name:"Gly/Ser ratio",            lo:0, hi:2.5,  unit:"ratio", refDisputed:"Hamosh 1998 (PMID 9580775) is an NKH benzoate/dextromethorphan treatment trial and does not establish the Gly/Ser ratio"},  // NKH (plasma proxy for CSF:plasma ratio): Gly>>Ser; Hamosh 1998
+  {id:"LeuAla",   name:"(Leu+Ile+Val)/Ala ratio",  lo:0, hi:4.0,  unit:"ratio", refDisputed:"the 'Strauss 2006' lead does not resolve to an MSUD amino-acid-ratio paper in PubMed"},  // MSUD: BCAA sum rises disproportionately vs Ala; Strauss 2006
+  {id:"MetHcy",   name:"Met/Hcy ratio",            lo:0, hi:5.0,  unit:"ratio", refPending:"Mudd 2001"},  // CBS: both Met and Hcy high (ratio preserved or slightly high); MTHFR: Hcy high, Met low → ratio very low; Mudd 2001
   // Cross-panel ratio (AC + PAA) — computed in runAnalysis
-  {id:"C3Gly",    name:"C3/Glycine ratio",         lo:0, hi:0.015, unit:"ratio"}, // PA: C3/Gly 0% overlap disease vs normal range; available in ~31% of cases; Gavrilov 2020
+  {id:"C3Gly",    name:"C3/Glycine ratio",         lo:0, hi:0.015, unit:"ratio", ref:["gavrilov-2020-clir"]}, // PA: C3/Gly 0% overlap disease vs normal range; available in ~31% of cases; Gavrilov 2020
 ];
 
 // UOA derived ratios
 export const UOA_RATIOS=[
-  {id:"LacPyr",   name:"Lactate/Pyruvate ratio",   lo:0, hi:25,   unit:"ratio"},  // L/P >25 supports PDHC def or respiratory chain disorder; pyruvate dehydrogenase spectrum; Brown 2005
-  {id:"OHGAtoGA", name:"3-OHGA/GA ratio",          lo:0, hi:0.3,  unit:"ratio"},  // GA-I: 3-OHGA is more specific than GA alone; ratio >0.3 supports GA-I over GA-III; Kölker 2011
-  {id:"MMAtoMCA", name:"MMA/MCA ratio",            lo:0, hi:5.0,  unit:"ratio"},  // PA: methylcitric acid (MCA) high vs MMA; in MMA: MMA>>MCA; Coelho 2008
+  {id:"LacPyr",   name:"Lactate/Pyruvate ratio",   lo:0, hi:25,   unit:"ratio", refPending:"Brown 2005"},  // L/P >25 supports PDHC def or respiratory chain disorder; pyruvate dehydrogenase spectrum; Brown 2005
+  {id:"OHGAtoGA", name:"3-OHGA/GA ratio",          lo:0, hi:0.3,  unit:"ratio", ref:["kolker-2011-ga1","gallagher-2018-organic-acids"]},  // GA-I: 3-OHGA is more specific than GA alone; ratio >0.3 supports GA-I over GA-III; Kölker 2011
+  {id:"MMAtoMCA", name:"MMA/MCA ratio",            lo:0, hi:5.0,  unit:"ratio", ref:["gallagher-2018-organic-acids"], refDisputed:"Coelho 2008 (PMID 18385497) is a cblD gene-identification paper in NEJM and does not establish the MMA/MCA ratio"},  // PA: methylcitric acid (MCA) high vs MMA; in MMA: MMA>>MCA; Coelho 2008
 ];
 
 [...PAA_ANALYTES,...UOA_ANALYTES,...AC_ANALYTES,...CAR_ANALYTES,...UAG_ANALYTES,...MISC_ANALYTES,
@@ -1327,7 +1379,9 @@ function scoreDisorder(disorder, values, activePanels, suppressionMap, learnedWe
   const positivePanels=new Set(supporting.filter(m=>m.rawMatchScore>0).map(m=>m.panel));
   const concordanceBonus=positivePanels.size>=3?1.20:positivePanels.size===2?1.10:1.0;
   let finalScore=rawScore*(0.7+0.3*cov)*complexityPenalty*negFactor*concordanceBonus;
-  // Analytical ceiling: cap score for disorders with known poor interlaboratory performance (Oglesbee 2017)
+  // Analytical ceiling: cap score for disorders with known poor interlaboratory
+  // performance (METHOD_REFS.analyticalCeiling — Oglesbee 2018, PMID 28661487;
+  // online-first in 2017, which earlier comments here cited as the year)
   const ceiling=disorder.analyticalCeiling;
   const ceilingHit=ceiling&&finalScore>ceiling;
   if(ceilingHit) finalScore=ceiling;
@@ -1935,7 +1989,13 @@ function detectPatterns(enrichedValues, activePanels){
 // Pre-test probability weights per clinical context.
 // Values are relative log-prior adjustments (0 = no effect; positive = boost; negative = attenuate).
 // Rationale: in a referred symptomatic patient the prior differs substantially from population NBS.
-// Source: Rinaldo et al., Eur J Pediatr 2008; Turgeon et al., JIMD 2014.
+// PROVENANCE: these prior values are EXPERT-SET for this tool and are not
+// derived from published prevalence or pre-test-probability data. That the
+// prior differs between population screening and a symptomatic referral is
+// itself well established (Marquardt 2012, PMID 22766634; Hall 2020, PMID
+// 33073017), but the specific magnitudes below are not. Earlier revisions
+// attributed them to "Rinaldo et al., Eur J Pediatr 2008" and "Turgeon et al.,
+// JIMD 2014"; neither paper exists in PubMed, so those were removed.
 // These shift the final score but are bounded so a strong biochemical signal always wins.
 export const CLINICAL_CONTEXTS = [
   {id:"acute_symptomatic", label:"Acute encephalopathy / decompensation",
@@ -2015,7 +2075,14 @@ export function runAnalysis(values, activeModifiers=[], learnedWeights=null, cli
 // This gives the score a direct statistical interpretation:
 //   LR_product > 10  → strong evidence
 //   LR_product > 100 → very strong evidence
-// Source: Norris et al., J Inherit Metab Dis 2007; Turgeon et al., JIMD 2014.
+// PROVENANCE (METHOD_REFS.lrProduct): the >10 / >100 interpretive bands are the
+// standard diagnostic-test likelihood-ratio thresholds (Jaeschke 1994, PMID
+// 8309035); treating post-analytical interpretation as likelihood-based rather
+// than cutoff-based follows CLIR (Marquardt 2012, PMID 22766634). The product
+// itself is THIS TOOL'S OWN construction — it is not a published algorithm and
+// has not been externally validated. Earlier revisions of this file attributed
+// it to "Norris et al., JIMD 2007" and "Turgeon et al., JIMD 2014"; neither
+// paper exists in PubMed, so those attributions were removed.
 // NOTE: LR is computed only for analytes that were entered AND are abnormal in the
 // expected direction. Missing analytes are excluded (uninformative under naive Bayes).
 function scoreLRProduct(disorderResult){
@@ -2610,7 +2677,7 @@ function ResultCard({result,rank}){
             {hasLearnedAdjust&&<span className="text-[10px] text-violet-600 bg-violet-50 border border-violet-200 px-1.5 py-0.5 rounded font-semibold">model-adjusted</span>}
             {hasSuppressed&&<span className="text-[10px] text-orange-600 bg-orange-50 border border-orange-200 px-1.5 py-0.5 rounded font-semibold">⚠ context-modified</span>}
             {hasNegEvidence&&<span className="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold" title={`${result.negEarned.toFixed(1)}/${result.negPoss.toFixed(1)} negative-evidence weight: normal analytes in run panels reduce this score`}>↓ neg-evidence</span>}
-            {result.ceilingHit&&<span className="text-[10px] text-rose-700 bg-rose-50 border border-rose-200 px-1.5 py-0.5 rounded font-semibold" title={`Score capped at ${Math.round(result.analyticalCeiling*100)}% — real-world analytic sensitivity is limited for this disorder (Oglesbee 2017)`}>⚠ sensitivity-capped</span>}
+            {result.ceilingHit&&<span className="text-[10px] text-rose-700 bg-rose-50 border border-rose-200 px-1.5 py-0.5 rounded font-semibold" title={`Score capped at ${Math.round(result.analyticalCeiling*100)}% — real-world analytic sensitivity is limited for this disorder (Oglesbee 2018, PMID 28661487)`}>⚠ sensitivity-capped</span>}
             {warningCount>0&&<span className="text-[10px] text-orange-700 font-bold">· {warningCount} warning{warningCount>1?"s":""}</span>}
           </div>
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
@@ -2632,7 +2699,7 @@ function ResultCard({result,rank}){
           {result.lrProduct&&result.lrProduct.lrProduct>=2&&(
             <div className="text-right text-[10px] font-mono font-bold mt-0.5"
               style={{color:result.lrProduct.lrProduct>=100?"#15803d":result.lrProduct.lrProduct>=10?"#d97706":"#64748b"}}
-              title={`Naive Bayes LR product across ${result.lrProduct.nAnalytes} abnormal analyte(s). LR >10 = strong evidence; >100 = very strong. Source: Norris et al. JIMD 2007.`}>
+              title={`Naive Bayes LR product across ${result.lrProduct.nAnalytes} abnormal analyte(s). LR >10 = strong evidence; >100 = very strong (Jaeschke 1994, PMID 8309035). The product is this tool's own construction, not a validated published algorithm.`}>
               LR {result.lrProduct.lrProduct>=1000?"≥1000":result.lrProduct.lrProduct>=100?result.lrProduct.lrProduct.toFixed(0):result.lrProduct.lrProduct.toFixed(1)}×
             </div>
           )}
@@ -2816,6 +2883,94 @@ function ResultCard({result,rank}){
               </div>
             );
           })()}
+          <ProvenanceBlock result={result}/>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── PROVENANCE BLOCK ────────────────────────────────────────
+// Shows, for one result, where its evidence comes from: the source behind each
+// supporting marker, and the source behind each scoring mechanism that actually
+// fired on this result. Markers with no recorded source are listed explicitly
+// as unsourced — a clinician should be able to see which parts of a ranking
+// rest on published evidence and which rest on expert curation alone.
+function ProvenanceBlock({result}){
+  const [open,setOpen]=useState(false);
+
+  const rows=result.supporting.map(m=>{
+    const keys=[...new Set([...(m.ref||[]),...(m.analyte?.ref||[])])];
+    const pending=m.refPending||m.analyte?.refPending||null;
+    return {label:m.analyte?.name??m.id, panel:m.panel, keys, pending};
+  });
+  const sourced=rows.filter(r=>r.keys.length).length;
+
+  // Only list mechanisms that actually affected THIS result.
+  const methods=[];
+  if(result.supporting.some(m=>m.covariateZ!=null)) methods.push("covariateModel");
+  if(result.ceilingHit) methods.push("analyticalCeiling");
+  if(result.lrProduct&&result.lrProduct.lrProduct>=2) methods.push("lrProduct");
+  methods.push("tailModel");
+
+  const allKeys=[...new Set([...rows.flatMap(r=>r.keys),...methods.flatMap(k=>METHOD_REFS[k]?.ref??[])])];
+
+  return(
+    <div className="border-t border-slate-100 pt-2.5">
+      <button onClick={()=>setOpen(o=>!o)}
+        className="w-full flex items-center gap-2 text-left group"
+        aria-expanded={open}>
+        <span className="text-[10px] uppercase tracking-widest font-bold text-slate-400 group-hover:text-slate-600">Evidence &amp; provenance</span>
+        <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${sourced===rows.length&&rows.length>0?"bg-emerald-50 text-emerald-700 border border-emerald-200":sourced>0?"bg-amber-50 text-amber-700 border border-amber-200":"bg-slate-100 text-slate-500 border border-slate-200"}`}>
+          {sourced}/{rows.length} markers sourced
+        </span>
+        <span className="text-[9px] text-slate-400">· {allKeys.length} reference{allKeys.length===1?"":"s"}</span>
+        <svg className={`w-3 h-3 text-slate-300 ml-auto transition-transform ${open?"rotate-180":""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+
+      {open&&(
+        <div className="mt-2 space-y-3">
+          {rows.length>0&&(
+            <div>
+              <div className="text-[9px] uppercase tracking-widest font-bold text-slate-300 mb-1">Marker sources</div>
+              <div className="space-y-1">
+                {rows.map((r,i)=>(
+                  <div key={i} className="flex items-baseline gap-2 flex-wrap text-[11px]">
+                    <span className="text-[9px] font-bold text-slate-300 w-7 flex-shrink-0">{r.panel}</span>
+                    <span className="text-slate-600 flex-1 min-w-[7rem]">{r.label}</span>
+                    <SourceChips refs={r.keys}/>
+                    {r.pending&&(
+                      <span className="text-[9px] italic text-amber-600" title="Attribution carried over from an earlier code comment; not yet resolved to a PMID or DOI.">
+                        unverified: {r.pending}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div>
+            <div className="text-[9px] uppercase tracking-widest font-bold text-slate-300 mb-1">Method sources</div>
+            <div className="space-y-1">
+              {methods.map(k=>{
+                const M=METHOD_REFS[k]; if(!M) return null;
+                return(
+                  <div key={k} className="flex items-baseline gap-2 flex-wrap text-[11px]">
+                    <span className="text-slate-600 flex-1 min-w-[7rem]" title={M.claim}>{M.label}</span>
+                    <SourceChips refs={M.ref}/>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <p className="text-[10px] text-slate-400 leading-relaxed">
+            Reference intervals, signature weights and context priors are expert-curated for this tool and are
+            <span className="font-semibold text-slate-500"> not individually traced to published values</span>. Chips link to PubMed. This is decision support, not a diagnosis.
+          </p>
         </div>
       )}
     </div>
@@ -4603,7 +4758,7 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
               const activePanelCount=Object.values(panelCounts).filter(c=>c>0).length;
               if(activePanelCount===1) issues.push({level:"info",text:"Only a single panel has been entered. Multi-panel interpretation (amino acids + organic acids + acylcarnitines) provides substantially more diagnostic power. Sharer 2018, Miller 2021."});
               // Check if carnitine panel missing when AC entered
-              if(panelCounts.AC>3&&panelCounts.CAR===0) issues.push({level:"info",text:"Acylcarnitine panel entered without free/total carnitine. Add carnitine data to distinguish primary from secondary carnitine depletion (Oglesbee 2017)."});
+              if(panelCounts.AC>3&&panelCounts.CAR===0) issues.push({level:"info",text:"Acylcarnitine panel entered without free/total carnitine. Add carnitine data to distinguish primary from secondary carnitine depletion (Miller 2021, PMID 33071282)."});
               // Check fasting state not specified
               if(!demo?.fasting&&panelCounts.PAA>0) issues.push({level:"info",text:"Fasting state not specified. Amino acid levels (particularly BCAA, alanine, glycine) are significantly affected by postprandial status. Indicate fasting state in demographics for optimal interpretation."});
               // No issues
@@ -4773,8 +4928,8 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
                 </div>
                 <div>
                   <div className="font-bold text-slate-700 mb-1">LR product &amp; clinical context</div>
-                  The <span className="font-bold">LR ×</span> figure is a naive Bayes likelihood ratio product across all abnormal analytes (Norris et al., JIMD 2007). It gives the score a direct statistical interpretation: LR &gt;10 = strong evidence, &gt;100 = very strong.<br/><br/>
-                  The <span className="font-bold">Context</span> dropdown applies a pre-test probability prior that shifts rankings based on the clinical presentation (Turgeon et al., JIMD 2014). Biochemical signal always dominates — context provides a tiebreaker when signals are similar.
+                  The <span className="font-bold">LR ×</span> figure is a naive Bayes likelihood ratio product across all abnormal analytes. The &gt;10 = strong / &gt;100 = very strong bands are the standard interpretive thresholds for diagnostic likelihood ratios (<RefLink k="jaeschke-1994-likelihood-ratios"/>); scoring by likelihood rather than by fixed cut-off follows CLIR (<RefLink k="marquardt-2012-clir"/>). The product itself is this tool&apos;s own construction — <span className="font-semibold text-slate-700">not a published, externally validated algorithm</span>.<br/><br/>
+                  The <span className="font-bold">Context</span> dropdown applies a pre-test probability prior that shifts rankings based on the clinical presentation. This prior is expert-set and bounded to ±0.25; it is not derived from published prevalence data. Biochemical signal always dominates — context provides a tiebreaker when signals are similar.
                 </div>
               </div>
             </details>
