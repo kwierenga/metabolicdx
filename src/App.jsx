@@ -142,7 +142,14 @@ const UOA_ANALYTES = [
   {id:"Uracil", name:"Uracil",                     lo:0,hi:5,   unit:"mmol/mol Cr"},  // DPD (DPYD) def
   {id:"Thymine",name:"Thymine",                    lo:0,hi:3,   unit:"mmol/mol Cr"},  // DPD (DPYD) def
   {id:"OroticU",name:"Orotic acid (urine quantitative)",lo:0,hi:3,unit:"mmol/mol Cr"}, // hereditary orotic aciduria (UMPS)
-  {id:"SAICAr", name:"Succinyladenosine (SAICAr)",  lo:0,hi:0.1, unit:"mmol/mol Cr"},  // ADSL deficiency; normally absent; any detectable value is pathognomonic
+  // ADSL deficiency accumulates TWO distinct dephosphorylated substrates, not one.
+  // Until 2026-07-30 a single field was labelled "Succinyladenosine (SAICAr)",
+  // which conflated them; their ratio is the severity discriminator, so one field
+  // could not carry both. Names per Jurecka 2015 (PMID 25112391). Both are
+  // normally absent, so any detectable value is pathognomonic. The lo/hi here is
+  // laboratory convention, not a sourced interval — see PANEL_STANDARDS.
+  {id:"SAICAr", name:"SAICA riboside (SAICAr)",     lo:0,hi:0.1, unit:"mmol/mol Cr"},  // succinylaminoimidazole carboxamide riboside
+  {id:"SAdo",   name:"Succinyladenosine (S-Ado)",   lo:0,hi:0.1, unit:"mmol/mol Cr"},  // the other ADSL substrate; required for the severity ratio
   {id:"23DHMB", name:"2,3-Dihydroxy-2-methylbutyric acid", lo:0,hi:0.5, unit:"mmol/mol Cr"},  // HIBCH/ECHS1 deficiencies (valine catabolism); Gallagher ACMG 2018
   {id:"SSCys",  name:"S-Sulfocysteine",             lo:0,hi:0.5, unit:"µmol/L"},       // Sulfite oxidase / MoCo def (plasma AA); normally absent; any detectable value is pathognomonic
   {id:"VLA",    name:"Vanillactic acid (urine)",    lo:0,hi:3,   unit:"mmol/mol Cr"},  // AADC deficiency: urinary marker; also elevated in MAOA deficiency, B6 deficiency
@@ -257,6 +264,16 @@ export const UOA_RATIOS=[
   {id:"LacPyr",   name:"Lactate/Pyruvate ratio",   lo:0, hi:25,   unit:"ratio", refPending:"Brown 2005"},  // L/P >25 supports PDHC def or respiratory chain disorder; pyruvate dehydrogenase spectrum; Brown 2005
   {id:"OHGAtoGA", name:"3-OHGA/GA ratio",          lo:0, hi:0.3,  unit:"ratio", ref:["kolker-2011-ga1","gallagher-2018-organic-acids"]},  // GA-I: 3-OHGA is more specific than GA alone; ratio >0.3 supports GA-I over GA-III; Kölker 2011
   {id:"MMAtoMCA", name:"MMA/MCA ratio",            lo:0, hi:5.0,  unit:"ratio", ref:["gallagher-2018-organic-acids"], refDisputed:"Coelho 2008 (PMID 18385497) is a cblD gene-identification paper in NEJM and does not establish the MMA/MCA ratio"},  // PA: methylcitric acid (MCA) high vs MMA; in MMA: MMA>>MCA; Coelho 2008
+  // ADSL severity discriminator. Direction is INVERTED relative to every other
+  // ratio here: a LOW ratio marks the SEVERE phenotype (Jaeken 1988 — ratio 1–2
+  // in seven severely retarded patients, ~5 in the one markedly milder patient),
+  // hence `flagWhen:"low"` and a `lo` threshold rather than a `hi` one. Only
+  // computable when both succinylpurines are detectable, which is itself
+  // essentially diagnostic of ADSL deficiency — so this never fires on a normal
+  // sample. Not part of any disorder signature: it grades an established
+  // diagnosis, it does not argue for one.
+  {id:"SAdoSAICAr", name:"S-Ado/SAICAr ratio",     lo:2.0, hi:0, unit:"ratio", flagWhen:"low",
+   ref:["jaeken-1988-adsl-ratio","jurecka-2015-adsl"]},
 ];
 
 [...PAA_ANALYTES,...UOA_ANALYTES,...AC_ANALYTES,...CAR_ANALYTES,...UAG_ANALYTES,...MISC_ANALYTES,
@@ -855,7 +872,8 @@ export const ANALYTE_DIST = {
   Lactic: {hS:0.90,hDf:4.0,lS:0.50,lDf:4.0,log:true,hSig:0.8,lSig:0.3}, // non-specific
   Pyruvic:{hS:0.80,hDf:4.0,lS:0.50,lDf:4.0,log:true,hSig:0.8,lSig:0.3},
   // Pathognomonic markers — normally absent, any detectable value is highly specific
-  SAICAr: {hS:0.35,hDf:3.0,lS:0.50,lDf:4.0,log:true,hSig:2.5,lSig:0.3}, // ADSL deficiency: succinyladenosine pathognomonic
+  SAICAr: {hS:0.35,hDf:3.0,lS:0.50,lDf:4.0,log:true,hSig:2.5,lSig:0.3}, // ADSL deficiency: SAICA riboside pathognomonic
+  SAdo:   {hS:0.35,hDf:3.0,lS:0.50,lDf:4.0,log:true,hSig:2.5,lSig:0.3}, // ADSL deficiency: succinyladenosine pathognomonic (same scale as its partner substrate)
   SSCys:  {hS:0.35,hDf:3.0,lS:0.50,lDf:4.0,log:true,hSig:2.5,lSig:0.3}, // Sulfite oxidase / MoCo deficiency: S-sulfocysteine pathognomonic
   "3OMD": {hS:0.40,hDf:3.0,lS:0.50,lDf:4.0,log:true,hSig:2.5,lSig:0.3}, // AADC deficiency: 3-O-methyldopa strongly elevated
   VLA:    {hS:0.50,hDf:3.0,lS:0.50,lDf:4.0,log:true,hSig:2.0,lSig:0.3}, // AADC: vanillactic acid (also B6 deficiency)
@@ -1432,6 +1450,9 @@ function computeUoaRatios(uoa){
   const lac=g("Lactic"),pyr=g("Pyruvic"); if(lac!==null&&pyr!==null&&pyr>0) out.LacPyr=String(lac/pyr);
   const ohga=g("3OHGA"),ga=g("GA"); if(ohga!==null&&ga!==null&&ga>0) out.OHGAtoGA=String(ohga/ga);
   const mma=g("MMA"),mca=g("MCA"); if(mma!==null&&mca!==null&&mca>0) out.MMAtoMCA=String(mma/mca);
+  // Both succinylpurines must be detectable — g() already rejects <=0, so this
+  // ratio simply does not exist for a sample without ADSL deficiency.
+  const sado=g("SAdo"),saicar=g("SAICAr"); if(sado!==null&&saicar!==null&&saicar>0) out.SAdoSAICAr=String(sado/saicar);
   return out;
 }
 
@@ -1446,7 +1467,7 @@ const QC_UNIT_FACTOR = 50; // value > N× ULN (or < lo/N) → likely unit / deci
 // Markers that legitimately reach extreme multiples of the reference limit in disease
 // (pathognomonic overflow) — excluded from the high-multiple unit-error heuristic.
 const QC_EXTREME_OK = new Set(["NAA","5OxoPro","SA","MMA","uGAA","Orotic","OroticU","HGA",
-  "SAICAr","SSCys","MevA","D2HG","2OHglut","3OMD","VLA","Hcy","tHcy"]);
+  "SAICAr","SAdo","SSCys","MevA","D2HG","2OHglut","3OMD","VLA","Hcy","tHcy"]);
 function runQcChecks(values){
   const out=[];
   const num=(p,id)=>{const raw=values?.[p]?.[id];if(raw===""||raw==null)return null;const v=parseFloat(raw);return v;};
@@ -1525,6 +1546,7 @@ const RATIO_INTERP = {
   OHGAtoGA:"GA-I — 3-OH-glutaric more specific than glutaric",
   MMAtoMCA:"MMA vs PA — MMA ≫ methylcitrate favours MMA",
   pGAACr:"GAMT deficiency — GAA / creatine elevated",
+  SAdoSAICAr:"ADSL severity — ratio 1–2 seen in the severe phenotype, ≈5 in milder disease (Jaeken 1988)",
 };
 function diagnosticRatioFlags(values){
   // Reconstruct the same enriched ratio set runAnalysis uses
@@ -1540,9 +1562,20 @@ function diagnosticRatioFlags(values){
   const flags=[];
   for(const [panel,defs,src] of groups){
     for(const def of defs){
-      const meta=ANALYTE_MAP[def.id]; if(!meta||!(meta.hi>0)) continue;
+      const meta=ANALYTE_MAP[def.id]; if(!meta) continue;
       const raw=src?.[def.id]; if(raw==null||raw==="") continue;
-      const v=parseFloat(raw); if(isNaN(v)||v<=meta.hi) continue;
+      const v=parseFloat(raw); if(isNaN(v)) continue;
+      // Most ratios are informative when HIGH. A few (SAdoSAICAr) invert: the low
+      // side carries the meaning, so `fold` is the reciprocal deviation and the
+      // threshold is `lo`. Without this branch an inverted ratio either never
+      // flags or sorts nonsensically against the high-side ones.
+      if(meta.flagWhen==="low"){
+        if(!(meta.lo>0)||v>=meta.lo) continue;
+        flags.push({id:def.id,panel,name:meta.name,value:v,lo:meta.lo,unit:meta.unit,
+          fold:meta.lo/Math.max(v,1e-9),low:true,interp:RATIO_INTERP[def.id]||""});
+        continue;
+      }
+      if(!(meta.hi>0)||v<=meta.hi) continue;
       flags.push({id:def.id,panel,name:meta.name,value:v,hi:meta.hi,unit:meta.unit,fold:v/meta.hi,interp:RATIO_INTERP[def.id]||""});
     }
   }
@@ -4148,11 +4181,77 @@ const TREND_KEY_ANALYTES = {
   CAR:["CarFree","CarTotal"],
   MISC:["Ammonia","Lactate","Glucose","tHcy","BHB"],
 };
+// ─── PATIENT IDENTITY FOR LONGITUDINAL MATCHING ──────────────
+// Trends join a patient's samples on the free-text case label, because that is
+// the only patient identifier the app has. Matching on `label.trim().toLowerCase()`
+// meant a stray double space, a changed accent or a trailing full stop silently
+// started a *second* longitudinal record — and silence is the whole problem: the
+// clinician sees "no prior samples" and cannot tell that from "no match found".
+//
+// Two defences, since neither alone is enough:
+//   1. patientKey() — normalise away the differences that are never meaningful
+//      in a name (case, diacritics, whitespace runs, surrounding punctuation).
+//   2. nearMissKeys() — for the differences that ARE potentially meaningful (a
+//      real typo, a digit change), do not guess. Surface them and let the
+//      clinician decide, so a split record is at least visible.
+
+/** Normalise a case label to a patient key. Empty string when there is no usable label. */
+export function patientKey(label){
+  if(typeof label!=="string") return "";
+  return label
+    .normalize("NFD").replace(/\p{M}/gu,"")             // strip combining marks: é → e, ü → u
+    .toLowerCase()
+    .replace(/[.,;:'"`´]/g,"")                          // punctuation that is never identity
+    .replace(/[_\-/\\]+/g," ")                          // separators → space (hyphen/slash styles vary)
+    .replace(/\s+/g," ")                                // collapse whitespace runs
+    .trim();
+}
+
+/** Levenshtein distance, capped: returns >max as soon as it is certain. */
+function editDistance(a,b,max=2){
+  if(a===b) return 0;
+  if(Math.abs(a.length-b.length)>max) return max+1;
+  let prev=Array.from({length:b.length+1},(_,i)=>i);
+  for(let i=1;i<=a.length;i++){
+    const cur=[i];
+    let best=i;
+    for(let j=1;j<=b.length;j++){
+      cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+      if(cur[j]<best) best=cur[j];
+    }
+    if(best>max) return max+1;   // whole row already past the cap
+    prev=cur;
+  }
+  return prev[b.length];
+}
+
+/**
+ * Labels that look like typo variants of `label` — same patient, split record.
+ * Deliberately conservative: only near-identical keys, never a fuzzy name match,
+ * because merging two genuinely different patients is far worse than splitting one.
+ */
+export function nearMissKeys(label,cases){
+  const key=patientKey(label);
+  if(key.length<3) return [];            // too short to distinguish typo from a different patient
+  const seen=new Map();
+  for(const c of cases||[]){
+    const k=patientKey(c?.label);
+    if(!k||k===key||seen.has(k)) continue;
+    // Allow 1 edit for short keys, 2 for longer ones — proportionate to typo risk.
+    const max=key.length>=8?2:1;
+    if(editDistance(key,k,max)<=max) seen.set(k,c.label);
+  }
+  return [...seen.values()];
+}
+
 function fmtShort(iso){ if(!iso) return "—"; const d=new Date(iso); return isNaN(d.getTime())?"—":d.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"2-digit"}); }
 function TrendsTab({currentLabel,currentValues,currentResults,currentDate,currentId,allCases}){
+  const curKey=patientKey(currentLabel);
   const matchIds=useMemo(()=>(allCases||[])
-    .filter(c=>c.id!==currentId&&c.label&&currentLabel&&c.label.trim().toLowerCase()===currentLabel.trim().toLowerCase())
-    .map(c=>c.id),[allCases,currentLabel,currentId]);
+    .filter(c=>c.id!==currentId&&curKey&&patientKey(c.label)===curKey)
+    .map(c=>c.id),[allCases,curKey,currentId]);
+  const nearMisses=useMemo(()=>nearMissKeys(currentLabel,(allCases||[]).filter(c=>c.id!==currentId)),
+    [allCases,currentLabel,currentId]);
   const [loaded,setLoaded]=useState([]);
   const [busy,setBusy]=useState(false);
   const idsKey=matchIds.join(",");
@@ -4204,6 +4303,19 @@ function TrendsTab({currentLabel,currentValues,currentResults,currentDate,curren
           Trends compares saved cases that share the same <span className="font-semibold">case label / patient ID</span>.
           {currentLabel?<> Save another case with the label <span className="font-mono text-slate-600">“{currentLabel.trim()}”</span> (a different sample date) to build a longitudinal view.</>:<> Give this case a label to enable patient-level tracking.</>}
         </div>
+        {nearMisses.length>0&&
+          <div className="mt-5 mx-auto max-w-md text-left bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+            <div className="text-xs font-bold text-amber-800 mb-1">
+              …but {nearMisses.length} saved case{nearMisses.length>1?"s have":" has"} a nearly identical label
+            </div>
+            <div className="text-xs text-amber-700 leading-relaxed">
+              If {nearMisses.length>1?"any of these are":"this is"} the same patient, the record is currently split in two.
+              Make the labels match exactly to join them.
+              <ul className="mt-2 space-y-0.5 font-mono text-[11px] text-amber-900">
+                {nearMisses.map(l=><li key={l}>• {l}</li>)}
+              </ul>
+            </div>
+          </div>}
       </div>
     );
   }
@@ -4212,6 +4324,11 @@ function TrendsTab({currentLabel,currentValues,currentResults,currentDate,curren
       <div className="flex items-center gap-2">
         <span className="text-sm font-bold text-slate-700">Longitudinal trend</span>
         <span className="text-[11px] text-slate-400">patient “{currentLabel.trim()}” · {timeline.length} timepoint{timeline.length!==1?"s":""}{busy?" · loading…":""}</span>
+        {nearMisses.length>0&&
+          <span className="text-[11px] text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full font-semibold cursor-help"
+            title={`These saved labels are nearly identical but did not join this trend — possibly the same patient under a typo:\n\n${nearMisses.map(l=>`• ${l}`).join("\n")}`}>
+            ⚠ {nearMisses.length} near-miss label{nearMisses.length>1?"s":""} excluded
+          </span>}
       </div>
       {/* Top differential over time */}
       <div className="bg-white border border-slate-200 rounded-xl overflow-x-auto">
@@ -4453,7 +4570,14 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
   const qcIssues=useMemo(()=>runQcChecks(values),[values]);
   const qcErrors=qcIssues.filter(i=>i.severity==="error").length;
   // Trends (Feature 2) — prior saved cases sharing this label (patient ID)
-  const trendMatchCount=useMemo(()=>(allCases||[]).filter(c=>c.id!==init?.id&&c.label&&label&&c.label.trim().toLowerCase()===label.trim().toLowerCase()).length,[allCases,label,init?.id]);
+  const trendMatchCount=useMemo(()=>{
+    const key=patientKey(label);
+    return key?(allCases||[]).filter(c=>c.id!==init?.id&&patientKey(c.label)===key).length:0;
+  },[allCases,label,init?.id]);
+  // Labels one or two characters away from this one — probably the same patient
+  // under a typo, which would split the longitudinal record. Advisory only.
+  const labelNearMisses=useMemo(()=>nearMissKeys(label,(allCases||[]).filter(c=>c.id!==init?.id)),
+    [allCases,label,init?.id]);
 
   const TABS=[
     {id:"data",     label:"Data",     avail:true, warn:qcErrors>0},
@@ -4476,6 +4600,11 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
             className="flex-1 text-base font-semibold text-slate-800 bg-transparent outline-none placeholder-slate-300 min-w-0"/>
           {/* Status chips */}
           <div className="flex items-center gap-2 flex-shrink-0 text-xs text-slate-400">
+            {labelNearMisses.length>0&&
+              <span className="text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full text-xs font-semibold cursor-help"
+                title={`Trends match patients by this label. These saved labels are nearly identical, so they may be the same patient under a typo — which would split the longitudinal record:\n\n${labelNearMisses.map(l=>`• ${l}`).join("\n")}\n\nIf one of these is the same patient, make the labels match exactly.`}>
+                ⚠ {labelNearMisses.length} similar label{labelNearMisses.length>1?"s":""}
+              </span>}
             {ageStr&&<span className="font-medium text-slate-500">{ageStr}</span>}
             {demo.gender&&<span className="font-medium text-slate-500">{demo.gender}</span>}
             <span className="font-medium">{entered} values</span>

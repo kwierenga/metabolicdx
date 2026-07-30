@@ -215,8 +215,8 @@ describe("fabricated citations do not return", () => {
 // make coverage monotonic: raise a floor when you source more data, never lower
 // one. A failure here means provenance was REMOVED, which is the thing to catch.
 const COVERAGE_FLOOR = {
-  signatureMarkers: 106, // of 407
-  ratios: 19, // of 26
+  signatureMarkers: 108, // of 408
+  ratios: 20, // of 27
 };
 
 describe("provenance coverage ratchet", () => {

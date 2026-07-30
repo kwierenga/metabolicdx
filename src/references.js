@@ -234,6 +234,69 @@ export const REFERENCES = {
     pmid: "16940241",
     doi: "10.1203/01.pdr.0000238301.25938.f5",
   },
+
+  // ── ADSL deficiency: the two succinylpurines are DISTINCT metabolites ──
+  // Added 2026-07-30 after this app was found to label a single UOA field
+  // "Succinyladenosine (SAICAr)" — conflating the two dephosphorylated
+  // substrates of adenylosuccinate lyase. Jurecka 2015 states it plainly:
+  // "two dephosphorylated substrates of ADSL enzyme: succinylaminoimidazole
+  // carboxamide riboside (SAICAr) and succinyladenosine (S-Ado)". Their RATIO
+  // is the severity discriminator, so one field could not carry both.
+  "jurecka-2015-adsl": {
+    authors: "Jurecka A, Zikanova M, Kmoch S, Tylki-Szymańska A.",
+    title: "Adenylosuccinate lyase deficiency",
+    journal: "J Inherit Metab Dis",
+    year: 2015,
+    volume: "38",
+    issue: "2",
+    pages: "231–242",
+    pmid: "25112391",
+    doi: "10.1007/s10545-014-9755-y",
+  },
+  "jaeken-1988-adsl-ratio": {
+    // The primary source for the S-Ado/SAICA-riboside ratio as a severity
+    // discriminator, and it gives the actual numbers: in the seven severely
+    // retarded patients the ratio was "between 1 and 2" in CSF, plasma and
+    // urine; in the one markedly milder patient it was "around 5". Note the
+    // direction — a LOW ratio marks the severe phenotype.
+    authors:
+      "Jaeken J, Wadman SK, Duran M, van Sprang FJ, Beemer FA, Holl RA, Theunissen PM, de Cock P, van den Bergh F, Vincent MF, et al.",
+    title: "Adenylosuccinase deficiency: an inborn error of purine nucleotide synthesis",
+    journal: "Eur J Pediatr",
+    year: 1988,
+    volume: "148",
+    issue: "2",
+    pages: "126–131",
+    pmid: "3234432",
+    doi: "10.1007/BF00445919",
+  },
+  "krijt-2013-adsl-deribosylation": {
+    // Analytical caveat worth surfacing: bacterial deribosylation of SAICAr and
+    // S-Ado in urine produces FALSE-NEGATIVE screening. Argues against treating
+    // a normal urine purine screen as excluding ADSL deficiency.
+    authors: "Krijt J, Skopova V, Adamkova V, Cermakova R, Jurecka A, Kmoch S, Zikanova M.",
+    title:
+      "The need for vigilance: false-negative screening for adenylosuccinate lyase deficiency caused by deribosylation of urinary biomarkers",
+    journal: "Clin Biochem",
+    year: 2013,
+    volume: "46",
+    issue: "18",
+    pages: "1899–1901",
+    pmid: "24183879",
+    doi: "10.1016/j.clinbiochem.2013.10.018",
+  },
+  "donti-2016-adsl-metabolomics": {
+    authors:
+      "Donti TR, Cappuccio G, Hubert L, Neira J, Atwal PS, Miller MJ, Cardon AL, Sutton VR, Porter BE, Baumer FM, Wangler MF, Sun Q, Emrick LT, Elsea SH.",
+    title:
+      "Diagnosis of adenylosuccinate lyase deficiency by metabolomic profiling in plasma reveals a phenotypic spectrum",
+    journal: "Mol Genet Metab Rep",
+    year: 2016,
+    volume: "8",
+    pages: "61–66",
+    pmid: "27504266",
+    doi: "10.1016/j.ymgmr.2016.07.007",
+  },
 };
 
 // Panel-level analytical standards.

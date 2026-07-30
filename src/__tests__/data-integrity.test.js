@@ -130,6 +130,49 @@ describe("followUp / narrative shape", () => {
   });
 });
 
+describe("analyte identity is not conflated", () => {
+  // Until 2026-07-30 one UOA field was labelled "Succinyladenosine (SAICAr)".
+  // S-Ado and SAICA riboside are the two *different* dephosphorylated substrates
+  // of adenylosuccinate lyase (Jurecka 2015, PMID 25112391), and their ratio is
+  // the ADSL severity discriminator (Jaeken 1988, PMID 3234432) — so a single
+  // field could not represent both, and the ratio was uncomputable.
+  it("SAICAr and SAdo are separate analytes with non-overlapping names", () => {
+    expect(ANALYTE_MAP.SAICAr, "SAICAr missing from ANALYTE_MAP").toBeDefined();
+    expect(ANALYTE_MAP.SAdo, "SAdo missing from ANALYTE_MAP").toBeDefined();
+    // The SAICAr field must not claim to be succinyladenosine, and vice versa.
+    expect(ANALYTE_MAP.SAICAr.name).not.toMatch(/succinyladenosine/i);
+    expect(ANALYTE_MAP.SAdo.name).not.toMatch(/SAICA/i);
+    expect(ANALYTE_MAP.SAICAr.name).toMatch(/SAICA/i);
+    expect(ANALYTE_MAP.SAdo.name).toMatch(/succinyladenosine/i);
+  });
+
+  it("ADSL scores both succinylpurines, since either alone is diagnostic", () => {
+    const adsl = DISORDERS.find((d) => d.id === "ADSL");
+    const ids = new Set((adsl?.signature ?? []).map((s) => s.id));
+    expect(ids.has("SAICAr"), "ADSL no longer scores SAICA riboside").toBe(true);
+    expect(ids.has("SAdo"), "ADSL does not score succinyladenosine").toBe(true);
+  });
+
+  it("the S-Ado/SAICAr severity ratio is defined and flags on the LOW side", () => {
+    const r = ANALYTE_MAP.SAdoSAICAr;
+    expect(r, "SAdoSAICAr ratio missing").toBeDefined();
+    // A low ratio marks the SEVERE phenotype (Jaeken 1988: 1–2 severe, ~5 mild).
+    // If this ever flips to a high-side flag the interpretation inverts.
+    expect(r.flagWhen).toBe("low");
+    expect(r.lo).toBeGreaterThan(0);
+    expect(uoaR.has("SAdoSAICAr"), "ratio not registered in UOA_RATIOS").toBe(true);
+  });
+
+  it("the severity ratio is not part of any disorder signature", () => {
+    // It grades an established diagnosis; scoring it would let a *low* value
+    // argue for ADSL in a patient with no succinylpurines at all.
+    const used = DISORDERS.flatMap((d) => [...(d.signature ?? []), ...(d.negativeEvidence ?? [])])
+      .filter((m) => m.id === "SAdoSAICAr")
+      .map((m) => m.id);
+    expect(used, "SAdoSAICAr must not be scored as evidence").toEqual([]);
+  });
+});
+
 describe("modifiers & clinical contexts have stable ids", () => {
   it("MODIFIERS and CLINICAL_CONTEXTS ids are unique non-empty strings", () => {
     const bad = [];
