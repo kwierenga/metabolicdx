@@ -347,8 +347,17 @@ async function resolveByTitle(c) {
    */
   const content = [...tokens(cleanTitle)].sort((a, b) => b.length - a.length);
   const anded = (n) => content.slice(0, n).map((w) => `${w}[Title]`).join(" AND ");
+
+  // A generic title crowds itself out. "Malonyl coenzyme A decarboxylase
+  // deficiency" is the exact title of the 1984 first description and also the
+  // opening words of half the papers written since, so relevance ranking buries
+  // the original below its own descendants. Narrowing to the cited year finds it
+  // immediately. Tried early but not exclusively — the corpus's years are
+  // sometimes wrong too, which is what the later unscoped attempts are for.
+  const near = c.year ? ` AND ${c.year - 1}:${c.year + 1}[dp]` : "";
   const queries = [
     `"${cleanTitle.replace(/["]/g, "")}"[Title]`,
+    near && content.length >= 2 ? anded(Math.min(4, content.length)) + near : null,
     content.length >= 3 ? anded(Math.min(5, content.length)) : null,
     content.length >= 3 ? anded(3) : null,
     norm(cleanTitle).split(" ").slice(0, 10).join(" "),

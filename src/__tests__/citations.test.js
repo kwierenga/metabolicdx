@@ -172,6 +172,47 @@ describe("the generated provenance map", () => {
   });
 });
 
+describe("ordinal citation markers", () => {
+  // The narratives cite references as "[2,16]" — 1,276 such markers. Nothing in
+  // the data model ties a marker to the reference list, so deleting a fabricated
+  // reference silently renumbers every later one and re-points every marker past
+  // it at the wrong paper. That is a worse defect than the fabricated citation
+  // was: a wrong attribution reads as sourced.
+  const markers = (d) =>
+    Object.values(d.narrative ?? {})
+      .filter((v) => typeof v === "string")
+      .flatMap((v) => [...v.matchAll(/\[([\d,\s]+)\]/g)])
+      .flatMap((m) => m[1].split(",").map((x) => parseInt(x.trim(), 10)))
+      .filter(Number.isFinite);
+
+  it("never point past the end of their reference list", () => {
+    const bad = [];
+    for (const d of DISORDERS) {
+      const n = (d.narrative?.references ?? []).length;
+      for (const m of new Set(markers(d))) {
+        if (m < 1 || m > n) bad.push(`${d.id}: marker [${m}] but ${n} references`);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("leave no reference uncited, which is how a stale renumbering shows up", () => {
+    // Not strictly an error — but in this corpus every reference was written to
+    // support something, so an orphan usually means a marker was renumbered past
+    // it. Listed rather than asserted per disorder so the failure is readable.
+    const orphaned = [];
+    for (const d of DISORDERS) {
+      const refs = d.narrative?.references ?? [];
+      if (!refs.length) continue;
+      const cited = new Set(markers(d));
+      if (!cited.size) continue;   // some narratives carry no markers at all
+      for (let i = 1; i <= refs.length; i++) if (!cited.has(i)) orphaned.push(`${d.id}[${i}]`);
+    }
+    // A ratchet, like the others: this was the state when the check was added.
+    expect(orphaned.length, `uncited references: ${orphaned.slice(0, 12).join(", ")}`).toBeLessThanOrEqual(180);
+  });
+});
+
 describe("knowledge-base citation health", () => {
   // Ratchets, in the opposite direction from provenance.test.js's COVERAGE_FLOOR:
   // these are defects, so the count may fall but never rise. Lower them as bad
