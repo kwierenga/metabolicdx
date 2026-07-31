@@ -45,6 +45,14 @@ const UNINDEXED = /\b(?:In:|eds?\.|OMMBID|GeneReviews|ACT Sheets?|BIOMDB|Availab
  * the first is a fabricated reference, the second is a normal one.
  */
 function level(c, v) {
+  // A book chapter, GeneReviews entry or ACT sheet is not in PubMed, so no
+  // PubMed verdict short of a positive identification means anything about it.
+  // Without this, a chapter that happens to share vocabulary with some indexed
+  // paper gets a WEAK_MATCH and is withheld as fabricated — which is how the
+  // OMMBID pyrimidine-metabolism chapter cited by UMPS came to be suppressed.
+  const indexable = !UNINDEXED.test(c.raw) && !(c.year && c.year < 1966);
+  if (!indexable && v.status !== "RESOLVED" && v.status !== "TITLE_PARAPHRASE") return "unverified";
+
   switch (v.status) {
     case "RESOLVED":
     case "TITLE_PARAPHRASE":
