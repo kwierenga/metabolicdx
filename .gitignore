@@ -25,3 +25,9 @@ dist-ssr
 
 .vercel
 .env*.local
+
+# Citation resolution: the caches are committed (they make the check
+# reproducible and keep CI off NCBI for citations already resolved), but the
+# report and the offline request batches are derived from them.
+scripts/citation-report.json
+scripts/.ecitmatch/
