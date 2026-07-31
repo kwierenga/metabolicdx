@@ -271,15 +271,43 @@ function authorAppears(c, hit) {
 }
 
 /**
- * Judge a candidate against its fetched summary. Pure — no network.
+ * What is this candidate paper, relative to the citation? The single source of
+ * truth for that judgement — every path that produces a verdict calls this.
  *
- * A title that does not match splits into two very different findings, and the
- * author list is what separates them. The corpus routinely shortens titles
- * ("Liver transplantation for classical MSUD" for a paper called "...classical
- * maple syrup urine disease: long-term follow-up in 37 patients") — same paper,
- * cosmetic. But when the author is absent from the record too, the volume/page
- * point at an unrelated paper, and the citation's coordinates were invented.
+ * It used to be written out twice, once here and once in --reclassify, which
+ * meant a citation's verdict could depend on which route reached it rather than
+ * on the evidence.
+ *
+ * The two routes do warrant different rules, though, because they start from
+ * different evidence:
+ *
+ *  - Coordinates (a cited PMID, or ecitmatch on journal/year/volume/page) point
+ *    at one specific paper. The only question is whether the cited title matches
+ *    it. The corpus routinely shortens titles — "Liver transplantation for
+ *    classical MSUD" for a paper called "...classical maple syrup urine disease:
+ *    long-term follow-up in 37 patients" — so a confirmed author rescues a low
+ *    title score. Neither matching means the coordinates were invented.
+ *
+ *  - A title search finds a paper *by its words*, so a good title score proves
+ *    nothing on its own: the search was optimised to produce it. Agreement on
+ *    year or author is the independent evidence. Without either, a high-scoring
+ *    hit is a lookalike — which is not a hypothetical, it is how "Sodium
+ *    benzoate therapy for NKH" came back as a paper on electroconvulsive
+ *    therapy augmentation.
  */
+function classify({ sim, byAuthor, yearOff, via }) {
+  if (via === "cited-pmid" || via === "ecitmatch") {
+    return sim >= 0.45 ? "RESOLVED"
+      : byAuthor === true ? "TITLE_PARAPHRASE"
+      : via === "cited-pmid" ? "PMID_TITLE_MISMATCH"
+      : "WRONG_PAPER";
+  }
+  if (sim >= 0.55) return yearOff <= 1 ? "RESOLVED" : byAuthor === true ? "YEAR_MISMATCH" : "WEAK_MATCH";
+  if (byAuthor === true) return yearOff > 1 ? "YEAR_MISMATCH" : "TITLE_PARAPHRASE";
+  return "WEAK_MATCH";
+}
+
+/** Judge a candidate against its fetched summary. Pure — no network. */
 function verdictFromSummary(c, cand, hit) {
   if (!hit) {
     return cand.via === "cited-pmid"
@@ -288,11 +316,7 @@ function verdictFromSummary(c, cand, hit) {
   }
   const sim = similarity(c.title, hit.title);
   const byAuthor = authorAppears(c, hit);
-  const status =
-    sim >= 0.45 ? "RESOLVED"
-    : byAuthor === true ? "TITLE_PARAPHRASE"
-    : cand.via === "cited-pmid" ? "PMID_TITLE_MISMATCH"
-    : "WRONG_PAPER";
+  const status = classify({ sim, byAuthor, yearOff: 0, via: cand.via });
   return {
     status, pmid: hit.pmid, foundTitle: hit.title, foundJournal: hit.journal, foundYear: hit.year,
     foundAuthors: String(hit.authors).slice(0, 120), authorAppears: byAuthor,
@@ -307,11 +331,28 @@ async function resolveByTitle(c) {
 
   // Strip leading org prefixes ("ACMG — ...") the corpus adds.
   const cleanTitle = c.title.replace(/^[A-Z]{2,10}\s*[—–-]\s*/, "").trim();
+
+  /**
+   * Progressive relaxation, exact phrase first.
+   *
+   * The middle two matter more than they look. A long title submitted as one
+   * phrase returns *nothing* from PubMed — it drops stopwords from its phrase
+   * index, so "the human tyrosine aminotransferase gene mapped to the long arm
+   * of chromosome"[Title] scores zero hits for a paper that plainly exists
+   * (PMID 2870017). Descriptive titles are exactly the long ones, so a
+   * phrase-only strategy fails hardest on the citations most worth checking and
+   * reports them as fabricated. ANDing the most distinctive words instead is
+   * immune to both stopwords and to the corpus's habit of rewording titles;
+   * precision is recovered afterwards by the similarity gate, not by the query.
+   */
+  const content = [...tokens(cleanTitle)].sort((a, b) => b.length - a.length);
+  const anded = (n) => content.slice(0, n).map((w) => `${w}[Title]`).join(" AND ");
   const queries = [
     `"${cleanTitle.replace(/["]/g, "")}"[Title]`,
-    norm(cleanTitle).split(" ").slice(0, 12).join(" ") + "[Title]",
+    content.length >= 3 ? anded(Math.min(5, content.length)) : null,
+    content.length >= 3 ? anded(3) : null,
     norm(cleanTitle).split(" ").slice(0, 10).join(" "),
-  ];
+  ].filter(Boolean);
   let best = null, failures = 0;
   for (const q of queries) {
     const ids = await esearch(q, 5);
@@ -342,13 +383,12 @@ async function resolveByTitle(c) {
     return { status: "NOT_FOUND", note: `no PubMed title resembles "${cleanTitle.slice(0, 80)}"`, bestSimilarity: best ? +best.similarity.toFixed(2) : 0, bestTitle: best?.title ?? null };
   }
   const yearOff = c.year && best.year ? Math.abs(c.year - best.year) : 0;
-  const status =
-    best.similarity < 0.55 ? "WEAK_MATCH"
-    : yearOff > 1 ? "YEAR_MISMATCH"
-    : "RESOLVED";
+  const byAuthor = authorAppears(c, best);
+  const status = classify({ sim: best.similarity, byAuthor, yearOff, via: "title-search" });
   return {
     status, pmid: best.pmid, foundTitle: best.title, foundJournal: best.journal,
-    foundYear: best.year, similarity: +best.similarity.toFixed(2), yearOffset: yearOff,
+    foundYear: best.year, foundAuthors: String(best.authors ?? "").slice(0, 120),
+    authorAppears: byAuthor, similarity: +best.similarity.toFixed(2), yearOffset: yearOff,
     via: "title-search",
   };
 }
@@ -398,13 +438,11 @@ if (process.argv.includes("--reclassify")) {
     const sim = similarity(c.title, hit.title);
     const byAuthor = authorAppears(c, hit);
     const yearOff = c.year && hit.year ? Math.abs(c.year - hit.year) : 0;
-    const status =
-      sim >= 0.45 ? (via === "title-search" && yearOff > 1 ? "YEAR_MISMATCH" : "RESOLVED")
-      : byAuthor === true ? "TITLE_PARAPHRASE"
-      : via === "cited-pmid" ? "PMID_TITLE_MISMATCH"
-      : via === "ecitmatch" ? "WRONG_PAPER"
-      : sim >= 0.35 ? "WEAK_MATCH"
-      : "NOT_FOUND";
+    // Below the floor the title search would never have offered this paper at
+    // all, so it is a non-match rather than a weak one.
+    const status = via === "title-search" && sim < 0.35 && byAuthor !== true
+      ? "NOT_FOUND"
+      : classify({ sim, byAuthor, yearOff, via });
     if (status !== prev.status) moves.set(`${prev.status} -> ${status}`, (moves.get(`${prev.status} -> ${status}`) ?? 0) + 1);
     cache[cacheKey(c)] = {
       ...prev, status, similarity: +sim.toFixed(2), yearOffset: yearOff, via,
@@ -436,6 +474,7 @@ if (!process.argv.includes("--report") && !process.argv.includes("--reclassify")
   const { summaries, failed } = await esummaryBulk([...new Set([...cands.values()].map((v) => v.pmid))]);
 
   const needTitleSearch = [];
+  const fallback = new Map();   // citation -> verdict to keep if no better one is found
   let unchecked = 0;
   for (const c of todo) {
     const cand = cands.get(c);
@@ -443,18 +482,34 @@ if (!process.argv.includes("--report") && !process.argv.includes("--reclassify")
     // out of the cache entirely is what makes the next run pick it up again.
     if (cand && failed.has(cand.pmid)) { unchecked++; continue; }
     const verdict = cand ? verdictFromSummary(c, cand, summaries.get(cand.pmid)) : null;
-    if (verdict) store(c, verdict);
-    else needTitleSearch.push(c);
+    if (!verdict) { needTitleSearch.push(c); continue; }
+    // Coordinates that land on a different paper settle only that the
+    // coordinates are wrong — not that the cited paper is imaginary. Since this
+    // corpus's dominant failure is a real paper wrapped in invented journal,
+    // volume and page numbers, stopping here would condemn exactly the citations
+    // most likely to be recoverable. Look for the cited title before concluding.
+    if (verdict.status === "WRONG_PAPER" || verdict.status === "PMID_TITLE_MISMATCH") {
+      fallback.set(c, verdict);
+      needTitleSearch.push(c);
+      continue;
+    }
+    store(c, verdict);
   }
   writeFileSync(CACHE, JSON.stringify(cache, null, 0));
   console.error(`  ${todo.length - needTitleSearch.length - unchecked} settled by PMID; ${needTitleSearch.length} need a title search${unchecked ? `; ${unchecked} left for next run (summary request failed)` : ""}`);
 
   // 3. The rest need a title search each — the slow part, so run them through
   //    the gate concurrently rather than end to end.
-  let n = 0, searchFailed = 0;
+  // A title search that actually located the paper beats a fallback verdict
+  // built from coordinates that pointed somewhere else.
+  const FOUND = new Set(["RESOLVED", "TITLE_PARAPHRASE", "WEAK_MATCH", "YEAR_MISMATCH"]);
+  let n = 0, searchFailed = 0, rescued = 0;
   await pool(needTitleSearch, async (c) => {
     const v = await resolveByTitle(c);
-    if (v.status === "SEARCH_FAILED") searchFailed++;
+    const fb = fallback.get(c);
+    if (FOUND.has(v.status)) { if (fb) rescued++; store(c, v); }
+    else if (fb) store(c, fb);
+    else if (v.status === "SEARCH_FAILED") searchFailed++;
     else store(c, v);
     if (++n % 20 === 0) {
       writeFileSync(CACHE, JSON.stringify(cache, null, 0));
@@ -462,6 +517,7 @@ if (!process.argv.includes("--report") && !process.argv.includes("--reclassify")
     }
   }, MAX_INFLIGHT);
   writeFileSync(CACHE, JSON.stringify(cache, null, 0));
+  if (rescued) console.error(`  ${rescued} recovered by title search after their coordinates pointed at another paper`);
   if (searchFailed) console.error(`  ${searchFailed} left unresolved: PubMed did not answer. Re-run to finish.`);
 }
 

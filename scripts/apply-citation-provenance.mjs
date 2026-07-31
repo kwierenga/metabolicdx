@@ -50,8 +50,14 @@ function level(c, v) {
     case "TITLE_PARAPHRASE":
       return "verified";
     case "YEAR_MISMATCH":
-    case "WEAK_MATCH":
       return "check";
+    // A half-matching title whose author is not on the paper is not a match at
+    // all. Inspected as a class, these are topically adjacent strangers —
+    // "SUGCT-related glutaric aciduria type III" answered by a paper on
+    // KCNT1-related epilepsies, "human glutathione synthetase" by one on
+    // leukotriene C4 synthase. None of them support the claim they are attached
+    // to, so they are withheld with the rest.
+    case "WEAK_MATCH":
     case "WRONG_PAPER":
     case "PMID_TITLE_MISMATCH":
     case "PMID_INVALID":

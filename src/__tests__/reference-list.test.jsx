@@ -13,7 +13,7 @@
 import { describe, it, expect } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import ReferenceList from "../components/ReferenceList.jsx";
-import { CITATION_LEVELS, isWithheld } from "../citations.js";
+import { CITATION_LEVELS, isWithheld, citationText } from "../citations.js";
 import { DISORDERS } from "../disorders.js";
 
 const render = (refs) => renderToStaticMarkup(<ReferenceList refs={refs} accent="#1d4ed8"/>);
@@ -75,10 +75,16 @@ describe("ReferenceList", () => {
       if (!withheld.length) continue;
       const html = render(refs);
       for (const raw of withheld) {
-        // The title is the distinctive part — journal names recur legitimately.
-        const title = raw.split(". ")[1];
-        if (!title || title.length < 25) continue;
-        expect(html, `${d.id} leaked withheld citation: ${title.slice(0, 60)}`).not.toContain(title);
+        const text = citationText(raw);
+        // Two assertions, because neither alone is right. A title prefix is not
+        // distinctive enough — OAT cites both "Gyrate atrophy of the choroid and
+        // retina" (verified) and a withheld citation whose title begins with the
+        // same words, so matching on the prefix flags the verified one as a
+        // leak. The full string plus the trailing coordinates — journal, year,
+        // volume, pages — are what someone could actually copy and chase.
+        expect(html, `${d.id} rendered a withheld citation in full`).not.toContain(text);
+        const coords = text.slice(-40);
+        expect(html, `${d.id} leaked withheld coordinates: ${coords}`).not.toContain(coords);
         checked++;
       }
     }

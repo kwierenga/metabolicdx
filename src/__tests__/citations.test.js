@@ -181,8 +181,18 @@ describe("knowledge-base citation health", () => {
   // Counted per unique reference *string*, which is both what the provenance map
   // is keyed by and what a reader actually sees on a disorder page — not per
   // unique paper, which undercounts a bad citation repeated across disorders.
-  const WRONG_CEILING = 250;      // point at nothing, or at an unrelated paper
-  const VERIFIED_FLOOR = 585;     // title matches the paper PubMed holds
+  //
+  // Re-baselined 2026-07-31, and the ceiling went UP (250 -> 325) — which for a
+  // ratchet needs saying out loud. Nothing regressed in the knowledge base; the
+  // resolver was wrong in both directions and both were fixed at once. It could
+  // not find long titles at all (PubMed drops stopwords from its phrase index),
+  // so real papers were being withheld; and it accepted any high-scoring title
+  // hit, so ~75 lookalikes were being displayed as merely needing a detail check
+  // — a paper on electroconvulsive therapy standing in for one on sodium
+  // benzoate in NKH. Verified rose 585 -> 617 on the first count, withheld rose
+  // on the second. From here the ceiling only falls.
+  const WRONG_CEILING = 325;      // point at nothing, or at an unrelated paper
+  const VERIFIED_FLOOR = 617;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {
