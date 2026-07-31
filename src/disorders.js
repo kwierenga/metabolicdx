@@ -2834,9 +2834,9 @@ export const DISORDERS = [
      references:[
        "Chambliss KL et al. Molecular cloning of the mature NAD⁺-dependent succinic semialdehyde dehydrogenase from rat and human. J Biol Chem. 1995;270(1):461–7. PMID 7814412.",
        "Marcadier JL et al. Mutations in ALDH6A1 encoding methylmalonate semialdehyde dehydrogenase are associated with dysmyelination and transient methylmalonic aciduria. Orphanet J Rare Dis. 2013;8:98. PMID 23835272.",
-       "Roe CR et al. 3-Hydroxyisobutyric aciduria in a child: defect in valine metabolism. Pediatrics. 1987;82(4):538–42.",
-       "Chambliss KL et al. A new case of methylmalonate semialdehyde dehydrogenase deficiency, a condition associated with β-alanine and β-aminoisobutyrate accumulation. Mol Genet Metab. 2001;74(3):364–72.",
-       "Gray RG et al. 3-Hydroxyisobutyric aciduria: report of a new case. J Inherit Metab Dis. 1995;18(1):69–71.",
+       "Ko FJ et al. 3-Hydroxyisobutyric aciduria: an inborn error of valine metabolism. Pediatr Res. 1991;30(4):322–6. PMID 1956714.",
+       "Chambliss KL et al. Molecular characterization of methylmalonate semialdehyde dehydrogenase deficiency. J Inherit Metab Dis. 2000;23(5):497–504. PMID 10947204.",
+       "Gray RG et al. Methylmalonic semialdehyde dehydrogenase deficiency: demonstration of defective valine and beta-alanine metabolism and reduced malonic semialdehyde dehydrogenase activity in cultured fibroblasts. Biochem Med Metab Biol. 1987;38(1):121–4. PMID 3117077.",
        "Pollitt RJ et al. 3-Hydroxyisobutyric aciduria: heterogeneity within a common biochemical phenotype. J Inherit Metab Dis. 1985;8(Suppl 2):75–6. PMID 3939535.",
        "Sass JO et al. 3-Hydroxyisobutyrate aciduria and mutations in the ALDH6A1 gene coding for methylmalonate semialdehyde dehydrogenase. J Inherit Metab Dis. 2012;35(3):437–42. PMID 21863277.",
      ]},
