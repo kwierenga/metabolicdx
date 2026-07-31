@@ -20,6 +20,53 @@ const refsOf = (d) => {
   return { narrative, followUp };
 };
 
+/**
+ * Every claim that cites a given reference, as the reader meets it.
+ *
+ * The point is the defect no verification can reach: a citation can resolve
+ * perfectly against PubMed and still not support the sentence pointing at it.
+ * Repairing a garbled citation makes that worse, not better — the reference
+ * becomes real, so it stops looking suspect, while the claim it now carries may
+ * have nothing to do with it. Reading the two side by side is the only check.
+ *
+ *   node scripts/show-citations.mjs --claims TYR2 MLYCD ...
+ */
+function claimsFor(d) {
+  const out = new Map();   // 1-based ref index -> claim sentences
+  for (const [field, text] of Object.entries(d.narrative ?? {})) {
+    if (typeof text !== "string") continue;
+    // Split on sentence ends that are followed by a capital or end-of-string,
+    // so "3-Methylglutaconic aciduria." style mid-sentence periods survive.
+    for (const sentence of text.split(/(?<=\])\s*(?=[A-Z])|(?<=\.)\s+(?=[A-Z])/)) {
+      for (const m of sentence.matchAll(/\[([\d,\s]+)\]/g)) {
+        for (const n of m[1].split(",").map((x) => parseInt(x.trim(), 10)).filter(Number.isFinite)) {
+          if (!out.has(n)) out.set(n, []);
+          out.get(n).push(`${field}: ${sentence.trim()}`);
+        }
+      }
+    }
+  }
+  return out;
+}
+
+if (process.argv[2] === "--claims") {
+  for (const want of process.argv.slice(3)) {
+    const d = DISORDERS.find((x) => x.id === want);
+    if (!d) { console.error(`no disorder "${want}"`); continue; }
+    const refs = d.narrative?.references ?? [];
+    const claims = claimsFor(d);
+    console.log(`\n════════ ${d.id} — ${d.name}`);
+    refs.forEach((raw, i) => {
+      const n = i + 1;
+      const cites = claims.get(n) ?? [];
+      console.log(`\n[${n}] ${raw}`);
+      if (!cites.length) { console.log(`     (cited by nothing)`); return; }
+      for (const c of cites) console.log(`  <- ${c}`);
+    });
+  }
+  process.exit(0);
+}
+
 const id = process.argv[2];
 
 if (!id) {
