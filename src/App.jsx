@@ -7,6 +7,7 @@ import {
   REFERENCES, METHOD_REFS, PANEL_STANDARDS,
   getRef, refUrl, formatRef, shortRef, resolveRefs,
 } from "./references.js";
+import ReferenceList from "./components/ReferenceList.jsx";
 export { DISORDERS, KB_VERSION, KB_DATE };
 export { REFERENCES, METHOD_REFS, PANEL_STANDARDS };
 
@@ -3568,16 +3569,7 @@ function DisordersScreen({onBack}){
                                   if(!merged.includes(r)) merged.push(r);
                                 }
                                 if(merged.length===0) return null;
-                                return(
-                                  <div className="px-5 py-3 border-b border-slate-100">
-                                    <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{color:cc}}>References</p>
-                                    <ol className="text-[10px] text-slate-500 leading-relaxed space-y-0.5 list-decimal list-inside">
-                                      {merged.map((r,i)=>(
-                                        <li key={i} className="font-mono leading-snug">{r}</li>
-                                      ))}
-                                    </ol>
-                                  </div>
-                                );
+                                return <ReferenceList refs={merged} accent={cc}/>;
                               })()}
                             </div>
                           ):(
