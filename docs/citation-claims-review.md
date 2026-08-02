@@ -146,6 +146,29 @@ PMID 8643571 is *Adenine phosphoribosyltransferase-deficient mice develop
 2,8-dihydroxyadenine nephrolithiasis*. APRT deficiency is a different purine
 disorder from HPRT deficiency. Same shape as the ALDH6A1 error.
 
+### 7a. MCC[3] — resolved 2026-08-02
+
+Replaced with Koeberl DD et al, *Evaluation of 3-methylcrotonyl-CoA carboxylase
+deficiency detected by tandem mass spectrometry newborn screening*, JIMD 2003
+(PMID 12872837) — a genuine 3-MCC newborn-screening evaluation.
+
+**Still needs checking:** the sentence gives the incidence as "~1:36,000 in the
+USA". No source stating that figure was found. Koeberl supports the existence of
+an NBS-detected cohort, not that specific rate. Either confirm the number against
+a source or drop the precision.
+
+### 8a. HPRT — resolved 2026-08-02, and a second problem underneath
+
+The APRT mouse paper is deleted. But the claim it supported —
+
+> **treatment:** Gene therapy is in preclinical development [9,10]
+
+was cited to `[9]` as well, which is Pozzo's *Deep brain stimulation in
+Lesch-Nyhan syndrome*. Neither citation concerned gene therapy. The markers have
+been removed, so the sentence now stands unsourced, which is at least honest.
+**It needs either a real preclinical gene-therapy source or deletion** — searching
+found nothing convincing for Lesch-Nyhan specifically.
+
 ### 9. SUCLA2 — a glycogen storage disease III paper
 
 PMID 21857385 is *Successful treatment of severe cardiomyopathy in glycogen
