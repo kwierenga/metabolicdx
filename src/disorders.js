@@ -547,7 +547,7 @@ export const DISORDERS = [
        "Erez A et al. Requirement of argininosuccinate lyase for systemic nitric oxide production. Nat Med. 2011;17(12):1619–26. PMID 22081021.",
        "Ficicioglu C et al. Clinical and biochemical features of argininosuccinic aciduria. Mol Genet Metab. 2009;98(3):273–7. PMID 19635676.",
        "Shih VE. Early dietary management in an infant with argininosuccinase deficiency. Pediatrics. 1969;44(3):326–31.",
-       "O'Brien WE. Isolation and characterisation of argininosuccinate synthetase from human liver. Biochemistry. 1979;18(23):5353–6. PMID 518841.",
+       "Balmer C et al. Mutations and polymorphisms in the human argininosuccinate lyase (ASL) gene. Hum Mutat. 2014;35(1):27–35. PMID 24166829.",
        "Mercimek-Mahmutoglu S et al. Argininosuccinic aciduria — clinical, biochemical and molecular findings. Eur J Pediatr. 2010;169(11):1377–82.",
        "Tuchman M et al. Cross-sectional multicenter study of patients with urea cycle disorders in the United States. Mol Genet Metab. 2008;94(4):397–402. PMID 18562231.",
        "Ficicioglu C et al. Hepatic complications in argininosuccinic aciduria. JIMD Rep. 2016;30:103–9.",
@@ -2143,7 +2143,7 @@ export const DISORDERS = [
      treatment:"Not required. Recognition is important to avoid unnecessary dietary restriction, parental anxiety and misdiagnosis of other conditions [1,2].",
      prognosis:"Excellent. Normal life expectancy and development. The Quebec cohort follow-up studies through adulthood have demonstrated no long-term adverse outcomes attributable to histidinaemia [4,5].",
      references:[
-       "Levy HL et al. Screening the 'normal' population in Massachusetts for phenylketonuria. N Engl J Med. 1970;282(26):1455–8. PMID 5419295.",
+       "Widhalm K, Virmani K. Long-term follow-up of 58 patients with histidinemia treated with a histidine-restricted diet: no effect of therapy. Pediatrics. 1994;94(6 Pt 1):861–6. PMID 7971002.",
        "Taylor RG et al. Histidinaemia: an update. Mol Genet Metab. 2005;85(1):1–13.",
        "Ghadimi H et al. A familial disturbance of histidine metabolism. N Engl J Med. 1961;265:221–4. PMID 13704885.",
        "Coulombe JT et al. A neonatal screening test for histidinaemia. Am J Med Genet. 1983;14(2):235–9.",

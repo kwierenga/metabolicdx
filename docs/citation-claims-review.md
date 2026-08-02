@@ -176,6 +176,37 @@ storage disease type III with D,L-3-hydroxybutyrate*. It may have been cited for
 the ketone-body therapy principle rather than the disorder, which would be
 defensible — but that intent is not visible to a reader.
 
+### 10. HYDROXYPROLINEMIA[3] — a different disorder, and no replacement found
+
+> **introduction:** Hydroxyprolinaemia (OMIM #237000) was first described in the
+> 1960s [3]
+
+`[3]` is Efron ML, *Familial hyperprolinaemia: report of a second case…*, N Engl J
+Med 1965 (PMID 14290545). **Hyper**prolinaemia (PRODH) and **hydroxy**prolinaemia
+(PRODH2) are different disorders. Efron did describe hydroxyprolinaemia in the
+same period, but that paper does not surface in PubMed searches and the only
+indexed hydroxyprolinaemia papers are a 1989 Indian J Pediatr note and a 1998
+Japanese review — neither a 1960s first description.
+
+Left in place because replacing it with a paper that does not support "first
+described in the 1960s" would trade one mis-citation for another. Either the
+Efron hydroxyprolinaemia paper needs finding by hand, or the sentence should
+drop the attribution.
+
+### Checked and found sound (relevance screen)
+
+- **SULFOX[10]** cites a cyclic pyranopterin monophosphate trial in *molybdenum
+  cofactor deficiency* — flagged because it never mentions sulfite oxidase. It is
+  correct: the sentence explicitly contrasts SUOX with MoCo type A, which does
+  have a specific treatment, as the reason to distinguish them.
+- **MCC[4]** cites a biotinidase deficiency review, because the claim is that
+  biotin-responsive 3-MCC usually indicates biotinidase or holocarboxylase
+  synthetase deficiency.
+- Historical first descriptions predate their modern disease names — Menkes 1954
+  for MSUD, Carson & Neill for homocystinuria, Baron 1956 for Hartnup — and
+  eponymous syndromes share no vocabulary with their gene (HIDS for mevalonate
+  kinase deficiency, Brown-Vialetto-Van Laere for the riboflavin transporter).
+
 ## One PMID stamped on two different papers
 
 The mechanism by which a fabricated citation survives stage-1 verification: it
