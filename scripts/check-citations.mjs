@@ -302,7 +302,16 @@ function classify({ sim, byAuthor, yearOff, via }) {
       : via === "cited-pmid" ? "PMID_TITLE_MISMATCH"
       : "WRONG_PAPER";
   }
-  if (sim >= 0.55) return yearOff <= 1 ? "RESOLVED" : byAuthor === true ? "YEAR_MISMATCH" : "WEAK_MATCH";
+  // A cited author demonstrably absent from the paper is evidence *against* the
+  // match, and generic title scaffolding clears 0.55 on its own: "Molecular
+  // characterization of novel SCOT mutations" scored 0.57 against "Molecular
+  // characterization of four novel mutations causing factor VII deficiency", and
+  // "Recommendations for the diagnosis and management of MCAD deficiency"
+  // against one for factor X deficiency. Both are coagulation papers that were
+  // being cited under metabolic disorders with live PMIDs. When the author
+  // disagrees, the title has to be more than shared scaffolding.
+  const floor = byAuthor === false ? 0.75 : 0.55;
+  if (sim >= floor) return yearOff <= 1 ? "RESOLVED" : byAuthor === true ? "YEAR_MISMATCH" : "WEAK_MATCH";
   if (byAuthor === true) return yearOff > 1 ? "YEAR_MISMATCH" : "TITLE_PARAPHRASE";
   return "WEAK_MATCH";
 }
