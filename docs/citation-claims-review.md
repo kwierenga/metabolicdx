@@ -113,6 +113,77 @@ and deleted, leaving it on van Karnebeek 2014 alone. Worth confirming that the
 discovery paper actually reports founder variants in consanguineous populations,
 rather than that detail having come from the deleted references.
 
+## Found by the relevance screen (2026-07-31)
+
+`scripts/check-relevance.mjs` fetches each verified citation's abstract and asks
+whether the paper mentions anything specific to the disorder — gene, enzyme,
+disorder name, signature analytes. Of 700 disorder-specific verified citations:
+**43 mention nothing specific, 96 mention exactly one term.**
+
+It is a screen, not a verdict, and it has honest false positives: historical
+first descriptions (Menkes 1954 for MSUD, Carson & Neill for homocystinuria) do
+not use the modern disease name, eponymous syndromes (HIDS for mevalonate
+kinase deficiency, Brown-Vialetto-Van Laere for riboflavin transporter) do not
+share vocabulary with the gene, and a claim can legitimately be *about* another
+disorder — MCC's biotinidase reference is correct precisely because the sentence
+concerns biotinidase deficiency.
+
+Confirmed defects so far:
+
+### 7. MCC[3] — an MCAD paper supporting a 3-MCC incidence figure
+
+> **introduction:** 3-MCC deficiency … has an NBS incidence of ~1:36,000 in the
+> USA — making it one of the most commonly detected organic acid disorders [1,3]
+
+`[3]` is Wilcken B et al, *Outcome of neonatal screening for medium-chain
+acyl-CoA dehydrogenase deficiency in Australia*, Lancet 2007 (PMID 17208640) —
+a different disorder, a different country, and an outcome study rather than an
+incidence figure for 3-MCC.
+
+### 8. HPRT — an APRT paper under Lesch-Nyhan
+
+PMID 8643571 is *Adenine phosphoribosyltransferase-deficient mice develop
+2,8-dihydroxyadenine nephrolithiasis*. APRT deficiency is a different purine
+disorder from HPRT deficiency. Same shape as the ALDH6A1 error.
+
+### 9. SUCLA2 — a glycogen storage disease III paper
+
+PMID 21857385 is *Successful treatment of severe cardiomyopathy in glycogen
+storage disease type III with D,L-3-hydroxybutyrate*. It may have been cited for
+the ketone-body therapy principle rather than the disorder, which would be
+defensible — but that intent is not visible to a reader.
+
+## One PMID stamped on two different papers
+
+The mechanism by which a fabricated citation survives stage-1 verification: it
+resolves to a real paper that is *already correctly cited elsewhere*, so the
+identifier is valid and the titles overlap enough to pass.
+
+The clearest case is **PMID 12777559**. GA1 cites it correctly as Schulze's
+German 250,000-neonate cohort. HARTNUP cites the same PMID as *"Wilcken B et al.
+Incidence of inborn errors of metabolism by expanded newborn screening in a
+Californian cohort"* — wrong author, wrong country, wrong title. One of the two
+is fabricated.
+
+`citations.test.js` now detects this class by comparing parsed author and title
+across every reference sharing a PMID, ignoring cosmetic differences. Ten
+conflicts exist today and are ratcheted; each needs its source checked by hand:
+
+    PMID 12777559  GA1.narrative[5]      vs HARTNUP.narrative[6]   ← confirmed
+    PMID 15896654  LCHAD.narrative[4]    vs LCHAD.followUp[2]
+    PMID 10677294  MAT1A.narrative[0]    vs MAT1A.narrative[5]
+    PMID 26684475  GAMT.narrative[0]     vs GAMT.narrative[8]
+    PMID 22424739  SCAD.narrative[2]     vs SCAD.followUp[1]
+    PMID 18178665  MSUD.narrative[6]     vs MSUD.followUp[2]
+    PMID 17208640  MCC.narrative[2]      vs MCAD.narrative[0]      ← see entry 7
+    PMID 33325055  ARG1.narrative[7]     vs ARG1.followUp[2]
+    PMID 19217814  CPT1.narrative[4]     vs CPT1.followUp[1]
+    PMID 15896654  LCHAD.narrative[4]    vs LCHAD.followUp[2]
+
+Several are likely benign — an abbreviated title in one place and the full title
+in the other — but each needs looking at, because the benign and the fabricated
+cases are indistinguishable from the string alone.
+
 ## Two attributions changed during repair
 
 Not defects, but judgement calls made while renumbering, and someone should agree

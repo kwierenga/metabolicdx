@@ -31,3 +31,6 @@ dist-ssr
 # report and the offline request batches are derived from them.
 scripts/citation-report.json
 scripts/.ecitmatch/
+
+scripts/.abstract-cache.json
+scripts/relevance-report.json

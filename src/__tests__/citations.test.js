@@ -172,6 +172,61 @@ describe("the generated provenance map", () => {
   });
 });
 
+describe("one PMID, one paper", () => {
+  it("does not stamp the same PMID onto two different citations", () => {
+    // How a fabricated citation survives verification: it resolves to a real
+    // paper that is already correctly cited elsewhere, so the PMID is valid and
+    // the titles overlap enough to pass. HARTNUP cited PMID 12777559 as
+    // "Wilcken B et al. Incidence of inborn errors of metabolism by expanded
+    // newborn screening in a Californian cohort" — the PMID belongs to Schulze's
+    // German cohort, which GA1 cites correctly. Same identifier, two papers,
+    // only one of them real.
+    //
+    // Genuine duplicates are fine and common — the same reference cited by
+    // several disorders. What is not fine is two *different* strings claiming
+    // the same PMID.
+    // The same paper legitimately appears with cosmetic differences — an "ACMG —"
+    // prefix on one copy, a trailing bracketed note on another. Those are not
+    // what this is looking for, so compare the parsed author and title rather
+    // than the raw string, and flag only a genuine disagreement about which
+    // paper the identifier denotes.
+    const words = (s) => new Set(String(s || "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w.length > 3));
+    const overlap = (a, b) => {
+      const A = words(a), B = words(b);
+      if (!A.size || !B.size) return 1;
+      let n = 0; for (const w of A) if (B.has(w)) n++;
+      return (2 * n) / (A.size + B.size);
+    };
+    const surname = (c) => String(c?.matchAuthor || c?.firstAuthor || "").toLowerCase().split(/\s+/)[0] ?? "";
+
+    const byPmid = new Map();
+    for (const { raw, where } of allRefs()) {
+      const pmid = citedPmid(raw);
+      if (!pmid) continue;
+      if (!byPmid.has(pmid)) byPmid.set(pmid, []);
+      byPmid.get(pmid).push({ raw, where, parsed: parseCitation(raw) });
+    }
+
+    const conflicts = [];
+    for (const [pmid, variants] of byPmid) {
+      const [first, ...rest] = variants;
+      for (const other of rest) {
+        const sameAuthor = surname(first.parsed) === surname(other.parsed);
+        const titleAgrees = overlap(first.parsed?.title, other.parsed?.title) >= 0.6;
+        if (sameAuthor && titleAgrees) continue;
+        conflicts.push(
+          `PMID ${pmid}: ${first.where} "${String(first.parsed?.title).slice(0, 55)}" vs ${other.where} "${String(other.parsed?.title).slice(0, 55)}"`);
+      }
+    }
+    // A ratchet rather than an assertion of zero: ten of these exist today and
+    // each needs a source checked by hand, which is not something to block the
+    // build on. Listed in docs/citation-claims-review.md. Lower as they are
+    // resolved; this may never rise.
+    const CONFLICT_CEILING = 10;
+    expect(conflicts.length, conflicts.join("\n")).toBeLessThanOrEqual(CONFLICT_CEILING);
+  });
+});
+
 describe("ordinal citation markers", () => {
   // The narratives cite references as "[2,16]" — 1,276 such markers. Nothing in
   // the data model ties a marker to the reference list, so deleting a fabricated
