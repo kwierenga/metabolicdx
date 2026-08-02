@@ -205,7 +205,7 @@ export const DISORDERS = [
        "Puffenberger EG. Genetic heritage of the Old Order Mennonites. Am J Med Genet C. 2003;121C(1):18–31. PMID 12888983.",
        "Chuang DT, Shih VE. Maple syrup urine disease (branched-chain ketoaciduria). In: Scriver et al., OMMBID, ch. 87.",
        "Schadewaldt P et al. Significance of L-alloisoleucine in plasma for diagnosis of MSUD. Clin Chem. 1999;45(10):1734–40. PMID 10508118.",
-       "Oglesbee D et al. Second-tier test for maple syrup urine disease. Clin Chem. 2008;54(3):542–9. PMID 18178665.",
+       "Oglesbee D et al. Second-tier test for quantification of alloisoleucine and branched-chain amino acids in dried blood spots to improve newborn screening for maple syrup urine disease (MSUD). Clin Chem. 2008;54(3):542–9. PMID 18178665.",
        "Strauss KA et al. Classical maple syrup urine disease and brain development. Mol Genet Metab. 2010;99(4):333–45. PMID 20061171.",
        "Aevarsson A et al. Crystal structure of human BCKDC E1. Structure. 2000;8(3):277–91. PMID 10745006.",
        "Quinonez SC, Thoene JG. Dihydrolipoamide dehydrogenase deficiency. GeneReviews®. 2014 [updated 2021].",
@@ -427,7 +427,7 @@ export const DISORDERS = [
      treatment:"Sodium benzoate (250–750 mg/kg/day) conjugates glycine with benzoyl-CoA → hippurate (excreted) and reduces plasma glycine; CSF levels partially follow [7]. Dextromethorphan (3–35 mg/kg/day, a non-competitive NMDA antagonist) or ketamine have been used to mitigate NMDA-receptor excitotoxicity [8]. Despite therapy, classic NKH outcomes remain poor; treatment is supportive rather than curative. Attenuated NKH responds better to benzoate + dextromethorphan combinations, with measurable gains in seizure control and development [9]. AVOID VALPROATE in suspected/confirmed NKH — it inhibits GCS directly and worsens the biochemical picture.",
      prognosis:"Classic NKH: ~30% neonatal mortality; virtually all survivors have profound intellectual disability and intractable epilepsy [1,10]. Attenuated NKH: wide spectrum from near-normal IQ to moderate delay. The single best predictor of outcome is the CSF:plasma glycine ratio at diagnosis [4]. Genetic counselling: prenatal diagnosis is available; carrier testing is essential for future pregnancies.",
      references:[
-       "Van Hove JLK et al. Non-ketotic hyperglycinemia. GeneReviews®. 2002 [updated 2023]. PMID 11792251.",
+       "Van Hove JLK et al. Non-ketotic hyperglycinemia. GeneReviews®. 2002 [updated 2023].",
        "Hamosh A, Johnston MV. Nonketotic hyperglycinemia. In: Scriver et al., OMMBID, ch. 90.",
        "Kure S et al. Molecular analysis of the glycine cleavage system in NKH. Hum Mutat. 2006;27(4):343–52. PMID 16450403.",
        "Hoover-Fong JE et al. Natural history of nonketotic hyperglycinemia in 65 patients. Neurology. 2004;63(10):1847–53. PMID 15557500.",
@@ -592,7 +592,7 @@ export const DISORDERS = [
      prognosis:"Without treatment: progressive spastic quadriparesis, severe intellectual disability. With diet + scavengers: arrest of progression in early-treated patients, stabilisation in later-treated. Pegzilarginase offers the first disease-modifying therapy specifically for ARG1 deficiency [8].",
      references:[
        "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230. PMID 30982989.",
-       "Sin YY et al. Arginase-1 deficiency. GeneReviews®. 2017 [updated 2023]. PMID 29961498.",
+       "Sin YY et al. Arginase-1 deficiency. GeneReviews®. 2017 [updated 2023].",
        "Scaglia F et al. Clinical consequences of urea cycle enzyme deficiencies and potential links to arginine and nitric oxide metabolism. J Nutr. 2004;134(10 Suppl):2775S–82S. PMID 15465784.",
        "Iyer RK et al. Mouse model of human arginase deficiency. Mol Cell Biol. 2002;22(13):4491–8. PMID 12052859.",
        "Spector EB et al. Immunologic studies of arginase in tissues of normal human adult and arginase-deficient patients. Pediatr Res. 1983;17(12):941–4. PMID 6419196.",
@@ -846,7 +846,7 @@ export const DISORDERS = [
      treatment:"Triple therapy: (1) Creatine monohydrate 400–800 mg/kg/day (3–6 divided doses) — replaces missing brain creatine; (2) L-ornithine 400–800 mg/kg/day (3–6 divided doses) — feedback-inhibits GATM, reducing GAA production; (3) Arginine-restricted diet, typically targeting 15–25 mg/kg/day arginine intake — reduces GATM substrate, further lowers GAA [1,2,9]. Sodium benzoate has been used to conjugate excess glycine. Early-treated (presymptomatic) patients have near-normal developmental outcomes — this is one of the great justifications for GAMT NBS [4,10].",
      prognosis:"Without treatment: severe intellectual disability, seizures, movement disorder. With presymptomatic NBS diagnosis + triple therapy: near-normal cognitive development. Established brain injury: partial response — seizures and movement disorders often improve, but cognitive gains are limited once injury has occurred [10].",
      references:[
-       "Mercimek-Mahmutoglu S, Salomons GS. Creatine deficiency syndromes. GeneReviews®. 2015 [updated 2023]. PMID 26684475.",
+       "Mercimek-Mahmutoglu S, Salomons GS. Creatine deficiency syndromes. GeneReviews®. 2015 [updated 2023].",
        "Stockler-Ipsiroglu S et al. Guanidinoacetate methyltransferase (GAMT) deficiency: outcomes in 48 individuals. Mol Genet Metab. 2014;111(1):16–25. PMID 24268530.",
        "Stöckler S et al. Creatine deficiency in the brain: a new, treatable inborn error of metabolism. Pediatr Res. 1994;36(3):409–13. PMID 7808840.",
        "Pasquali M et al. GAMT: a new disorder added to the Recommended Uniform Screening Panel. Mol Genet Metab. 2023.",
@@ -854,7 +854,7 @@ export const DISORDERS = [
        "Schulze A et al. Cerebral creatine deficiency in creatine synthesis disorders. J Pediatr. 2003;143(2):191–200.",
        "Isbrandt D, von Figura K. Cloning and characterization of the human GAMT gene. Biochim Biophys Acta. 1995;1264(3):265–7. PMID 8547310.",
        "Almeida LS et al. Creatine deficiency syndromes: molecular characterization. Mol Genet Metab. 2004;82(3):214–9. PMID 15234334.",
-       "Schulze A et al. Creatine deficiency syndromes. Mol Cell Biochem. 2003;244(1–2):143–50. PMID 26684475.",
+       "Schulze A. Creatine deficiency syndromes. Mol Cell Biochem. 2003;244(1–2):143–50. PMID 12701824.",
        "El-Gharbawy AH et al. Elevation of guanidinoacetate before measurable symptoms in GAMT. Mol Genet Metab. 2013;109(2):215–7. PMID 23583224.",
      ]},
    signature:[{panel:"MISC",id:"pGAA",direction:"high",weight:3},{panel:"MISC",id:"uGAA",direction:"high",weight:3},{panel:"MISC",id:"pCreat",direction:"low",weight:2},{panel:"MISC",id:"pGAACr",direction:"high",weight:2},{panel:"PAA",id:"Arg",direction:"low",weight:1},{panel:"PAA",id:"Gly",direction:"high",weight:1}],
@@ -869,7 +869,7 @@ export const DISORDERS = [
      treatment:"Oral creatine monohydrate 400–800 mg/kg/day (3–6 divided doses) — alone is highly effective because there is no neurotoxic GAA to suppress (unlike GAMT which needs the triple regimen) [1,2,7]. Full reversal of phenotype possible with early treatment.",
      prognosis:"Excellent with creatine supplementation — near-complete reversal of symptoms and normalisation of development with early-initiated therapy. Late-treated cases: some residual intellectual disability but measurable improvement [7].",
      references:[
-       "Mercimek-Mahmutoglu S, Salomons GS. Creatine deficiency syndromes. GeneReviews®. 2015 [updated 2023]. PMID 26684475.",
+       "Mercimek-Mahmutoglu S, Salomons GS. Creatine deficiency syndromes. GeneReviews®. 2015 [updated 2023].",
        "Stockler-Ipsiroglu S, van Karnebeek CDM. Cerebral creatine deficiency syndromes. Ther Adv Metab Care. 2014. PMID 25521922.",
        "Item CB et al. Arginine:glycine amidinotransferase deficiency. Am J Hum Genet. 2001;69(5):1127–33. PMID 11555793.",
        "Battini R et al. Arginine:glycine amidinotransferase (AGAT) deficiency in a newborn. Mol Genet Metab. 2006;77(4):326–31. PMID 16769397.",
@@ -889,7 +889,7 @@ export const DISORDERS = [
      treatment:"Limited efficacy — the transporter required to import creatine into brain is the defective protein [1,2]. Standard regimen per GeneReviews: creatine monohydrate 100–200 mg/kg/day (3 divided doses) + L-arginine 400 mg/kg/day (3 divided doses) + L-glycine 150 mg/kg/day (3 divided doses) — the lower creatine dose reflects that high-dose creatine cannot enter brain when the transporter is defective; arginine + glycine boost endogenous intracellular synthesis as a workaround. Modest clinical benefit in some patients. Cyclocreatine (a synthetic creatine analogue with limited transporter dependence) has shown promise in pre-clinical and early trials [9]. Early diagnosis via urine creatine:creatinine screening in males with unexplained ID is the most impactful current intervention, even if disease-modifying therapy is limited.",
      prognosis:"Stable intellectual disability without specific therapy; progressive neurological decline is uncommon. Quality-of-life interventions (education, speech/OT) remain the mainstay. Cyclocreatine and gene therapy in development [9,10].",
      references:[
-       "Mercimek-Mahmutoglu S, Salomons GS. Creatine deficiency syndromes. GeneReviews®. 2015 [updated 2023]. PMID 26684475.",
+       "Mercimek-Mahmutoglu S, Salomons GS. Creatine deficiency syndromes. GeneReviews®. 2015 [updated 2023].",
        "van de Kamp JM et al. X-linked creatine transporter deficiency: clinical aspects and pathophysiology. J Inherit Metab Dis. 2014;37(5):715–33. PMID 24789340.",
        "Salomons GS et al. X-linked creatine-transporter gene (SLC6A8) defect: a new creatine-deficiency syndrome. Am J Hum Genet. 2001;68(6):1497–500. PMID 11326334.",
        "Clark AJ et al. X-linked creatine transporter (SLC6A8) mutations in individuals with nonsyndromic X-linked intellectual disability. Hum Genet. 2006;119(6):604–10. PMID 16738945.",
@@ -1225,7 +1225,7 @@ export const DISORDERS = [
      treatment:"Acute: IV 10% dextrose (≥10 mg/kg/min) + fluid + electrolytes + bicarbonate for severe acidosis — resolves within 24–48 h [2]. Chronic: avoid prolonged fasting, particularly during intercurrent illness; mild protein restriction (moderate Ile restriction if frequent crises); emergency plan for gastroenteritis/fever with oral glucose polymer and low threshold for admission [1,2]. L-carnitine supplementation (50–100 mg/kg/day) if secondary depletion is present. Most patients need only dietary moderation and the emergency regimen.",
      prognosis:"Generally favourable — most patients have normal long-term cognitive outcome with appropriate crisis management. Mortality during a severe first crisis is ~5–10% without treatment. Crisis frequency decreases with age; most patients become clinically stable by adolescence [1,11]. Adult life is typically unremarkable on the emergency regimen. BKT is one of the most favourable-prognosis organic acidemias provided crises are managed promptly.",
      references:[
-       "Fukao T et al. Beta-ketothiolase deficiency (OMIM 203750). Orphanet J Rare Dis. 2001. PMID 30393371.",
+       "Fukao T et al. Beta-ketothiolase deficiency (OMIM 203750). Orphanet J Rare Dis. 2001.",
        "Sass JO. Inborn errors of ketogenesis and ketone body utilization. J Inherit Metab Dis. 2012;35(1):23–8. PMID 21479626.",
        "Daum RS et al. A 'new' disorder of isoleucine catabolism. Lancet. 1971;2(7737):1289–90. PMID 4143539.",
        "Fukao T et al. Mitochondrial acetoacetyl-CoA thiolase (T2) deficiency: mutations in the ACAT1 gene. Hum Mutat. 2003;21(1):1–6.",
@@ -1487,7 +1487,7 @@ export const DISORDERS = [
        "**Heat-degraded DBS** — falsely-low biotinidase activity; resampling normal.",
      ],
      references:[
-       "Wolf B. Biotinidase deficiency. GeneReviews®. 2003 [updated 2016]. PMID 15328559.",
+       "Wolf B. Biotinidase deficiency. GeneReviews®. 2003 [updated 2016].",
        "Suormala T et al. Newborn screening for biotinidase deficiency: results, outcome and incidence. Pediatr Res. 1985;19(11):1156–61.",
        "Donti TR et al. Holocarboxylase synthetase deficiency: pre and post newborn screening. Mol Genet Metab Rep. 2016;7:40–4. PMID 27114915.",
        "American College of Medical Genetics and Genomics. ACT Sheets and Confirmatory Algorithms — Newborn Screening. ACMG, 2001 (updated periodically). Available at https://www.acmg.net/ACMG/Medical-Genetics-Practice-Resources/ACT_Sheets_and_Algorithms.aspx",
@@ -1783,7 +1783,7 @@ export const DISORDERS = [
      references:[
        "Spiekerkoetter U et al. Treatment recommendations in long-chain fatty acid oxidation defects. J Inherit Metab Dis. 2009;32(4):498–505. PMID 19452263.",
        "Strauss AW et al. Long-chain 3-hydroxyacyl-CoA dehydrogenase deficiency / TFP deficiency. GeneReviews®. 2009 [updated 2021].",
-       "Sander J et al. Neonatal screening for medium-chain and long-chain fatty acid oxidation defects. Mol Genet Metab. 2005;85(2):108–14. PMID 15896654.",
+       "Sander J et al. Neonatal screening for defects of the mitochondrial trifunctional protein. Mol Genet Metab. 2005;85(2):108–14. PMID 15896654.",
        "American College of Medical Genetics and Genomics. ACT Sheets and Confirmatory Algorithms — Newborn Screening. ACMG, 2001 (updated periodically). Available at https://www.acmg.net/ACMG/Medical-Genetics-Practice-Resources/ACT_Sheets_and_Algorithms.aspx",
      ]
    },
@@ -1800,7 +1800,7 @@ export const DISORDERS = [
      references:[
        "Corydon MJ et al. ACADS gene variants and the SCAD phenotype. Hum Mutat. 2001;17(6):499–506.",
        "van Maldegem BT et al. Clinical, biochemical, and genetic heterogeneity in short-chain acyl-CoA dehydrogenase deficiency. JAMA. 2006;296(8):943–52. PMID 16926354.",
-       "Gallant NM et al. Biochemical, molecular, and clinical characteristics of SCAD-deficient patients identified by NBS. Mol Genet Metab. 2012;106(1):55–61. PMID 22424739.",
+       "Gallant NM et al. Biochemical, molecular, and clinical characteristics of children with short chain acyl-CoA dehydrogenase deficiency detected by newborn screening in California. Mol Genet Metab. 2012;106(1):55–61. PMID 22424739.",
        "Pedersen CB et al. The ACADS gene variation spectrum. Mol Genet Metab. 2008;94(4):399–406.",
        "Nagan N et al. SCAD deficiency: identification of a novel missense mutation. Mol Genet Metab. 2003;78(3):239–46. PMID 12706374.",
        "Wolfe L et al. Short-chain acyl-CoA dehydrogenase deficiency. GeneReviews®. 2011 [updated 2023].",
@@ -1844,7 +1844,7 @@ export const DISORDERS = [
        "Spiekerkoetter U et al. Treatment recommendations in long-chain FAO defects. J Inherit Metab Dis. 2009;32(4):498–505. PMID 19452263.",
        "Brown NF et al. Molecular characterization of L-CPT1 deficiency. J Lipid Res. 2001;42(7):1134–42. PMID 11441142.",
        "Collins SA et al. Carnitine palmitoyltransferase 1A P479L prevalence in Nunavut. Int J Circumpolar Health. 2010;69(2):179–92. PMID 20696606.",
-       "Greenberg CR et al. The paradox of the CPT1A P479L variant in Inuit populations. Mol Genet Metab. 2009;96(4):201–7. PMID 19217814.",
+       "Greenberg CR et al. The paradox of the carnitine palmitoyltransferase type Ia P479L variant in Canadian Aboriginal populations. Mol Genet Metab. 2009;96(4):201–7. PMID 19217814.",
        "Korman SH et al. Preventable sudden death and stroke in partial CPT1 deficiency. Pediatrics. 2005;116(2):e299–303.",
        "Sim KG et al. Carnitine palmitoyltransferase I (CPT1) deficiency presenting as Reye-like illness. J Inherit Metab Dis. 1997;20(5):688–93.",
        "Gillingham MB et al. The CPT1A p.P479L variant: prevalence and clinical effects. Mol Genet Metab. 2011;103(2):112–8.",

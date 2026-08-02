@@ -112,12 +112,36 @@ export function ecitmatchBatches(citations, perBatch = 45) {
  * parse of the same file *does* see a PMID where the resolving run saw none.
  * Keying on the PMID would therefore change every key the moment the pipeline
  * wrote its own output back, and the pipeline has to be re-runnable.
+ *
+ * The year is part of the key because titles are not unique. "Creatine
+ * deficiency syndromes" is both a GeneReviews chapter and a 2003 Mol Cell
+ * Biochem paper; on a title-only key they shared one verdict, so both were
+ * stamped with the PMID of a third paper — Schulze's study of their prevalence
+ * in autism, which matched the generic title. Keying on title alone silently
+ * merges distinct papers.
  */
 const normTitle = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
 export const cacheKey = (c) =>
-  c.title ? `t:${normTitle(c.title).slice(0, 120)}`
+  c.title ? `t:${normTitle(c.title).slice(0, 120)}|${c.year ?? ""}`
   : c.pmid ? `pmid:${c.pmid}`
-  : `t:${normTitle(c.raw).slice(0, 120)}`;
+  : `t:${normTitle(c.raw).slice(0, 120)}|${c.year ?? ""}`;
+
+/**
+ * Bring a cache written under the title-only key forward, using the year each
+ * entry already records. Without this, adding the year to the key would look
+ * like a cold cache and re-resolve ~970 citations — and worse, would re-confirm
+ * whatever PMID had already been stamped, since a wrong stamp validates itself.
+ */
+export function migrateCacheKeys(cache) {
+  let moved = 0;
+  for (const [k, v] of Object.entries(cache)) {
+    if (!k.startsWith("t:") || k.includes("|")) continue;
+    const next = `${k}|${v?.year ?? ""}`;
+    if (!(next in cache)) { cache[next] = v; moved++; }
+    delete cache[k];
+  }
+  return moved;
+}
 
 /** Every citation in the knowledge base, with where it came from. */
 export function collectCitations() {
@@ -136,9 +160,17 @@ export function collectCitations() {
   return out;
 }
 
-/** Group identical citations so each unique paper is resolved once. */
+/**
+ * Group identical citations so each unique paper is resolved once.
+ *
+ * Uses cacheKey, so grouping and caching agree by construction. They used to
+ * differ — dedupe keyed on the title alone while the cache keyed on title and
+ * year — which meant a group could span two cache keys, only the
+ * representative's verdict was ever stored, and the rest reported themselves as
+ * never checked.
+ */
 export function dedupe(citations) {
-  const key = (c) => (c.pmid ? `pmid:${c.pmid}` : c.title ? `t:${c.title.toLowerCase().replace(/[^a-z0-9]/g, "")}` : `raw:${c.raw.toLowerCase()}`);
+  const key = cacheKey;
   const map = new Map();
   for (const c of citations) {
     const k = key(c);

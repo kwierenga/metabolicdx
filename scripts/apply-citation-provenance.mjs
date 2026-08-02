@@ -16,7 +16,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { collectCitations, dedupe, ecitEligible, cacheKey } from "./parse-citations.mjs";
+import { collectCitations, dedupe, ecitEligible, cacheKey, migrateCacheKeys } from "./parse-citations.mjs";
 import { citationKey } from "../src/citation-key.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -31,6 +31,7 @@ if (!existsSync(CACHE)) {
 }
 
 const cache = JSON.parse(readFileSync(CACHE, "utf8"));
+migrateCacheKeys(cache);   // in memory only; check-citations.mjs owns the file
 
 // Sources PubMed does not index, where a miss is evidence of nothing. Kept in
 // step with the same list in check-citations.mjs.
@@ -52,6 +53,12 @@ function level(c, v) {
   // OMMBID pyrimidine-metabolism chapter cited by UMPS came to be suppressed.
   const indexable = !UNINDEXED.test(c.raw) && !(c.year && c.year < 1966);
   if (!indexable && v.status !== "RESOLVED" && v.status !== "TITLE_PARAPHRASE") return "unverified";
+  // A source PubMed does not index can still *collide* with one it does, and a
+  // generic chapter title makes that easy: the GeneReviews chapter "Creatine
+  // deficiency syndromes" matched Schulze's paper on their prevalence in autism
+  // and was stamped with its PMID. For anything unindexed, require the cited
+  // author on the record before believing the match.
+  if (!indexable && v.authorAppears === false) return "unverified";
 
   switch (v.status) {
     case "RESOLVED":
@@ -118,6 +125,7 @@ function note(v, lvl) {
 const all = collectCitations();
 const pmidFor = new Map();      // citationKey -> pmid, for the inline suffix
 const entries = new Map();      // citationKey -> {l, p?, n?}
+const demoted = new Set();      // citationKey -> was stamped once, no longer verified
 const seen = new Set();
 const tally = {};
 
@@ -133,6 +141,7 @@ for (const c of all) {
     if (v.pmid) pmidFor.set(key, String(v.pmid));
     continue;   // verified citations carry their PMID inline; no entry needed
   }
+  demoted.add(key);   // no longer verified — any inline PMID must come back off
   const e = { l: lvl };
   if (v.pmid) e.p = String(v.pmid);
   const n = note(v, lvl);
@@ -149,14 +158,22 @@ for (const [k, n] of Object.entries(tally).sort((a, b) => b[1] - a[1])) console.
 // line it does not recognise is left exactly as it was.
 const src = readFileSync(DISORDERS, "utf8");
 const lines = src.split(/\r?\n/);
-let appended = 0, already = 0;
+let appended = 0, already = 0, stripped = 0;
 
 const out = lines.map((line) => {
   const m = line.match(/^(\s*)("(?:[^"\\]|\\.)*")(,?)\s*$/);
   if (!m) return line;
   let value;
   try { value = JSON.parse(m[2]); } catch { return line; }
-  const pmid = pmidFor.get(citationKey(value));
+  const key = citationKey(value);
+  // A reference can lose its verified status — a tightened rule, a corrected
+  // string. The stamp has to come off with it, or the file keeps asserting a
+  // PMID the pipeline no longer stands behind and the UI keeps linking to it.
+  if (demoted.has(key) && /\sPMID:?\s*\d+\.?\s*$/i.test(value)) {
+    stripped++;
+    return `${m[1]}${JSON.stringify(value.replace(/\s*PMID:?\s*\d+\.?\s*$/i, "").trim())}${m[3]}`;
+  }
+  const pmid = pmidFor.get(key);
   if (!pmid) return line;
   if (/PMID:?\s*\d/i.test(value)) { already++; return line; }
   appended++;
@@ -164,7 +181,7 @@ const out = lines.map((line) => {
   return `${m[1]}${JSON.stringify(value + suffix)}${m[3]}`;
 });
 
-console.log(`\nsrc/disorders.js: ${appended} PMIDs to append (${already} already present)`);
+console.log(`\nsrc/disorders.js: ${appended} PMIDs to append, ${stripped} stale stamps removed (${already} already present)`);
 
 // ── 2. write the generated sidecar ──────────────────────────────────────────
 const sorted = [...entries.entries()].sort(([a], [b]) => (a < b ? -1 : 1));

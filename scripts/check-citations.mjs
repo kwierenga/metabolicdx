@@ -34,7 +34,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { collectCitations, dedupe, ecitmatchBatches, ecitQuery, ecitEligible, cacheKey } from "./parse-citations.mjs";
+import { collectCitations, dedupe, ecitmatchBatches, ecitQuery, ecitEligible, cacheKey, migrateCacheKeys } from "./parse-citations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const CACHE = resolve(HERE, ".citation-cache.json");
@@ -405,6 +405,8 @@ async function resolveByTitle(c) {
 // ── run ─────────────────────────────────────────────────────────────────────
 const uniq = dedupe(collectCitations());
 const cache = existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, "utf8")) : {};
+const migrated = migrateCacheKeys(cache);
+if (migrated) { writeFileSync(CACHE, JSON.stringify(cache, null, 0)); console.error(`migrated ${migrated} cache keys to include the year`); }
 
 /**
  * Drop cached verdicts of a given status so the next pass resolves them again.
