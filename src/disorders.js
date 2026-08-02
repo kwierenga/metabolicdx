@@ -622,7 +622,7 @@ export const DISORDERS = [
      references:[
        "Sun A, Crombez EA. Arginase deficiency. GeneReviews®. 2004 [updated 2020].",
        "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230. PMID 30982989.",
-       "Diaz GA et al. Pegzilarginase for arginase 1 deficiency. Mol Genet Metab. 2021;134(3):216–21. PMID 33325055.",
+       "Diaz GA et al. Clinical effect and safety profile of pegzilarginase in patients with arginase 1 deficiency. J Inherit Metab Dis. 2021;44(4):847–56. PMID 33325055.",
        "American College of Medical Genetics and Genomics. ACT Sheets and Confirmatory Algorithms — Newborn Screening. ACMG, 2001 (updated periodically). Available at https://www.acmg.net/ACMG/Medical-Genetics-Practice-Resources/ACT_Sheets_and_Algorithms.aspx",
      ]
    },
@@ -2039,7 +2039,7 @@ export const DISORDERS = [
      treatment:"Most patients require no treatment. In the minority with severe hypermethioninaemia + neurological features, a modestly methionine-restricted diet (1–2 g/kg/day) with adequate cysteine supplementation may reduce methionine levels [1,7]. Oral S-adenosylmethionine supplementation has been trialled to restore downstream methyl-donor supply but evidence is limited. Avoid over-treatment — most variants are benign and dietary restriction risks malnutrition in an otherwise healthy child [1,2].",
      prognosis:"Mild/dominant form: normal life, no clinical sequelae. Severe biallelic form: variable but often good; CNS demyelination is reversible in some patients on dietary treatment. Crucially, MAT1A hypermethioninaemia is not a cardiovascular risk factor — unlike CBS-homocystinuria — so vascular surveillance is not required [2].",
      references:[
-       "Chamberlin ME et al. Methionine adenosyltransferase I/III deficiency: novel mutations and clinical variations. Am J Hum Genet. 2000;66(2):347–55. PMID 10677294.",
+       "Mudd SH et al. Isolated persistent hypermethioninemia. Am J Hum Genet. 1995;57(4):882–92. PMID 7573050.",
        "Chien YH et al. Spectrum of hypermethioninemia in neonatal screening. Early Hum Dev. 2005;81(6):529–33. PMID 15935930.",
        "Gaull GE et al. Hypermethioninaemia associated with methionine adenosyltransferase deficiency. Pediatr Res. 1981;15(4):530.",
        "Chadwick S et al. Thirteen patients with MAT1A mutations detected through newborn screening: 13 years' experience. JIMD Rep. 2014;14:71–6. PMID 24445979.",
@@ -2555,7 +2555,7 @@ export const DISORDERS = [
        "Kleta R et al. Mutations in SLC6A19, encoding B⁰AT1, cause Hartnup disorder. Nat Genet. 2004;36(9):999–1002. PMID 15286787.",
        "Scriver CR. Hartnup disease: a genetic modification of intestinal absorption of tryptophan. N Engl J Med. 1965;273(10):530–2. PMID 14324515.",
        "Seow HF et al. Hartnup disorder is caused by mutations in the gene encoding the neutral amino acid transporter SLC6A19. Nat Genet. 2004;36(9):1003–7. PMID 15286788.",
-       "Wilcken B et al. Incidence of inborn errors of metabolism by expanded newborn screening in a Californian cohort. Pediatrics. 2003;111(5 Pt 1):1399–406. PMID 12777559.",
+       "Scriver CR et al. The Hartnup phenotype: Mendelian transport disorder, multifactorial disease. Am J Hum Genet. 1987;40(5):401–12. PMID 3578280.",
        "Erly WK, Castillo M. Hartnup disease: clinical features, aminoaciduria, and therapy. Am Fam Physician. 1999;60(6):1691–7.",
      ]},
    signature:[{panel:"PAA",id:"Trp",direction:"low",weight:3},{panel:"PAA",id:"Phe",direction:"low",weight:1},{panel:"PAA",id:"Ile",direction:"low",weight:1},{panel:"PAA",id:"Leu",direction:"low",weight:1},{panel:"PAA",id:"Val",direction:"low",weight:1}],

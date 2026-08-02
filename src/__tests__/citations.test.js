@@ -218,11 +218,12 @@ describe("one PMID, one paper", () => {
           `PMID ${pmid}: ${first.where} "${String(first.parsed?.title).slice(0, 55)}" vs ${other.where} "${String(other.parsed?.title).slice(0, 55)}"`);
       }
     }
-    // A ratchet rather than an assertion of zero: ten of these exist today and
-    // each needs a source checked by hand, which is not something to block the
-    // build on. Listed in docs/citation-claims-review.md. Lower as they are
-    // resolved; this may never rise.
-    const CONFLICT_CEILING = 10;
+    // Ten of these existed when the check was written and all ten are now
+    // resolved, so this is back to asserting zero. Two turned out to be genuinely
+    // different papers sharing an identifier; the rest were the same paper cited
+    // once in full and once in an abbreviated form, which is how a fabricated
+    // variant hides next to a real one.
+    const CONFLICT_CEILING = 0;
     expect(conflicts.length, conflicts.join("\n")).toBeLessThanOrEqual(CONFLICT_CEILING);
   });
 });
