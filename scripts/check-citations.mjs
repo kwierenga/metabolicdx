@@ -46,7 +46,13 @@ const API_KEY = process.env.NCBI_API_KEY || null;      // 10 req/s if set, else 
 const GAP_MS = API_KEY ? 110 : 350;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const norm = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+// Fold diacritics before stripping punctuation, or "Barić" becomes "bari c" and
+// stops matching the "Baric" that parseCitation produces for the same name.
+// Without this the author check reported Barić, Kölker, Mykkänen and Grünert as
+// absent from their own papers — and since a disagreeing author now raises the
+// similarity bar, that silently demoted correct citations to withheld.
+const norm = (s) => String(s || "").normalize("NFD").replace(/\p{M}/gu, "")
+  .toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
 const STOP = new Set("the a an of and or in on for to with without by from is are as at its their new".split(" "));
 const tokens = (s) => new Set(norm(s).split(" ").filter((w) => w.length > 2 && !STOP.has(w)));
 
@@ -380,7 +386,16 @@ async function resolveByTitle(c) {
     if (hits === FAILED) { failures++; continue; }
     for (const h of hits) {
       const sim = similarity(cleanTitle, h.title);
-      if (!best || sim > best.similarity) best = { ...h, similarity: sim };
+      const byAuthor = authorAppears(c, h) === true;
+      // Prefer a paper the cited author actually wrote. Review titles are not
+      // unique — "The glycogen storage diseases" and "Adenylosuccinate lyase
+      // deficiency" are each the exact title of two different papers — so
+      // similarity alone picks whichever PubMed ranked first and stamps its
+      // PMID, silently pointing the reference at a stranger's paper.
+      const better = !best
+        || (byAuthor && !best.byAuthor)
+        || (byAuthor === best.byAuthor && sim > best.similarity);
+      if (better) best = { ...h, similarity: sim, byAuthor };
     }
     if (best && best.similarity >= 0.8) break;   // good enough, stop spending requests
   }
@@ -433,7 +448,13 @@ if (recheckArg > -1) {
   let dropped = 0;
   for (const c of uniq) {
     const k = cacheKey(c);
-    if (cache[k] && want.has(cache[k].status)) { delete cache[k]; dropped++; }
+    if (!cache[k]) continue;
+    // AUTHOR_ABSENT is not a status but a cross-cutting suspicion: the verdict
+    // stands on the title while the cited author is missing from the paper. That
+    // is the population where a same-titled paper by someone else got stamped.
+    const hit = want.has(cache[k].status)
+      || (want.has("AUTHOR_ABSENT") && cache[k].authorAppears === false);
+    if (hit) { delete cache[k]; dropped++; }
   }
   console.error(`--recheck: dropped ${dropped} cached ${[...want].join("/")} verdicts for re-resolution`);
 }

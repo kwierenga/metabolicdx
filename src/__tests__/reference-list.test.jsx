@@ -20,8 +20,14 @@ const render = (refs) => renderToStaticMarkup(<ReferenceList refs={refs} accent=
 
 // Real strings from the knowledge base, one per verdict level.
 const VERIFIED = "Blau N, van Spronsen FJ, Levy HL. Phenylketonuria. Lancet. 2010;376(9750):1417–27. PMID 20971365.";
-const WRONG = DISORDERS.flatMap((d) => d.narrative?.references ?? [])
-  .find((r) => !/PMID/i.test(r) && r.includes("Opladen") && r.includes("Mol Genet Metab"));
+// Picked by verdict rather than named. An earlier version hard-coded the Opladen
+// citation; when that one was repaired to `check` the withholding assertions
+// stopped testing anything — one of them still passed, silently, because
+// indexOf("Reference withheld") returned -1. Ask the data which one is withheld.
+const WRONG = DISORDERS.flatMap((d) => d.narrative?.references ?? []).find(isWithheld);
+// The two things a clinician would copy out of a reference: who wrote it and when.
+const WRONG_TEXT = citationText(WRONG ?? "");
+const WRONG_FRAGMENTS = [WRONG_TEXT.split(/[\s,.]+/)[0], (WRONG_TEXT.match(/\b(?:19|20)\d{2}\b/) ?? [])[0]].filter(Boolean);
 
 describe("ReferenceList", () => {
   it("links a verified reference to PubMed and shows no warning badge", () => {
@@ -34,11 +40,12 @@ describe("ReferenceList", () => {
   });
 
   it("withholds a citation that matches no publication — none of it is rendered", () => {
-    expect(WRONG, "expected the unresolvable Opladen citation to still be in the KB").toBeTruthy();
+    expect(WRONG, "expected the KB to still contain at least one withheld citation").toBeTruthy();
+    expect(WRONG_FRAGMENTS.length, "need an author and a year to check for leaks").toBe(2);
     const html = render([WRONG]);
     expect(html).toContain("Reference withheld");
     // The point of the rule: nothing citable survives into the output.
-    for (const fragment of ["Opladen", "Mol Genet Metab", "2020", "131"]) {
+    for (const fragment of WRONG_FRAGMENTS) {
       expect(html, `withheld citation leaked "${fragment}"`).not.toContain(fragment);
     }
     expect(html).not.toContain("pubmed.ncbi.nlm.nih.gov");

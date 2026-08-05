@@ -23,7 +23,7 @@ import { describe, it, expect } from "vitest";
 import { DISORDERS } from "../disorders.js";
 import { CITATION_PROVENANCE } from "../citation-provenance.js";
 import { citationKey, citedPmid, citationText, citationStatus, CITATION_LEVELS } from "../citations.js";
-import { parseCitation, ecitEligible, ecitQuery } from "../../scripts/parse-citations.mjs";
+import { parseCitation, ecitEligible, ecitQuery, cacheKey } from "../../scripts/parse-citations.mjs";
 
 /** Every reference string in the knowledge base, with where it lives. */
 const allRefs = () => {
@@ -226,6 +226,38 @@ describe("one PMID, one paper", () => {
     const CONFLICT_CEILING = 0;
     expect(conflicts.length, conflicts.join("\n")).toBeLessThanOrEqual(CONFLICT_CEILING);
   });
+
+  it("does not let two different papers share one cache key", () => {
+    // cacheKey is title+year, which is not unique: a GeneReviews chapter and a
+    // review article on the same disorder often carry the same title in the same
+    // year. Colliding citations share a single cached verdict, so whichever
+    // resolves first decides the PMID the other is stamped with — the same merge
+    // that once put a third paper's PMID on both "Creatine deficiency syndromes"
+    // entries. The stamps survive today only because both carry an explicit PMID.
+    //
+    // Keying on the journal too would churn every key in the cache for a problem
+    // that is currently one pair, so this ratchets instead: a new collision fails
+    // here, where the cheap fix is to disambiguate the citation string.
+    const byKey = new Map();
+    for (const { raw, where } of allRefs()) {
+      const k = cacheKey(parseCitation(raw));
+      if (!byKey.has(k)) byKey.set(k, []);
+      byKey.get(k).push({ raw, where });
+    }
+
+    const merged = [];
+    for (const [k, cites] of byKey) {
+      const journals = new Set(cites.map((c) => String(parseCitation(c.raw).journal ?? "").toLowerCase()).filter(Boolean));
+      const pmids = new Set(cites.map((c) => citedPmid(c.raw)).filter(Boolean));
+      if (journals.size > 1 || pmids.size > 1) {
+        merged.push(`${k}\n    ${[...new Set(cites.map((c) => `${c.where} ${c.raw.slice(0, 90)}`))].join("\n    ")}`);
+      }
+    }
+    // One pair: PCD's Orphanet review and its GeneReviews chapter, both titled
+    // "Systemic primary carnitine deficiency" in 2012.
+    const COLLISION_CEILING = 1;
+    expect(merged.length, merged.join("\n")).toBeLessThanOrEqual(COLLISION_CEILING);
+  });
 });
 
 describe("ordinal citation markers", () => {
@@ -288,8 +320,16 @@ describe("knowledge-base citation health", () => {
   // — a paper on electroconvulsive therapy standing in for one on sodium
   // benzoate in NKH. Verified rose 585 -> 617 on the first count, withheld rose
   // on the second. From here the ceiling only falls.
-  const WRONG_CEILING = 325;      // point at nothing, or at an unrelated paper
-  const VERIFIED_FLOOR = 617;     // title matches the paper PubMed holds
+  //
+  // Tightened 2026-08-04 to the counts the repairs have actually reached. The
+  // last batch closed the author-gap population: nine citations that carried a
+  // PMID belonging to a *different* author's paper with a near-identical title
+  // (Fernandes on glycogen storage disease pointing at Ryman's paper of the same
+  // name, Hwu's AADC gene-therapy trial pointing at a commentary on it). Every
+  // one turned out to be a real paper wearing invented coordinates, so they were
+  // corrected rather than withdrawn.
+  const WRONG_CEILING = 207;      // point at nothing, or at an unrelated paper
+  const VERIFIED_FLOOR = 674;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {
