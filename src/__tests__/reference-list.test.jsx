@@ -95,7 +95,14 @@ describe("ReferenceList", () => {
         checked++;
       }
     }
-    expect(checked, "expected withheld citations to exist to test against").toBeGreaterThan(100);
+    // A vacuity guard, NOT a ratchet: it only asserts the loop above had
+    // something to check. It must never be raised toward the current withheld
+    // count, because repairing citations drives that count down and would then
+    // fail this test for succeeding — which is exactly what a floor of 100 did
+    // once the count reached 93. The direction-of-travel ratchet is
+    // WRONG_CEILING in citations.test.js. When this reaches zero the corpus has
+    // no withheld citations left and the test can go.
+    expect(checked, "expected withheld citations to exist to test against").toBeGreaterThan(0);
   });
 
   it("renders every disorder's reference list without throwing", () => {
