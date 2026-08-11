@@ -1138,10 +1138,10 @@ export const DISORDERS = [
        "Grünert SC et al. 3-Methylcrotonyl-CoA carboxylase deficiency: clinical, biochemical, enzymatic and molecular studies in 88 patients. Orphanet J Rare Dis. 2012;7:31. PMID 22642865.",
        "Koeberl DD et al. Evaluation of 3-methylcrotonyl-CoA carboxylase deficiency detected by tandem mass spectrometry newborn screening. J Inherit Metab Dis. 2003;26(1):25–35. PMID 12872837.",
        "Wolf B. Biotinidase deficiency: 'if you have to have an inherited metabolic disease, this is the one to have'. Genet Med. 2012;14(6):565–75. PMID 22241090.",
-       "Ranieri E et al. 3-MCC deficiency — biochemical findings in NBS. Pathology. 2008;40(5):510–6.",
-       "Gibson KM et al. Asymptomatic adult 3-MCC deficiency diagnosed via infant NBS. Mol Genet Metab. 1998;65(4):337–9.",
+       "Stadler SC, Ranieri E et al. Newborn screening for 3-methylcrotonyl-CoA carboxylase deficiency: population heterogeneity of MCCA and MCCB mutations and impact on risk assessment. Hum Mutat. 2006;27(8):748–59. PMID 16835865.",
+       "Baumgartner MR. Molecular mechanism of dominant expression in 3-methylcrotonyl-CoA carboxylase deficiency. J Inherit Metab Dis. 2005;28(3):301–9. PMID 15868465.",
        "Uematsu M et al. Molecular basis of four cases of 3-MCC deficiency. J Hum Genet. 2007;52(12):1040–3. PMID 17968484.",
-       "Stadler SC et al. Long-term outcome of 3-methylcrotonyl-CoA carboxylase deficiency diagnosed by newborn screening. Hum Mutat. 2006;27(8):748–59. PMID 16835865.",
+       "Jung CW et al. Uneventful clinical courses of Korean patients with methylcrotonylglycinuria and their common mutations. J Hum Genet. 2012;57(1):62–4. PMID 22030835.",
      ]},
    signature:[{panel:"AC",id:"C5OH",direction:"high",weight:3},{panel:"UOA",id:"MCG",direction:"high",weight:3},{panel:"UOA",id:"3OHIV",direction:"high",weight:2}],
    followUp:{
@@ -1166,7 +1166,7 @@ export const DISORDERS = [
      references:[
        "Grünert SC et al. 3-methylcrotonyl-CoA carboxylase deficiency: clinical, biochemical, enzymatic and molecular studies in 88 individuals. Orphanet J Rare Dis. 2012;7:31. PMID 22642865.",
        "Koeberl DD et al. Evaluation of 3-methylcrotonyl-CoA carboxylase deficiency detected by tandem mass spectrometry newborn screening. J Inherit Metab Dis. 2003;26(1):25–35. PMID 12872837.",
-       "Wilcken B. 3-methylcrotonyl-CoA carboxylase deficiency: to screen or not to screen? J Inherit Metab Dis. 2016;39(2):171–2.",
+       "Wilcken B. 3-methylcrotonyl-CoA carboxylase deficiency: to screen or not to screen? J Inherit Metab Dis. 2016;39(2):171–2. PMID 26660660.",
        "American College of Medical Genetics and Genomics. ACT Sheets and Confirmatory Algorithms — Newborn Screening. ACMG, 2001 (updated periodically). Available at https://www.acmg.net/ACMG/Medical-Genetics-Practice-Resources/ACT_Sheets_and_Algorithms.aspx",
      ]
    },
@@ -1460,10 +1460,10 @@ export const DISORDERS = [
      prognosis:"Both disorders have EXCELLENT prognosis with biotin — biotinidase deficiency is among the most cost-effective NBS conditions because treatment is oral, cheap, and prevents severe disability. Untreated biotinidase: mortality + severe neurological disability. HLCS: untreated mortality up to 50% in neonatal form; with high-dose biotin most cases do well.",
      references:[
        "Wolf B. Biotinidase deficiency: 'if you have to have an inherited metabolic disease, this is the one to have'. Genet Med. 2012;14(6):565–75. PMID 22241090.",
-       "Suormala T, Baumgartner MR. Biotinidase deficiency — current aspects. Clin Exp Med. 2010;10(2):93–9.",
+       "Kury S, Ramaekers V, Bezieau S, Wolf B. Clinical utility gene card for: biotinidase deficiency — update 2015. Eur J Hum Genet. 2016;24(7). PMID 26577040.",
        "Wolf B. The neurology of biotinidase deficiency. Mol Genet Metab. 2011;104(1–2):27–34. PMID 21696988.",
        "Wolf B et al. Biotinidase deficiency: novel mutations and their biochemical and clinical correlates. Hum Mutat. 2005;25(4):413. PMID 15776412.",
-       "Suormala T et al. Holocarboxylase synthetase deficiency: clinical heterogeneity and response to biotin. Eur J Pediatr. 1998;157 Suppl 2:S85–91.",
+       "Suormala T et al. Late-onset holocarboxylase synthetase-deficiency: pre- and post-natal diagnosis and evaluation of effectiveness of antenatal biotin therapy. Eur J Pediatr. 1998;157(7):570–5. PMID 9686819.",
        "Wolf B. Clinical issues and frequent questions about biotinidase deficiency. Mol Genet Metab. 2010;100(1):6–13. PMID 20129807.",
        "Wolf B. Why screen for biotinidase deficiency? Med Kwart. 1995;64:157–67 [Polish, foundational].",
      ]},
@@ -1490,7 +1490,7 @@ export const DISORDERS = [
      ],
      references:[
        "Wolf B. Biotinidase deficiency. GeneReviews®. 2003 [updated 2016]. PMID 15060693.",
-       "Suormala T et al. Newborn screening for biotinidase deficiency: results, outcome and incidence. Pediatr Res. 1985;19(11):1156–61.",
+       "Wolf B. Biotinidase deficiency. GeneReviews®. 2000 [updated 2023]. PMID 20301497.",
        "Donti TR et al. Holocarboxylase synthetase deficiency: pre and post newborn screening. Mol Genet Metab Rep. 2016;7:40–4. PMID 27114915.",
        "American College of Medical Genetics and Genomics. ACT Sheets and Confirmatory Algorithms — Newborn Screening. ACMG, 2001 (updated periodically). Available at https://www.acmg.net/ACMG/Medical-Genetics-Practice-Resources/ACT_Sheets_and_Algorithms.aspx",
      ]
@@ -2148,9 +2148,9 @@ export const DISORDERS = [
        "Widhalm K, Virmani K. Long-term follow-up of 58 patients with histidinemia treated with a histidine-restricted diet: no effect of therapy. Pediatrics. 1994;94(6 Pt 1):861–6. PMID 7971002.",
        "Taylor RG et al. Histidinaemia: an update. Mol Genet Metab. 2005;85(1):1–13.",
        "Ghadimi H et al. A familial disturbance of histidine metabolism. N Engl J Med. 1961;265:221–4. PMID 13704885.",
-       "Coulombe JT et al. A neonatal screening test for histidinaemia. Am J Med Genet. 1983;14(2):235–9.",
+       "Coulombe JT et al. Histidinaemia. Part III: impact; a prospective study. J Inherit Metab Dis. 1983;6(2):58–61. PMID 6192285.",
        "Scriver CR, Levy HL. Histidinaemia part 2: impact on laboratory medicine and public health. N Engl J Med. 1983;308(16):993–7.",
-       "Kessler R et al. Biochemistry of histidinaemia: current status. Clin Biochem. 1976;9(3):125–30.",
+       "Kitagawa T. Newborn screening for inborn errors of metabolism in Japan: a history of the development of newborn screening. Pediatr Endocrinol Rev. 2012;10(Suppl 1):8–25. PMID 23330242.",
        "Suchi M et al. Molecular cloning of the human histidase gene cDNA. J Biol Chem. 1993;268(35):26420–5.",
      ]},
    signature:[{panel:"PAA",id:"His",direction:"high",weight:3}],
