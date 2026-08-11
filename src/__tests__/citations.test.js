@@ -328,8 +328,8 @@ describe("knowledge-base citation health", () => {
   // name, Hwu's AADC gene-therapy trial pointing at a commentary on it). Every
   // one turned out to be a real paper wearing invented coordinates, so they were
   // corrected rather than withdrawn.
-  const WRONG_CEILING = 93;       // point at nothing, or at an unrelated paper
-  const VERIFIED_FLOOR = 785;     // title matches the paper PubMed holds
+  const WRONG_CEILING = 84;       // point at nothing, or at an unrelated paper
+  const VERIFIED_FLOOR = 794;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {
