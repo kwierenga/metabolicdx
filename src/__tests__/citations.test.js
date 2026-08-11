@@ -328,8 +328,12 @@ describe("knowledge-base citation health", () => {
   // name, Hwu's AADC gene-therapy trial pointing at a commentary on it). Every
   // one turned out to be a real paper wearing invented coordinates, so they were
   // corrected rather than withdrawn.
+  // Read these off THIS test, not off apply-citation-provenance.mjs. That script
+  // reports its own breakdown over a slightly different denominator, so its
+  // "verified" runs a few below the figure here and setting the floor from it
+  // leaves the ratchet permanently loose.
   const WRONG_CEILING = 84;       // point at nothing, or at an unrelated paper
-  const VERIFIED_FLOOR = 794;     // title matches the paper PubMed holds
+  const VERIFIED_FLOOR = 797;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {
