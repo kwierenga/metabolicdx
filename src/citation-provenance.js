@@ -27,9 +27,7 @@ export const CITATION_PROVENANCE = {
   "chakrapani a et al disorders of tyrosine metabolism in saudubray jm et al eds inborn metabolic diseases 6th ed springer 2016": {"l":"unverified","n":"not indexed by PubMed"},
   "chakrapani a et al disorders of tyrosine metabolism in saudubray jm et al eds inborn metabolic diseases 6th ed springer 2016 p 265 76": {"l":"unverified","n":"not indexed by PubMed"},
   "chen yt burchell a glycogen storage diseases in scriver cr et al eds the metabolic and molecular bases of inherited disease 8th ed 2001 p 1521 51": {"l":"unverified","p":"41391248","n":"closest PubMed match is only a partial title match"},
-  "christie r et al motor function in lesch nyhan syndrome a clinical study pediatr neurol 1982 8 3 173 9": {"l":"wrong","p":"792398","n":"closest PubMed match is only a partial title match"},
   "chuang dt shih ve maple syrup urine disease branched chain ketoaciduria in scriver et al ommbid ch 87": {"l":"unverified","n":"could not be parsed as a citation"},
-  "cohn rd pyridoxine dependency in utero can med assoc j 2012 184 2 199 200": {"l":"wrong","n":"PubMed has no paper with these details"},
   "dancis j et al the familial hyperlysinaemias j pediatr 1983 103 5 689 95": {"l":"unverified","n":"title too short to identify by search"},
   "derks tgj van spronsen fj medium chain acyl coa dehydrogenase deficiency still an early death risk j pediatr 2009 154 2 170 1": {"l":"unverified","n":"not indexed by PubMed"},
   "dionisi vici c et al liver transplantation in ethylmalonic encephalopathy disclosing systemic and pulmonary disease mol genet metab 2016 119 1 2 107 13": {"l":"check","p":"34011365","n":"PubMed dates this to 2021"},
@@ -54,7 +52,6 @@ export const CITATION_PROVENANCE = {
   "h berle j et al citrullinemia type i clinical findings and treatment eur j pediatr 2002 161 suppl 2 s96 102": {"l":"unverified","n":"not indexed by PubMed"},
   "hamosh a johnston mv nonketotic hyperglycinemia in scriver et al ommbid ch 90": {"l":"unverified","n":"could not be parsed as a citation"},
   "hgd mutation database www hgddatabase cvtisr sk": {"l":"unverified","n":"could not be parsed as a citation"},
-  "hommes fa et al the role of otc in orotic acid production clin chim acta 1969 23 2 223 9": {"l":"wrong","n":"PubMed has no paper with these details"},
   "hommes fa et al two cases of phosphoenolpyruvate carboxykinase deficiency acta paediatr scand 1968 57 3 233 40": {"l":"check","p":"176867","n":"PubMed dates this to 1976"},
   "hyland k heales sj tetrahydrobiopterin and inborn errors of biogenic amine metabolism in scriver et al ommbid": {"l":"unverified","n":"could not be parsed as a citation"},
   "jacobsohn e ein fall von retinitis pigmentosa atypica klin monatsbl augenheilk 1888 26 202": {"l":"unverified","n":"not indexed by PubMed"},
@@ -135,5 +132,4 @@ export const CITATION_PROVENANCE = {
   "wolfe l et al short chain acyl coa dehydrogenase deficiency genereviews 2011 updated 2023": {"l":"unverified","p":"21938826","n":"PubMed dates this to 1993"},
   "wolfe l et al short chain acyl coa dehydrogenase deficiency genereviews 2014 updated 2019": {"l":"unverified","p":"21938826","n":"PubMed dates this to 1993"},
   "wortmann sb et al the 3 methylglutaconic acidurias what s new j inherit metab dis 2012 35 1 13 22": {"l":"unverified","n":"not indexed by PubMed"},
-  "xue hh et al cloning of cdna encoding rat liver sarcosine dehydrogenase j biochem tokyo 1999 126 6 1082 90": {"l":"wrong","p":"9839943","n":"closest PubMed match is only a partial title match"},
 };
