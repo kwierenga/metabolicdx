@@ -332,8 +332,8 @@ describe("knowledge-base citation health", () => {
   // reports its own breakdown over a slightly different denominator, so its
   // "verified" runs a few below the figure here and setting the floor from it
   // leaves the ratchet permanently loose.
-  const WRONG_CEILING = 15;       // point at nothing, or at an unrelated paper
-  const VERIFIED_FLOOR = 859;     // title matches the paper PubMed holds
+  const WRONG_CEILING = 7;        // point at nothing, or at an unrelated paper
+  const VERIFIED_FLOOR = 865;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {
