@@ -207,6 +207,84 @@ drop the attribution.
   eponymous syndromes share no vocabulary with their gene (HIDS for mevalonate
   kinase deficiency, Brown-Vialetto-Van Laere for the riboflavin transporter).
 
+## The "check details" tranche (2026-08-16)
+
+Thirty-four citations sat at `check` — a real paper existed, but a bibliographic
+detail did not match PubMed. Thirty-three were repaired. Twenty-five of those were
+the *same* paper with mangled bibliography (Shih 1969 *Pediatrics* was really 1972
+*J Pediatr*; Koike's PNAS paper is 1992, not 1990), so no claim changed hands and
+they need no review.
+
+The eight below swapped in a *different* paper, chosen because it carries the
+claim rather than because it matches the string. Same judgement call as the UMPS
+and TCN2 entries above, and someone should agree with them:
+
+| Reference | String named | Now cites |
+|---|---|---|
+| BKT[1] | an Orphanet entry, not PubMed-indexed | Fukao 2001, 26-patient outcome series (PMID 11161836) |
+| BKT[5] | Fukao, *Eur J Pediatr* 2010 | Abdelkreem 2019 ACAT1 mutation update (PMID 31268215) |
+| BKT followUp[3] | Abdelkreem, "26 new cases" | Abdelkreem 2017, ten Indian patients (PMID 27928777) |
+| PCD[12] | "Heterozygosity for OCTN2 deficiency" | Amat di San Filippo 2008, cardiomyopathy and carnitine deficiency (PMID 18337137) |
+| VLCAD[15], CPT2[8] | *Genet Med* 2021 "phase 3 trial" | Vockley 2021 open-label extension (PMID 32885845) |
+| PCDEF[4] | Saudubray, "Variation in the clinical presentation" | Robinson/Saudubray 1987, French vs North American phenotypes (PMID 3101494) |
+| GSD1A[11] | Lee, *Hum Gene Ther* 2022 | Weinstein 2025, DTX401 trial (PMID 40064185) |
+
+There is no triheptanoin paper in *Genet Med* at all — the journal returns
+nothing for the term — so the VLCAD and CPT2 strings were inventions rather than
+garbled renderings. PCDEF[4] is a partial fit: Robinson establishes the French and
+North American phenotypes, which is the A/B distinction, but not type C.
+
+### 11. BKT[4] — an incidence range with no source anywhere
+
+> **introduction:** Incidence is ~1:111,000–1:232,000 [4]
+
+Searched several ways; nothing in PubMed carries those numbers. The slot now holds
+Fukao 1995, *Molecular basis of beta-ketothiolase deficiency* (PMID 7749408) — the
+paper the string actually named, and a mutations study that cannot establish an
+incidence. **Either find the figure's source or drop the range.**
+
+### 12. BKT[9] — prose names one author, the reference is another
+
+> **biochemistry:** Oglesbee 2017 proficiency data show BKT real-world AC
+> sensitivity ~77.5% … [9]
+
+`[9]` is Hall PL et al, *Post-analytical tools for the triage of newborn screening
+results* (PMID 33073017). The same 77.5% figure drives `analyticalCeiling: 0.78`
+and the disorder's `nonspecific` flag, so this is load-bearing. Either the
+Oglesbee source is added or the attribution comes out of the prose.
+
+### 13. GA2[12] — a trial that does not exist for this disorder
+
+> **treatment:** Severe neonatal: supportive care; triheptanoin in trial [12]
+
+The only citation left at `check`. Triheptanoin was trialled in long-chain FAO
+disorders — CPT1, CPT2, CACT, VLCAD, LCHAD/TFP — and PubMed returns no
+triheptanoin study in MADD. Deliberately **not** repaired: pointing it at an
+LC-FAOD trial would attach the wrong population to a MADD claim, which is the
+laundering this document exists to prevent. Same reasoning as GA2[7], which stays
+withheld.
+
+### 14. PCDEF[3] — a PEPCK paper as the first description of PC deficiency
+
+> **introduction:** PC deficiency (OMIM #266150) was first described by Hommes in
+> 1968 [3]
+
+`[3]` is Hommes FA et al, *Two cases of phosphoenolpyruvate carboxykinase
+deficiency*, Acta Paediatr Scand (PMID 176867). Two problems: it is **PEPCK**, a
+different enzyme from pyruvate carboxylase, and PubMed dates it to **1976**, not
+the 1968 the sentence gives. The repair corrected the year on the citation and
+left the prose alone, so the sentence and its source now disagree in print.
+
+### Relevance screen re-run (2026-08-16)
+
+Of **926** disorder-specific verified citations: **38** mention nothing specific
+to the disorder, **125** mention exactly one term, 6 have no abstract. The counts
+moved because the verified population grew from 700, not because the screen
+changed. Nothing in this tranche's repairs entered the flagged set except MCD[7]
+(Wolf, biotinidase newborn screening), which joins three other Wolf biotinidase
+papers already flagged under MCD for the same reason and is sound for the same
+reason MCC[4] is.
+
 ## One PMID stamped on two different papers
 
 The mechanism by which a fabricated citation survives stage-1 verification: it
