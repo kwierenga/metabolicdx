@@ -285,6 +285,76 @@ changed. Nothing in this tranche's repairs entered the flagged set except MCD[7]
 papers already flagged under MCD for the same reason and is sound for the same
 reason MCC[4] is.
 
+## The claim-support screen (2026-08-19)
+
+`scripts/judge-claims.mjs` now asks the third question — does the cited paper
+support *this sentence*? — over the whole corpus. It reads abstracts, never full
+texts, so its output is a worklist, not a set of verdicts.
+
+Calibration against the labelled cases above: **9 of 10 judgeable cases correct,
+with zero false positives** — SULFOX[10], MCC[4] and SLC6A8[10] all cleared. Three
+labelled cases could not be judged at all because PubMed holds no abstract for
+them (Menkes 1954, Carson & Neill 1962, Efron 1965), which also means entry 10
+(HYDROXYPROLINEMIA[3]) is permanently invisible to this tool.
+
+The one disagreement is worth resolving by hand: for **HIBCH[9]** the judge read
+Soler-Alfonso's abstract as reporting a patient who improved on a valine-restricted
+diet, which contradicts entry 2 above. One of the two is wrong.
+
+Full corpus: 1,806 verdicts over 868 papers. 252 claims have at least one source
+that affirms them; **152 have none and at least one explicit rejection**; 749 have
+no affirming source but only partial or not-assessable verdicts. The 749 are mostly
+the method's own limit — a review cited for a specific number its abstract does not
+repeat — and should not be read as defects. Full output in
+`scripts/claim-support-report.json`.
+
+### Repaired from this screen
+
+Each of these had a reference that was real, correctly filed, and did not carry the
+claim. In every case the cited paper was load-bearing for *other* claims, so the fix
+was to add the right paper and retarget only the failing marker — never to replace a
+reference other sentences depend on.
+
+- **AADC[12]** — the 2022 EMA-approval sentence cited Pearson's investigational
+  MR-guided midbrain AAV2 trial. Now Keam, *Eladocagene exuparvovec: first approval*
+  (PMID 36103022).
+- **CANAVAN[13]** — the "aspartoacylase activity <5% of normal" figure cited
+  GeneReviews, which gives the diagnostic approach without the activity data. Now
+  Matalon 1988 (PMID 3354621).
+- **CPT1[9]** — "increased SIDS risk" cited Collins's *prevalence* survey, whose
+  abstract explicitly concludes the mortality question is unanswered. Now Sinclair
+  2012, *Carnitine palmitoyltransferase I and sudden unexpected infant death in
+  British Columbia First Nations* (PMID 23090344). The claim was supportable; the
+  citation was simply the wrong Arctic-variant paper.
+- **SCHAD[5]** — protein/leucine-loading as a diagnostic clue cited two papers that
+  give the biochemical markers but not the provocation. Now Babiker 2015
+  (PMID 25915078).
+
+### Claims with no source in the literature at all
+
+Searched and not found. These are prose problems, not citation problems, and each
+needs either a source or the removal of the specific assertion:
+
+- **PSPH summary** — "PSPH deficiency accounts for ~25% of all serine-biosynthesis-
+  disorder cases, second most common after PHGDH." Both cited reviews give no
+  relative-frequency data, and no paper reporting that split could be found.
+- **MLYCD molecular** — "Some founder variants identified." Both cited papers report
+  private or novel mutations; no founder variant is described for MLYCD anywhere.
+- **HIBCH molecular** — "A founder variant c.488G>A (p.Ala163Val) has been reported
+  in several populations." Neither cited paper mentions it and no other paper does.
+
+### Needs a clinician's eye
+
+- **CPT1[4] and CPT1[8] are the same paper.** Both carry PMID 20696606; [8] matches
+  the real record (*Mol Genet Metab* 2010;101(2–3):200–4) and [4]'s journal, volume
+  and pages are invented. [4] is cited by three further claims, so correcting it is
+  not a deletion — deleting it would renumber every later marker.
+- **PDHD presentation** — "Some adult males have isolated intermittent cerebellar
+  ataxia; heterozygous females often mild" is two claims in one sentence. Debray 2008
+  (PMID 18504677) carries the ataxia limb cleanly; nothing found carries the
+  female-heterozygote limb, and the cited natural-history review reports no
+  gender-related differences.
+
 ## One PMID stamped on two different papers
 
 The mechanism by which a fabricated citation survives stage-1 verification: it
