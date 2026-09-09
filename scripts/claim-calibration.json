@@ -1,0 +1,58 @@
+{
+  "note": "Labelled cases for judge-claims.mjs, lifted from docs/citation-claims-review.md. Every entry was decided by a human reading the paper against the sentence, before any model was involved. `ref` is the 1-indexed narrative reference number the register uses; `pmidHint` is asserted at load time so a shifted reference list fails loudly instead of silently grading the wrong paper. The `sound` cases matter more than the `flag` cases: a judge that flags SULFOX[10] trains the reader to skim, which is worse than no judge.",
+  "cases": [
+    {
+      "disorder": "MLYCD", "ref": 4, "pmidHint": "9869665", "expect": "flag",
+      "why": "Gao 1999 is a cloning and mutational-analysis study. It cannot establish the malonic:methylmalonic ratio cut-off the sentence uses to discriminate MLYCD from MMUT."
+    },
+    {
+      "disorder": "MLYCD", "ref": 2, "pmidHint": "16275149", "expect": "flag",
+      "why": "de Wit 2006 is a single case report on neuroimaging, carrying four general claims including a prognosis statement about the main determinant of mortality."
+    },
+    {
+      "disorder": "HIBCH", "ref": 9, "pmidHint": "25591832", "expect": "flag",
+      "why": "Soler-Alfonso 2015 identifies HIBCH mutations. It reports no therapy trial and no dietary outcome, yet carries the valine-restriction efficacy claim."
+    },
+    {
+      "disorder": "SLC6A8", "ref": 5, "pmidHint": "15234335", "expect": "flag",
+      "why": "Arias 2004 measures the right analytes in the wrong population — urea cycle defects, not creatine transporter deficiency. Screening performance does not transfer."
+    },
+    {
+      "disorder": "TCN2", "ref": 4, "pmidHint": "6355816", "expect": "flag",
+      "why": "Frater-Schroder 1983 predates routine holo-TC assays and cannot carry a modern diagnostic algorithm."
+    },
+    {
+      "disorder": "SUCLA2", "ref": 7, "pmidHint": "21857385", "expect": "flag",
+      "why": "A glycogen storage disease type III paper. It may have been cited for the ketone-body therapy principle, but that intent is not visible to a reader."
+    },
+    {
+      "disorder": "HYDROXYPROLINEMIA", "ref": 3, "pmidHint": "14290545", "expect": "flag",
+      "why": "Efron 1965 is familial HYPERprolinaemia (PRODH). Hydroxyprolinaemia is PRODH2 — a different disorder."
+    },
+    {
+      "disorder": "MCC", "ref": 3, "pmidHint": "12872837", "expect": "flag",
+      "why": "Koeberl 2003 supports the existence of an NBS-detected 3-MCC cohort but not the specific '~1:36,000 in the USA' incidence figure the sentence gives. The citation was repaired; the number was never sourced."
+    },
+
+    {
+      "disorder": "SULFOX", "ref": 10, "pmidHint": "26343839", "expect": "sound",
+      "why": "A cyclic pyranopterin monophosphate trial in molybdenum cofactor deficiency, which never mentions sulfite oxidase. Correct: the sentence explicitly contrasts SUOX with MoCo type A, which does have a specific treatment."
+    },
+    {
+      "disorder": "MCC", "ref": 4, "pmidHint": "22241090", "expect": "sound",
+      "why": "A biotinidase deficiency review, because the claim is that biotin-responsive 3-MCC usually indicates biotinidase or holocarboxylase synthetase deficiency."
+    },
+    {
+      "disorder": "MSUD", "ref": 3, "pmidHint": "13214961", "expect": "sound",
+      "why": "Menkes 1954, the historical first description. It predates the name 'maple syrup urine disease' and so shares no vocabulary with the modern sentence."
+    },
+    {
+      "disorder": "CBS", "ref": 3, "pmidHint": "14018926", "expect": "sound",
+      "why": "Carson and Neill 1962, the survey in which homocystinuria was first detected. Same historical pattern as Menkes."
+    },
+    {
+      "disorder": "SLC6A8", "ref": 10, "pmidHint": "22751104", "expect": "sound",
+      "why": "Kurosawa's cyclocreatine-in-mice study supports 'cyclocreatine and gene therapy in development'. An earlier review flagged this on the strength of the FABRICATED title it used to carry; the repaired citation fits the claim."
+    }
+  ]
+}
