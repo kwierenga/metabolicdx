@@ -38,17 +38,23 @@
       "Bash(npx vitest *)",
       "Bash(npm run *)",
       "Bash(node scripts/*)",
+      "Bash(node -e '*)",
+      "Bash(node -e \"*)",
       "Bash(mv scripts/tmp-*)",
       "Bash(rm -f scripts/tmp-*)",
-      "Bash(for *)",
       "Bash(cp *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(diff *)",
+      "Bash(git ls-files *)",
       "mcp__claude_ai_Gmail__get_thread",
       "mcp__claude_ai_PubMed__search_articles",
       "mcp__claude_ai_PubMed__get_article_metadata",
       "mcp__claude_ai_PubMed__lookup_article_by_citation",
       "mcp__claude_ai_PubMed__get_copyright_status",
       "mcp__claude_ai_PubMed__convert_article_ids",
-      "mcp__claude_ai_PubMed__find_related_articles"
+      "mcp__claude_ai_PubMed__find_related_articles",
+      "mcp__claude_ai_PubMed__get_full_text_article"
     ]
   }
 }
