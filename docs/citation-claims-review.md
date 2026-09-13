@@ -355,6 +355,72 @@ needs either a source or the removal of the specific assertion:
   female-heterozygote limb, and the cited natural-history review reports no
   gender-related differences.
 
+## The LCHAD cluster (2026-09-09)
+
+LCHAD/TFP was the largest single group in the claim-support screen — 7 contradicted
+claims. All seven are now closed. Worth recording because three of the defects are
+shapes the screen itself could not see.
+
+- **Reference [8] was a fabricated citation over a real PMID.** It read *"Orii KE et
+  al. Genomic organization of human mitochondrial HADHA and HADHB genes. Am J Hum
+  Genet. 1996;58(2):255–8"*, but PMID 8554625 is Orii KO et al., *Genomic DNA
+  organization of human mitochondrial very-long-chain acyl-CoA dehydrogenase*,
+  Biochem Biophys Res Commun 1995 — a **VLCAD** paper. Replaced by Aoyama 1997
+  (PMID 9605857), which FISH-maps HADHA and HADHB to 2p23 and has Orii KE as a
+  co-author. The band was corrected 2p23.3 → 2p23 to match the source.
+- **Two claims were contradicted by their own citation**, and the prose was what
+  needed changing:
+  - The summary said NBS "markedly improves outcome" while citing Spiekerkoetter's
+    2009 consensus, whose abstract states *"newborn screening has not significantly
+    changed the prognosis for these severe phenotypes."* Split: the survival gain is
+    now cited to Sykut-Cegielska [4], the caveat to the consensus [2] and Sander [5]
+    (whose 4 deaths were the two complete-MTP and two LKAT cases).
+  - Prognosis said acuity declines "despite good metabolic control", citing
+    Gillingham 2005 — which found the opposite: sustained low 3-hydroxyacylcarnitines
+    and high DHA were associated with *retained* retinal function. Natural history is
+    now cited to Tyni 1998 (PMID 9593380), and Gillingham to what it actually reports.
+- **"Oglesbee 2017" was named in prose while reference [7] was Hall 2020** — the same
+  shape as entry 12 (BKT[9]), and invisible to the screen because Hall is a real,
+  correctly-filed screening paper. The Oglesbee paper is real: PMID 28661487. Its full
+  text confirms the figure — *"The lowest analytic sensitivity (64.5%) was seen for
+  the 2009A challenge of long-chain hydroxyacyl-CoA dehydrogenase deficiency"* — so
+  `analyticalCeiling: 0.65` is sound. It is now cited as [25].
+- **The interlaboratory-variability claim was an overreach.** The prose and the
+  analytical flag both asserted "significant interlaboratory variability in C16-OH
+  quantification". Oglesbee's variability findings are for **C5DC and C3DC**, not
+  C16-OH. Replaced with what the literature does support: Lotz-Havla 2018
+  (PMID 30029694) reports fatal cases missed at screening *and* at confirmatory
+  testing, and preterm infants with only moderate elevations and normal ratios.
+
+### Claims with no source in the literature at all
+
+Two more for the list above, both numeric and both removed rather than re-cited:
+
+- **LCHAD biochemistry** — "C16-OH >0.1 µmol/L and the C16-OH/C16 ratio >0.04 are the
+  most discriminatory markers." No source found for either threshold. Replaced with
+  the primary markers per Lotz-Havla [23] and the validated "HADHA ratio"
+  (C16-OH + C18-OH + C18:1-OH)/C0 from Baydakova 2023 (PMID 37754774), which was
+  elevated in all 54 confirmed patients and normal in VLCAD deficiency.
+- **LCHAD treatment** — "SELECTIVE carnitine only if plasma free carnitine
+  <10 µmol/L, starting at 10–25 mg/kg/day", cited to a diet survey that never
+  mentions carnitine. The Spiekerkoetter consensus [2] *does* cover l-carnitine and is
+  now cited, but its abstract does not state these thresholds and the full text was
+  not available. **The numbers may well be right — they need a page reference before
+  going back in.**
+
+### Scoring-engine provenance, not a narrative defect
+
+Flagged during the above and deliberately **not** acted on, because changing it would
+alter diagnostic behaviour rather than a citation:
+
+- The LCHAD `signature` block scores `C16OHC16` (the C16-OH/C16 ratio) at weight 2 and
+  `C18_1OH` at weight 3, both attributed to `miller-2021-acylcarnitine`. The ACMG
+  standard's Fig. 1 lists C14-OH, C16-OH and C18-OH under column 27 (LCHAD/TFP) — but
+  **C18:1-OH appears nowhere in that document**, and neither does a C16-OH/C16 ratio.
+  C18:1-OH is covered by Rinaldo 2008 instead (*"3-Hydroxypalmitoyl — LCHAD deficiency
+  (with C16:1-OH, C18:1-OH, C18-OH)"*), so the marker is sound and the `ref` is simply
+  pointing at the wrong standard. The C16-OH/C16 ratio has no source located at all.
+
 ## One PMID stamped on two different papers
 
 The mechanism by which a fabricated citation survives stage-1 verification: it
