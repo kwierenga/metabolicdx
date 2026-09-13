@@ -24,7 +24,7 @@
 // not open access is recorded as unavailable and never retried in a way that
 // would look like "no full text" — same rule as check-relevance.mjs, where a
 // failed request must never be cached as a negative finding.
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, renameSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { collectClaims, judgeablePairs } from "./parse-claims.mjs";
@@ -335,11 +335,87 @@ if (arg("--ingest")) {
   const DROP = resolve(HERE, "..", "docs", "fulltext");
   if (!existsSync(DROP)) { console.error(`nothing to ingest: ${DROP} does not exist`); process.exit(0); }
 
-  let added = 0, skipped = 0;
+  const { createHash } = await import("node:crypto");
+  const ABSTRACTS = resolve(HERE, ".abstract-cache.json");
+  const abstracts = existsSync(ABSTRACTS) ? JSON.parse(readFileSync(ABSTRACTS, "utf8")) : {};
+
+  const MIN_BODY_CHARS = 3000;
+  const cited = new Set(pmids);
+
+  // Bodies already held, so a duplicate is caught against earlier runs too.
+  const byFingerprint = new Map();
+  for (const [p, v] of Object.entries(cache)) {
+    if (v?.text) byFingerprint.set(createHash("sha1").update(v.text).digest("hex"), p);
+  }
+
+  const GENERIC = new Set(`deficiency disease disorder disorders syndrome inborn error errors
+    metabolism metabolic acid acidemia acidaemia aciduria type patients human clinical infant
+    neonatal newborn screening diagnosis management treatment gene mutations variant variants
+    case report review children child adult plasma urine serum blood novel study analysis their
+    with from and the for combined causes encoding`.split(/\s+/).filter(Boolean));
+
+  /**
+   * Does the body look like the paper this PMID names?
+   *
+   * Compared against the title PubMed holds, which the abstract cache already
+   * has for every cited paper. Distinctive title words should appear somewhere
+   * in the body of the paper they came from; when almost none do, the file is
+   * some other paper. Deliberately lenient -- half the words is enough -- since
+   * the job is catching a different paper, not policing wording.
+   */
+  function titleMismatch(pmid, body) {
+    const title = abstracts[pmid]?.title;
+    if (!title) return null;                       // nothing to check against
+    const words = [...new Set(title.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/))]
+      .filter((w) => w.length > 4 && !GENERIC.has(w));
+    if (words.length < 3) return null;             // too generic a title to judge
+    const hay = body.toLowerCase();
+    const hits = words.filter((w) => hay.includes(w)).length;
+    if (hits / words.length >= 0.5) return null;
+    return `body does not match the cited title (${hits}/${words.length} key words) — "${title.slice(0, 70)}"`;
+  }
+
+  /**
+   * Which cited paper is this body, if not the one the filename claims?
+   *
+   * Scores the body against every cited title the abstract cache holds and
+   * returns the best, so a file saved under the wrong PMID can be renamed to
+   * the right one instead of simply refused. Requires a clear winner: a strong
+   * match, and comfortably ahead of the runner-up, because renaming a file to
+   * the wrong PMID is the very failure being guarded against.
+   */
+  function identify(body) {
+    const hay = body.toLowerCase();
+    const scored = [];
+    for (const [p, rec] of Object.entries(abstracts)) {
+      if (!cited.has(p) || !rec?.title) continue;
+      const words = [...new Set(rec.title.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/))]
+        .filter((w) => w.length > 4 && !GENERIC.has(w));
+      if (words.length < 4) continue;
+      scored.push({ pmid: p, title: rec.title, score: words.filter((w) => hay.includes(w)).length / words.length });
+    }
+    scored.sort((a, b) => b.score - a.score);
+    const [best, next] = scored;
+    if (!best || best.score < 0.8) return null;
+    if (next && best.score - next.score < 0.15) return null;   // not a clear winner
+    return best;
+  }
+
+  let added = 0, skipped = 0, renamed = 0;
   for (const file of readdirSync(DROP)) {
     if (file === "README.md") continue;   // the folder documents itself
-    const pmid = file.replace(/\.(txt|pdf)$/i, "");
-    if (!/^\d+$/.test(pmid)) { console.error(`  skip ${file}: filename must be <PMID>.txt or <PMID>.pdf`); skipped++; continue; }
+
+    // Accept "<PMID>.pdf" and also "<PMID> Author Year.pdf", which is how a
+    // paper arrives when it is saved by hand from a journal site. The leading
+    // digits are only believed if they are a PMID this knowledge base actually
+    // cites — otherwise "20_papers_-_batch_3.zip" would read as PMID 20.
+    const lead = file.match(/^(\d{4,8})\b/)?.[1];
+    if (!lead || !cited.has(lead)) {
+      console.error(`  skip ${file}: no cited PMID at the start of the filename`);
+      skipped++;
+      continue;
+    }
+    const pmid = lead;
     const full = resolve(DROP, file);
     if (!statSync(full).isFile()) continue;
 
@@ -351,14 +427,57 @@ if (arg("--ingest")) {
       text = readFileSync(full, "utf8");
     }
     text = text.replace(/\s+/g, " ").trim();
-    if (text.length < 500) { console.error(`  skip ${file}: only ${text.length} chars — not a readable body`); skipped++; continue; }
+    // A scanned paper with no text layer yields a few hundred characters of
+    // cover furniture. Judging a claim against that produces a confident
+    // "unsupported" from no evidence at all, which is worse than no verdict.
+    if (text.length < MIN_BODY_CHARS) {
+      console.error(`  skip ${file}: ${text.length} chars — no text layer? (scanned PDFs need OCR)`);
+      skipped++;
+      continue;
+    }
+
+    // Is this actually the paper the filename claims? Two ways it is not, both
+    // seen in the first batch: the same PDF saved twice under different PMIDs,
+    // and a paper downloaded under the wrong name. Either attaches a body to a
+    // citation it does not belong to -- the exact defect this project exists to
+    // catch, arriving through the back door.
+    const fingerprint = createHash("sha1").update(text).digest("hex");
+    const twin = byFingerprint.get(fingerprint);
+    if (twin && twin !== pmid) {
+      console.error(`  skip ${file}: byte-for-byte the paper already held for PMID ${twin}`);
+      console.error(`         so PMID ${pmid} was not actually retrieved — it is still wanted`);
+      skipped++;
+      continue;
+    }
+
+    const mismatch = titleMismatch(pmid, text);
+    if (mismatch) {
+      // Saved under the wrong PMID: work out which paper it really is and move
+      // the file, rather than refusing a paper that was correctly retrieved.
+      const real = identify(text);
+      if (real && !cache[real.pmid]?.text) {
+        const moved = file.replace(/^\d{4,8}/, real.pmid);
+        renameSync(resolve(DROP, file), resolve(DROP, moved));
+        cache[real.pmid] = { pmcid: null, text, closed: false, source: "manual" };
+        byFingerprint.set(fingerprint, real.pmid);
+        renamed++; added++;
+        console.error(`  RENAMED ${file}`);
+        console.error(`       -> ${moved}  (${real.title.slice(0, 60)})`);
+        continue;
+      }
+      console.error(`  skip ${file}: ${mismatch}`);
+      if (real) console.error(`         looks like PMID ${real.pmid}, already held`);
+      skipped++;
+      continue;
+    }
+    byFingerprint.set(fingerprint, pmid);
 
     cache[pmid] = { pmcid: null, text, closed: false, source: "manual" };
     added++;
     console.error(`  ${pmid}: ${text.length.toLocaleString()} chars`);
   }
   writeFileSync(CACHE, JSON.stringify(cache));
-  console.error(`\ningested ${added} papers, skipped ${skipped}.`);
+  console.error(`\ningested ${added} papers${renamed ? ` (${renamed} renamed to the PMID they turned out to be)` : ""}, skipped ${skipped}.`);
   process.exit(0);
 }
 
