@@ -26,6 +26,81 @@ are not redistributable and this repository is public.
 
 ---
 
+## The list
+
+Ranked by claims settled. Tick as you go — the numbers shift when you re-run
+`--wanted --md`, so re-tick against PMIDs rather than positions.
+
+| ✓ | Claims | PMID | Author | Journal | Disorders |
+|---|---:|---|---|---|---|
+| ☐ | 26 | [30982989](https://pubmed.ncbi.nlm.nih.gov/30982989/) | Häberle J 2019 | J Inherit Metab Dis | CITR1, ASA_AC, ARG1, OTC, CPS1, NAGS, CAVA, HHH |
+| ☐ | 18 | [21312325](https://pubmed.ncbi.nlm.nih.gov/21312325/) | Watkins D 2011 | Am J Med Genet C Semin Med Genet | CBLE, CBLF, CBLJ, TCN2 |
+| ☐ | 14 | [21479626](https://pubmed.ncbi.nlm.nih.gov/21479626/) | Sass JO 2012 | J Inherit Metab Dis | BKT, SCOT, HMGCS2D |
+| ☐ | 14 | [19452263](https://pubmed.ncbi.nlm.nih.gov/19452263/) | Spiekerkoetter U 2009 | J Inherit Metab Dis | MCAD, VLCAD, LCHAD, CPT1 |
+| ☐ | 11 | [27161889](https://pubmed.ncbi.nlm.nih.gov/27161889/) | El-Hattab AW 2016 | Mol Genet Metab | PHGDH, PSAT1, PSPH |
+| ☐ | 11 | [16763900](https://pubmed.ncbi.nlm.nih.gov/16763900/) | de Koning TJ 2006 | J Inherit Metab Dis | PHGDH, PSAT1, PSPH |
+| ☐ | 7 | [18563633](https://pubmed.ncbi.nlm.nih.gov/18563633/) | Fowler B 2008 | J Inherit Metab Dis | MMA, MCEE |
+| ☐ | 7 | [16950638](https://pubmed.ncbi.nlm.nih.gov/16950638/) | Korman SH 2006 | Mol Genet Metab | 2MBD, HSD17B10D, SBCAD |
+| ☐ | 7 | [22108709](https://pubmed.ncbi.nlm.nih.gov/22108709/) | Watkins D 2012 | J Inherit Metab Dis | MTHFR |
+| ☐ | 7 | [23561848](https://pubmed.ncbi.nlm.nih.gov/23561848/) | Nota B 2013 | Am J Hum Genet | D2HGA, SLC25A1 |
+| ☐ | 6 | [12003346](https://pubmed.ncbi.nlm.nih.gov/12003346/) | Shintaku H 2002 | Curr Drug Metab | PKU, PTPS |
+| ☐ | 6 | [26100751](https://pubmed.ncbi.nlm.nih.gov/26100751/) | Wijemanne S 2015 | Nat Rev Neurol | DRD |
+| ☐ | 6 | [11161836](https://pubmed.ncbi.nlm.nih.gov/11161836/) | Fukao T 2001 | Mol Genet Metab | BKT |
+| ☐ | 6 | [16926354](https://pubmed.ncbi.nlm.nih.gov/16926354/) | van Maldegem BT 2006 | JAMA | SCAD |
+| ☐ | 6 | [19304569](https://pubmed.ncbi.nlm.nih.gov/19304569/) | Espinós C 2009 | J Med Genet | UROCA |
+| ☐ | 6 | [25860818](https://pubmed.ncbi.nlm.nih.gov/25860818/) | Hagen J 2015 | J Inherit Metab Dis | DHTKD1 |
+| ☐ | 6 | [22525402](https://pubmed.ncbi.nlm.nih.gov/22525402/) | van Kuilenburg AB 2012 | Biochim Biophys Acta | BALA |
+| ☐ | 6 | [20598931](https://pubmed.ncbi.nlm.nih.gov/20598931/) | Marin-Valencia I 2010 | Mol Genet Metab | PCDEF |
+| ☐ | 6 | [12754701](https://pubmed.ncbi.nlm.nih.gov/12754701/) | Reiss J 2003 | Hum Mutat | SULFOX, MOCO |
+| ☐ | 6 | [5637757](https://pubmed.ncbi.nlm.nih.gov/5637757/) | Perry TL 1968 | N Engl J Med | CTH |
+| ☐ | 5 | [19234759](https://pubmed.ncbi.nlm.nih.gov/19234759/) | Longo N 2009 | J Inherit Metab Dis | DHPR |
+| ☐ | 5 | [24881969](https://pubmed.ncbi.nlm.nih.gov/24881969/) | Frazier DM 2014 | Mol Genet Metab | MSUD |
+| ☐ | 5 | [24530203](https://pubmed.ncbi.nlm.nih.gov/24530203/) | van Karnebeek CDM 2014 | Am J Hum Genet | CAVA |
+| ☐ | 5 | [12872837](https://pubmed.ncbi.nlm.nih.gov/12872837/) | Koeberl DD 2003 | J Inherit Metab Dis | MCC, IBD |
+| ☐ | 5 | [22241090](https://pubmed.ncbi.nlm.nih.gov/22241090/) | Wolf B 2012 | Genet Med | MCC, MCD |
+| ☐ | 5 | [17692550](https://pubmed.ncbi.nlm.nih.gov/17692550/) | Pié J 2007 | Mol Genet Metab | HMGCL |
+| ☐ | 5 | [12888986](https://pubmed.ncbi.nlm.nih.gov/12888986/) | Strauss KA 2003 | Am J Med Genet C | GA1 |
+| ☐ | 5 | [16491085](https://pubmed.ncbi.nlm.nih.gov/16491085/) | Mills PB 2006 | Nat Med | PDE, PIPOX |
+| ☐ | 5 | [9686819](https://pubmed.ncbi.nlm.nih.gov/9686819/) | Suormala T 1998 | Eur J Pediatr | MCD |
+| ☐ | 5 | [17208640](https://pubmed.ncbi.nlm.nih.gov/17208640/) | Wilcken B 2007 | Lancet | MCAD |
+| ☐ | 5 | [11826276](https://pubmed.ncbi.nlm.nih.gov/11826276/) | Rinaldo P 2002 | Annu Rev Physiol | MCAD, CPT2 |
+| ☐ | 5 | [20696606](https://pubmed.ncbi.nlm.nih.gov/20696606/) | Collins SA 2010 | Int J Circumpolar Health | CPT1 |
+| ☐ | 5 | [17393751](https://pubmed.ncbi.nlm.nih.gov/17393751/) | van Calcar SC 2007 | Wis Med J | 2MBD, SBCAD |
+| ☐ | 5 | [19235232](https://pubmed.ncbi.nlm.nih.gov/19235232/) | Tabatabaie L 2009 | Hum Mutat | PHGDH |
+| ☐ | 5 | [23463425](https://pubmed.ncbi.nlm.nih.gov/23463425/) | van der Crabben SN 2013 | J Inherit Metab Dis | PSAT1, PSPH |
+| ☐ | 5 | [23628343](https://pubmed.ncbi.nlm.nih.gov/23628343/) | Häberle J 2013 | Arch Biochem Biophys | GLULSYN |
+| ☐ | 5 | [16278852](https://pubmed.ncbi.nlm.nih.gov/16278852/) | Robinson BH 2001 | book/chapter | PCDEF |
+| ☐ | 5 | [10417274](https://pubmed.ncbi.nlm.nih.gov/10417274/) | FitzPatrick DR 1999 | Am J Hum Genet | MLYCD |
+| ☐ | 5 | [9428520](https://pubmed.ncbi.nlm.nih.gov/9428520/) | Kisker C 1997 | Cell | SULFOX |
+| ☐ | 5 | [16435181](https://pubmed.ncbi.nlm.nih.gov/16435181/) | Barić I 2005 | J Inherit Metab Dis | AHCY |
+| ☐ | 5 | [1404882](https://pubmed.ncbi.nlm.nih.gov/1404882/) | Mudd SH 2007 | book/chapter | CTH |
+| ☐ | 5 | [23296368](https://pubmed.ncbi.nlm.nih.gov/23296368/) | Wortmann SB 2013 | J Inherit Metab Dis | MGA1 |
+| ☐ | 5 | [12438653](https://pubmed.ncbi.nlm.nih.gov/12438653/) | Dobson CM 2002 | Proc Natl Acad Sci USA | MCEE |
+| ☐ | 5 | [10448086](https://pubmed.ncbi.nlm.nih.gov/10448086/) | Shany E 1999 | Biochem Biophys Res Commun | AKGDH |
+| ☐ | 5 | [4341015](https://pubmed.ncbi.nlm.nih.gov/4341015/) | Pagliara AS 1972 | J Clin Invest | FBP1 |
+| ☐ | 5 | [20631546](https://pubmed.ncbi.nlm.nih.gov/20631546/) | Kishnani PS 2010 | Genet Med | GSD3 |
+| ☐ | 5 | [16549399](https://pubmed.ncbi.nlm.nih.gov/16549399/) | Jinnah HA 2006 | Brain | HPRT |
+| ☐ | 4 | [22522443](https://pubmed.ncbi.nlm.nih.gov/22522443/) | Friedman J 2012 | Ann Neurol | SR_DEF |
+| ☐ | 4 | [24204001](https://pubmed.ncbi.nlm.nih.gov/24204001/) | Ferrè S 2014 | J Am Soc Nephrol | PCD_DEF |
+| ☐ | 4 | [11742888](https://pubmed.ncbi.nlm.nih.gov/11742888/) | Yap S 2080 | Arterioscler Thromb Vasc Biol | CBS |
+| ☐ | 4 | [1356171](https://pubmed.ncbi.nlm.nih.gov/1356171/) | Chitayat D 1992 | J Inherit Metab Dis | TYR2 |
+| ☐ | 4 | [11891283](https://pubmed.ncbi.nlm.nih.gov/11891283/) | Liu H 2002 | Proc Natl Acad Sci USA | HYPER_PRO |
+| ☐ | 4 | [17538087](https://pubmed.ncbi.nlm.nih.gov/17538087/) | Enns GM 2007 | N Engl J Med | CITR1, OTC, CPS1 |
+| ☐ | 4 | [12684900](https://pubmed.ncbi.nlm.nih.gov/12684900/) | Bachmann C 2003 | Eur J Pediatr | CITR1, OTC, CPS1 |
+| ☐ | 4 | [26913920](https://pubmed.ncbi.nlm.nih.gov/26913920/) | Diez-Fernandez C 2016 | Genet Med | CAVA |
+| ☐ | 4 | [11181649](https://pubmed.ncbi.nlm.nih.gov/11181649/) | Baumgartner MR 2001 | J Clin Invest | MCC |
+| ☐ | 4 | [19177531](https://pubmed.ncbi.nlm.nih.gov/19177531/) | Menao S 2009 | Hum Mutat | HMGCL |
+| ☐ | 4 | [20847235](https://pubmed.ncbi.nlm.nih.gov/20847235/) | Kranendijk M 2010 | Science | L2HGA, D2HGA |
+| ☐ | 4 | [18317232](https://pubmed.ncbi.nlm.nih.gov/18317232/) | Primassin S 2008 | Pediatr Res | VLCAD, LCHAD |
+| ☐ | 4 | [10607472](https://pubmed.ncbi.nlm.nih.gov/10607472/) | Bonnefont JP 1999 | Mol Genet Metab | CPT2 |
+
+Also written as `docs/fulltext-wanted.csv` (`--wanted --csv`) if you would
+rather work in a spreadsheet.
+
+---
+
+## Full citations
+
 
 ### 26 claims — PMID 30982989
 

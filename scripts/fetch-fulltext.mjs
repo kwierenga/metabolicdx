@@ -232,6 +232,42 @@ if (arg("--wanted")) {
   const pick = rows.slice(0, top);
   const resolves = pick.reduce((n, r) => n + r.n, 0);
 
+  /**
+   * Pull the identifying bits out of a citation string: who, when, where.
+   *
+   * The list is worked through over days, a few papers at a time, so what it has
+   * to support is recognising a paper at a glance and finding it again. Full
+   * citations are for the reference list; "Häberle 2019, J Inherit Metab Dis" is
+   * what someone actually searches on. Anything that does not parse keeps its
+   * full string rather than being silently blanked.
+   */
+  function shortOf(citation) {
+    const s = String(citation || "");
+    const author = (s.match(/^([^.]+?)(?:\s+et al)?\./)?.[1] || "").split(",")[0].trim();
+    const year = s.match(/\b(19|20)\d{2}\b/g)?.slice(-1)[0] || "";
+    // The journal is the segment immediately before the year, which is how every
+    // citation in this corpus is shaped. Books and chapters have no such segment.
+    const journal = (s.match(/\.\s*([^.]{3,60}?)\.\s*\d{4}\s*[;:]/)?.[1] || "").trim();
+    return {
+      who: author && year ? `${author} ${year}` : (author || "—"),
+      journal: journal || (/GeneReviews|In:|eds\./i.test(s) ? "book/chapter" : "—"),
+    };
+  }
+
+  // --csv for a spreadsheet: same rows, sortable and filterable, one per line.
+  if (arg("--csv")) {
+    const esc = (v) => `"${String(v).replace(/"/g, '""')}"`;
+    const lines = ["claims,pmid,author_year,journal,disorders,url,citation"];
+    for (const r of pick) {
+      const { who, journal } = shortOf(r.citation);
+      lines.push([r.n, r.pmid, esc(who), esc(journal), esc(r.disorders.join(" ")),
+        `https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`, esc(r.citation)].join(","));
+    }
+    writeFileSync(resolve(HERE, "..", "docs", "fulltext-wanted.csv"), lines.join("\n") + "\n");
+    console.log(`docs/fulltext-wanted.csv written: ${pick.length} rows`);
+    process.exit(0);
+  }
+
   // --md rewrites docs/fulltext-wanted.md in place. The ranking moves every time
   // a claim is settled or a paper arrives, and a stale list sends someone off to
   // retrieve a paper that is already in hand — so regenerating has to be one
@@ -254,6 +290,20 @@ if (arg("--wanted")) {
       "rather than silently judged on nothing. The folder is gitignored: publisher PDFs",
       "are not redistributable and this repository is public.", "", "---", "",
     ];
+    // The checklist is the working view: one line per paper, tickable, with the
+    // three things needed to recognise and find it. Full citations follow below
+    // for anyone who needs the volume and pages.
+    out.push("## The list", "",
+      "Ranked by claims settled. Tick as you go — the numbers shift when you re-run",
+      "`--wanted --md`, so re-tick against PMIDs rather than positions.", "",
+      "| ✓ | Claims | PMID | Author | Journal | Disorders |",
+      "|---|---:|---|---|---|---|");
+    for (const r of pick) {
+      const { who, journal } = shortOf(r.citation);
+      out.push(`| ☐ | ${r.n} | [${r.pmid}](https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/) | ${who} | ${journal} | ${r.disorders.join(", ")} |`);
+    }
+    out.push("", "Also written as `docs/fulltext-wanted.csv` (`--wanted --csv`) if you would",
+      "rather work in a spreadsheet.", "", "---", "", "## Full citations", "");
     for (const r of pick) {
       out.push("", `### ${r.n} claims — PMID ${r.pmid}`, "", `*${r.disorders.join(", ")}*`, "",
         r.citation, `<https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/>`);
