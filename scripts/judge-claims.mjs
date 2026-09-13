@@ -40,6 +40,7 @@ import { collectClaims, judgeablePairs } from "./parse-claims.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ABSTRACTS = resolve(HERE, ".abstract-cache.json");
+const FULLTEXTS = resolve(HERE, ".fulltext-cache.json");
 const CACHE = resolve(HERE, ".claim-verdict-cache.json");
 const OUT = resolve(HERE, "claim-support-report.json");
 const CALIBRATION = resolve(HERE, "claim-calibration.json");
@@ -55,6 +56,11 @@ const MODEL = "claude-opus-5";
 // Bump when the prompt changes, so cached verdicts from an older prompt are not
 // silently mixed with new ones.
 const PROMPT_VERSION = 1;
+// Full-text verdicts live in their own key namespace rather than bumping the
+// version above. They answer a different question against different evidence,
+// and the 1,806 abstract verdicts already in the cache cost real money — there
+// is no reason to invalidate them to add a second, better-informed opinion.
+const FULLTEXT_PROMPT_VERSION = 1;
 
 const arg = (f) => process.argv.includes(f);
 const flagValue = (f, d) => { const i = process.argv.indexOf(f); return i > -1 ? process.argv[i + 1] : d; };
@@ -106,6 +112,46 @@ const SCHEMA = {
   additionalProperties: false,
 };
 
+// The abstract prompt's central caveat — "you see the abstract, never the full
+// paper" — is exactly what stops being true here, and every verdict definition
+// turned on it. "not-assessable" was the safe answer when the evidence was a
+// summary; with the body in hand it becomes a near-empty category, and
+// "unsupported" stops meaning "the summary omitted it" and starts meaning the
+// paper does not carry the claim. That is a finding worth a clinician's time,
+// so the bar for it is raised to match.
+const FULLTEXT_SYSTEM = `You check medical reference lists. For each claim you are given a sentence from a rare-metabolic-disease knowledge base and the FULL TEXT of ONE paper it cites, and you decide whether that paper supports that sentence.
+
+You have the body of the paper, not just the abstract. A figure caption, a methods detail or a single sentence in the discussion counts as support — search the whole text before concluding something is absent. Tables and reference lists have been stripped, so a number that would only appear in a table may be genuinely unreachable; say so rather than calling it absent.
+
+- "supports"       — the paper states the claim, or states something the claim follows directly from. Quote the span.
+- "partial"        — the paper supports some of the claim but not a specific, checkable part of it (typically a number, a threshold, a rate, or a date). Say which part is missing.
+- "unsupported"    — the paper is ON the topic and the claim's specific content is genuinely absent from it or contradicted by it. With the full text in hand this is a strong statement: it means you read the paper and the claim is not in it.
+- "not-assessable" — the paper is about something else entirely, or the relevant content would live in a stripped table. This should be rare now that you have the body.
+
+Judge the sentence as written, including its numbers. Reserve "unsupported" for claims you have actually looked for and failed to find.`;
+
+function fulltextPrompt(group, paper, body) {
+  const claims = group.claims.map((c) => [
+    `claim_id: ${c.id}`,
+    `disorder: ${c.disorderName}${c.gene ? ` (${c.gene})` : ""}`,
+    `sentence: ${c.text}`,
+    `paragraph it sits in: ${c.paragraph}`,
+  ].join("\n")).join("\n\n---\n\n");
+
+  return `PAPER (PMID ${group.pmid})
+citation as printed: ${group.citation}
+title: ${paper?.title || "(title unknown)"}
+
+FULL TEXT
+${body}
+
+CLAIMS CITING THIS PAPER (${group.claims.length})
+
+${claims}
+
+Return one verdict per claim_id.`;
+}
+
 function userPrompt(group, abstract) {
   const claims = group.claims.map((c) => [
     `claim_id: ${c.id}`,
@@ -142,19 +188,37 @@ const REQUEST = (group, abstract) => ({
   messages: [{ role: "user", content: userPrompt(group, abstract) }],
 });
 
+// Long papers are capped rather than skipped. The cap is generous enough that
+// almost nothing is cut, and a truncated tail is still far more evidence than
+// an abstract — but it stops one 165,000-character guideline from costing more
+// than the rest of a batch put together.
+const MAX_BODY_CHARS = 160_000;
+
+const FULLTEXT_REQUEST = (group, paper, body) => ({
+  model: MODEL,
+  max_tokens: 8000,
+  system: [{ type: "text", text: FULLTEXT_SYSTEM, cache_control: { type: "ephemeral" } }],
+  thinking: { type: "adaptive" },
+  output_config: { effort: flagValue("--effort", "high"), format: { type: "json_schema", schema: SCHEMA } },
+  messages: [{ role: "user", content: fulltextPrompt(group, paper, body.slice(0, MAX_BODY_CHARS)) }],
+});
+
 const parseVerdicts = (msg) => {
   const text = (msg?.content ?? []).filter((b) => b.type === "text").map((b) => b.text).join("");
   if (!text.trim()) throw new Error("no text block in response");
   return JSON.parse(text).verdicts;
 };
 
-async function judgeDirect(groups, abstracts, cache) {
+// `build` turns a group into a request and `key` decides where its verdicts are
+// filed, so the abstract pass and the full-text pass share one loop rather than
+// drifting apart as two near-copies.
+async function judgeDirect(groups, cache, build, key) {
   let done = 0;
   for (const g of groups) {
     process.stderr.write(`\r  ${++done}/${groups.length} papers`);
     try {
-      const msg = await client().messages.create(REQUEST(g, abstracts[g.pmid]));
-      for (const v of parseVerdicts(msg)) cache[verdictKey(g.pmid, v.claim_id)] = v;
+      const msg = await client().messages.create(build(g));
+      for (const v of parseVerdicts(msg)) cache[key(g.pmid, v.claim_id)] = v;
     } catch (e) {
       console.error(`\n  ! PMID ${g.pmid}: ${e.message}`);
     }
@@ -168,8 +232,8 @@ async function judgeDirect(groups, abstracts, cache) {
  * Results come back in ANY order, so everything is keyed by custom_id — never
  * by position, which is the classic way to silently mis-file a whole run.
  */
-async function judgeBatched(groups, abstracts, cache) {
-  const requests = groups.map((g) => ({ custom_id: `p${g.pmid}`, params: REQUEST(g, abstracts[g.pmid]) }));
+async function judgeBatched(groups, cache, build, key) {
+  const requests = groups.map((g) => ({ custom_id: `p${g.pmid}`, params: build(g) }));
   const byId = new Map(groups.map((g) => [`p${g.pmid}`, g]));
 
   console.error(`submitting ${requests.length} requests...`);
@@ -188,7 +252,7 @@ async function judgeBatched(groups, abstracts, cache) {
     if (!g) continue;
     if (r.result?.type !== "succeeded") { console.error(`  ! ${r.custom_id}: ${r.result?.type}`); continue; }
     try {
-      for (const v of parseVerdicts(r.result.message)) cache[verdictKey(g.pmid, v.claim_id)] = v;
+      for (const v of parseVerdicts(r.result.message)) cache[key(g.pmid, v.claim_id)] = v;
     } catch (e) {
       console.error(`  ! ${r.custom_id}: ${e.message}`);
     }
@@ -197,6 +261,11 @@ async function judgeBatched(groups, abstracts, cache) {
 }
 
 const verdictKey = (pmid, claimId) => `v${PROMPT_VERSION}|${pmid}|${claimId}`;
+const fulltextKey = (pmid, claimId) => `f${FULLTEXT_PROMPT_VERSION}|${pmid}|${claimId}`;
+
+/** The best verdict held for a claim-paper pair: the full text outranks the abstract. */
+const bestVerdict = (cache, pmid, claimId) =>
+  cache[fulltextKey(pmid, claimId)] ?? cache[verdictKey(pmid, claimId)];
 
 // ── selection ───────────────────────────────────────────────────────────────
 
@@ -225,7 +294,11 @@ function aggregate(claims, cache) {
   for (const c of claims) {
     const judged = c.refs
       .filter((r) => r.pmid)
-      .map((r) => ({ ref: r, v: cache[verdictKey(r.pmid, c.id)] }))
+      .map((r) => ({
+        ref: r,
+        v: bestVerdict(cache, r.pmid, c.id),
+        source: cache[fulltextKey(r.pmid, c.id)] ? "full text" : "abstract",
+      }))
       .filter((x) => x.v);
     if (!judged.length) continue;
     const verdicts = judged.map((x) => x.v.verdict);
@@ -239,7 +312,7 @@ function aggregate(claims, cache) {
     rows.push({
       id: c.id, disorder: c.disorder, text: c.text,
       status: supported ? "supported" : contradicted ? "contradicted" : "unverified",
-      judged: judged.map((x) => ({ pmid: x.ref.pmid, citation: x.ref.text, ...x.v })),
+      judged: judged.map((x) => ({ pmid: x.ref.pmid, citation: x.ref.text, evidence: x.source, ...x.v })),
     });
   }
   return rows;
@@ -271,6 +344,7 @@ if (!existsSync(ABSTRACTS)) {
   process.exit(1);
 }
 const abstracts = JSON.parse(readFileSync(ABSTRACTS, "utf8"));
+const fulltexts = existsSync(FULLTEXTS) ? JSON.parse(readFileSync(FULLTEXTS, "utf8")) : {};
 const cache = existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, "utf8")) : {};
 const allClaims = collectClaims();
 
@@ -312,18 +386,49 @@ if (arg("--calibrate")) {
   process.exit(0);
 }
 
-const { groups, noAbstract } = selectGroups(allClaims, abstracts);
-const todo = groups
-  .map((g) => ({ ...g, claims: g.claims.filter((c) => !cache[verdictKey(g.pmid, c.id)]) }))
-  .filter((g) => g.claims.length);
+if (arg("--fulltext")) {
+  // A second opinion, not a re-run. Only claims the abstract could not settle
+  // are asked again — a claim already affirmed by its abstract needs no help,
+  // and re-judging it would be most of the corpus for no new information.
+  const groups = judgeablePairs(allClaims)
+    .map((g) => ({
+      ...g,
+      claims: g.claims.filter((c) => {
+        if (cache[fulltextKey(g.pmid, c.id)]) return false;
+        const prior = cache[verdictKey(g.pmid, c.id)];
+        return !prior || prior.verdict !== "supports";
+      }),
+    }))
+    .filter((g) => g.claims.length && fulltexts[g.pmid]?.text);
 
-if (!arg("--report")) {
-  const pairs = todo.reduce((n, g) => n + g.claims.length, 0);
-  console.error(`${groups.length} papers in scope, ${todo.length} not yet judged (${pairs} claim-paper pairs)`);
-  console.error(`${noAbstract.length} papers skipped: no abstract in PubMed`);
-  if (todo.length) {
-    if (arg("--batch")) await judgeBatched(todo, abstracts, cache);
-    else await judgeDirect(todo, abstracts, cache);
+  const pairs = groups.reduce((n, g) => n + g.claims.length, 0);
+  const chars = groups.reduce((n, g) => n + Math.min(fulltexts[g.pmid].text.length, MAX_BODY_CHARS), 0);
+  const tokens = Math.round(chars / 4);
+  console.error(`full-text pass: ${groups.length} papers, ${pairs} claim-paper pairs`);
+  console.error(`~${tokens.toLocaleString()} input tokens — about $${(tokens / 1e6 * 5).toFixed(2)} at list, half that batched`);
+  const held = Object.keys(fulltexts).filter((p) => fulltexts[p].text).length;
+  console.error(`${held} papers have full text; the rest are closed access and keep their abstract verdict`);
+
+  if (!arg("--report") && groups.length) {
+    const build = (g) => FULLTEXT_REQUEST(g, abstracts[g.pmid], fulltexts[g.pmid].text);
+    if (arg("--batch")) await judgeBatched(groups, cache, build, fulltextKey);
+    else await judgeDirect(groups, cache, build, fulltextKey);
+  }
+} else {
+  const { groups, noAbstract } = selectGroups(allClaims, abstracts);
+  const todo = groups
+    .map((g) => ({ ...g, claims: g.claims.filter((c) => !cache[verdictKey(g.pmid, c.id)]) }))
+    .filter((g) => g.claims.length);
+
+  if (!arg("--report")) {
+    const pairs = todo.reduce((n, g) => n + g.claims.length, 0);
+    console.error(`${groups.length} papers in scope, ${todo.length} not yet judged (${pairs} claim-paper pairs)`);
+    console.error(`${noAbstract.length} papers skipped: no abstract in PubMed`);
+    if (todo.length) {
+      const build = (g) => REQUEST(g, abstracts[g.pmid]);
+      if (arg("--batch")) await judgeBatched(todo, cache, build, verdictKey);
+      else await judgeDirect(todo, cache, build, verdictKey);
+    }
   }
 }
 

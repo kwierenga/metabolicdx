@@ -34,3 +34,8 @@ scripts/.ecitmatch/
 
 scripts/.abstract-cache.json
 scripts/relevance-report.json
+
+# Full paper bodies from PMC open access. Large, re-fetchable, and the licences
+# vary per article — the cache is a local working copy, not redistributable.
+scripts/.fulltext-cache.json
+docs/fulltext/
