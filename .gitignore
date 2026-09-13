@@ -38,4 +38,5 @@ scripts/relevance-report.json
 # Full paper bodies from PMC open access. Large, re-fetchable, and the licences
 # vary per article — the cache is a local working copy, not redistributable.
 scripts/.fulltext-cache.json
-docs/fulltext/
+docs/fulltext/*
+!docs/fulltext/README.md

@@ -33,6 +33,7 @@
 //     about a diagnostic ratio. Keying on the literal token hid six of eight
 //     known defects.
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import Anthropic from "@anthropic-ai/sdk";
@@ -203,6 +204,12 @@ const FULLTEXT_REQUEST = (group, paper, body) => ({
   messages: [{ role: "user", content: fulltextPrompt(group, paper, body.slice(0, MAX_BODY_CHARS)) }],
 });
 
+/** Record which sentence this verdict was passed on, so a later edit shows up. */
+const stamp = (v, group) => {
+  const c = group.claims.find((x) => x.id === v.claim_id);
+  return c ? { ...v, ctx: claimHash(c.text) } : v;
+};
+
 const parseVerdicts = (msg) => {
   const text = (msg?.content ?? []).filter((b) => b.type === "text").map((b) => b.text).join("");
   if (!text.trim()) throw new Error("no text block in response");
@@ -218,7 +225,7 @@ async function judgeDirect(groups, cache, build, key) {
     process.stderr.write(`\r  ${++done}/${groups.length} papers`);
     try {
       const msg = await client().messages.create(build(g));
-      for (const v of parseVerdicts(msg)) cache[key(g.pmid, v.claim_id)] = v;
+      for (const v of parseVerdicts(msg)) cache[key(g.pmid, v.claim_id)] = stamp(v, g);
     } catch (e) {
       console.error(`\n  ! PMID ${g.pmid}: ${e.message}`);
     }
@@ -252,7 +259,7 @@ async function judgeBatched(groups, cache, build, key) {
     if (!g) continue;
     if (r.result?.type !== "succeeded") { console.error(`  ! ${r.custom_id}: ${r.result?.type}`); continue; }
     try {
-      for (const v of parseVerdicts(r.result.message)) cache[key(g.pmid, v.claim_id)] = v;
+      for (const v of parseVerdicts(r.result.message)) cache[key(g.pmid, v.claim_id)] = stamp(v, g);
     } catch (e) {
       console.error(`  ! ${r.custom_id}: ${e.message}`);
     }
@@ -262,6 +269,26 @@ async function judgeBatched(groups, cache, build, key) {
 
 const verdictKey = (pmid, claimId) => `v${PROMPT_VERSION}|${pmid}|${claimId}`;
 const fulltextKey = (pmid, claimId) => `f${FULLTEXT_PROMPT_VERSION}|${pmid}|${claimId}`;
+
+/**
+ * A fingerprint of the sentence a verdict was passed on.
+ *
+ * The cache key is (pmid, claim_id), and a claim_id is stable across edits —
+ * LCHAD.prognosis.1 stays LCHAD.prognosis.1 however the sentence is reworded.
+ * So rewriting a claim while leaving its citations alone silently keeps the old
+ * verdict, which now describes a sentence that no longer exists. That is the
+ * same shape as the cacheKey trap recorded in docs/citation-claims-review.md,
+ * and a repair pass is exactly when it bites: repairing a claim is the moment
+ * its wording changes.
+ *
+ * Verdicts written before this existed carry no ctx. Those are trusted as
+ * before rather than thrown away — the point is to catch drift from here on,
+ * not to invalidate 1,806 paid-for verdicts.
+ */
+const claimHash = (text) =>
+  createHash("sha1").update(String(text ?? "")).digest("hex").slice(0, 12);
+
+const isStale = (v, claimText) => Boolean(v?.ctx) && v.ctx !== claimHash(claimText);
 
 /** The best verdict held for a claim-paper pair: the full text outranks the abstract. */
 const bestVerdict = (cache, pmid, claimId) =>
@@ -289,7 +316,7 @@ function selectGroups(claims, abstracts) {
 // ── aggregation and reporting ───────────────────────────────────────────────
 
 /** A claim is escalated only when every paper it cites came back unsupported. */
-function aggregate(claims, cache) {
+function aggregate(claims, cache, stale = []) {
   const rows = [];
   for (const c of claims) {
     const judged = c.refs
@@ -299,7 +326,15 @@ function aggregate(claims, cache) {
         v: bestVerdict(cache, r.pmid, c.id),
         source: cache[fulltextKey(r.pmid, c.id)] ? "full text" : "abstract",
       }))
-      .filter((x) => x.v);
+      .filter((x) => x.v)
+      // A verdict passed on an older wording of this sentence is not evidence
+      // about the sentence as it now reads. Drop it rather than report it: the
+      // claim simply awaits re-judging, which is what an unjudged claim is.
+      .filter((x) => {
+        if (!isStale(x.v, c.text)) return true;
+        stale.push({ id: c.id, pmid: x.ref.pmid });
+        return false;
+      });
     if (!judged.length) continue;
     const verdicts = judged.map((x) => x.v.verdict);
     // Escalation turns on the ABSENCE of support, not on the presence of the
@@ -432,7 +467,13 @@ if (arg("--fulltext")) {
   }
 }
 
-const rows = aggregate(allClaims, cache);
+const stale = [];
+const rows = aggregate(allClaims, cache, stale);
+if (stale.length) {
+  const claims = new Set(stale.map((s) => s.id));
+  console.log(`\n${stale.length} verdicts discarded: the sentence was edited after judging`);
+  console.log(`  (${claims.size} claims, now awaiting re-judging — re-run to refresh them)`);
+}
 const flagged = rows.filter((r) => r.status === "contradicted");
 const unverified = rows.filter((r) => r.status === "unverified");
 
