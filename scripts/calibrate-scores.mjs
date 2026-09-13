@@ -154,6 +154,72 @@ for (const c of worst) {
               `   own score ${c.score.toFixed(3)} (${c.band}, rank ${c.rank + 1}, ${c.markers} markers)`);
 }
 
+// ── Does SEPARATION discriminate better than the raw score? ─────────────────
+// The band precision above says the absolute score cannot tell a right answer
+// from a wrong one. The proposed replacement is the gap between rank 1 and
+// rank 2 — how far ahead the leader is, rather than how high it scored. This
+// tests that claim rather than assuming it.
+//
+// Measure: AUC, the probability that a correct top-1 call scores higher on the
+// metric than an incorrect one. 0.5 is a coin flip; 1.0 is perfect separation.
+const top = [];
+for (const d of DISORDERS) {
+  const { values, set } = signatureProfile(d);
+  if (!set.length) continue;
+  const rs = runAnalysis(values).results.filter((r) => Number.isFinite(r.score) && r.score > 0);
+  if (rs.length < 2) continue;
+  const [r1, r2] = rs;
+  top.push({
+    id: d.id,
+    correct: r1.id === d.id,
+    raw: r1.score,
+    gap: r1.score - r2.score,
+    ratio: r1.score / r2.score,
+    margin: (r1.score - r2.score) / r1.score,
+  });
+}
+
+function auc(items, key) {
+  const pos = items.filter((i) => i.correct).map((i) => i[key]);
+  const neg = items.filter((i) => !i.correct).map((i) => i[key]);
+  if (!pos.length || !neg.length) return null;
+  let s = 0;
+  for (const p of pos) for (const n of neg) s += p > n ? 1 : p === n ? 0.5 : 0;
+  return s / (pos.length * neg.length);
+}
+
+const nCorrect = top.filter((t) => t.correct).length;
+const soleCandidate = DISORDERS.filter((d) => {
+  const { set } = signatureProfile(d);
+  return set.length && runAnalysis(signatureProfile(d).values).results
+    .filter((r) => Number.isFinite(r.score) && r.score > 0).length < 2;
+}).length;
+console.log(`\nIs the leader correct? ${nCorrect}/${top.length} profiles rank their own disorder first.`);
+console.log(`(${soleCandidate} further profiles score only ONE disorder at all — a pathognomonic`);
+console.log(` marker, correct in every case. They are excluded below as having no #2 to`);
+console.log(` measure against, which makes the separation figures conservative.)`);
+console.log(`How well does each candidate confidence metric predict that:\n`);
+console.log("  metric                      AUC   (0.50 = coin flip)");
+for (const [key, label] of [
+  ["raw", "top-1 score (current)"],
+  ["gap", "gap: #1 minus #2"],
+  ["ratio", "ratio: #1 over #2"],
+  ["margin", "margin: gap / #1"],
+]) {
+  const a = auc(top, key);
+  console.log(`  ${label.padEnd(24)} ${a === null ? "—" : a.toFixed(3)}`);
+}
+
+// Precision at separation cutoffs — the actionable form of the winning metric.
+console.log(`\nIf the leader is only trusted when it is clearly ahead (ratio #1/#2):`);
+console.log("  ratio >=   profiles   correct   precision");
+for (const t of [1.0, 1.1, 1.25, 1.5, 2.0, 3.0]) {
+  const sel = top.filter((x) => x.ratio >= t);
+  const ok = sel.filter((x) => x.correct).length;
+  const pct = sel.length ? ((ok / sel.length) * 100).toFixed(1) + "%" : "—";
+  console.log(`  ${t.toFixed(2).padStart(8)} ${String(sel.length).padStart(11)} ${String(ok).padStart(9)} ${pct.padStart(11)}`);
+}
+
 if (process.argv.includes("--csv")) {
   console.log(`\nid,score,band,rank,falseHigh,markers`);
   for (const c of perCase) console.log(`${c.id},${c.score.toFixed(4)},${c.band},${c.rank + 1},${c.falseHigh},${c.markers}`);
