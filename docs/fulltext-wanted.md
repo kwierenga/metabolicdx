@@ -1,22 +1,28 @@
 # Papers worth obtaining by hand
 
-Regenerate with `node scripts/fetch-fulltext.mjs --wanted` rather than editing —
-the ranking shifts as claims are settled.
+Regenerate with `node scripts/fetch-fulltext.mjs --wanted --md` rather than
+editing. The ranking moves as claims are settled and as papers arrive, and a
+stale list sends you after something already in hand.
 
-PMC open access covers **139 of the 876** cited papers (16%). The rest are closed.
-These are the ones where getting the paper would actually settle something, ranked
-by how many claims rest on them that no abstract could confirm.
+Full text is held for **167 of 876** cited papers. That covers the PMC
+open-access set, every GeneReviews chapter (free on Bookshelf, fetched with
+`--genereviews`), and the papers already stored under `docs/`.
 
-660 closed-access papers carry at least one unsettled claim.
-Obtaining the top 60 would resolve 383 claims.
+**639** closed-access papers still carry at least one claim no abstract could
+confirm. The top 60 below would settle **369** of them.
 
-**To feed one back in:** save it as `docs/fulltext/<PMID>.pdf` (or `.txt`), then run
-`node scripts/fetch-fulltext.mjs --ingest`. PDFs are converted with pdftotext, and
-the judge then treats a hand-supplied body exactly like a PMC one. That folder is
-gitignored — publisher PDFs are not redistributable.
+## How to feed one back
 
-> Note: GeneReviews chapters (e.g. PMID 26684475, 20301495) are free on NCBI
-> Bookshelf even though they are not in PMC, so those cost nothing but a download.
+Save it as `docs/fulltext/<PMID>.pdf` (or `.txt`) — the filename must be the
+PMID — then run:
+
+```
+node scripts/fetch-fulltext.mjs --ingest
+```
+
+PDFs are converted with pdftotext. A scanned PDF with no text layer is rejected
+rather than silently judged on nothing. The folder is gitignored: publisher PDFs
+are not redistributable and this repository is public.
 
 ---
 
@@ -48,13 +54,6 @@ Sass JO. Inborn errors of ketogenesis and ketone body utilization. J Inherit Met
 
 Spiekerkoetter U et al. Treatment recommendations in long-chain fatty acid oxidation defects. J Inherit Metab Dis. 2009;32(4):498–505.
 <https://pubmed.ncbi.nlm.nih.gov/19452263/>
-
-### 12 claims — PMID 26684475
-
-*GAMT, GATM, SLC6A8*
-
-Mercimek-Mahmutoglu S, Salomons GS. Creatine deficiency syndromes. GeneReviews®. 2015 [updated 2023].
-<https://pubmed.ncbi.nlm.nih.gov/26684475/>
 
 ### 11 claims — PMID 27161889
 
@@ -111,13 +110,6 @@ Shintaku H. Disorders of tetrahydrobiopterin metabolism and their treatment. Cur
 
 Wijemanne S, Jankovic J. Dopa-responsive dystonia—clinical and genetic heterogeneity. Nat Rev Neurol. 2015;11(7):414–24.
 <https://pubmed.ncbi.nlm.nih.gov/26100751/>
-
-### 6 claims — PMID 20301495
-
-*MSUD*
-
-Strauss KA, Puffenberger EG, Morton DH. Maple Syrup Urine Disease. GeneReviews®. Seattle: University of Washington; 2013 [updated 2020].
-<https://pubmed.ncbi.nlm.nih.gov/20301495/>
 
 ### 6 claims — PMID 11161836
 
@@ -189,26 +181,12 @@ Longo N. Disorders of biopterin metabolism. J Inherit Metab Dis. 2009;32(3):333�
 Frazier DM et al. Nutrition management of maple syrup urine disease. Mol Genet Metab. 2014;112(3):210–7.
 <https://pubmed.ncbi.nlm.nih.gov/24881969/>
 
-### 5 claims — PMID 20301360
-
-*CITR2*
-
-Saheki T, Song YZ. Citrin deficiency. GeneReviews®. 2005 [updated 2023].
-<https://pubmed.ncbi.nlm.nih.gov/20301360/>
-
 ### 5 claims — PMID 24530203
 
 *CAVA*
 
 van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61.
 <https://pubmed.ncbi.nlm.nih.gov/24530203/>
-
-### 5 claims — PMID 33071282
-
-*IVA, VLCAD, LCHAD, CPT2*
-
-Miller MJ et al. Laboratory analysis of acylcarnitines, 2020 update: a technical standard of the American College of Medical Genetics and Genomics (ACMG). Genet Med. 2021;23(2):249–58.
-<https://pubmed.ncbi.nlm.nih.gov/33071282/>
 
 ### 5 claims — PMID 12872837
 
@@ -259,13 +237,6 @@ Suormala T et al. Late-onset holocarboxylase synthetase-deficiency: pre- and pos
 Wilcken B et al. Outcome of neonatal screening for medium-chain acyl-CoA dehydrogenase deficiency. Lancet. 2007;369(9555):37–42.
 <https://pubmed.ncbi.nlm.nih.gov/17208640/>
 
-### 5 claims — PMID 20301597
-
-*MCAD*
-
-Merritt JL, Chang IJ. Medium-chain acyl-coenzyme A dehydrogenase deficiency. GeneReviews®. 2000 [updated 2019].
-<https://pubmed.ncbi.nlm.nih.gov/20301597/>
-
 ### 5 claims — PMID 11826276
 
 *MCAD, CPT2*
@@ -279,13 +250,6 @@ Rinaldo P et al. Fatty acid oxidation disorders. Annu Rev Physiol. 2002;64:477�
 
 Collins SA et al. Carnitine palmitoyltransferase 1A P479L prevalence in Nunavut. Int J Circumpolar Health. 2010;69(2):179–92.
 <https://pubmed.ncbi.nlm.nih.gov/20696606/>
-
-### 5 claims — PMID 20301431
-
-*CPT2*
-
-Wieser T. Carnitine palmitoyltransferase II deficiency. GeneReviews®. 2004 [updated 2019].
-<https://pubmed.ncbi.nlm.nih.gov/20301431/>
 
 ### 5 claims — PMID 17393751
 
@@ -392,13 +356,6 @@ Kishnani PS et al. Glycogen storage disease type III diagnosis and management gu
 Jinnah HA et al. Delineation of the motor disorder of Lesch-Nyhan disease. Brain. 2006;129(Pt 5):1201–17.
 <https://pubmed.ncbi.nlm.nih.gov/16549399/>
 
-### 4 claims — PMID 20301681
-
-*DRD*
-
-Furukawa Y. GTP cyclohydrolase 1-deficient dopa-responsive dystonia. GeneReviews®. 2002 [updated 2019].
-<https://pubmed.ncbi.nlm.nih.gov/20301681/>
-
 ### 4 claims — PMID 22522443
 
 *SR_DEF*
@@ -434,9 +391,58 @@ Chitayat D et al. Hereditary tyrosinaemia type II in a consanguineous Ashkenazi 
 Liu H et al. Genetic variation at the 22q11.2 PRODH locus deregulates translation in schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.
 <https://pubmed.ncbi.nlm.nih.gov/11891283/>
 
-### 4 claims — PMID 20301631
+### 4 claims — PMID 17538087
 
-*CITR1*
+*CITR1, OTC, CPS1*
 
-Quinonez SC, Thoene JG. Citrullinemia type I. GeneReviews®. 2004 [updated 2020].
-<https://pubmed.ncbi.nlm.nih.gov/20301631/>
+Enns GM et al. Survival after treatment with phenylacetate and benzoate for urea-cycle disorders. N Engl J Med. 2007;356(22):2282–92.
+<https://pubmed.ncbi.nlm.nih.gov/17538087/>
+
+### 4 claims — PMID 12684900
+
+*CITR1, OTC, CPS1*
+
+Bachmann C. Outcome and survival of 88 patients with urea cycle disorders. Eur J Pediatr. 2003;162(6):410–6.
+<https://pubmed.ncbi.nlm.nih.gov/12684900/>
+
+### 4 claims — PMID 26913920
+
+*CAVA*
+
+Diez-Fernandez C et al. Defective hepatic bicarbonate production due to carbonic anhydrase VA deficiency leads to early-onset life-threatening metabolic crisis. Genet Med. 2016;18(10):991–1000.
+<https://pubmed.ncbi.nlm.nih.gov/26913920/>
+
+### 4 claims — PMID 11181649
+
+*MCC*
+
+Baumgartner MR et al. The molecular basis of human 3-methylcrotonyl-CoA carboxylase deficiency. J Clin Invest. 2001;107(4):495–504.
+<https://pubmed.ncbi.nlm.nih.gov/11181649/>
+
+### 4 claims — PMID 19177531
+
+*HMGCL*
+
+Menao S et al. Clinical, biochemical and molecular study of 24 patients with HMG-CoA lyase deficiency. Hum Mutat. 2009;30(8):E520–40.
+<https://pubmed.ncbi.nlm.nih.gov/19177531/>
+
+### 4 claims — PMID 20847235
+
+*L2HGA, D2HGA*
+
+Kranendijk M et al. IDH2 mutations in patients with D-2-hydroxyglutaric aciduria. Science. 2010;330(6002):336.
+<https://pubmed.ncbi.nlm.nih.gov/20847235/>
+
+### 4 claims — PMID 18317232
+
+*VLCAD, LCHAD*
+
+Primassin S et al. Carnitine supplementation induces acylcarnitine production in tissues of VLCAD-deficient mice. Pediatr Res. 2008;63(6):632–7.
+<https://pubmed.ncbi.nlm.nih.gov/18317232/>
+
+### 4 claims — PMID 10607472
+
+*CPT2*
+
+Bonnefont JP et al. Carnitine palmitoyltransferase deficiencies. Mol Genet Metab. 1999;68(4):424–40.
+<https://pubmed.ncbi.nlm.nih.gov/10607472/>

@@ -128,6 +128,83 @@ if (arg("--coverage")) {
   process.exit(0);
 }
 
+// ── papers already stored under docs/ ───────────────────────────────────────
+// references.js records `localCopy` and `pmid` for the standards and CLIR papers
+// held in the repository, with text already extracted under docs/txt/. Those are
+// full texts we own and had not been wiring in. Staged by PMID like everything
+// else so a fresh clone can rebuild the cache without re-fetching them.
+if (arg("--local")) {
+  const { mkdirSync } = await import("node:fs");
+  const { REFERENCES } = await import("../src/references.js");
+  const DROP = resolve(HERE, "..", "docs", "fulltext");
+  mkdirSync(DROP, { recursive: true });
+
+  let staged = 0;
+  for (const [key, r] of Object.entries(REFERENCES)) {
+    if (!r.localCopy || !r.pmid) continue;
+    const base = r.localCopy.replace(/^docs\//, "").replace(/\.pdf$/i, "");
+    const txt = resolve(HERE, "..", "docs", "txt", `${base}.txt`);
+    if (!existsSync(txt)) { console.error(`  no extract for ${key}: docs/txt/${base}.txt`); continue; }
+    const body = readFileSync(txt, "utf8").replace(/\s+/g, " ").trim();
+    if (body.length < 500) { console.error(`  too short for ${key}: ${body.length} chars`); continue; }
+    writeFileSync(resolve(DROP, `${r.pmid}.txt`), body);
+    console.error(`  ${r.pmid}  ${String(body.length).padStart(7)} chars  ${key}`);
+    staged++;
+  }
+  console.error(`\n${staged} staged to docs/fulltext/. Run: node scripts/fetch-fulltext.mjs --ingest`);
+  process.exit(0);
+}
+
+// ── GeneReviews chapters, which are free but not in PMC ─────────────────────
+// A GeneReviews chapter is fully readable on NCBI Bookshelf and costs nothing,
+// but it is not in the PMC open-access set, so the PMC pass above reports it as
+// closed and it lands on the "obtain by hand" list. It does not belong there.
+//
+// Chapters are written to docs/fulltext/<PMID>.txt — the same drop folder a
+// hand-retrieved PDF goes into — rather than straight to the cache, so every
+// paper the judge can read sits in one visible place regardless of who fetched
+// it. Run --ingest afterwards, exactly as for a PDF.
+if (arg("--genereviews")) {
+  const { mkdirSync } = await import("node:fs");
+  const DROP = resolve(HERE, "..", "docs", "fulltext");
+  mkdirSync(DROP, { recursive: true });
+
+  const wanted = pairs.filter((g) => /GeneReviews/i.test(g.citation) && !cache[g.pmid]?.text);
+  console.error(`${wanted.length} GeneReviews chapters cited without full text`);
+
+  let got = 0;
+  for (const g of wanted) {
+    // The PubMed record for a book chapter carries its Bookshelf accession.
+    const qs = new URLSearchParams({ db: "pubmed", id: g.pmid, retmode: "xml", ...CONTACT,
+      ...(API_KEY ? { api_key: API_KEY } : {}) });
+    const rec = await get(`${EUTILS}/efetch.fcgi?${qs}`);
+    await sleep(API_KEY ? 120 : 360);
+    const nbk = rec?.match(/NBK\d+/)?.[0];
+    if (!nbk) { console.error(`  ${g.pmid}: no Bookshelf accession — not a book record`); continue; }
+
+    const html = await get(`https://www.ncbi.nlm.nih.gov/books/${nbk}/`);
+    await sleep(500);
+    if (!html) { console.error(`  ${g.pmid} (${nbk}): fetch failed`); continue; }
+
+    // Everything before the body-content div is site chrome and a cookie notice;
+    // keeping it would spend a few thousand tokens per chapter on nothing.
+    const start = html.search(/<div[^>]*class="[^"]*body-content[^"]*"/);
+    const slice = start > -1 ? html.slice(start) : html;
+    const text = slice
+      .replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ").trim();
+    if (text.length < 2000) { console.error(`  ${g.pmid} (${nbk}): only ${text.length} chars`); continue; }
+
+    writeFileSync(resolve(DROP, `${g.pmid}.txt`), text);
+    console.error(`  ${g.pmid} (${nbk}): ${text.length.toLocaleString()} chars`);
+    got++;
+  }
+  console.error(`\n${got} chapters written to docs/fulltext/. Run: node scripts/fetch-fulltext.mjs --ingest`);
+  process.exit(0);
+}
+
 // ── papers worth obtaining by hand ──────────────────────────────────────────
 // PMC covers about one paper in six here. The rest are closed access, and some
 // of them are load-bearing: a closed paper carrying six claims the abstract
@@ -151,11 +228,46 @@ if (arg("--wanted")) {
   rows.sort((a, b) => b.n - a.n);
 
   const top = Number(flagValue("--top", "40"));
+  const held = Object.values(cache).filter((v) => v.text).length;
+  const pick = rows.slice(0, top);
+  const resolves = pick.reduce((n, r) => n + r.n, 0);
+
+  // --md rewrites docs/fulltext-wanted.md in place. The ranking moves every time
+  // a claim is settled or a paper arrives, and a stale list sends someone off to
+  // retrieve a paper that is already in hand — so regenerating has to be one
+  // command, not a shell pipeline nobody remembers.
+  if (arg("--md")) {
+    const out = [
+      "# Papers worth obtaining by hand", "",
+      "Regenerate with `node scripts/fetch-fulltext.mjs --wanted --md` rather than",
+      "editing. The ranking moves as claims are settled and as papers arrive, and a",
+      "stale list sends you after something already in hand.", "",
+      `Full text is held for **${held} of ${pmids.length}** cited papers. That covers the PMC`,
+      "open-access set, every GeneReviews chapter (free on Bookshelf, fetched with",
+      "`--genereviews`), and the papers already stored under `docs/`.", "",
+      `**${rows.length}** closed-access papers still carry at least one claim no abstract could`,
+      `confirm. The top ${pick.length} below would settle **${resolves}** of them.`, "",
+      "## How to feed one back", "",
+      "Save it as `docs/fulltext/<PMID>.pdf` (or `.txt`) — the filename must be the",
+      "PMID — then run:", "", "```", "node scripts/fetch-fulltext.mjs --ingest", "```", "",
+      "PDFs are converted with pdftotext. A scanned PDF with no text layer is rejected",
+      "rather than silently judged on nothing. The folder is gitignored: publisher PDFs",
+      "are not redistributable and this repository is public.", "", "---", "",
+    ];
+    for (const r of pick) {
+      out.push("", `### ${r.n} claims — PMID ${r.pmid}`, "", `*${r.disorders.join(", ")}*`, "",
+        r.citation, `<https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/>`);
+    }
+    writeFileSync(resolve(HERE, "..", "docs", "fulltext-wanted.md"), out.join("\n") + "\n");
+    console.log(`docs/fulltext-wanted.md rewritten: top ${pick.length} of ${rows.length}, ${resolves} claims`);
+    process.exit(0);
+  }
+
   console.log(`${rows.length} closed-access papers carry at least one unsettled claim.`);
-  console.log(`Obtaining the top ${Math.min(top, rows.length)} would resolve ${rows.slice(0, top).reduce((n, r) => n + r.n, 0)} claims.`);
+  console.log(`Obtaining the top ${pick.length} would resolve ${resolves} claims.`);
   console.log(`\nDrop each as docs/fulltext/<PMID>.pdf (or .txt), then:`);
   console.log(`  node scripts/fetch-fulltext.mjs --ingest\n`);
-  for (const r of rows.slice(0, top)) {
+  for (const r of pick) {
     console.log(`${String(r.n).padStart(2)} claims  PMID ${r.pmid}  [${r.disorders.join(", ")}]`);
     console.log(`          ${r.citation}`);
     console.log(`          https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`);
@@ -175,6 +287,7 @@ if (arg("--ingest")) {
 
   let added = 0, skipped = 0;
   for (const file of readdirSync(DROP)) {
+    if (file === "README.md") continue;   // the folder documents itself
     const pmid = file.replace(/\.(txt|pdf)$/i, "");
     if (!/^\d+$/.test(pmid)) { console.error(`  skip ${file}: filename must be <PMID>.txt or <PMID>.pdf`); skipped++; continue; }
     const full = resolve(DROP, file);
