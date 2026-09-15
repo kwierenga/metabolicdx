@@ -28,6 +28,7 @@ import { readFileSync, writeFileSync, existsSync, renameSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { collectClaims, judgeablePairs } from "./parse-claims.mjs";
+import { parseCitation } from "./parse-citations.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const CACHE = resolve(HERE, ".fulltext-cache.json");
@@ -401,6 +402,76 @@ if (arg("--ingest")) {
     return best;
   }
 
+  // ── naming a file that arrived without a PMID ───────────────────────────────
+  // Saved from a publisher's site a paper is called "Wolf 2012.pdf", because the
+  // PMID is the one thing the person doing the retrieving does not have in front
+  // of them. Two independent signals can name it, and where both speak they have
+  // to agree:
+  //
+  //   the body  — identify() run against the FIRST PAGE rather than the whole
+  //               paper. Whole-body scoring is useless here: a review quotes
+  //               dozens of other titles verbatim in its reference list, which
+  //               puts twenty papers at a perfect score and names none of them.
+  //   the name  — surname and year off the filename, matched against the parsed
+  //               citation strings, with the surname required to appear on that
+  //               same first page. The filename is the user's own label, so on
+  //               its own it is a claim, not evidence; the author line of the
+  //               paper is what corroborates it.
+  //
+  // Where the body can speak it decides. It cannot always: the key-word test
+  // needs four distinctive words, and "Disorders of biopterin metabolism" has
+  // exactly one. For those the filename hint is all there is, and its silence is
+  // not evidence against it.
+  const HEAD_CHARS = 3000;
+  const fold = (s) => s.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+  const keyWordsOf = (title) =>
+    [...new Set(title.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/))]
+      .filter((w) => w.length > 4 && !GENERIC.has(w));
+
+  const citedAuthors = new Map();   // pmid -> { surname, year }
+  for (const g of pairs) {
+    if (citedAuthors.has(g.pmid)) continue;
+    const c = parseCitation(g.citation);
+    if (!c?.matchAuthor || !c.year) continue;
+    citedAuthors.set(g.pmid, { surname: fold(c.matchAuthor.replace(/\s+[A-Za-z]{1,4}$/, "").trim()), year: c.year });
+  }
+
+  /**
+   * The one cited paper whose title is printed, word for word, on this first
+   * page. The strongest signal there is, and the only one that works on a title
+   * too short for the key-word test — "Disorders of biopterin metabolism" has a
+   * single distinctive word but is unmistakable as a printed line. It stays
+   * silent rather than guessing: a ligature lost in PDF extraction (de[fi]ciency
+   * arriving as "de ciency") breaks the match, and two hits mean a paper quoting
+   * another title on its own first page.
+   */
+  const flatten = (s) => fold(s).replace(/[^a-z0-9]+/g, " ").trim();
+  function titleOnFirstPage(head) {
+    const hay = flatten(head);
+    const hits = [];
+    for (const p of cited) {
+      const t = abstracts[p]?.title;
+      if (!t) continue;
+      const n = flatten(t.replace(/\.$/, ""));
+      if (n.length > 25 && hay.includes(n)) hits.push({ pmid: p, title: t });
+    }
+    return hits.length === 1 ? hits[0] : null;
+  }
+
+  /** Cited papers whose first author and year match what the filename says. */
+  function fromFilename(file) {
+    const m = file.match(/^([A-Za-z][A-Za-z'À-ɏ-]+(?:\s+[a-z]+)?)\s+((?:19|20)\d{2})\b/);
+    if (!m) return { surname: null, year: null, hits: [] };
+    const surname = fold(m[1]);
+    const year = Number(m[2]);
+    const hits = [];
+    for (const [pmid, a] of citedAuthors) {
+      if (Math.abs(a.year - year) > 1) continue;
+      if (a.surname === surname || a.surname.endsWith(` ${surname}`) || surname.endsWith(` ${a.surname}`)) hits.push(pmid);
+    }
+    return { surname, year, hits };
+  }
+
   let added = 0, skipped = 0, renamed = 0;
   for (const file of readdirSync(DROP)) {
     if (file === "README.md") continue;   // the folder documents itself
@@ -409,13 +480,14 @@ if (arg("--ingest")) {
     // paper arrives when it is saved by hand from a journal site. The leading
     // digits are only believed if they are a PMID this knowledge base actually
     // cites — otherwise "20_papers_-_batch_3.zip" would read as PMID 20.
+    //
+    // A name with no PMID at all is not refused. Saved from a publisher's site
+    // a paper is usually called "Wolf 2012.pdf", and the PMID is the one thing
+    // the person doing the retrieving does not have in front of them. The body
+    // says which paper it is, so identify() is asked — at the same high bar it
+    // has to clear when a file is saved under the WRONG PMID.
     const lead = file.match(/^(\d{4,8})\b/)?.[1];
-    if (!lead || !cited.has(lead)) {
-      console.error(`  skip ${file}: no cited PMID at the start of the filename`);
-      skipped++;
-      continue;
-    }
-    const pmid = lead;
+    const pmid = lead && cited.has(lead) ? lead : null;
     const full = resolve(DROP, file);
     if (!statSync(full).isFile()) continue;
 
@@ -436,12 +508,68 @@ if (arg("--ingest")) {
       continue;
     }
 
+    const fingerprint = createHash("sha1").update(text).digest("hex");
+
+    // Named by author rather than PMID: work out which paper it is.
+    if (!pmid) {
+      const twin = byFingerprint.get(fingerprint);
+      if (twin) {
+        console.error(`  skip ${file}: byte-for-byte the paper already held for PMID ${twin}`);
+        skipped++;
+        continue;
+      }
+      const head = text.slice(0, HEAD_CHARS);
+      const best = identify(head);
+      const { surname, hits } = fromFilename(file);
+      const named = surname ? new RegExp(`\\b${surname.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(fold(head)) : false;
+
+      let choice = null, how = "";
+      const printed = titleOnFirstPage(head);
+      if (printed) {
+        choice = printed.pmid;
+        how = hits.length && !hits.includes(printed.pmid)
+          ? `its own title is printed on the first page (the filename pointed elsewhere: ${hits.join(", ")})`
+          : `its own title is printed on the first page`;
+      } else if (best && (!hits.length || hits.includes(best.pmid))) {
+        choice = best.pmid; how = `first page reads as this paper (${best.score.toFixed(2)})`;
+      } else if (hits.length === 1 && named) {
+        // The filename's candidate only yields to the body when it could have
+        // competed there: a title with too few distinctive words never scores.
+        const own = abstracts[hits[0]]?.title;
+        if (!best || !own || keyWordsOf(own).length < 4) {
+          choice = hits[0]; how = `filename author and year, with the author on the first page`;
+        }
+      }
+
+      if (!choice) {
+        const why = best && hits.length ? `the first page reads as PMID ${best.pmid}, but the filename points at ${hits.join(", ")}`
+          : hits.length > 1 ? `the filename matches ${hits.length} cited papers and the first page settles none of them`
+          : `the first page matches no cited title clearly enough to name it`;
+        console.error(`  skip ${file}: ${why}`);
+        skipped++;
+        continue;
+      }
+      if (cache[choice]?.text) {
+        console.error(`  skip ${file}: reads as PMID ${choice}, whose full text is already held`);
+        skipped++;
+        continue;
+      }
+      const moved = `${choice} ${file}`;
+      renameSync(full, resolve(DROP, moved));
+      cache[choice] = { pmcid: null, text, closed: false, source: "manual" };
+      byFingerprint.set(fingerprint, choice);
+      renamed++; added++;
+      console.error(`  NAMED   ${file}`);
+      console.error(`       -> ${moved}  (${(abstracts[choice]?.title ?? "").slice(0, 60)})`);
+      console.error(`          ${how}`);
+      continue;
+    }
+
     // Is this actually the paper the filename claims? Two ways it is not, both
     // seen in the first batch: the same PDF saved twice under different PMIDs,
     // and a paper downloaded under the wrong name. Either attaches a body to a
     // citation it does not belong to -- the exact defect this project exists to
     // catch, arriving through the back door.
-    const fingerprint = createHash("sha1").update(text).digest("hex");
     const twin = byFingerprint.get(fingerprint);
     if (twin && twin !== pmid) {
       console.error(`  skip ${file}: byte-for-byte the paper already held for PMID ${twin}`);
@@ -477,7 +605,7 @@ if (arg("--ingest")) {
     console.error(`  ${pmid}: ${text.length.toLocaleString()} chars`);
   }
   writeFileSync(CACHE, JSON.stringify(cache));
-  console.error(`\ningested ${added} papers${renamed ? ` (${renamed} renamed to the PMID they turned out to be)` : ""}, skipped ${skipped}.`);
+  console.error(`\ningested ${added} papers${renamed ? ` (${renamed} named from their own text)` : ""}, skipped ${skipped}.`);
   process.exit(0);
 }
 
