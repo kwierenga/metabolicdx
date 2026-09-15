@@ -57,8 +57,26 @@ describe("disorder catalogue structural integrity", () => {
       if (!d || typeof d.id !== "string" || !d.id) bad.push(`(${JSON.stringify(d?.name)}) missing id`);
       else if (typeof d.name !== "string" || !d.name) bad.push(`${d.id}: missing name`);
       else if (typeof d.category !== "string" || !d.category) bad.push(`${d.id}: missing category`);
+      else if (d.undetectable) continue; // declared unscoreable — fenced below
       else if (!Array.isArray(d.signature) || d.signature.length === 0)
         bad.push(`${d.id}: empty/missing signature (disorder can never be scored)`);
+    }
+    expect(bad, `\n  - ${bad.join("\n  - ")}\n`).toEqual([]);
+  });
+
+  // The escape hatch above, fenced. `undetectable` says no analyte on any panel
+  // marks the disorder — UROCA is the case it was written for, where urocanic
+  // acid is on no panel and the histidine marker it used to carry was measured
+  // normal in both molecularly confirmed reports. It must not become a quiet way
+  // to park a marker that is merely broken, so a disorder claiming it has to say
+  // why and carry no signature at all (scoreDisorder returns null on maxPoss 0).
+  it("an undetectable disorder states its reason and has no signature", () => {
+    const bad = [];
+    for (const d of DISORDERS) {
+      if (!d.undetectable) continue;
+      if (typeof d.undetectable !== "string" || d.undetectable.length < 30)
+        bad.push(`${d.id}: undetectable must give the reason in prose`);
+      if ((d.signature ?? []).length) bad.push(`${d.id}: undetectable but still carries a signature marker`);
     }
     expect(bad, `\n  - ${bad.join("\n  - ")}\n`).toEqual([]);
   });

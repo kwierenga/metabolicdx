@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-13T03:40:51.623Z",
+  "generated": "2026-09-15T11:28:41.011Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -8437,7 +8437,7 @@
     {
       "id": "BKT.summary.3",
       "disorder": "BKT",
-      "text": "The episodic nature often delays diagnosis [1,2].",
+      "text": "Diagnosis is usually made at the first episode of otherwise unexplained ketoacidosis, by urinary organic acid analysis [1,2].",
       "status": "contradicted",
       "judged": [
         {
@@ -8531,7 +8531,7 @@
     {
       "id": "BKT.biochemistry.2",
       "disorder": "BKT",
-      "text": "BETWEEN crises, urinary metabolites and plasma acylcarnitines may be NORMAL or near-normal — this is an important diagnostic pitfall, and samples should ideally be collected during or immediately after an acute episode [1,8].",
+      "text": "Plasma acylcarnitines can be unremarkable in metabolically stable patients [2], and tiglylglycine is not always present even in crisis — 16 of 23 patients excreted it during their episodes, its absence tracking a milder genotype [1].",
       "status": "contradicted",
       "judged": [
         {
@@ -8542,32 +8542,6 @@
           "verdict": "unsupported",
           "reason": "The abstract refers only to urinary tiglylglycine measured during ketoacidosis and says nothing about metabolites or acylcarnitines being normal between crises or about optimal sample timing.",
           "quote": "only the absence of or a low urinary excretion of tiglyglycine during ketoacidosis correlated with a mild genotype"
-        },
-        {
-          "pmid": "23430882",
-          "citation": "Fukao T et al. Three Japanese patients with beta-ketothiolase deficiency who share a mutation, c.431A>C (H144P) in ACAT1: subtle abnormality in urinary organic acid analysis and blood acylcarnitine analysis using tandem mass spectrometry. JIMD Rep. 2011;3:107–15.",
-          "evidence": "abstract",
-          "claim_id": "BKT.biochemistry.2",
-          "verdict": "partial",
-          "reason": "The abstract supports the general pitfall that urinary organic acid and acylcarnitine profiles can be near-normal/subtle in T2 deficiency, but it documents this DURING severe crises (with mild mutations) rather than between crises, and it does not support—indeed it undercuts—the recommendation to sample during or immediately after an acute episode.",
-          "quote": "Even during severe crises, C5-OH and C5:1 were within normal ranges in their blood acylcarnitine profiles and trace amounts of tiglylglycine and small amounts of 2-methyl-3-hydroxybutyrate were detected in their urinary organic acid profiles."
-        }
-      ]
-    },
-    {
-      "id": "BKT.biochemistry.4",
-      "disorder": "BKT",
-      "text": "Oglesbee 2017 proficiency data show BKT real-world AC sensitivity ~77.5% — the analytical ceiling reflects the frequent near-normal inter-crisis state [9].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "33073017",
-          "citation": "Hall PL, Wittenauer A, Hagar A. Post-analytical tools for the triage of newborn screening results in follow-up can reduce confirmatory testing and guide performance improvement. Int J Neonatal Screen. 2020;6(1):20.",
-          "evidence": "abstract",
-          "claim_id": "BKT.biochemistry.4",
-          "verdict": "not-assessable",
-          "reason": "The abstract describes Georgia's CLIR post-analytical triage tools for PKU, MCAD and VLCAD and says nothing about beta-ketothiolase deficiency or proficiency-testing sensitivity figures.",
-          "quote": "We assessed the performance of these tools retrospectively for three of the most commonly detected conditions by tandem mass spectrometry in Georgia: phenylketonuria, medium chain acyl-CoA dehydrogenase deficiency and very long chain dehydrogenase deficiency."
         }
       ]
     },
@@ -8658,37 +8632,11 @@
       ]
     },
     {
-      "id": "BKT.treatment.0",
-      "disorder": "BKT",
-      "text": "Acute: IV 10% dextrose (≥10 mg/kg/min) + fluid + electrolytes + bicarbonate for severe acidosis — resolves within 24–48 h [2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "21479626",
-          "citation": "Sass JO. Inborn errors of ketogenesis and ketone body utilization. J Inherit Metab Dis. 2012;35(1):23–8.",
-          "evidence": "abstract",
-          "claim_id": "BKT.treatment.0",
-          "verdict": "unsupported",
-          "reason": "The abstract discusses ketolysis defects presenting with ketoacidotic decompensations and states only generically that early appropriate treatment gives good outcomes; it contains no dextrose infusion rate, bicarbonate use, or 24–48 h resolution timeframe.",
-          "quote": "If those diseases are considered early and appropriate treatment is initiated without delay, patients with inborn errors of ketone body metabolism often have a good clinical outcome."
-        }
-      ]
-    },
-    {
       "id": "BKT.treatment.1",
       "disorder": "BKT",
-      "text": "Chronic: avoid prolonged fasting, particularly during intercurrent illness; mild protein restriction (moderate Ile restriction if frequent crises); emergency plan for gastroenteritis/fever with oral glucose polymer and low threshold for admission [1,2].",
+      "text": "Chronic: avoid prolonged fasting, and avoid excess fat as in a ketogenic diet [2]; modest protein restriction, hence lower isoleucine intake — 18 of the 26 patients took 1–2 g protein/kg daily, and low protein intake went with a benign course [1].",
       "status": "contradicted",
       "judged": [
-        {
-          "pmid": "11161836",
-          "citation": "Fukao T et al. The clinical phenotype and outcome of mitochondrial acetoacetyl-CoA thiolase deficiency (beta-ketothiolase or T2 deficiency) in 26 enzymatically proved and mutation-defined patients. Mol Genet Metab. 2001;72(2):109–14.",
-          "evidence": "abstract",
-          "claim_id": "BKT.treatment.1",
-          "verdict": "partial",
-          "reason": "The abstract endorses modest protein restriction and appropriate management of ketoacidosis but does not mention fasting avoidance, isoleucine restriction, or an emergency regimen with glucose polymer.",
-          "quote": "clinical consequences of T2 deficiency are avoidable with early diagnosis, appropriate management of ketoacidosis, and modest protein restriction"
-        },
         {
           "pmid": "21479626",
           "citation": "Sass JO. Inborn errors of ketogenesis and ketone body utilization. J Inherit Metab Dis. 2012;35(1):23–8.",
@@ -8697,6 +8645,15 @@
           "verdict": "unsupported",
           "reason": "The abstract alludes only generically to prompt appropriate treatment and contains none of the chronic measures (fasting avoidance, protein/isoleucine restriction, emergency glucose polymer regimen).",
           "quote": "If those diseases are considered early and appropriate treatment is initiated without delay, patients with inborn errors of ketone body metabolism often have a good clinical outcome."
+        },
+        {
+          "pmid": "11161836",
+          "citation": "Fukao T et al. The clinical phenotype and outcome of mitochondrial acetoacetyl-CoA thiolase deficiency (beta-ketothiolase or T2 deficiency) in 26 enzymatically proved and mutation-defined patients. Mol Genet Metab. 2001;72(2):109–14.",
+          "evidence": "abstract",
+          "claim_id": "BKT.treatment.1",
+          "verdict": "partial",
+          "reason": "The abstract endorses modest protein restriction and appropriate management of ketoacidosis but does not mention fasting avoidance, isoleucine restriction, or an emergency regimen with glucose polymer.",
+          "quote": "clinical consequences of T2 deficiency are avoidable with early diagnosis, appropriate management of ketoacidosis, and modest protein restriction"
         }
       ]
     },
@@ -11846,7 +11803,7 @@
     {
       "id": "VLCAD.molecular.2",
       "disorder": "VLCAD",
-      "text": "Residual VLCAD activity strongly predicts phenotype: <10% activity → severe neonatal cardiomyopathic; 10–20% → infantile hepatic; >20% → late-onset myopathic/rhabdomyolytic [10].",
+      "text": "Residual VLCAD activity strongly predicts phenotype: <10% activity → severe neonatal cardiomyopathic; 10–20% → infantile hepatic; >20% → late-onset myopathic/rhabdomyolytic [10]. c.848T>C (p.Val283Ala) is the most frequent pathogenic allele among newborn-screen-positive individuals — at least one copy in ~10% — and the seven reported homozygotes had a mild phenotype responding well to standard treatment, though hypoglycaemia can still occur [20].",
       "status": "unverified",
       "judged": [
         {
@@ -11857,23 +11814,6 @@
           "verdict": "partial",
           "reason": "The abstract supports a general correlation between residual VLCAD enzyme activity/metabolic blockage severity and phenotype (severe neonatal/infantile vs. myopathic), but gives none of the specific activity thresholds (<10%, 10–20%, >20%) nor the distinct infantile hepatic tier.",
           "quote": "Altogether, the responses to bezafibrate reflected the severity of the metabolic blockage in various genotypes, which appeared to be correlated with the phenotype"
-        }
-      ]
-    },
-    {
-      "id": "VLCAD.molecular.3",
-      "disorder": "VLCAD",
-      "text": "The common c.848T>C variant is typically associated with the mild myopathic phenotype [11].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "8554073",
-          "citation": "Souri M et al. Mutation analysis of VLCAD deficiency: identification and characterization of mutant VLCAD cDNAs. Am J Hum Genet. 1996;58(1):97–106.",
-          "evidence": "abstract",
-          "claim_id": "VLCAD.molecular.3",
-          "verdict": "unsupported",
-          "reason": "The abstract characterizes five ACADVL mutations (135-bp deletion, R613W, E130del, K299del, K382Q) and makes no mention of c.848T>C or any genotype–phenotype correlation with a mild myopathic presentation.",
-          "quote": "We report here five mutations identified in four patients: a 135-bp deletion encompassing bases 343-477, a C-1837-to-T transition (R613W), 3-bp deletions at the nucleotide positions 388-390 (E130del) and 895-897 (K299del), and an A-1144-to-C transversion (K382Q)."
         }
       ]
     },
@@ -11891,23 +11831,6 @@
           "verdict": "partial",
           "reason": "The abstract supports heterogeneous phenotypes of differing severity affecting heart, liver and skeletal muscle and late-onset exercise-induced myopathy, but does not enumerate the three named phenotypes or their specific features (pericardial effusion, arrhythmia, Reye-like episodes, transaminitis, CK rises).",
           "quote": "The different long-chain fatty acid oxidation defects present with similar heterogeneous clinical phenotypes of different severity. Organs mainly affected comprise the heart, liver, and skeletal muscles."
-        }
-      ]
-    },
-    {
-      "id": "VLCAD.presentation.1",
-      "disorder": "VLCAD",
-      "text": "The same genotype can occasionally produce different phenotypes within the same family [12].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "19327992",
-          "citation": "Laforêt P et al. Diagnostic assessment and long-term follow-up of 13 patients with very long-chain acyl-coenzyme A dehydrogenase (VLCAD) deficiency. Neuromuscul Disord. 2009;19(5):324–9.",
-          "evidence": "abstract",
-          "claim_id": "VLCAD.presentation.1",
-          "verdict": "unsupported",
-          "reason": "The abstract describes phenotypes and genotypes in 13 adult patients from 10 families but never reports that identical genotypes produced discordant phenotypes within the same family.",
-          "quote": "We report in this study the clinical, biochemical and molecular studies in 13 adult patients from 10 different families with VLCAD deficiency."
         }
       ]
     },
@@ -12000,7 +11923,7 @@
     {
       "id": "VLCAD.treatment.6",
       "disorder": "VLCAD",
-      "text": "Exercise precautions for myopathic phenotype: avoid prolonged/high-intensity activity in fasted state; pre-exercise medium-chain snack [13].",
+      "text": "Exercise precautions for myopathic phenotype: avoid prolonged/high-intensity activity in fasted state; MCT or carbohydrate just prior to more extensive exercise, at 0.25–0.5 g MCT/kg, which the consensus reports prevents exercise-induced rhabdomyolysis [13].",
       "status": "contradicted",
       "judged": [
         {
@@ -12051,18 +11974,9 @@
     {
       "id": "VLCAD.prognosis.3",
       "disorder": "VLCAD",
-      "text": "Long-term data suggest that rigorous dietary adherence over the first 6 years reduces the incidence of late cardiomyopathy in severe patients [17,18].",
+      "text": "Long-term IBEM-IS data do NOT support dietary adherence as the determinant of cardiac risk: cardiomyopathy was uncommon, presented within the first year rather than late, and both affected cases carried complete inactivating alleles — so cardiac risk tracks genotype, with null/null predisposing, rather than adherence [18].",
       "status": "contradicted",
       "judged": [
-        {
-          "pmid": "18317232",
-          "citation": "Primassin S et al. Carnitine supplementation induces acylcarnitine production in tissues of VLCAD-deficient mice. Pediatr Res. 2008;63(6):632–7.",
-          "evidence": "abstract",
-          "claim_id": "VLCAD.prognosis.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract reports mouse carnitine and acylcarnitine measurements and contains no long-term human dietary adherence or late cardiomyopathy outcome data.",
-          "quote": ""
-        },
         {
           "pmid": "27209629",
           "citation": "Pena LDM et al. Outcomes and genotype–phenotype correlations in patients with VLCAD deficiency identified by newborn screening. Mol Genet Metab. 2016;118(4):272–81.",
@@ -12295,40 +12209,6 @@
           "verdict": "partial",
           "reason": "The abstract supports the 2020 FDA approval for LC-FAOD but contains no open-label extension outcome data (~48% event reduction, cardiomyopathy/hypoglycaemia effects) and nothing about first-line preference over MCT or absence of society guidance.",
           "quote": "In June 2020, triheptanoin received its first regulatory approval, in the USA, for use as a source of calories and fatty acids for the treatment of pediatric and adult patients with molecularly confirmed long-chain fatty acid oxidation disorders (LC-FAOD)."
-        }
-      ]
-    },
-    {
-      "id": "LCHAD.treatment.2",
-      "disorder": "LCHAD",
-      "text": "L-CARNITINE is NOT routinely supplemented in LCHAD/MTP — there is persistent concern that carnitine may worsen accumulation of toxic long-chain 3-hydroxyacylcarnitines and has been linked to arrhythmia/rhabdomyolysis in animal models; the European workshop consensus gives recommendations on L-carnitine use in long-chain FAO defects rather than endorsing routine supplementation [2,17].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "18317232",
-          "citation": "Primassin S et al. Carnitine supplementation induces acylcarnitine production in tissues of VLCAD-deficient mice. Pediatr Res. 2008;63(6):632–7.",
-          "evidence": "abstract",
-          "claim_id": "LCHAD.treatment.2",
-          "verdict": "partial",
-          "reason": "The abstract supports the animal-model concern that carnitine supplementation drives accumulation of potentially toxic long-chain acylcarnitines (in VLCAD-deficient mice), but not the LCHAD/MTP-specific 3-hydroxyacylcarnitines, arrhythmia/rhabdomyolysis link, or the <10 µmol/L threshold and 10–25 mg/kg/day dose.",
-          "quote": "carnitine supplementation results in significant accumulation of potentially toxic acylcarnitines in tissues"
-        }
-      ]
-    },
-    {
-      "id": "LCHAD.treatment.4",
-      "disorder": "LCHAD",
-      "text": "DHA supplementation (60 mg/day infants, 100–200 mg/day children) attenuates retinopathy progression — unique to LCHAD among FAO disorders [18].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24780638",
-          "citation": "Martin JM, Gillingham MB, Harding CO. Use of propofol for short duration procedures in children with long chain 3-hydroxyacyl-CoA dehydrogenase (LCHAD) or trifunctional protein (TFP) deficiencies. Mol Genet Metab. 2014;112(2):139–42.",
-          "evidence": "abstract",
-          "claim_id": "LCHAD.treatment.4",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns propofol sedation safety during ERG procedures and never addresses DHA supplementation, its dosing, or its effect on retinopathy progression, so the claim's topic is not engaged.",
-          "quote": "The sedation with propofol resulted in no adverse side effects and was safely used in this short duration procedure."
         }
       ]
     },
@@ -15054,8 +14934,8 @@
     {
       "id": "UROCA.introduction.2",
       "disorder": "UROCA",
-      "text": "Clinical significance remains debated, with some published patients presenting as otherwise unexplained intellectual disability and others — identified in biochemical surveys — being asymptomatic [2,4].",
-      "status": "contradicted",
+      "text": "Clinical significance remains debated: the disability in the early patients had competing explanations, while a sibling pair ascertained by routine infant urine screening developed normally [1,2].",
+      "status": "unverified",
       "judged": [
         {
           "pmid": "19304569",
@@ -15065,41 +14945,6 @@
           "verdict": "partial",
           "reason": "It carries the 'some patients present with intellectual disability' half of the sentence but provides no asymptomatic cases from biochemical surveys and does not frame clinical significance as debated.",
           "quote": "a girl with urocanic aciduria presenting with mental retardation and intermittent ataxia"
-        },
-        {
-          "pmid": "6107814",
-          "citation": "Kalafatic Z et al. A liver urocanase deficiency. Humangenetik. 1980;54:135–44.",
-          "evidence": "abstract",
-          "claim_id": "UROCA.introduction.2",
-          "verdict": "unsupported",
-          "reason": "The abstract reports two sisters with urocanase deficiency but confines itself to biochemical and enzymatic proof, saying nothing about clinical significance, intellectual disability, or asymptomatic cases found in biochemical surveys.",
-          "quote": "The urocanase deficiency is proven by demonstrating increased excretion of metabolites of the product of the urocanase enzyme action."
-        }
-      ]
-    },
-    {
-      "id": "UROCA.biochemistry.3",
-      "disorder": "UROCA",
-      "text": "Distinguishes from histidinaemia (elevated histidine, low sweat urocanic acid) — urocanase deficiency has NORMAL histidine but elevated urinary urocanic acid [2,5].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "19304569",
-          "citation": "Espinós C et al. Mutations in the urocanase gene UROC1 are associated with urocanic aciduria. J Med Genet. 2009;46(6):407–11.",
-          "evidence": "abstract",
-          "claim_id": "UROCA.biochemistry.3",
-          "verdict": "partial",
-          "reason": "The abstract confirms urocanic aciduria from urocanase deficiency but gives no plasma histidine data and makes no comparison with histidinaemia or sweat urocanic acid.",
-          "quote": "a girl with urocanic aciduria presenting with mental retardation and intermittent ataxia"
-        },
-        {
-          "pmid": "33000155",
-          "citation": "Brosnan ME, Brosnan JT. Histidine metabolism and function. J Nutr. 2020;150(Suppl 1):2570S–5S.",
-          "evidence": "abstract",
-          "claim_id": "UROCA.biochemistry.3",
-          "verdict": "unsupported",
-          "reason": "The abstract reviews histidine catabolism and notes that inborn errors exist in all catabolic enzymes, but it never states the biochemical discriminators cited (elevated histidine with low sweat urocanic acid in histidinaemia versus normal histidine with elevated urinary urocanic acid in urocanase deficiency).",
-          "quote": "Inborn errors have been recognized in all of the catabolic enzymes of histidine."
         }
       ]
     },
@@ -15132,8 +14977,8 @@
     {
       "id": "UROCA.presentation.1",
       "disorder": "UROCA",
-      "text": "Reported patients: some with intellectual disability, speech delay, epilepsy and behavioural issues; others identified in family studies completely asymptomatic [2,4].",
-      "status": "contradicted",
+      "text": "Reported patients: some with intellectual disability, intermittent ataxia and dysarthria [2]; others identified in family studies completely asymptomatic [1].",
+      "status": "unverified",
       "judged": [
         {
           "pmid": "19304569",
@@ -15143,23 +14988,14 @@
           "verdict": "partial",
           "reason": "It supports intellectual disability (with ataxia) in a reported patient but does not mention speech delay, epilepsy, behavioural issues, or asymptomatic relatives from family studies.",
           "quote": "presenting with mental retardation and intermittent ataxia"
-        },
-        {
-          "pmid": "6107814",
-          "citation": "Kalafatic Z et al. A liver urocanase deficiency. Humangenetik. 1980;54:135–44.",
-          "evidence": "abstract",
-          "claim_id": "UROCA.presentation.1",
-          "verdict": "unsupported",
-          "reason": "Although this is a case report of two affected sisters, the abstract gives no phenotypic information at all — no intellectual disability, speech delay, epilepsy, behavioural issues, or asymptomatic relatives are mentioned.",
-          "quote": "Two sisters with a rare inborn error of histidine metabolism resulting from urocanase deficiency are being presented."
         }
       ]
     },
     {
       "id": "UROCA.treatment.2",
       "disorder": "UROCA",
-      "text": "Recognition matters primarily to avoid over-investigation when the biochemical abnormality is incidental to unrelated clinical features [1,2].",
-      "status": "contradicted",
+      "text": "Recognition must not close the work-up: urocanic aciduria in a child with developmental delay should still prompt comprehensive evaluation for other causes [1].",
+      "status": "unverified",
       "judged": [
         {
           "pmid": "30619714",
@@ -15169,15 +15005,6 @@
           "verdict": "partial",
           "reason": "The abstract supports that the biochemical abnormality may be incidental to unrelated clinical features, but rather than advising against over-investigation it explicitly recommends continued evaluation for other causes.",
           "quote": "those individuals with concurrent developmental delay should continue to be evaluated for other underlying causes for their symptoms"
-        },
-        {
-          "pmid": "19304569",
-          "citation": "Espinós C et al. Mutations in the urocanase gene UROC1 are associated with urocanic aciduria. J Med Genet. 2009;46(6):407–11.",
-          "evidence": "abstract",
-          "claim_id": "UROCA.treatment.2",
-          "verdict": "unsupported",
-          "reason": "Although the abstract engages the clinical significance of UROC1 variants, it offers nothing about management or avoiding over-investigation and instead concludes the mutations explain the patient's clinical findings.",
-          "quote": "these studies suggest that both mutations could alter the correct activity of urocanase, which would explain the clinical and biochemical findings described in this patient"
         }
       ]
     },

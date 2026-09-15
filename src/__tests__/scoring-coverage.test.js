@@ -54,8 +54,13 @@ function signatureProfile(d, { invert = false } = {}) {
 const rankIn = (results, id) => results.findIndex((r) => r.id === id);
 
 describe("every disorder is reachable from its own signature", () => {
-  // Computed once: 116 runAnalysis calls is the bulk of this file's runtime.
-  const ranks = DISORDERS.map((d) => {
+  // Disorders declaring `undetectable` are out of scope by definition: no panel
+  // analyte marks them, so there is no profile to build and nothing to rank.
+  // data-integrity.test.js checks that the declaration is honest.
+  const SCOREABLE = DISORDERS.filter((d) => !d.undetectable);
+
+  // Computed once: one runAnalysis call per disorder is the bulk of this file's runtime.
+  const ranks = SCOREABLE.map((d) => {
     const { values, set } = signatureProfile(d);
     return { id: d.id, set: set.length, rank: set.length ? rankIn(runAnalysis(values).results, d.id) : -1 };
   });
@@ -83,8 +88,12 @@ describe("every disorder is reachable from its own signature", () => {
     expect(ranks.filter((r) => r.rank === 0).length).toBeGreaterThanOrEqual(83);
   });
 
-  it("ranks at least 109 disorders in the top 3", () => {
-    expect(ranks.filter((r) => r.rank >= 0 && r.rank < 3).length).toBeGreaterThanOrEqual(109);
+  // 108, not 109, because the denominator shrank: UROCA left the scoreable set
+  // when its histidine marker went (both molecularly confirmed reports measured
+  // histidine normal), and it had been ranking inside the top 3 on that marker.
+  // Nothing scored worse.
+  it("ranks at least 108 disorders in the top 3", () => {
+    expect(ranks.filter((r) => r.rank >= 0 && r.rank < 3).length).toBeGreaterThanOrEqual(108);
   });
 });
 
@@ -96,6 +105,7 @@ describe("marker directions are honoured", () => {
     // confidently proposing a disorder the biochemistry argues against.
     const wrong = [];
     for (const d of DISORDERS) {
+      if (d.undetectable) continue;
       const plain = signatureProfile(d);
       const mirror = signatureProfile(d, { invert: true });
       if (!mirror.set.length) continue;
