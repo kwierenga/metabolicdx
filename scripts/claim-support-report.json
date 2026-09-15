@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-15T11:38:27.292Z",
+  "generated": "2026-09-15T23:03:43.818Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -5567,98 +5567,6 @@
       ]
     },
     {
-      "id": "HHH.summary.3",
-      "disorder": "HHH",
-      "text": "Citrulline is normal — distinguishing HHH from both ornithine aminotransferase (OAT) deficiency and classic UCDs [1,2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "30982989",
-          "citation": "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230.",
-          "evidence": "abstract",
-          "claim_id": "HHH.summary.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract does not address HHH syndrome or citrulline levels in it.",
-          "quote": "",
-          "ctx": "c2415e18f940"
-        },
-        {
-          "pmid": "22649802",
-          "citation": "Camacho JA, Rioseco-Camacho N. Hyperornithinemia-hyperammonemia-homocitrullinuria syndrome. GeneReviews®. 2006 [updated 2022].",
-          "evidence": "abstract",
-          "claim_id": "HHH.summary.3",
-          "verdict": "unsupported",
-          "reason": "The abstract details the diagnostic metabolic triad but never states that plasma citrulline is normal or that this distinguishes HHH from OAT deficiency or classic urea cycle disorders.",
-          "quote": "The biochemical diagnosis of HHH syndrome is established in a proband with the classic metabolic triad of episodic or postprandial hyperammonemia, persistent hyperornithinemia, and urinary excretion of homocitrulline.",
-          "ctx": "c2415e18f940"
-        }
-      ]
-    },
-    {
-      "id": "HHH.introduction.1",
-      "disorder": "HHH",
-      "text": "Most common in French-Canadians of Saguenay-Lac-Saint-Jean (founder variant p.Phe188del, ~1:18,000 in that population) and North African families [4,5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "19242930",
-          "citation": "Tessa A et al. Identification of novel mutations in the SLC25A15 gene in hyperornithinemia-hyperammonemia-homocitrullinuria (HHH) syndrome. Hum Mutat. 2009;30(5):741–8.",
-          "evidence": "abstract",
-          "claim_id": "HHH.introduction.1",
-          "verdict": "partial",
-          "reason": "The abstract confirms a French-Canadian founder effect in HHH syndrome but does not name the p.Phe188del variant, the Saguenay-Lac-Saint-Jean region, the ~1:18,000 population frequency, or North African families.",
-          "quote": "With the exception of the French-Canadian founder effect, no common mutation has been detected in other populations.",
-          "ctx": "cb4f0aadfc40"
-        },
-        {
-          "pmid": "1432421",
-          "citation": "Lemay JF et al. Hyperammonemia-hyperornithinemia-homocitrullinuria syndrome: neurologic, ophthalmologic, and neuropsychologic examination of six patients. J Pediatr. 1992;121(5 Pt 1):725–30.",
-          "evidence": "abstract",
-          "claim_id": "HHH.introduction.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract describes neurologic, ophthalmologic and neuropsychologic findings in six HHH patients and says nothing about ethnic distribution, founder variants, or population frequency.",
-          "quote": "We report the clinical, electrophysiologic, ophthalmologic, and neuropsychologic features of six patients with hyperammonemia-hyperornithinemia-homocitrullinuria syndrome, an inborn error of ornithine metabolism.",
-          "ctx": "cb4f0aadfc40"
-        }
-      ]
-    },
-    {
-      "id": "HHH.biochemistry.0",
-      "disorder": "HHH",
-      "text": "Plasma ornithine elevated 3–10× normal (300–800 µmol/L — typically lower than the 10–15× elevation in gyrate atrophy/OAT) [1].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "30982989",
-          "citation": "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230.",
-          "evidence": "abstract",
-          "claim_id": "HHH.biochemistry.0",
-          "verdict": "not-assessable",
-          "reason": "The abstract does not mention HHH syndrome, ornithine levels, or comparison with gyrate atrophy.",
-          "quote": "",
-          "ctx": "6600364aeb40"
-        }
-      ]
-    },
-    {
-      "id": "HHH.biochemistry.1",
-      "disorder": "HHH",
-      "text": "Plasma citrulline is NORMAL (key distinction from OTC/CPS1 where Cit is low) [2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "22649802",
-          "citation": "Camacho JA, Rioseco-Camacho N. Hyperornithinemia-hyperammonemia-homocitrullinuria syndrome. GeneReviews®. 2006 [updated 2022].",
-          "evidence": "abstract",
-          "claim_id": "HHH.biochemistry.1",
-          "verdict": "unsupported",
-          "reason": "The abstract characterizes the biochemical profile of HHH (hyperammonemia, hyperornithinemia, homocitrullinuria) but says nothing about plasma citrulline being normal or about low citrulline in OTC/CPS1 deficiency.",
-          "quote": "the classic metabolic triad of episodic or postprandial hyperammonemia, persistent hyperornithinemia, and urinary excretion of homocitrulline",
-          "ctx": "848e9ac71fbe"
-        }
-      ]
-    },
-    {
       "id": "HHH.biochemistry.2",
       "disorder": "HHH",
       "text": "Urinary homocitrulline is pathognomonic — formed when carbamoyl phosphate accumulating in the mitochondria reacts aberrantly with lysine; detectable on urine organic acids or amino acids [6].",
@@ -5673,52 +5581,6 @@
           "reason": "The abstract concerns clinical phenotype, outcome and genotype in a French-Canadian HHH cohort and never addresses urinary homocitrulline, its pathognomonic status, its formation from carbamoyl phosphate and lysine, or how it is detected.",
           "quote": "To further delineate the phenotypic spectrum of HHH syndrome from a description of a genetically homogeneous cohort of patients and identify prognostic factors based on long-term follow-up.",
           "ctx": "e05b90621172"
-        }
-      ]
-    },
-    {
-      "id": "HHH.molecular.1",
-      "disorder": "HHH",
-      "text": "The p.Phe188del (c.562_564del) variant is the founder allele in French-Canadians, accounting for >90% of alleles in that population [5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "1432421",
-          "citation": "Lemay JF et al. Hyperammonemia-hyperornithinemia-homocitrullinuria syndrome: neurologic, ophthalmologic, and neuropsychologic examination of six patients. J Pediatr. 1992;121(5 Pt 1):725–30.",
-          "evidence": "abstract",
-          "claim_id": "HHH.molecular.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract contains no genetic or molecular data, no mention of SLC25A15, p.Phe188del, or allele frequencies in French-Canadians.",
-          "quote": "",
-          "ctx": "f70e8ae0176a"
-        }
-      ]
-    },
-    {
-      "id": "HHH.treatment.0",
-      "disorder": "HHH",
-      "text": "Moderate protein restriction, citrulline supplementation (100 mg/kg/day — bypasses the mitochondrial ornithine import block and provides urea cycle substrate), sodium phenylbutyrate for chronic nitrogen scavenging [2,9].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "22649802",
-          "citation": "Camacho JA, Rioseco-Camacho N. Hyperornithinemia-hyperammonemia-homocitrullinuria syndrome. GeneReviews®. 2006 [updated 2022].",
-          "evidence": "abstract",
-          "claim_id": "HHH.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract supports protein restriction, citrulline supplementation and sodium phenylbutyrate, but gives no citrulline dose of 100 mg/kg/day.",
-          "quote": "Individuals with HHH syndrome should be maintained on an age-appropriate protein-restricted diet, citrulline supplementation, and sodium phenylbutyrate to maintain plasma concentrations of ammonia, glutamine, arginine, and essential amino acids within normal range.",
-          "ctx": "91f70fd4df8e"
-        },
-        {
-          "pmid": "11668643",
-          "citation": "Salvi S et al. Seven novel mutations in the ORNT1 gene (SLC25A15) in patients with hyperornithinemia, hyperammonemia, and homocitrullinuria syndrome. Hum Mutat. 2001;18(5):460.",
-          "evidence": "abstract",
-          "claim_id": "HHH.treatment.0",
-          "verdict": "not-assessable",
-          "reason": "The abstract is purely a mutation-spectrum report on ORNT1 and says nothing about treatment, protein restriction, citrulline dosing, or nitrogen scavengers.",
-          "quote": "",
-          "ctx": "91f70fd4df8e"
         }
       ]
     },
@@ -8263,52 +8125,6 @@
       ]
     },
     {
-      "id": "IVA.molecular.1",
-      "disorder": "IVA",
-      "text": "The c.932C>T variant (p.Ala282Val) is over-represented in NBS cohorts and confers a mild/asymptomatic phenotype with residual enzyme activity ~10% of normal [4,10].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "15486829",
-          "citation": "Ensenauer R et al. A common mutation is associated with a mild, potentially asymptomatic phenotype in patients with isovaleric acidemia diagnosed by newborn screening. Am J Hum Genet. 2004;75(6):1136–42.",
-          "evidence": "abstract",
-          "claim_id": "IVA.molecular.1",
-          "verdict": "partial",
-          "reason": "The abstract supports over-representation of c.932C>T in an NBS cohort and its mild/potentially asymptomatic phenotype, but reports no residual enzyme activity value such as ~10% of normal.",
-          "quote": "Our findings indicate the frequent occurrence of a novel mild and potentially asymptomatic phenotype of IVA.",
-          "ctx": "08a333c58b53"
-        },
-        {
-          "pmid": "22960500",
-          "citation": "Hertecant JL et al. Clinical and molecular analysis of isovaleric acidemia patients in the United Arab Emirates reveals remarkable phenotypes and four novel mutations in the IVD gene. Eur J Med Genet. 2012;55(12):671–6.",
-          "evidence": "abstract",
-          "claim_id": "IVA.molecular.1",
-          "verdict": "unsupported",
-          "reason": "The abstract concerns IVA genotype–phenotype in UAE families and does report an asymptomatic homozygote, but for p.R392H — it never mentions c.932C>T/p.Ala282Val, NBS over-representation, or ~10% residual enzyme activity.",
-          "quote": "Furthermore, we found an unusual case of a 17 years old female homozygous for the p.R392H mutation with no clinical symptoms.",
-          "ctx": "08a333c58b53"
-        }
-      ]
-    },
-    {
-      "id": "IVA.molecular.2",
-      "disorder": "IVA",
-      "text": "Classic severe variants (e.g., c.1076G>A, p.Arg359Gln) produce <2% residual activity [10].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "22960500",
-          "citation": "Hertecant JL et al. Clinical and molecular analysis of isovaleric acidemia patients in the United Arab Emirates reveals remarkable phenotypes and four novel mutations in the IVD gene. Eur J Med Genet. 2012;55(12):671–6.",
-          "evidence": "abstract",
-          "claim_id": "IVA.molecular.2",
-          "verdict": "unsupported",
-          "reason": "The paper discusses IVD variant severity only via molecular modeling predictions of four novel mutations; c.1076G>A (p.Arg359Gln) and any <2% residual activity measurement are absent.",
-          "quote": "molecular modeling of the identified missense mutations predicted their damaging effects on the protein",
-          "ctx": "b97248d8b20d"
-        }
-      ]
-    },
-    {
       "id": "IVA.molecular.3",
       "disorder": "IVA",
       "text": "Genotype is a useful adjunct to decide on intensity of treatment for NBS-detected cases [5,10].",
@@ -8439,24 +8255,6 @@
       ]
     },
     {
-      "id": "IVA.treatment.2",
-      "disorder": "IVA",
-      "text": "Asymptomatic NBS-detected mild-variant cases need less aggressive dietary management — individualise based on IVG excretion and response to physiological leucine load [5].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "33072933",
-          "citation": "Schlune A et al. Aspects of newborn screening in isovaleric acidemia. Int J Neonatal Screen. 2018;4(1):7.",
-          "evidence": "abstract",
-          "claim_id": "IVA.treatment.2",
-          "verdict": "unsupported",
-          "reason": "The abstract addresses management of symptomatic IVA and states that recommendations for the mild NBS-detected phenotype are still required, offering no less-aggressive dietary approach or individualisation based on isovalerylglycine excretion or leucine loading.",
-          "quote": "Recommendations on how to counsel and manage individuals with the mild phenotype detected by NBS are required.",
-          "ctx": "5013809292ab"
-        }
-      ]
-    },
-    {
       "id": "IVA.prognosis.0",
       "disorder": "IVA",
       "text": "Pre-NBS classic cases: ~30% neonatal mortality; survivors have mild cognitive impairment if early crises occur [1].",
@@ -8499,24 +8297,6 @@
           "reason": "The abstract studies clinically (pre-NBS) diagnosed symptomatic patients and supports only that earlier diagnosis/treatment relates to better cognitive outcome and that IVA qualifies for newborn screening; it provides no post-NBS cohort data showing pre-symptomatic detection, infrequent crises, or normal development on glycine/carnitine/dietary therapy.",
           "quote": "The potential to avoid neonatal mortality and to improve neurologic and cognitive outcome under early treatment reinforces IVA to be qualified for newborn screening.",
           "ctx": "87842f4e859b"
-        }
-      ]
-    },
-    {
-      "id": "IVA.prognosis.3",
-      "disorder": "IVA",
-      "text": "Adult IVA patients lead normal lives on maintenance therapy [13].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "22277694",
-          "citation": "Grünert SC et al. Clinical and neurocognitive outcome in symptomatic isovaleric acidemia. Orphanet J Rare Dis. 2012;7:9.",
-          "evidence": "abstract",
-          "claim_id": "IVA.prognosis.3",
-          "verdict": "unsupported",
-          "reason": "The abstract addresses outcomes in a cohort including adults but never states that adult patients lead normal lives on maintenance therapy, instead reporting motor dysfunction in 44% and cognitive deficits in 19% of those evaluated.",
-          "quote": "44% of investigated study patients (7/16) showed mild motor dysfunction and only 19% (3/16) had cognitive deficits.",
-          "ctx": "b177a6087972"
         }
       ]
     },
@@ -17019,34 +16799,6 @@
       ]
     },
     {
-      "id": "ASNSD.molecular.2",
-      "disorder": "ASNSD",
-      "text": "Founder alleles documented in Amish, Iranian Jewish and Bangladeshi kindreds [3,5].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "24139043",
-          "citation": "Ruzzo EK et al. Deficiency of asparagine synthetase causes congenital microcephaly and a progressive form of encephalopathy. Neuron. 2013;80(2):429–41.",
-          "evidence": "abstract",
-          "claim_id": "ASNSD.molecular.2",
-          "verdict": "unsupported",
-          "reason": "The abstract describes four families with recessive ASNS mutations but names no ethnic or geographic origin and makes no statement about founder alleles in Amish, Iranian Jewish or Bangladeshi kindreds.",
-          "quote": "We analyzed four families that presented with a similar condition characterized by congenital microcephaly, intellectual disability, progressive cerebral atrophy, and intractable seizures. We show that recessive mutations in the ASNS gene are responsible for this syndrome.",
-          "ctx": "1f791c912bc4"
-        },
-        {
-          "pmid": "31123592",
-          "citation": "Sprute R et al. Clinical outcomes of two patients with a novel pathogenic variant in ASNS. Mol Genet Genomic Med. 2019;7(8):e00814.",
-          "evidence": "abstract",
-          "claim_id": "ASNSD.molecular.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract reports a novel homozygous ASNS missense variant in a Turkish sibling pair and a phenotype/imaging literature review, and says nothing about population-specific founder alleles in Amish, Iranian Jewish or Bangladeshi kindreds.",
-          "quote": "we discovered, by whole-exome sequencing in two siblings from Turkey, a novel homozygous missense mutation in asparagine synthetase",
-          "ctx": "1f791c912bc4"
-        }
-      ]
-    },
-    {
       "id": "ASNSD.presentation.5",
       "disorder": "ASNSD",
       "text": "Severe global developmental delay [1,3].",
@@ -17075,24 +16827,6 @@
       ]
     },
     {
-      "id": "ASNSD.treatment.0",
-      "disorder": "ASNSD",
-      "text": "Oral L-asparagine supplementation (50–200 mg/kg/day, divided) has been trialled with mixed results — modest improvement in seizure control and occasional stabilisation of head growth, but frequently limited clinical benefit because the primary neurodevelopmental injury often predates diagnosis [2,6].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "26318253",
-          "citation": "Palmer EE et al. Asparagine synthetase deficiency causes reduced proliferation of cells under conditions of limited asparagine. Mol Genet Metab. 2015;116(3):178–86.",
-          "evidence": "abstract",
-          "claim_id": "ASNSD.treatment.0",
-          "verdict": "not-assessable",
-          "reason": "The abstract contains no treatment trial, dosing, seizure-control or head-growth outcome data.",
-          "quote": "",
-          "ctx": "781ae36013a7"
-        }
-      ]
-    },
-    {
       "id": "ASNSD.treatment.3",
       "disorder": "ASNSD",
       "text": "Early diagnosis + antenatal/very-early treatment would theoretically be required to modify outcome; evidence is limited [2,6].",
@@ -17107,24 +16841,6 @@
           "reason": "The abstract addresses pathophysiology and blood-brain-barrier asparagine transfer but says nothing about timing of diagnosis or antenatal/early treatment.",
           "quote": "",
           "ctx": "4ddd9e5ef621"
-        }
-      ]
-    },
-    {
-      "id": "ASNSD.prognosis.2",
-      "disorder": "ASNSD",
-      "text": "Milder variants with later onset and partial asparagine response are increasingly recognised [2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "26318253",
-          "citation": "Palmer EE et al. Asparagine synthetase deficiency causes reduced proliferation of cells under conditions of limited asparagine. Mol Genet Metab. 2015;116(3):178–86.",
-          "evidence": "abstract",
-          "claim_id": "ASNSD.prognosis.2",
-          "verdict": "unsupported",
-          "reason": "The abstract characterises the phenotype as profound intellectual disability with marked progressive cerebral atrophy and reports a single severe case, with no mention of milder later-onset variants or partial asparagine responsiveness.",
-          "quote": "Asparagine Synthetase Deficiency is a recently described cause of profound intellectual disability, marked progressive cerebral atrophy and variable seizure disorder.",
-          "ctx": "5ba10d59a814"
         }
       ]
     },
@@ -17367,52 +17083,6 @@
           "reason": "The abstract is the 1966 biochemical description of hyper-beta-alaninemia in an infant, matching the claim that the condition has been known biochemically since this report.",
           "quote": "Hyper-beta-alaninemia was found in a somnolent, convulsing infant.",
           "ctx": "390dda361a90"
-        }
-      ]
-    },
-    {
-      "id": "BALA.introduction.1",
-      "disorder": "BALA",
-      "text": "AGXT2 variants were identified as a common cause in 2011 [4].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "27752063",
-          "citation": "Rodionov RN et al. A novel pathway for metabolism of the cardiovascular risk factor homoarginine by alanine:glyoxylate aminotransferase 2. Sci Rep. 2016;6:35277.",
-          "evidence": "abstract",
-          "claim_id": "BALA.introduction.1",
-          "verdict": "unsupported",
-          "reason": "The abstract concerns AGXT2 metabolism of homoarginine and does not mention hyper-β-alaninemia or the 2011 identification of AGXT2 variants as a cause of it; it is on the topic of AGXT2 function but lacks the claim's content.",
-          "quote": "Based on the recent findings from a Genome Wide Association Study we hypothesized that homoarginine can be metabolized by alanine:glyoxylate aminotransferase 2 (AGXT2).",
-          "ctx": "4f03183443b1"
-        }
-      ]
-    },
-    {
-      "id": "BALA.introduction.3",
-      "disorder": "BALA",
-      "text": "Distinction from the elevated β-alanine seen secondarily in GABA-transaminase deficiency (severe epileptic encephalopathy) is clinically important [1,5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "22525402",
-          "citation": "van Kuilenburg AB et al. β-ureidopropionase deficiency: phenotype, genotype and protein structural consequences in 16 patients. Biochim Biophys Acta. 2012;1822(7):1096–108.",
-          "evidence": "abstract",
-          "claim_id": "BALA.introduction.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract never mentions GABA-transaminase deficiency, epileptic encephalopathy, or the distinction from primary hyper-β-alaninaemia.",
-          "quote": "",
-          "ctx": "c0687d1c7e54"
-        },
-        {
-          "pmid": "12891657",
-          "citation": "Pearl PL et al. Succinic semialdehyde dehydrogenase deficiency in children and adults. Ann Neurol. 2003;54(Suppl 6):S73–80.",
-          "evidence": "abstract",
-          "claim_id": "BALA.introduction.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns succinic semialdehyde dehydrogenase deficiency and never addresses GABA-transaminase deficiency or β-alanine elevation, so the claimed distinction cannot be evaluated from it.",
-          "quote": "Succinic semialdehyde dehydrogenase deficiency is a rare disorder of the degradation pathway of gamma-aminobutyric acid.",
-          "ctx": "c0687d1c7e54"
         }
       ]
     },
