@@ -5,13 +5,21 @@ its abstract.
 
 ## Naming
 
-The filename must be the **PMID**, nothing else:
+Name it however the journal site did. The PMID is best if you have it, but a
+file that arrives as author and year is named from its own first page:
 
 ```
-docs/fulltext/30982989.pdf     ✅
-docs/fulltext/30982989.txt     ✅
-docs/fulltext/haberle-2019.pdf ❌  ignored — the PMID is how it is matched
+docs/fulltext/30982989.pdf          ✅  the PMID, plain
+docs/fulltext/30982989 Haberle.pdf  ✅  the PMID, with anything after it
+docs/fulltext/Wolf 2012.pdf         ✅  named from the title and author line
+docs/fulltext/paper (3).pdf         ⚠️  will be read, but probably not named
 ```
+
+A file with no PMID is matched three ways, and where two of them speak they
+have to agree: the title printed on page one, a key-word score against page one,
+and the author and year in the filename checked against the author line of the
+paper. A file it cannot name confidently is reported, not guessed at — rename it
+with the PMID in front and run again.
 
 `.pdf` and `.txt` are both accepted. PDFs are converted with `pdftotext`.
 
