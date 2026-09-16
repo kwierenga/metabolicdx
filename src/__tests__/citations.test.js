@@ -339,7 +339,13 @@ describe("knowledge-base citation health", () => {
   // mentions isobutyryl-CoA dehydrogenase, ACAD8, C4 or valine. Verified here
   // means the title matches what PubMed holds, which that entry managed while
   // supporting none of the four claims that cited it.
-  const VERIFIED_FLOOR = 913;     // title matches the paper PubMed holds
+  // 912: a second verified citation deleted for the same reason as the first.
+  // MCEE's reference 1 was Dobson on the cblA complementation group -- a real
+  // paper, cited accurately, in which the words epimerase, MCEE and racemase do
+  // not appear, standing as the support for five claims about how MCEE
+  // deficiency behaves. Accurate citation of the wrong paper is invisible to
+  // every check in this file; only reading the body catches it.
+  const VERIFIED_FLOOR = 912;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {
