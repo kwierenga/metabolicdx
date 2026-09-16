@@ -4,12 +4,12 @@ Regenerate with `node scripts/fetch-fulltext.mjs --wanted --md` rather than
 editing. The ranking moves as claims are settled and as papers arrive, and a
 stale list sends you after something already in hand.
 
-Full text is held for **197 of 874** cited papers. That covers the PMC
+Full text is held for **214 of 874** cited papers. That covers the PMC
 open-access set, every GeneReviews chapter (free on Bookshelf, fetched with
 `--genereviews`), and the papers already stored under `docs/`.
 
-**607** closed-access papers still carry at least one claim no abstract could
-confirm. The top 40 below would settle **177** of them.
+**590** closed-access papers still carry at least one claim no abstract could
+confirm. The top 40 below would settle **153** of them.
 
 ## How to feed one back
 
@@ -36,25 +36,7 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 | ✓ | Claims | PMID | Author | Journal | Disorders |
 |---|---:|---|---|---|---|
 | ☐ | 5 | [11826276](https://pubmed.ncbi.nlm.nih.gov/11826276/) | Rinaldo P 2002 | Annu Rev Physiol | MCAD, CPT2 |
-| ☐ | 5 | [20696606](https://pubmed.ncbi.nlm.nih.gov/20696606/) | Collins SA 2010 | Int J Circumpolar Health | CPT1 |
 | ☐ | 5 | [17393751](https://pubmed.ncbi.nlm.nih.gov/17393751/) | van Calcar SC 2007 | Wis Med J | 2MBD, SBCAD |
-| ☐ | 5 | [19235232](https://pubmed.ncbi.nlm.nih.gov/19235232/) | Tabatabaie L 2009 | Hum Mutat | PHGDH |
-| ☐ | 5 | [23463425](https://pubmed.ncbi.nlm.nih.gov/23463425/) | van der Crabben SN 2013 | J Inherit Metab Dis | PSAT1, PSPH |
-| ☐ | 5 | [23628343](https://pubmed.ncbi.nlm.nih.gov/23628343/) | Häberle J 2013 | Arch Biochem Biophys | GLULSYN |
-| ☐ | 5 | [16278852](https://pubmed.ncbi.nlm.nih.gov/16278852/) | Robinson BH 2001 | book/chapter | PCDEF |
-| ☐ | 5 | [10417274](https://pubmed.ncbi.nlm.nih.gov/10417274/) | FitzPatrick DR 1999 | Am J Hum Genet | MLYCD |
-| ☐ | 5 | [9428520](https://pubmed.ncbi.nlm.nih.gov/9428520/) | Kisker C 1997 | Cell | SULFOX |
-| ☐ | 5 | [16435181](https://pubmed.ncbi.nlm.nih.gov/16435181/) | Barić I 2005 | J Inherit Metab Dis | AHCY |
-| ☐ | 5 | [1404882](https://pubmed.ncbi.nlm.nih.gov/1404882/) | Mudd SH 2001 | book/chapter | CTH |
-| ☐ | 5 | [23296368](https://pubmed.ncbi.nlm.nih.gov/23296368/) | Wortmann SB 2013 | J Inherit Metab Dis | MGA1 |
-| ☐ | 5 | [12438653](https://pubmed.ncbi.nlm.nih.gov/12438653/) | Dobson CM 2002 | Proc Natl Acad Sci USA | MCEE |
-| ☐ | 5 | [10448086](https://pubmed.ncbi.nlm.nih.gov/10448086/) | Shany E 1999 | Biochem Biophys Res Commun | AKGDH |
-| ☐ | 5 | [4341015](https://pubmed.ncbi.nlm.nih.gov/4341015/) | Pagliara AS 1972 | J Clin Invest | FBP1 |
-| ☐ | 5 | [20631546](https://pubmed.ncbi.nlm.nih.gov/20631546/) | Kishnani PS 2010 | Genet Med | GSD3 |
-| ☐ | 5 | [16549399](https://pubmed.ncbi.nlm.nih.gov/16549399/) | Jinnah HA 2006 | Brain | HPRT |
-| ☐ | 4 | [22522443](https://pubmed.ncbi.nlm.nih.gov/22522443/) | Friedman J 2012 | Ann Neurol | SR_DEF |
-| ☐ | 4 | [24204001](https://pubmed.ncbi.nlm.nih.gov/24204001/) | Ferrè S 2014 | J Am Soc Nephrol | PCD_DEF |
-| ☐ | 4 | [11742888](https://pubmed.ncbi.nlm.nih.gov/11742888/) | Yap S 2001 | Arterioscler Thromb Vasc Biol | CBS |
 | ☐ | 4 | [1356171](https://pubmed.ncbi.nlm.nih.gov/1356171/) | Chitayat D 1992 | J Inherit Metab Dis | TYR2 |
 | ☐ | 4 | [11891283](https://pubmed.ncbi.nlm.nih.gov/11891283/) | Liu H 2002 | Proc Natl Acad Sci USA | HYPER_PRO |
 | ☐ | 4 | [17538087](https://pubmed.ncbi.nlm.nih.gov/17538087/) | Enns GM 2007 | N Engl J Med | CITR1, OTC, CPS1 |
@@ -75,6 +57,24 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 | ☐ | 4 | [19136963](https://pubmed.ncbi.nlm.nih.gov/19136963/) | Tiranti V 2009 | Nat Med | ETHE1D |
 | ☐ | 4 | [16275149](https://pubmed.ncbi.nlm.nih.gov/16275149/) | de Wit MC 2006 | Mol Genet Metab | MLYCD |
 | ☐ | 4 | [19472175](https://pubmed.ncbi.nlm.nih.gov/19472175/) | Bröer S 2008 | J Inherit Metab Dis | HARTNUP |
+| ☐ | 4 | [1404882](https://pubmed.ncbi.nlm.nih.gov/1404882/) | Mudd SH 2001 | book/chapter | CTH |
+| ☐ | 4 | [12434311](https://pubmed.ncbi.nlm.nih.gov/12434311/) | IJlst L 2002 | Am J Hum Genet | MGA1 |
+| ☐ | 4 | [16601864](https://pubmed.ncbi.nlm.nih.gov/16601864/) | Struys EA 2006 | J Inherit Metab Dis | D2HGA |
+| ☐ | 4 | [28588020](https://pubmed.ncbi.nlm.nih.gov/28588020/) | Stein EM 2017 | Blood | D2HGA |
+| ☐ | 4 | [34687058](https://pubmed.ncbi.nlm.nih.gov/34687058/) | Gorce M 2022 | J Inherit Metab Dis | FBP1 |
+| ☐ | 4 | [21910240](https://pubmed.ncbi.nlm.nih.gov/21910240/) | Alfadhel M 2011 | Am J Med Genet A | CBLF |
+| ☐ | 4 | [5050553](https://pubmed.ncbi.nlm.nih.gov/5050553/) | Nyhan WL 1972 | Arch Intern Med | HPRT |
+| ☐ | 4 | [6775961](https://pubmed.ncbi.nlm.nih.gov/6775961/) | Webster DR 2001 | book/chapter | UMPS |
+| ☐ | 4 | [23385875](https://pubmed.ncbi.nlm.nih.gov/23385875/) | El-Hattab AW 2013 | Neurotherapeutics | SUCLA2 |
+| ☐ | 3 | [20971365](https://pubmed.ncbi.nlm.nih.gov/20971365/) | Blau N 2010 | Lancet | PKU |
+| ☐ | 3 | [22885033](https://pubmed.ncbi.nlm.nih.gov/22885033/) | Larochelle J 2012 | Mol Genet Metab | TYR1 |
+| ☐ | 3 | [11916315](https://pubmed.ncbi.nlm.nih.gov/11916315/) | Ellaway CJ 2001 | J Inherit Metab Dis | TYR3 |
+| ☐ | 3 | [12501223](https://pubmed.ncbi.nlm.nih.gov/12501223/) | Phornphutkul C 2002 | N Engl J Med | ALKAPT |
+| ☐ | 3 | [12111366](https://pubmed.ncbi.nlm.nih.gov/12111366/) | Saheki T 2002 | J Hum Genet | CITR1, CITR2 |
+| ☐ | 3 | [14680984](https://pubmed.ncbi.nlm.nih.gov/14680984/) | Kobayashi K 2003 | Mol Genet Metab | CITR2 |
+| ☐ | 3 | [15542392](https://pubmed.ncbi.nlm.nih.gov/15542392/) | Tazawa Y 2004 | J Pediatr | CITR2 |
+| ☐ | 3 | [1720458](https://pubmed.ncbi.nlm.nih.gov/1720458/) | Maestri NE 1991 | J Pediatr | OTC |
+| ☐ | 3 | [15868473](https://pubmed.ncbi.nlm.nih.gov/15868473/) | Nassogne MC 2005 | J Inherit Metab Dis | CPS1 |
 
 Also written as `docs/fulltext-wanted.csv` (`--wanted --csv`) if you would
 rather work in a spreadsheet.
@@ -91,138 +91,12 @@ rather work in a spreadsheet.
 Rinaldo P et al. Fatty acid oxidation disorders. Annu Rev Physiol. 2002;64:477–502.
 <https://pubmed.ncbi.nlm.nih.gov/11826276/>
 
-### 5 claims — PMID 20696606
-
-*CPT1*
-
-Collins SA et al. Carnitine palmitoyltransferase 1A P479L prevalence in Nunavut. Int J Circumpolar Health. 2010;69(2):179–92.
-<https://pubmed.ncbi.nlm.nih.gov/20696606/>
-
 ### 5 claims — PMID 17393751
 
 *2MBD, SBCAD*
 
 van Calcar SC et al. 2-Methylbutyryl-CoA dehydrogenase deficiency in Hmong infants identified by expanded newborn screen. Wis Med J. 2007;106(1):12–5.
 <https://pubmed.ncbi.nlm.nih.gov/17393751/>
-
-### 5 claims — PMID 19235232
-
-*PHGDH*
-
-Tabatabaie L et al. Novel mutations in 3-phosphoglycerate dehydrogenase (PHGDH) are distributed throughout the protein and result in altered enzyme kinetics. Hum Mutat. 2009;30(5):749–56.
-<https://pubmed.ncbi.nlm.nih.gov/19235232/>
-
-### 5 claims — PMID 23463425
-
-*PSAT1, PSPH*
-
-van der Crabben SN et al. An update on serine deficiency disorders. J Inherit Metab Dis. 2013;36(4):613–9.
-<https://pubmed.ncbi.nlm.nih.gov/23463425/>
-
-### 5 claims — PMID 23628343
-
-*GLULSYN*
-
-Häberle J. Clinical and biochemical aspects of primary and secondary hyperammonaemic disorders. Arch Biochem Biophys. 2013;536(2):101–8.
-<https://pubmed.ncbi.nlm.nih.gov/23628343/>
-
-### 5 claims — PMID 16278852
-
-*PCDEF*
-
-Robinson BH. Pyruvate carboxylase deficiency. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2275–95.
-<https://pubmed.ncbi.nlm.nih.gov/16278852/>
-
-### 5 claims — PMID 10417274
-
-*MLYCD*
-
-FitzPatrick DR et al. The molecular basis of malonyl-CoA decarboxylase deficiency. Am J Hum Genet. 1999;65(2):318–26.
-<https://pubmed.ncbi.nlm.nih.gov/10417274/>
-
-### 5 claims — PMID 9428520
-
-*SULFOX*
-
-Kisker C et al. Molecular basis of sulfite oxidase deficiency from the structure of sulfite oxidase. Cell. 1997;91(7):973–83.
-<https://pubmed.ncbi.nlm.nih.gov/9428520/>
-
-### 5 claims — PMID 16435181
-
-*AHCY*
-
-Barić I et al. S-Adenosylhomocysteine hydrolase deficiency: a second patient, the first with homozygosity for a novel missense mutation. J Inherit Metab Dis. 2005;28(6):885–902.
-<https://pubmed.ncbi.nlm.nih.gov/16435181/>
-
-### 5 claims — PMID 1404882
-
-*CTH*
-
-Mudd SH. Disorders of transsulfuration. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2007–56.
-<https://pubmed.ncbi.nlm.nih.gov/1404882/>
-
-### 5 claims — PMID 23296368
-
-*MGA1*
-
-Wortmann SB et al. Inborn errors of metabolism with 3-methylglutaconic aciduria as discriminative feature: proper classification and nomenclature. J Inherit Metab Dis. 2013;36(6):923–8.
-<https://pubmed.ncbi.nlm.nih.gov/23296368/>
-
-### 5 claims — PMID 12438653
-
-*MCEE*
-
-Dobson CM et al. Identification of the gene responsible for the cblA complementation group of vitamin B12-responsive methylmalonic acidaemia based on analysis of prokaryotic gene arrangements. Proc Natl Acad Sci USA. 2002;99(24):15554–9.
-<https://pubmed.ncbi.nlm.nih.gov/12438653/>
-
-### 5 claims — PMID 10448086
-
-*AKGDH*
-
-Shany E et al. Lipoamide dehydrogenase deficiency due to a novel mutation in the interface domain. Biochem Biophys Res Commun. 1999;262(1):163–6.
-<https://pubmed.ncbi.nlm.nih.gov/10448086/>
-
-### 5 claims — PMID 4341015
-
-*FBP1*
-
-Pagliara AS et al. Fructose-1,6-diphosphatase deficiency: a cause of lactic acidosis and hypoglycaemia in infancy. J Clin Invest. 1972;51(8):2115–23.
-<https://pubmed.ncbi.nlm.nih.gov/4341015/>
-
-### 5 claims — PMID 20631546
-
-*GSD3*
-
-Kishnani PS et al. Glycogen storage disease type III diagnosis and management guidelines. Genet Med. 2010;12(7):446–63.
-<https://pubmed.ncbi.nlm.nih.gov/20631546/>
-
-### 5 claims — PMID 16549399
-
-*HPRT*
-
-Jinnah HA et al. Delineation of the motor disorder of Lesch-Nyhan disease. Brain. 2006;129(Pt 5):1201–17.
-<https://pubmed.ncbi.nlm.nih.gov/16549399/>
-
-### 4 claims — PMID 22522443
-
-*SR_DEF*
-
-Friedman J et al. Sepiapterin reductase deficiency: a treatable mimic of cerebral palsy. Ann Neurol. 2012;71(4):520–30.
-<https://pubmed.ncbi.nlm.nih.gov/22522443/>
-
-### 4 claims — PMID 24204001
-
-*PCD_DEF*
-
-Ferrè S et al. Mutations in PCBD1 cause hypomagnesemia and renal magnesium wasting. J Am Soc Nephrol. 2014;25(3):574–86.
-<https://pubmed.ncbi.nlm.nih.gov/24204001/>
-
-### 4 claims — PMID 11742888
-
-*CBS*
-
-Yap S et al. Vascular outcome in patients with homocystinuria due to cystathionine beta-synthase deficiency treated chronically: a multicenter observational study. Arterioscler Thromb Vasc Biol. 2001;21(12):2080–5.
-<https://pubmed.ncbi.nlm.nih.gov/11742888/>
 
 ### 4 claims — PMID 1356171
 
@@ -363,3 +237,129 @@ de Wit MC et al. Brain abnormalities in a case of malonyl-CoA decarboxylase defi
 
 Bröer S. The role of the neutral amino acid transporter B⁰AT1 in Hartnup disorder and glucose homeostasis. J Inherit Metab Dis. 2008;31(4):529–36.
 <https://pubmed.ncbi.nlm.nih.gov/19472175/>
+
+### 4 claims — PMID 1404882
+
+*CTH*
+
+Mudd SH. Disorders of transsulfuration. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2007–56.
+<https://pubmed.ncbi.nlm.nih.gov/1404882/>
+
+### 4 claims — PMID 12434311
+
+*MGA1*
+
+IJlst L et al. 3-Methylglutaconic aciduria type I is caused by mutations in AUH. Am J Hum Genet. 2002;71(6):1463–6.
+<https://pubmed.ncbi.nlm.nih.gov/12434311/>
+
+### 4 claims — PMID 16601864
+
+*D2HGA*
+
+Struys EA. D-2-Hydroxyglutaric aciduria: unravelling the biochemical pathway and the genetic defect. J Inherit Metab Dis. 2006;29(1):21–9.
+<https://pubmed.ncbi.nlm.nih.gov/16601864/>
+
+### 4 claims — PMID 28588020
+
+*D2HGA*
+
+Stein EM et al. Enasidenib in mutant IDH2 relapsed or refractory acute myeloid leukemia. Blood. 2017;130(6):722–31.
+<https://pubmed.ncbi.nlm.nih.gov/28588020/>
+
+### 4 claims — PMID 34687058
+
+*FBP1*
+
+Gorce M et al. Fructose-1,6-bisphosphatase deficiency causes fatty liver disease and requires long-term hepatic follow-up. J Inherit Metab Dis. 2022;45(2):215–22.
+<https://pubmed.ncbi.nlm.nih.gov/34687058/>
+
+### 4 claims — PMID 21910240
+
+*CBLF*
+
+Alfadhel M et al. Eighteen-year follow-up of a patient with cobalamin F disease (cblF): report and review. Am J Med Genet A. 2011;155A(10):2571–7.
+<https://pubmed.ncbi.nlm.nih.gov/21910240/>
+
+### 4 claims — PMID 5050553
+
+*HPRT*
+
+Nyhan WL. Clinical features of the Lesch-Nyhan syndrome. Arch Intern Med. 1972;130(2):186–92.
+<https://pubmed.ncbi.nlm.nih.gov/5050553/>
+
+### 4 claims — PMID 6775961
+
+*UMPS*
+
+Webster DR et al. Hereditary orotic aciduria and other disorders of pyrimidine metabolism. In: The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2663–702.
+<https://pubmed.ncbi.nlm.nih.gov/6775961/>
+
+### 4 claims — PMID 23385875
+
+*SUCLA2*
+
+El-Hattab AW, Scaglia F. Mitochondrial DNA depletion syndromes: review and updates of genetic basis, manifestations, and therapeutic options. Neurotherapeutics. 2013;10(2):186–98.
+<https://pubmed.ncbi.nlm.nih.gov/23385875/>
+
+### 3 claims — PMID 20971365
+
+*PKU*
+
+Blau N, van Spronsen FJ, Levy HL. Phenylketonuria. Lancet. 2010;376(9750):1417–27.
+<https://pubmed.ncbi.nlm.nih.gov/20971365/>
+
+### 3 claims — PMID 22885033
+
+*TYR1*
+
+Larochelle J et al. Effect of nitisinone treatment on HCC in tyrosinaemia type 1. Mol Genet Metab. 2012;107(1–2):49–54.
+<https://pubmed.ncbi.nlm.nih.gov/22885033/>
+
+### 3 claims — PMID 11916315
+
+*TYR3*
+
+Ellaway CJ et al. Outcome of tyrosinaemia type III. J Inherit Metab Dis. 2001;24(8):824–32.
+<https://pubmed.ncbi.nlm.nih.gov/11916315/>
+
+### 3 claims — PMID 12501223
+
+*ALKAPT*
+
+Phornphutkul C et al. Natural history of alkaptonuria. N Engl J Med. 2002;347(26):2111–21.
+<https://pubmed.ncbi.nlm.nih.gov/12501223/>
+
+### 3 claims — PMID 12111366
+
+*CITR1, CITR2*
+
+Saheki T, Kobayashi K. Mitochondrial aspartate glutamate carrier (citrin) deficiency as the cause of adult-onset type II citrullinemia (CTLN2) and idiopathic neonatal hepatitis (NICCD). J Hum Genet. 2002;47(7):333–41.
+<https://pubmed.ncbi.nlm.nih.gov/12111366/>
+
+### 3 claims — PMID 14680984
+
+*CITR2*
+
+Kobayashi K et al. Screening of nine SLC25A13 mutations. Mol Genet Metab. 2003;80(1–2):207–13.
+<https://pubmed.ncbi.nlm.nih.gov/14680984/>
+
+### 3 claims — PMID 15542392
+
+*CITR2*
+
+Tazawa Y et al. Clinical heterogeneity of neonatal intrahepatic cholestasis caused by citrin deficiency. J Pediatr. 2004;145(2):231–8.
+<https://pubmed.ncbi.nlm.nih.gov/15542392/>
+
+### 3 claims — PMID 1720458
+
+*OTC*
+
+Maestri NE et al. Prospective treatment of urea cycle disorders. J Pediatr. 1991;119(6):923–8.
+<https://pubmed.ncbi.nlm.nih.gov/1720458/>
+
+### 3 claims — PMID 15868473
+
+*CPS1*
+
+Nassogne MC et al. Urea cycle defects: management and outcome. J Inherit Metab Dis. 2005;28(3):407–14.
+<https://pubmed.ncbi.nlm.nih.gov/15868473/>

@@ -24,7 +24,8 @@
 // not open access is recorded as unavailable and never retried in a way that
 // would look like "no full text" — same rule as check-relevance.mjs, where a
 // failed request must never be cached as a negative finding.
-import { readFileSync, writeFileSync, existsSync, renameSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, renameSync, copyFileSync, unlinkSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { collectClaims, judgeablePairs } from "./parse-claims.mjs";
@@ -477,6 +478,12 @@ if (arg("--ingest")) {
     return { surname, year, hits };
   }
 
+  /** Body text of a PDF, or "" if pdftotext could not read it. */
+  const pdfText = (path) => {
+    try { return execFileSync("pdftotext", ["-q", path, "-"], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 }); }
+    catch { return ""; }
+  };
+
   let added = 0, skipped = 0, renamed = 0;
   for (const file of readdirSync(DROP)) {
     if (file === "README.md") continue;   // the folder documents itself
@@ -498,8 +505,22 @@ if (arg("--ingest")) {
 
     let text = "";
     if (/\.pdf$/i.test(file)) {
-      try { text = execFileSync("pdftotext", ["-q", full, "-"], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 }); }
-      catch { console.error(`  skip ${file}: pdftotext failed or is not installed`); skipped++; continue; }
+      text = pdfText(full);
+      // pdftotext hands a non-ASCII path to the OS in the wrong encoding and
+      // gets nothing back, silently: "Barić 2005.pdf" produced zero characters
+      // while a byte-identical copy called baric.pdf produced 60,000. The name
+      // of the file is not a reason to lose the paper, so retry through a plain
+      // ASCII temporary copy. An author with an accent is not a rare case here.
+      if (!text.trim() && /[^\x20-\x7E]/.test(full)) {
+        const tmp = resolve(tmpdir(), `fulltext-${Date.now()}.pdf`);
+        try {
+          copyFileSync(full, tmp);
+          text = pdfText(tmp);
+          if (text.trim()) console.error(`  ${file}: read through an ASCII copy (the accent in the name defeats pdftotext)`);
+        } catch { /* fall through to the length check below */ }
+        finally { try { unlinkSync(tmp); } catch { /* nothing to clean up */ } }
+      }
+      if (!text.trim()) { console.error(`  skip ${file}: pdftotext returned nothing (not installed, or an unreadable file)`); skipped++; continue; }
     } else {
       text = readFileSync(full, "utf8");
     }
