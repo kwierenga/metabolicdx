@@ -245,7 +245,10 @@ if (arg("--wanted")) {
   function shortOf(citation) {
     const s = String(citation || "");
     const author = (s.match(/^([^.]+?)(?:\s+et al)?\./)?.[1] || "").split(",")[0].trim();
-    const year = s.match(/\b(19|20)\d{2}\b/g)?.slice(-1)[0] || "";
+    // The publication year is the one the volume follows, "…2001;21(12):2080–5".
+    // Taking the last four-digit year in the string instead reads that citation
+    // as "Yap S 2080", because the first page is in the same range as a year.
+    const year = s.match(/\b(?:19|20)\d{2}(?=\s*[;:.])/)?.[0] || s.match(/\b(?:19|20)\d{2}\b/)?.[0] || "";
     // The journal is the segment immediately before the year, which is how every
     // citation in this corpus is shaped. Books and chapters have no such segment.
     const journal = (s.match(/\.\s*([^.]{3,60}?)\.\s*\d{4}\s*[;:]/)?.[1] || "").trim();
@@ -285,11 +288,13 @@ if (arg("--wanted")) {
       `**${rows.length}** closed-access papers still carry at least one claim no abstract could`,
       `confirm. The top ${pick.length} below would settle **${resolves}** of them.`, "",
       "## How to feed one back", "",
-      "Save it as `docs/fulltext/<PMID>.pdf` (or `.txt`) — the filename must be the",
-      "PMID — then run:", "", "```", "node scripts/fetch-fulltext.mjs --ingest", "```", "",
-      "PDFs are converted with pdftotext. A scanned PDF with no text layer is rejected",
-      "rather than silently judged on nothing. The folder is gitignored: publisher PDFs",
-      "are not redistributable and this repository is public.", "", "---", "",
+      "Drop it in `docs/fulltext/` under whatever name the journal site gave it, then",
+      "run:", "", "```", "node scripts/fetch-fulltext.mjs --ingest", "```", "",
+      "`<PMID>.pdf` is the surest name, but a file called `Wolf 2012.pdf` is identified",
+      "from its own first page. A scan with no text layer is OCRed with the renderer and",
+      "OCR engine built into Windows, so an old paper that is a photograph of a page",
+      "still gets read. The folder is gitignored: publisher PDFs are not redistributable",
+      "and this repository is public.", "", "---", "",
     ];
     // The checklist is the working view: one line per paper, tickable, with the
     // three things needed to recognise and find it. Full citations follow below

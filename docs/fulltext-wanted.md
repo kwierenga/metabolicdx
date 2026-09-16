@@ -13,16 +13,18 @@ confirm. The top 40 below would settle **177** of them.
 
 ## How to feed one back
 
-Save it as `docs/fulltext/<PMID>.pdf` (or `.txt`) — the filename must be the
-PMID — then run:
+Drop it in `docs/fulltext/` under whatever name the journal site gave it, then
+run:
 
 ```
 node scripts/fetch-fulltext.mjs --ingest
 ```
 
-PDFs are converted with pdftotext. A scanned PDF with no text layer is rejected
-rather than silently judged on nothing. The folder is gitignored: publisher PDFs
-are not redistributable and this repository is public.
+`<PMID>.pdf` is the surest name, but a file called `Wolf 2012.pdf` is identified
+from its own first page. A scan with no text layer is OCRed with the renderer and
+OCR engine built into Windows, so an old paper that is a photograph of a page
+still gets read. The folder is gitignored: publisher PDFs are not redistributable
+and this repository is public.
 
 ---
 
@@ -43,7 +45,7 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 | ☐ | 5 | [10417274](https://pubmed.ncbi.nlm.nih.gov/10417274/) | FitzPatrick DR 1999 | Am J Hum Genet | MLYCD |
 | ☐ | 5 | [9428520](https://pubmed.ncbi.nlm.nih.gov/9428520/) | Kisker C 1997 | Cell | SULFOX |
 | ☐ | 5 | [16435181](https://pubmed.ncbi.nlm.nih.gov/16435181/) | Barić I 2005 | J Inherit Metab Dis | AHCY |
-| ☐ | 5 | [1404882](https://pubmed.ncbi.nlm.nih.gov/1404882/) | Mudd SH 2007 | book/chapter | CTH |
+| ☐ | 5 | [1404882](https://pubmed.ncbi.nlm.nih.gov/1404882/) | Mudd SH 2001 | book/chapter | CTH |
 | ☐ | 5 | [23296368](https://pubmed.ncbi.nlm.nih.gov/23296368/) | Wortmann SB 2013 | J Inherit Metab Dis | MGA1 |
 | ☐ | 5 | [12438653](https://pubmed.ncbi.nlm.nih.gov/12438653/) | Dobson CM 2002 | Proc Natl Acad Sci USA | MCEE |
 | ☐ | 5 | [10448086](https://pubmed.ncbi.nlm.nih.gov/10448086/) | Shany E 1999 | Biochem Biophys Res Commun | AKGDH |
@@ -52,7 +54,7 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 | ☐ | 5 | [16549399](https://pubmed.ncbi.nlm.nih.gov/16549399/) | Jinnah HA 2006 | Brain | HPRT |
 | ☐ | 4 | [22522443](https://pubmed.ncbi.nlm.nih.gov/22522443/) | Friedman J 2012 | Ann Neurol | SR_DEF |
 | ☐ | 4 | [24204001](https://pubmed.ncbi.nlm.nih.gov/24204001/) | Ferrè S 2014 | J Am Soc Nephrol | PCD_DEF |
-| ☐ | 4 | [11742888](https://pubmed.ncbi.nlm.nih.gov/11742888/) | Yap S 2080 | Arterioscler Thromb Vasc Biol | CBS |
+| ☐ | 4 | [11742888](https://pubmed.ncbi.nlm.nih.gov/11742888/) | Yap S 2001 | Arterioscler Thromb Vasc Biol | CBS |
 | ☐ | 4 | [1356171](https://pubmed.ncbi.nlm.nih.gov/1356171/) | Chitayat D 1992 | J Inherit Metab Dis | TYR2 |
 | ☐ | 4 | [11891283](https://pubmed.ncbi.nlm.nih.gov/11891283/) | Liu H 2002 | Proc Natl Acad Sci USA | HYPER_PRO |
 | ☐ | 4 | [17538087](https://pubmed.ncbi.nlm.nih.gov/17538087/) | Enns GM 2007 | N Engl J Med | CITR1, OTC, CPS1 |
