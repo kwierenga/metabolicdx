@@ -4,12 +4,12 @@ Regenerate with `node scripts/fetch-fulltext.mjs --wanted --md` rather than
 editing. The ranking moves as claims are settled and as papers arrive, and a
 stale list sends you after something already in hand.
 
-Full text is held for **196 of 874** cited papers. That covers the PMC
+Full text is held for **197 of 874** cited papers. That covers the PMC
 open-access set, every GeneReviews chapter (free on Bookshelf, fetched with
 `--genereviews`), and the papers already stored under `docs/`.
 
-**608** closed-access papers still carry at least one claim no abstract could
-confirm. The top 40 below would settle **179** of them.
+**607** closed-access papers still carry at least one claim no abstract could
+confirm. The top 40 below would settle **177** of them.
 
 ## How to feed one back
 
@@ -33,7 +33,6 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 
 | ✓ | Claims | PMID | Author | Journal | Disorders |
 |---|---:|---|---|---|---|
-| ☐ | 6 | [5637757](https://pubmed.ncbi.nlm.nih.gov/5637757/) | Perry TL 1968 | N Engl J Med | CTH |
 | ☐ | 5 | [11826276](https://pubmed.ncbi.nlm.nih.gov/11826276/) | Rinaldo P 2002 | Annu Rev Physiol | MCAD, CPT2 |
 | ☐ | 5 | [20696606](https://pubmed.ncbi.nlm.nih.gov/20696606/) | Collins SA 2010 | Int J Circumpolar Health | CPT1 |
 | ☐ | 5 | [17393751](https://pubmed.ncbi.nlm.nih.gov/17393751/) | van Calcar SC 2007 | Wis Med J | 2MBD, SBCAD |
@@ -73,6 +72,7 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 | ☐ | 4 | [29421601](https://pubmed.ncbi.nlm.nih.gov/29421601/) | La Serna-Infantes J 2018 | Eur J Med Genet | GA3 |
 | ☐ | 4 | [19136963](https://pubmed.ncbi.nlm.nih.gov/19136963/) | Tiranti V 2009 | Nat Med | ETHE1D |
 | ☐ | 4 | [16275149](https://pubmed.ncbi.nlm.nih.gov/16275149/) | de Wit MC 2006 | Mol Genet Metab | MLYCD |
+| ☐ | 4 | [19472175](https://pubmed.ncbi.nlm.nih.gov/19472175/) | Bröer S 2008 | J Inherit Metab Dis | HARTNUP |
 
 Also written as `docs/fulltext-wanted.csv` (`--wanted --csv`) if you would
 rather work in a spreadsheet.
@@ -81,13 +81,6 @@ rather work in a spreadsheet.
 
 ## Full citations
 
-
-### 6 claims — PMID 5637757
-
-*CTH*
-
-Perry TL et al. Cystathioninuria in two healthy siblings. N Engl J Med. 1968;278(11):590–2.
-<https://pubmed.ncbi.nlm.nih.gov/5637757/>
 
 ### 5 claims — PMID 11826276
 
@@ -361,3 +354,10 @@ Tiranti V et al. Loss of ETHE1, a mitochondrial dioxygenase, causes fatal sulphi
 
 de Wit MC et al. Brain abnormalities in a case of malonyl-CoA decarboxylase deficiency. Mol Genet Metab. 2006;87(2):102–6.
 <https://pubmed.ncbi.nlm.nih.gov/16275149/>
+
+### 4 claims — PMID 19472175
+
+*HARTNUP*
+
+Bröer S. The role of the neutral amino acid transporter B⁰AT1 in Hartnup disorder and glucose homeostasis. J Inherit Metab Dis. 2008;31(4):529–36.
+<https://pubmed.ncbi.nlm.nih.gov/19472175/>

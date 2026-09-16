@@ -502,8 +502,26 @@ if (arg("--ingest")) {
     // A scanned paper with no text layer yields a few hundred characters of
     // cover furniture. Judging a claim against that produces a confident
     // "unsupported" from no evidence at all, which is worse than no verdict.
+    //
+    // It is also the normal state of the papers this project most needs. The
+    // oldest citations are the ones no abstract can settle, and a 1968 article
+    // arrives as a photograph of a page. Windows can render and read one with no
+    // third-party tools, so try that before giving up.
+    if (text.length < MIN_BODY_CHARS && /\.pdf$/i.test(file) && process.platform === "win32") {
+      const script = resolve(HERE, "ocr-pdf.ps1");
+      if (existsSync(script)) {
+        console.error(`  ${file}: ${text.length} chars — looks scanned, running OCR (this takes a moment)`);
+        try {
+          text = execFileSync("powershell.exe",
+            ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", script, "-Path", full],
+            { encoding: "utf8", maxBuffer: 64 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] },
+          ).replace(/\s+/g, " ").trim();
+        } catch { /* leave the short text in place and report it below */ }
+      }
+    }
     if (text.length < MIN_BODY_CHARS) {
-      console.error(`  skip ${file}: ${text.length} chars — no text layer? (scanned PDFs need OCR)`);
+      const why = cache[pmid]?.text ? `already held from another file` : `no text layer? (scanned PDFs need OCR)`;
+      console.error(`  skip ${file}: ${text.length} chars — ${why}`);
       skipped++;
       continue;
     }

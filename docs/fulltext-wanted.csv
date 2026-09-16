@@ -1,5 +1,4 @@
 claims,pmid,author_year,journal,disorders,url,citation
-6,5637757,"Perry TL 1968","N Engl J Med","CTH",https://pubmed.ncbi.nlm.nih.gov/5637757/,"Perry TL et al. Cystathioninuria in two healthy siblings. N Engl J Med. 1968;278(11):590–2."
 5,11826276,"Rinaldo P 2002","Annu Rev Physiol","MCAD CPT2",https://pubmed.ncbi.nlm.nih.gov/11826276/,"Rinaldo P et al. Fatty acid oxidation disorders. Annu Rev Physiol. 2002;64:477–502."
 5,20696606,"Collins SA 2010","Int J Circumpolar Health","CPT1",https://pubmed.ncbi.nlm.nih.gov/20696606/,"Collins SA et al. Carnitine palmitoyltransferase 1A P479L prevalence in Nunavut. Int J Circumpolar Health. 2010;69(2):179–92."
 5,17393751,"van Calcar SC 2007","Wis Med J","2MBD SBCAD",https://pubmed.ncbi.nlm.nih.gov/17393751/,"van Calcar SC et al. 2-Methylbutyryl-CoA dehydrogenase deficiency in Hmong infants identified by expanded newborn screen. Wis Med J. 2007;106(1):12–5."
@@ -39,3 +38,4 @@ claims,pmid,author_year,journal,disorders,url,citation
 4,29421601,"La Serna-Infantes J 2018","Eur J Med Genet","GA3",https://pubmed.ncbi.nlm.nih.gov/29421601/,"La Serna-Infantes J et al. Novel contiguous gene deletion in Peruvian girl with trichothiodystrophy type 4 and glutaric aciduria type 3. Eur J Med Genet. 2018;61(7):388–92."
 4,19136963,"Tiranti V 2009","Nat Med","ETHE1D",https://pubmed.ncbi.nlm.nih.gov/19136963/,"Tiranti V et al. Loss of ETHE1, a mitochondrial dioxygenase, causes fatal sulphide toxicity in ethylmalonic encephalopathy. Nat Med. 2009;15(2):200–5."
 4,16275149,"de Wit MC 2006","Mol Genet Metab","MLYCD",https://pubmed.ncbi.nlm.nih.gov/16275149/,"de Wit MC et al. Brain abnormalities in a case of malonyl-CoA decarboxylase deficiency. Mol Genet Metab. 2006;87(2):102–6."
+4,19472175,"Bröer S 2008","J Inherit Metab Dis","HARTNUP",https://pubmed.ncbi.nlm.nih.gov/19472175/,"Bröer S. The role of the neutral amino acid transporter B⁰AT1 in Hartnup disorder and glucose homeostasis. J Inherit Metab Dis. 2008;31(4):529–36."

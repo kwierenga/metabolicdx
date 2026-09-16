@@ -23,6 +23,21 @@ with the PMID in front and run again.
 
 `.pdf` and `.txt` are both accepted. PDFs are converted with `pdftotext`.
 
+## Scanned papers
+
+An old article is often a photograph of a page — it opens and prints, but there
+is no text in it to read. `--ingest` spots this (a few hundred characters where
+there should be tens of thousands) and OCRs the file itself, using the PDF
+renderer and OCR engine built into Windows. Nothing to install. It costs about
+five seconds a page, and the result is good enough for 1960s journal type:
+Perry 1968 went from 593 characters to 16,830.
+
+To look at the text before letting it in:
+
+```
+powershell -File scripts/ocr-pdf.ps1 -Path "docs/fulltext/Perry 1968.pdf"
+```
+
 ## Then run
 
 ```
