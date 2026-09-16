@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-16T23:17:13.664Z",
+  "generated": "2026-09-16T23:35:25.491Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -1013,80 +1013,6 @@
       ]
     },
     {
-      "id": "SR_DEF.presentation.0",
-      "disorder": "SR_DEF",
-      "text": "Psychomotor retardation with onset typically in infancy — motor and speech delay (~80%), axial hypotonia (~75%), dystonia (~70%), oculogyric crises (~70%), spasticity, tremor, chorea, Parkinsonism, drooling, inconsolable crying, microcephaly, diurnal variation (worse in evening) [1,2].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "22522443",
-          "citation": "Friedman J et al. Sepiapterin reductase deficiency: a treatable mimic of cerebral palsy. Ann Neurol. 2012;71(4):520–30.",
-          "evidence": "abstract",
-          "claim_id": "SR_DEF.presentation.0",
-          "verdict": "partial",
-          "reason": "The abstract confirms the symptom set (motor/language delay, axial hypotonia, dystonia, oculogyric crises, diurnal fluctuation) with infantile onset, but gives no frequency percentages and does not mention spasticity, tremor, chorea, drooling, inconsolable crying, or microcephaly.",
-          "quote": "In most cases, motor and language delays, axial hypotonia, dystonia, weakness, oculogyric crises, and diurnal fluctuation of symptoms with sleep benefit become evident in infancy or childhood.",
-          "ctx": "14417863d429"
-        },
-        {
-          "pmid": "32456656",
-          "citation": "Opladen T et al. Consensus guideline for BH4 deficiencies. Orphanet J Rare Dis. 2020;15(1):126.",
-          "evidence": "abstract",
-          "claim_id": "SR_DEF.presentation.0",
-          "verdict": "not-assessable",
-          "reason": "Sepiapterin reductase deficiency is mentioned only as lacking hyperphenylalaninaemia; no clinical features or symptom frequencies are given.",
-          "quote": "apart from autosomal dominant guanosine triphosphate cyclohydrolase I deficiency and sepiapterin reductase deficiency",
-          "ctx": "14417863d429"
-        }
-      ]
-    },
-    {
-      "id": "SR_DEF.treatment.0",
-      "disorder": "SR_DEF",
-      "text": "L-dopa/carbidopa (levodopa 0.1–16 mg/kg/day, with carbidopa or benserazide at ~4:1 ratio) + 5-hydroxytryptophan (1–6 mg/kg/day) — highly effective [2,7].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "32456656",
-          "citation": "Opladen T et al. Consensus guideline for BH4 deficiencies. Orphanet J Rare Dis. 2020;15(1):126.",
-          "evidence": "abstract",
-          "claim_id": "SR_DEF.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract endorses early neurotransmitter precursor supplementation with significant benefit but provides no specific drugs, doses, or ratios.",
-          "quote": "Early supplementation of neurotransmitter precursors and where appropriate, treatment of HPA results in significant improvement of motor and cognitive function.",
-          "ctx": "2e7b4f2d64b1"
-        },
-        {
-          "pmid": "22522443",
-          "citation": "Friedman J et al. Sepiapterin reductase deficiency: a treatable mimic of cerebral palsy. Ann Neurol. 2012;71(4):520–30.",
-          "evidence": "abstract",
-          "claim_id": "SR_DEF.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract supports the combination therapy and its high efficacy but provides none of the specific dosing ranges or the carbidopa ratio.",
-          "quote": "Most patients benefit dramatically from levodopa/carbidopa, often with further improvement with the addition of 5-hydroxytryptophan.",
-          "ctx": "2e7b4f2d64b1"
-        }
-      ]
-    },
-    {
-      "id": "SR_DEF.treatment.2",
-      "disorder": "SR_DEF",
-      "text": "Early diagnosis and treatment (before age 1) usually gives near-normal development [2,8].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "32456656",
-          "citation": "Opladen T et al. Consensus guideline for BH4 deficiencies. Orphanet J Rare Dis. 2020;15(1):126.",
-          "evidence": "abstract",
-          "claim_id": "SR_DEF.treatment.2",
-          "verdict": "partial",
-          "reason": "The abstract supports benefit from early neurotransmitter precursor therapy but specifies no age-before-1-year threshold or near-normal developmental outcome.",
-          "quote": "Early supplementation of neurotransmitter precursors and where appropriate, treatment of HPA results in significant improvement of motor and cognitive function.",
-          "ctx": "02e4bdddda4d"
-        }
-      ]
-    },
-    {
       "id": "SR_DEF.prognosis.0",
       "disorder": "SR_DEF",
       "text": "Excellent with early treatment; delayed diagnosis leaves residual deficits [2,8].",
@@ -1129,34 +1055,6 @@
           "reason": "The abstract concerns PTPS deficiency mutations and says nothing about pterin-4α-carbinolamine dehydratase deficiency or MODY diabetes.",
           "quote": "",
           "ctx": "bd1c89b9dbc1"
-        }
-      ]
-    },
-    {
-      "id": "PCD_DEF.introduction.1",
-      "disorder": "PCD_DEF",
-      "text": "It was initially thought wholly benign, but long-term follow-up has revealed a subset developing early-onset diabetes, hypomagnesaemia and renal tubulopathy in adolescence — driven by the dual role of PCBD1 as a transcriptional co-activator of HNF-1α [3,4].",
-      "status": "supported",
-      "judged": [
-        {
-          "pmid": "24848070",
-          "citation": "Simaite D et al. Recessive mutations in PCBD1 cause a new type of early-onset diabetes. Diabetes. 2014;63(10):3557–64.",
-          "evidence": "abstract",
-          "claim_id": "PCD_DEF.introduction.1",
-          "verdict": "supports",
-          "reason": "The abstract documents previously mild/benign PCBD1 hyperphenylalaninemia patients developing HNF1A-like early-onset diabetes in puberty and names PCBD1's HNF1α dimerization cofactor role; the hypomagnesaemia/tubulopathy element is carried by the co-cited paper.",
-          "quote": "A subsequent reevaluation of patients with mild neonatal hyperphenylalaninemia due to mutations in PCBD1 from the BIODEF database identified three additional patients who had developed HNF1A-like diabetes in puberty, indicating early \\u03b2-cell failure.",
-          "ctx": "87842f81cb36"
-        },
-        {
-          "pmid": "24204001",
-          "citation": "Ferrè S et al. Mutations in PCBD1 cause hypomagnesemia and renal magnesium wasting. J Am Soc Nephrol. 2014;25(3):574–86.",
-          "evidence": "abstract",
-          "claim_id": "PCD_DEF.introduction.1",
-          "verdict": "partial",
-          "reason": "The abstract supports the reversal from 'benign' to late complications of diabetes and hypomagnesaemia/renal Mg wasting, but the patients were adults (not adolescents) and the transcription factor implicated is HNF1B, not HNF-1α.",
-          "quote": "Until now, HPABH4D has been regarded as a transient and benign neonatal syndrome without complications in adulthood. In our study of three adult patients with homozygous mutations in the PCBD1 gene, two patients were diagnosed with hypomagnesemia and renal Mg(2+) loss, and two patients developed diabetes with characteristics of maturity onset diabetes of the young (MODY)",
-          "ctx": "87842f81cb36"
         }
       ]
     },
@@ -1217,34 +1115,6 @@
       ]
     },
     {
-      "id": "PCD_DEF.molecular.2",
-      "disorder": "PCD_DEF",
-      "text": "PCBD1 has a dual function: (1) cytosolic pterin-4α-carbinolamine dehydratase; (2) nuclear dimerisation co-factor for HNF-1α transcription factor [3,4].",
-      "status": "supported",
-      "judged": [
-        {
-          "pmid": "24848070",
-          "citation": "Simaite D et al. Recessive mutations in PCBD1 cause a new type of early-onset diabetes. Diabetes. 2014;63(10):3557–64.",
-          "evidence": "abstract",
-          "claim_id": "PCD_DEF.molecular.2",
-          "verdict": "supports",
-          "reason": "The abstract spells out both functions of PCBD1 in the gene name expansion and links its mutations to HNF1A-like diabetes.",
-          "quote": "PCBD1 (pterin-4 &#x3b1;-carbinolamine dehydratase/dimerization cofactor of hepatocyte nuclear factor 1 &#x3b1;)",
-          "ctx": "eba7bb9cf04e"
-        },
-        {
-          "pmid": "24204001",
-          "citation": "Ferrè S et al. Mutations in PCBD1 cause hypomagnesemia and renal magnesium wasting. J Am Soc Nephrol. 2014;25(3):574–86.",
-          "evidence": "abstract",
-          "claim_id": "PCD_DEF.molecular.2",
-          "verdict": "partial",
-          "reason": "The abstract establishes PCBD1's dual role as dehydratase (implied by HPABH4D/primapterinuria) and nuclear dimerisation cofactor/coactivator, but names HNF1B rather than HNF-1α as the partner transcription factor.",
-          "quote": "these clinical findings are related to the function of PCBD1 as a dimerization cofactor for the transcription factor HNF1B",
-          "ctx": "eba7bb9cf04e"
-        }
-      ]
-    },
-    {
       "id": "PCD_DEF.presentation.0",
       "disorder": "PCD_DEF",
       "text": "Newborn period: transient HPA at NBS, mostly asymptomatic [1].",
@@ -1259,34 +1129,6 @@
           "reason": "The abstract does not describe the newborn presentation of PCBD1 deficiency or its transient, asymptomatic course.",
           "quote": "",
           "ctx": "dd6e4d683760"
-        }
-      ]
-    },
-    {
-      "id": "PCD_DEF.presentation.2",
-      "disorder": "PCD_DEF",
-      "text": "From adolescence: subset develops MODY-like diabetes (via HNF-1α impaired function), hypomagnesaemia, renal tubulopathy [3,4].",
-      "status": "supported",
-      "judged": [
-        {
-          "pmid": "24848070",
-          "citation": "Simaite D et al. Recessive mutations in PCBD1 cause a new type of early-onset diabetes. Diabetes. 2014;63(10):3557–64.",
-          "evidence": "abstract",
-          "claim_id": "PCD_DEF.presentation.2",
-          "verdict": "supports",
-          "reason": "The abstract reports HNF1A-like (MODY-like) diabetes developing in puberty in PCBD1-deficient patients; the hypomagnesaemia/renal tubulopathy component belongs to the co-cited paper.",
-          "quote": "three additional patients who had developed HNF1A-like diabetes in puberty, indicating early \\u03b2-cell failure",
-          "ctx": "01852ede29da"
-        },
-        {
-          "pmid": "24204001",
-          "citation": "Ferrè S et al. Mutations in PCBD1 cause hypomagnesemia and renal magnesium wasting. J Am Soc Nephrol. 2014;25(3):574–86.",
-          "evidence": "abstract",
-          "claim_id": "PCD_DEF.presentation.2",
-          "verdict": "partial",
-          "reason": "MODY-like diabetes, hypomagnesaemia and renal magnesium wasting are reported, but in adult patients rather than from adolescence, and the mechanism given is HNF1B rather than HNF-1α.",
-          "quote": "two patients were diagnosed with hypomagnesemia and renal Mg(2+) loss, and two patients developed diabetes with characteristics of maturity onset diabetes of the young (MODY), regardless of serum Mg(2+) levels",
-          "ctx": "01852ede29da"
         }
       ]
     },
@@ -12201,52 +12043,6 @@
       ]
     },
     {
-      "id": "CPT1.introduction.0",
-      "disorder": "CPT1",
-      "text": "CPT-I deficiency (OMIM #255120) is rare in most populations (~1:1,000,000) but common among Arctic Inuit and First Nations populations due to the CPT1A c.1436C>T (p.Pro479Leu) founder variant, present in ~50% of some Nunavut communities and associated with the high regional rate of SIDS [3,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "11441142",
-          "citation": "Brown NF et al. Molecular characterization of L-CPT1 deficiency. J Lipid Res. 2001;42(7):1134–42.",
-          "evidence": "abstract",
-          "claim_id": "CPT1.introduction.0",
-          "verdict": "partial",
-          "reason": "The abstract confirms L-CPT I deficiency is rare (16 patients from 13 families) and identifies the c.1436C>T (p.Pro479Leu) variant with partial residual activity, but says nothing about the ~1:1,000,000 incidence, Arctic Inuit/First Nations founder effect, ~50% Nunavut carrier frequency, or SIDS association.",
-          "quote": "The patient with atypical symptoms had approximately 20% of normal L-CPT I activity and was homozygous for a mutation (c.1436C--&gt;T) that substituted leucine for proline at codon 479.",
-          "ctx": "b967d20198e6"
-        },
-        {
-          "pmid": "20696606",
-          "citation": "Collins SA et al. Carnitine palmitoyltransferase 1A P479L prevalence in Nunavut. Int J Circumpolar Health. 2010;69(2):179–92.",
-          "evidence": "abstract",
-          "claim_id": "CPT1.introduction.0",
-          "verdict": "partial",
-          "reason": "The abstract strongly supports the high frequency of the c.1436C>T (p.P479L) variant in Nunavut Inuit and its presence in First Nations, but it does not give the ~1:1,000,000 general-population rarity and explicitly leaves the SIDS/infant-mortality association unproven.",
-          "quote": "p.P479L (c.1436C>T) allele frequencies in the three territories were 0.02, 0.08, and 0.77 in Yukon (n=325), Northwest Territories (n=564), and Nunavut (n=695), respectively. Homozygosity rates were 0%, 3%, and 64%.",
-          "ctx": "b967d20198e6"
-        }
-      ]
-    },
-    {
-      "id": "CPT1.introduction.1",
-      "disorder": "CPT1",
-      "text": "The P479L variant produces partial enzyme activity with paradoxically cold-adaptive properties that may have been historically favourable [5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "19217814",
-          "citation": "Greenberg CR et al. The paradox of the carnitine palmitoyltransferase type Ia P479L variant in Canadian Aboriginal populations. Mol Genet Metab. 2009;96(4):201–7.",
-          "evidence": "abstract",
-          "claim_id": "CPT1.introduction.1",
-          "verdict": "partial",
-          "reason": "The abstract supports partial residual enzyme activity sufficient for reasonable fatty acid oxidation flux and speculates the variant's preservation conveyed some advantage, but it does not identify that advantage as cold-adaptive.",
-          "quote": "the low residual activity of CPT-Ia is sufficient to allow a reasonable flux through the mitochondrial oxidation system. It is likely that the P479L variant is of ancient origin and presumably its preservation must have conveyed some advantage.",
-          "ctx": "07c1dfd011ca"
-        }
-      ]
-    },
-    {
       "id": "CPT1.biochemistry.2",
       "disorder": "CPT1",
       "text": "The C0/(C16+C18) ratio is markedly elevated (often >100) and is the most specific NBS marker [6,7].",
@@ -15539,34 +15335,6 @@
       ]
     },
     {
-      "id": "PHGDH.biochemistry.0",
-      "disorder": "PHGDH",
-      "text": "LOW plasma and CSF serine (CSF serine usually <13 µmol/L, and in most patients <10 µmol/L — the CSF value is the most sensitive diagnostic marker because CSF serine is normally tightly regulated; fasting plasma serine is also low) [1,5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "27161889",
-          "citation": "El-Hattab AW. Serine biosynthesis and transport defects. Mol Genet Metab. 2016;118(3):153–9.",
-          "evidence": "abstract",
-          "claim_id": "PHGDH.biochemistry.0",
-          "verdict": "partial",
-          "reason": "The abstract supports systemic serine deficiency as the biochemical hallmark but gives no CSF/plasma cut-offs (<13 or <10 µmol/L) and does not state that CSF serine is the most sensitive marker.",
-          "quote": "Serine biosynthesis defects result from impairments of PGDH, PSAT, or PSP leading to systemic serine deficiency.",
-          "ctx": "1c964d43e691"
-        },
-        {
-          "pmid": "19235232",
-          "citation": "Tabatabaie L et al. Novel mutations in 3-phosphoglycerate dehydrogenase (PHGDH) are distributed throughout the protein and result in altered enzyme kinetics. Hum Mutat. 2009;30(5):749–56.",
-          "evidence": "abstract",
-          "claim_id": "PHGDH.biochemistry.0",
-          "verdict": "partial",
-          "reason": "The abstract confirms low CSF L-serine (and glycine) as the biochemical hallmark but gives no numeric thresholds (<13 or <10 µmol/L), no statement that CSF is the most sensitive marker, and nothing on fasting plasma serine.",
-          "quote": "The biochemical abnormalities associated with this disorder are low concentrations of L-serine, D-serine, and glycine in cerebrospinal fluid (CSF).",
-          "ctx": "1c964d43e691"
-        }
-      ]
-    },
-    {
       "id": "PHGDH.biochemistry.6",
       "disorder": "PHGDH",
       "text": "Biochemical analysis is ESSENTIAL in any child with unexplained congenital or progressive microcephaly + epilepsy, and in the prenatal differential of severe ichthyosis/microcephaly + multi-system dysmorphism [2,5].",
@@ -17721,34 +17489,6 @@
       ]
     },
     {
-      "id": "MLYCD.summary.2",
-      "disorder": "MLYCD",
-      "text": "Clinical phenotype: developmental delay, cardiomyopathy, hypoglycaemia, and a distinctive urinary excretion of malonic and methylmalonic acids with elevated C3-DC (malonyl-) carnitine [1,2].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "10417274",
-          "citation": "FitzPatrick DR et al. The molecular basis of malonyl-CoA decarboxylase deficiency. Am J Hum Genet. 1999;65(2):318–26.",
-          "evidence": "abstract",
-          "claim_id": "MLYCD.summary.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract is purely molecular (cDNA characterization, mutation identification, subcellular localization) and never describes clinical features such as developmental delay, cardiomyopathy, hypoglycaemia, or urinary organic acid/acylcarnitine findings.",
-          "quote": "We have identified two different homozygous mutations in human MCD (hMCD) by using RT-PCR analysis of fibroblast RNA from two previously reported consanguineous Scottish patients with MCD deficiency.",
-          "ctx": "b8cb61be2fd2"
-        },
-        {
-          "pmid": "16275149",
-          "citation": "de Wit MC et al. Brain abnormalities in a case of malonyl-CoA decarboxylase deficiency. Mol Genet Metab. 2006;87(2):102–6.",
-          "evidence": "abstract",
-          "claim_id": "MLYCD.summary.2",
-          "verdict": "partial",
-          "reason": "The abstract confirms hypoglycaemia, cardiomyopathy and neurological involvement in MCD deficiency, but says nothing about urinary malonic/methylmalonic acid excretion or elevated C3-DC (malonyl-) carnitine.",
-          "quote": "Malonyl-CoA decarboxylase (MCD) deficiency is an extremely rare inborn error of metabolism that presents with metabolic acidosis, hypoglycemia, and/or cardiomyopathy. Patients also show neurological signs and symptoms that have been infrequently reported.",
-          "ctx": "b8cb61be2fd2"
-        }
-      ]
-    },
-    {
       "id": "MLYCD.introduction.0",
       "disorder": "MLYCD",
       "text": "Malonic aciduria (OMIM #248360) was first described by Brown et al. in 1984 [3].",
@@ -19089,34 +18829,6 @@
       ]
     },
     {
-      "id": "PSAT1.biochemistry.5",
-      "disorder": "PSAT1",
-      "text": "Identical biochemical pattern to PHGDH and PSPH deficiencies; differentiation by molecular testing [1,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "27161889",
-          "citation": "El-Hattab AW. Serine biosynthesis and transport defects. Mol Genet Metab. 2016;118(3):153–9.",
-          "evidence": "abstract",
-          "claim_id": "PSAT1.biochemistry.5",
-          "verdict": "partial",
-          "reason": "The abstract supports that all three enzyme defects produce systemic serine deficiency but does not state that the biochemical pattern is indistinguishable or that molecular testing is required to differentiate them.",
-          "quote": "Serine biosynthesis defects result from impairments of PGDH, PSAT, or PSP leading to systemic serine deficiency.",
-          "ctx": "5109b6c93bd6"
-        },
-        {
-          "pmid": "23463425",
-          "citation": "van der Crabben SN et al. An update on serine deficiency disorders. J Inherit Metab Dis. 2013;36(4):613–9.",
-          "evidence": "abstract",
-          "claim_id": "PSAT1.biochemistry.5",
-          "verdict": "partial",
-          "reason": "The abstract supports the shared/identical biochemical pattern across the three defects but does not state that differentiation requires molecular (genetic) testing.",
-          "quote": "The biochemical hallmarks of all three disorders are low concentrations of serine in cerebrospinal fluid and plasma.",
-          "ctx": "5109b6c93bd6"
-        }
-      ]
-    },
-    {
       "id": "PSAT1.molecular.2",
       "disorder": "PSAT1",
       "text": "Biallelic loss-of-function variants typically cause the severe form; hypomorphic variants may produce later-onset milder disease [3,5].",
@@ -19177,44 +18889,6 @@
           "reason": "The abstract concerns a milder polyneuropathic presentation of PHGDH (3-phosphoglycerate dehydrogenase) deficiency and explicitly localises the mutations to the PGDH gene, providing no evidence for later-onset polyneuropathy in PSAT1 deficiency.",
           "quote": "genetic analysis revealed 2 heterozygous mutations in the PGDH gene",
           "ctx": "3dbc389d8bef"
-        }
-      ]
-    },
-    {
-      "id": "PSAT1.treatment.2",
-      "disorder": "PSAT1",
-      "text": "Prenatal supplementation of at-risk pregnancies is rationally advocated [1,2,4].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "27161889",
-          "citation": "El-Hattab AW. Serine biosynthesis and transport defects. Mol Genet Metab. 2016;118(3):153–9.",
-          "evidence": "abstract",
-          "claim_id": "PSAT1.treatment.2",
-          "verdict": "partial",
-          "reason": "The abstract supports treating before neurological damage occurs but does not mention prenatal maternal supplementation in at-risk pregnancies.",
-          "quote": "l-serine therapy may be beneficial in preventing or ameliorating symptoms in serine biosynthesis and transport defects, if started before neurological damage occurs",
-          "ctx": "164c5c5eba12"
-        },
-        {
-          "pmid": "16763900",
-          "citation": "de Koning TJ. Treatment with amino acids in serine deficiency disorders. J Inherit Metab Dis. 2006;29(2–3):347–51.",
-          "evidence": "abstract",
-          "claim_id": "PSAT1.treatment.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract reviews postnatal amino acid treatment and does not mention PSAT1 deficiency or prenatal maternal supplementation.",
-          "quote": "",
-          "ctx": "164c5c5eba12"
-        },
-        {
-          "pmid": "23463425",
-          "citation": "van der Crabben SN et al. An update on serine deficiency disorders. J Inherit Metab Dis. 2013;36(4):613–9.",
-          "evidence": "abstract",
-          "claim_id": "PSAT1.treatment.2",
-          "verdict": "unsupported",
-          "reason": "The abstract touches on treatability and the importance of prompt recognition but says nothing about supplementation of at-risk pregnancies or prenatal treatment.",
-          "quote": "Prompt recognition of affected patients is important, since serine deficiency disorders are treatable causes of neurometabolic disorders.",
-          "ctx": "164c5c5eba12"
         }
       ]
     },
@@ -19289,44 +18963,6 @@
           "reason": "The 1997 abstract reports the first case of phosphoserine phosphatase deficiency in a boy with Williams syndrome features, matching the claim of first description.",
           "quote": "This seems to be the first report of phosphoserine phosphatase deficiency.",
           "ctx": "6ca7dd09b8bf"
-        }
-      ]
-    },
-    {
-      "id": "PSPH.introduction.2",
-      "disorder": "PSPH",
-      "text": "All three serine-biosynthesis disorders (PHGDH ~69%, PSPH ~25%, PSAT1 ~6%) produce essentially the same treatable clinical syndrome — they are differentiated only by molecular testing and are often considered as a single disease group in clinical practice [1,2,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "27161889",
-          "citation": "El-Hattab AW. Serine biosynthesis and transport defects. Mol Genet Metab. 2016;118(3):153–9.",
-          "evidence": "abstract",
-          "claim_id": "PSPH.introduction.2",
-          "verdict": "partial",
-          "reason": "The abstract supports treating the three defects as one group with a shared phenotypic spectrum and shared L-serine treatment, but gives none of the quoted percentages (69%/25%/6%).",
-          "quote": "Serine biosynthesis defects result from impairments of PGDH, PSAT, or PSP leading to systemic serine deficiency. Serine biosynthesis defects present in a broad phenotypic spectrum",
-          "ctx": "24ac1ed0865d"
-        },
-        {
-          "pmid": "16763900",
-          "citation": "de Koning TJ. Treatment with amino acids in serine deficiency disorders. J Inherit Metab Dis. 2006;29(2–3):347–51.",
-          "evidence": "abstract",
-          "claim_id": "PSPH.introduction.2",
-          "verdict": "partial",
-          "reason": "The abstract supports that these serine-biosynthesis defects share a severe neurological phenotype responsive to L-serine treatment, but provides no relative frequencies (~69%/~25%/~6%), does not mention PSAT1 deficiency, and notes intractable seizures as distinguishing PHGDH.",
-          "quote": "These enzyme defects lead to severe neurological symptoms such as congenital microcephaly and severe psychomotor retardation and in addition in patients with 3-phosphoglycerate dehydrogenase deficiency to intractable seizures. These symptoms respond to a variable degree to treatment with L-serine, sometimes combined with glycine.",
-          "ctx": "24ac1ed0865d"
-        },
-        {
-          "pmid": "23463425",
-          "citation": "van der Crabben SN et al. An update on serine deficiency disorders. J Inherit Metab Dis. 2013;36(4):613–9.",
-          "evidence": "abstract",
-          "claim_id": "PSPH.introduction.2",
-          "verdict": "partial",
-          "reason": "The abstract supports the shared, treatable neurological phenotype across the three serine-biosynthesis defects and that 3-PGDH is most frequent, but it gives no relative frequency figures (~69%/~25%/~6%) and does not state that differentiation is only by molecular testing.",
-          "quote": "Serine deficiency disorders give rise to a neurological phenotype with psychomotor retardation, microcephaly and seizures in newborns and children or progressive polyneuropathy in adult patients. There are three defects that cause serine deficiency of which 3-phosphoglycerate dehydrogenase (3-PGDH) deficiency, the defect affecting the first step in the pathway, has been reported most frequently.",
-          "ctx": "24ac1ed0865d"
         }
       ]
     },
@@ -19411,44 +19047,6 @@
           "reason": "The abstract supports congenital microcephaly and severe psychomotor retardation for both serine biosynthesis defects, but attributes intractable seizures specifically to PHGDH deficiency rather than describing an identical phenotype.",
           "quote": "These enzyme defects lead to severe neurological symptoms such as congenital microcephaly and severe psychomotor retardation and in addition in patients with 3-phosphoglycerate dehydrogenase deficiency to intractable seizures.",
           "ctx": "10c8865f7c01"
-        }
-      ]
-    },
-    {
-      "id": "PSPH.treatment.0",
-      "disorder": "PSPH",
-      "text": "L-SERINE 200–700 mg/kg/day (divided 4–6 hourly) + GLYCINE 200 mg/kg/day — as for PHGDH and PSAT1 deficiencies [1,2,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "27161889",
-          "citation": "El-Hattab AW. Serine biosynthesis and transport defects. Mol Genet Metab. 2016;118(3):153–9.",
-          "evidence": "abstract",
-          "claim_id": "PSPH.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract endorses L-serine therapy for serine biosynthesis defects generally but provides no dosing (200–700 mg/kg/day, glycine 200 mg/kg/day) or dosing interval.",
-          "quote": "l-serine therapy may be beneficial in preventing or ameliorating symptoms in serine biosynthesis and transport defects, if started before neurological damage occurs",
-          "ctx": "df2ddcf9e3ba"
-        },
-        {
-          "pmid": "16763900",
-          "citation": "de Koning TJ. Treatment with amino acids in serine deficiency disorders. J Inherit Metab Dis. 2006;29(2–3):347–51.",
-          "evidence": "abstract",
-          "claim_id": "PSPH.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract supports L-serine with glycine as the treatment shared across serine deficiency disorders including PSPH deficiency, but gives no dosing figures.",
-          "quote": "These symptoms respond to a variable degree to treatment with L-serine, sometimes combined with glycine.",
-          "ctx": "df2ddcf9e3ba"
-        },
-        {
-          "pmid": "23463425",
-          "citation": "van der Crabben SN et al. An update on serine deficiency disorders. J Inherit Metab Dis. 2013;36(4):613–9.",
-          "evidence": "abstract",
-          "claim_id": "PSPH.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract supports that these disorders (including PSPH deficiency) are treatable, but gives no L-serine or glycine doses or dosing intervals.",
-          "quote": "serine deficiency disorders are treatable causes of neurometabolic disorders",
-          "ctx": "df2ddcf9e3ba"
         }
       ]
     },
@@ -20907,24 +20505,6 @@
           "reason": "The abstract establishes DLST as a PPGL-susceptibility gene in affected individuals but says nothing about metabolic phenotypes in children.",
           "quote": "we found positive DLST immunostaining exclusively in tumors carrying TCA-cycle or EPAS1 mutations. In summary, this study reveals DLST as a PPGL-susceptibility gene",
           "ctx": "f74bdb6e1438"
-        }
-      ]
-    },
-    {
-      "id": "AKGDH.introduction.3",
-      "disorder": "AKGDH",
-      "text": "DLD (E3) deficiency is better recognised because of its pleiotropic effects on multiple 2-ketoacid dehydrogenases (pyruvate + α-KG + BCKDH) and its relatively high prevalence in Ashkenazi Jews (p.Gly194Cys founder) [5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "10448086",
-          "citation": "Shany E et al. Lipoamide dehydrogenase deficiency due to a novel mutation in the interface domain. Biochem Biophys Res Commun. 1999;262(1):163–6.",
-          "evidence": "abstract",
-          "claim_id": "AKGDH.introduction.3",
-          "verdict": "partial",
-          "reason": "The abstract documents the pleiotropic effect of LAD (E3) deficiency on PDHc, KGDHc and branched-chain keto acid dehydrogenase, but says nothing about prevalence in Ashkenazi Jews or the p.Gly194Cys founder variant (the reported mutation is V479D).",
-          "quote": "the activity of lipoamide dehydrogenase (LAD), the third catalytic subunit of pyruvate dehydrogenase complex (PDHc), alpha-ketoglutarate dehydrogenase complex (KGDHc), and branched-chain keto acid dehydrogenase complex was reduced to 15% of the control",
-          "ctx": "c1b0067de9a7"
         }
       ]
     },
