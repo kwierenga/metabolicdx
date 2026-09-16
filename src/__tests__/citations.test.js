@@ -333,7 +333,13 @@ describe("knowledge-base citation health", () => {
   // "verified" runs a few below the figure here and setting the floor from it
   // leaves the ratchet permanently loose.
   const WRONG_CEILING = 3;        // point at nothing, or at an unrelated paper
-  const VERIFIED_FLOOR = 914;     // title matches the paper PubMed holds
+  // 913, not 914, because a verified citation was DELETED rather than broken:
+  // IBD's reference 1 carried PMID 12872837 under an invented title, journal,
+  // volume and pages, and the paper it really is (Koeberl on 3-MCC) never
+  // mentions isobutyryl-CoA dehydrogenase, ACAD8, C4 or valine. Verified here
+  // means the title matches what PubMed holds, which that entry managed while
+  // supporting none of the four claims that cited it.
+  const VERIFIED_FLOOR = 913;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {

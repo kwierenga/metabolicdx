@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-16T00:37:16.795Z",
+  "generated": "2026-09-16T01:39:28.049Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -1365,24 +1365,6 @@
       ]
     },
     {
-      "id": "MSUD.summary.2",
-      "disorder": "MSUD",
-      "text": "Without emergency dialysis and lifelong BCAA-restricted diet, classic MSUD is rapidly fatal or profoundly disabling [1,2].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24881969",
-          "citation": "Frazier DM et al. Nutrition management of maple syrup urine disease. Mol Genet Metab. 2014;112(3):210–7.",
-          "evidence": "abstract",
-          "claim_id": "MSUD.summary.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract describes the methodology for developing an MSUD nutrition guideline and says nothing about untreated prognosis, fatality, or emergency dialysis.",
-          "quote": "This report describes the methodology used in its development: formulation of five research questions; review, critical appraisal and abstraction of peer-reviewed studies and unpublished practice literature; and expert input through Delphi surveys and a nominal group process.",
-          "ctx": "e554d30d9cff"
-        }
-      ]
-    },
-    {
       "id": "MSUD.introduction.1",
       "disorder": "MSUD",
       "text": "Overall incidence is ~1:185,000 worldwide but rises to 1:380 in Old Order Mennonite populations due to a founder variant [4].",
@@ -1501,24 +1483,6 @@
       ]
     },
     {
-      "id": "MSUD.presentation.0",
-      "disorder": "MSUD",
-      "text": "Classic MSUD: a well-appearing neonate becomes encephalopathic between days 3–7 with poor feeding, lethargy, dystonic posturing, opisthotonus, seizures and cerebral oedema progressing to coma [1,2].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24881969",
-          "citation": "Frazier DM et al. Nutrition management of maple syrup urine disease. Mol Genet Metab. 2014;112(3):210–7.",
-          "evidence": "abstract",
-          "claim_id": "MSUD.presentation.0",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns guideline development methodology and contains no description of neonatal clinical presentation or timing of encephalopathy.",
-          "quote": "",
-          "ctx": "509ccdce24ac"
-        }
-      ]
-    },
-    {
       "id": "MSUD.presentation.1",
       "disorder": "MSUD",
       "text": "MRI shows characteristic cytotoxic oedema in dorsal brainstem, cerebellar white matter, globus pallidus and thalami — the 'MSUD oedema' pattern [11].",
@@ -1537,34 +1501,6 @@
       ]
     },
     {
-      "id": "MSUD.treatment.0",
-      "disorder": "MSUD",
-      "text": "Acute decompensation: immediate cessation of protein intake, high-calorie enteral or IV glucose (≥10 mg/kg/min) + insulin as needed to drive anabolism, and emergency haemofiltration or haemodialysis if Leu >1,500 µmol/L or any encephalopathy [2,12].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24881969",
-          "citation": "Frazier DM et al. Nutrition management of maple syrup urine disease. Mol Genet Metab. 2014;112(3):210–7.",
-          "evidence": "abstract",
-          "claim_id": "MSUD.treatment.0",
-          "verdict": "not-assessable",
-          "reason": "The abstract does not report any acute-decompensation content such as glucose infusion rates, insulin, or dialysis thresholds; it only states that recommendations were generated.",
-          "quote": "This report includes the summary statements for each research question and the nutrition management recommendations they generated.",
-          "ctx": "7c3cf6c523f2"
-        },
-        {
-          "pmid": "11810125",
-          "citation": "Jouvet P et al. Combined nutritional support and continuous extracorporeal removal therapy in the severe acute phase of maple syrup urine disease. Intensive Care Med. 2001;27(11):1798–806.",
-          "evidence": "abstract",
-          "claim_id": "MSUD.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract supports emergency extracorporeal removal (haemofiltration/haemodialysis) combined with nutritional support for comatose/severely decompensated MSUD patients, but its inclusion threshold was leucine >1700 µmol/L rather than >1,500 µmol/L, and it says nothing about protein cessation, glucose ≥10 mg/kg/min or insulin.",
-          "quote": "Each of them had two of the three following criteria: comatose state, gastrointestinal intolerance, leucine plasma levels over 1700 micromol/l. Patients were treated by combined nutrition manipulation and continuous venovenous extracorporeal removal therapies (CECRT) including hemofiltration, hemodialysis or hemodiafiltration.",
-          "ctx": "7c3cf6c523f2"
-        }
-      ]
-    },
-    {
       "id": "MSUD.treatment.1",
       "disorder": "MSUD",
       "text": "Valine and isoleucine supplementation (20–40 mg/kg/day each) is essential to prevent selective BCAA deficiency once leucine is restricted [13].",
@@ -1579,34 +1515,6 @@
           "reason": "The abstract details MSUD formula design and enrichment (LAT1 substrates, glutamine, alanine, zinc, selenium, alpha-linolenic acid) but nowhere addresses valine/isoleucine supplementation or the 20–40 mg/kg/day dose to prevent selective BCAA deficiency.",
           "quote": "The formula was enriched with LAT1 amino acid substrates, glutamine, alanine, zinc, selenium, and alpha-linolenic acid (18:3n-3).",
           "ctx": "f3ae6115162f"
-        }
-      ]
-    },
-    {
-      "id": "MSUD.treatment.2",
-      "disorder": "MSUD",
-      "text": "Chronic management: BCAA-restricted diet using medical formula low in Leu/Ile/Val; target leucine 75–200 µmol/L in infancy and 100–300 µmol/L in adulthood [2,14].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24881969",
-          "citation": "Frazier DM et al. Nutrition management of maple syrup urine disease. Mol Genet Metab. 2014;112(3):210–7.",
-          "evidence": "abstract",
-          "claim_id": "MSUD.treatment.2",
-          "verdict": "partial",
-          "reason": "The abstract establishes that consensus- and evidence-based nutrition management recommendations for MSUD were produced, but it gives no dietary composition details and no leucine target ranges for infancy or adulthood.",
-          "quote": "The first guideline to be completed is for maple syrup urine disease (MSUD).",
-          "ctx": "a29460390aa5"
-        },
-        {
-          "pmid": "28919799",
-          "citation": "Blackburn PR et al. Maple syrup urine disease: mechanisms and management. Appl Clin Genet. 2017;10:57–66.",
-          "evidence": "abstract",
-          "claim_id": "MSUD.treatment.2",
-          "verdict": "partial",
-          "reason": "The abstract supports BCAA dietary restriction with metabolic monitoring as chronic management but gives no leucine target ranges for infancy or adulthood.",
-          "quote": "Treatment consists of dietary restriction of BCAAs and close metabolic monitoring.",
-          "ctx": "a29460390aa5"
         }
       ]
     },
@@ -1635,24 +1543,6 @@
           "reason": "The abstract states liver transplantation is a metabolic cure and limits further CNS damage, but says nothing about dietary liberalisation or its increasing adoption as a standard option.",
           "quote": "Although liver transplantation provides a metabolic cure for MSUD, changes in cognitive and adaptive functioning following transplantation have not been investigated.",
           "ctx": "6263d218618e"
-        }
-      ]
-    },
-    {
-      "id": "MSUD.prognosis.0",
-      "disorder": "MSUD",
-      "text": "Mortality in undiagnosed classic MSUD exceeds 30% in the first month [2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "24881969",
-          "citation": "Frazier DM et al. Nutrition management of maple syrup urine disease. Mol Genet Metab. 2014;112(3):210–7.",
-          "evidence": "abstract",
-          "claim_id": "MSUD.prognosis.0",
-          "verdict": "unsupported",
-          "reason": "The abstract is about MSUD nutrition management guideline methodology and contains no mortality figure for undiagnosed classic MSUD in the first month.",
-          "quote": "The first guideline to be completed is for maple syrup urine disease (MSUD). This report describes the methodology used in its development",
-          "ctx": "530d0970312c"
         }
       ]
     },
@@ -5233,80 +5123,6 @@
       ]
     },
     {
-      "id": "CAVA.biochemistry.5",
-      "disorder": "CAVA",
-      "text": "Between episodes biochemistry may fully normalise [1,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24530203",
-          "citation": "van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61.",
-          "evidence": "abstract",
-          "claim_id": "CAVA.biochemistry.5",
-          "verdict": "not-assessable",
-          "reason": "The abstract describes metabolite profiles at presentation but says nothing about whether biochemistry normalises between episodes.",
-          "quote": "",
-          "ctx": "326847ef021e"
-        },
-        {
-          "pmid": "30982989",
-          "citation": "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230.",
-          "evidence": "abstract",
-          "claim_id": "CAVA.biochemistry.5",
-          "verdict": "not-assessable",
-          "reason": "Although a newly reported hyperammonemia-causing disorder is mentioned, the abstract gives no interictal biochemical findings for CA5A deficiency.",
-          "quote": "",
-          "ctx": "326847ef021e"
-        }
-      ]
-    },
-    {
-      "id": "CAVA.molecular.2",
-      "disorder": "CAVA",
-      "text": "Reported variants include nonsense, frameshift, missense and deep intronic splice-affecting alleles; founder variants have been identified in consanguineous populations [1].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24530203",
-          "citation": "van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61.",
-          "evidence": "abstract",
-          "claim_id": "CAVA.molecular.2",
-          "verdict": "partial",
-          "reason": "The abstract documents a homozygous missense, a splice-site mutation and an exonic deletion, but does not report nonsense, frameshift or deep intronic alleles, nor any founder variant in consanguineous populations.",
-          "quote": "We identified and validated three different CA5A alterations, including a homozygous missense mutation (c.697T>C) in two siblings, a homozygous splice site mutation (c.555G>A) leading to skipping of exon 4, and a homozygous 4 kb deletion of exon 6.",
-          "ctx": "3e9d56dd3e68"
-        }
-      ]
-    },
-    {
-      "id": "CAVA.presentation.3",
-      "disorder": "CAVA",
-      "text": "In contrast to classic UCDs, most reported children have achieved normal development when catabolic episodes are prevented [1,3,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24530203",
-          "citation": "van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61.",
-          "evidence": "abstract",
-          "claim_id": "CAVA.presentation.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract reports resolution of hyperammonemia with carglumic acid but gives no developmental or milestone outcome data for the affected children.",
-          "quote": "",
-          "ctx": "e687b479aeba"
-        },
-        {
-          "pmid": "30982989",
-          "citation": "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230.",
-          "evidence": "abstract",
-          "claim_id": "CAVA.presentation.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract provides no developmental outcome data for carbonic anhydrase VA deficiency.",
-          "quote": "",
-          "ctx": "e687b479aeba"
-        }
-      ]
-    },
-    {
       "id": "CAVA.treatment.0",
       "disorder": "CAVA",
       "text": "Acute: aggressive IV glucose (10 mg/kg/min) to reverse catabolism, IV sodium bicarbonate for acidosis, and a trial of N-carbamylglutamate (Carbaglu®) 100–250 mg/kg — MOST patients show a dramatic ammonia response within hours, because NCG chemically substitutes for the CPS1-allosteric activator N-acetylglutamate whose bicarbonate substrate is deficient [2].",
@@ -8123,34 +7939,6 @@
       ]
     },
     {
-      "id": "MCC.introduction.0",
-      "disorder": "MCC",
-      "text": "3-MCC deficiency (OMIM #210200 for MCCC1; #210210 for MCCC2) has an NBS incidence of ~1:36,000 in the USA — making it one of the most commonly detected organic acid disorders, despite the infrequency of clinically-significant cases [1,3].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "11181649",
-          "citation": "Baumgartner MR et al. The molecular basis of human 3-methylcrotonyl-CoA carboxylase deficiency. J Clin Invest. 2001;107(4):495–504.",
-          "evidence": "abstract",
-          "claim_id": "MCC.introduction.0",
-          "verdict": "partial",
-          "reason": "The abstract supports that 3-MCC deficiency is the most frequently detected organic aciduria in tandem-MS newborn screening and that many cases are clinically silent, but it gives no incidence figure such as ~1:36,000 in the USA.",
-          "quote": "Isolated biotin-resistant 3-methylcrotonyl-CoA carboxylase (MCC) deficiency is an autosomal recessive disorder of leucine catabolism that appears to be the most frequent organic aciduria detected in tandem mass spectrometry-based neonatal screening programs. The phenotype is variable, ranging from neonatal onset with severe neurological involvement to asymptomatic adults.",
-          "ctx": "5cde4c9d0e4a"
-        },
-        {
-          "pmid": "12872837",
-          "citation": "Koeberl DD et al. Evaluation of 3-methylcrotonyl-CoA carboxylase deficiency detected by tandem mass spectrometry newborn screening. J Inherit Metab Dis. 2003;26(1):25–35.",
-          "evidence": "abstract",
-          "claim_id": "MCC.introduction.0",
-          "verdict": "partial",
-          "reason": "The abstract confirms 3-MCC deficiency is detected by MS/MS newborn screening but gives an incidence of 1:64,000 in North Carolina, not the claimed ~1:36,000 in the USA, and does not address the frequency of clinically significant cases.",
-          "quote": "We estimate the incidence of 3-MCC deficiency at 1:64000 live births in North Carolina.",
-          "ctx": "5cde4c9d0e4a"
-        }
-      ]
-    },
-    {
       "id": "MCC.introduction.2",
       "disorder": "MCC",
       "text": "BIOTIN-RESPONSIVE 3-MCC deficiency usually indicates biotinidase deficiency or holocarboxylase synthetase deficiency (MCD) rather than isolated 3-MCC deficiency [4].",
@@ -10201,24 +9989,6 @@
       ]
     },
     {
-      "id": "MCD.introduction.4",
-      "disorder": "MCD",
-      "text": "HLCS attaches biotin to the apo-carboxylases; its deficiency causes immediate neonatal presentation with high biotin requirements [5].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "9686819",
-          "citation": "Suormala T et al. Late-onset holocarboxylase synthetase-deficiency: pre- and post-natal diagnosis and evaluation of effectiveness of antenatal biotin therapy. Eur J Pediatr. 1998;157(7):570–5.",
-          "evidence": "abstract",
-          "claim_id": "MCD.introduction.4",
-          "verdict": "unsupported",
-          "reason": "The abstract describes a late-onset HCS-deficiency family with first decompensation at 13 and 18 months, contradicting \"immediate neonatal presentation,\" and it does not state the biotin-ligase mechanism.",
-          "quote": "The index patient had two life-threatening episodes of metabolic decompensation at the age of 13 and 18 months with ketotic hypoglycaemia, vomiting and progressive loss of consciousness.",
-          "ctx": "106f062860ba"
-        }
-      ]
-    },
-    {
       "id": "MCD.biochemistry.0",
       "disorder": "MCD",
       "text": "Combined pattern: elevated plasma C5-OH (from 3-MCC block), elevated C3 (from PCC block), urinary 3-methylcrotonylglycine + 3-hydroxyisovaleric acid + methylcitric acid + 3-hydroxypropionate + tiglylglycine + lactic aciduria (pyruvate carboxylase block) [1,2].",
@@ -10361,34 +10131,6 @@
           "reason": "This case series is explicitly late-onset (13–18 months) with ketotic hypoglycaemia and no reported skin rash, alopecia, or hyperammonaemia, so it does not support a neonatal (<3 mo) presentation profile.",
           "quote": "Late-onset holocarboxylase synthetase-deficiency: pre- and post-natal diagnosis and evaluation of effectiveness of antenatal biotin therapy.",
           "ctx": "526c299aa373"
-        }
-      ]
-    },
-    {
-      "id": "MCD.treatment.0",
-      "disorder": "MCD",
-      "text": "Biotinidase deficiency: oral biotin 5–10 mg/day — COMPLETELY REVERSES biochemistry and prevents all clinical manifestations if started presymptomatically [1,6].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "22241090",
-          "citation": "Wolf B. Biotinidase deficiency: 'if you have to have an inherited metabolic disease, this is the one to have'. Genet Med. 2012;14(6):565–75.",
-          "evidence": "abstract",
-          "claim_id": "MCD.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract supports oral pharmacological biotin preventing/treating symptoms, especially with early identification, but does not give the 5–10 mg/day dose.",
-          "quote": "The symptoms of the disorder can be successfully treated or prevented by administering pharmacological doses of biotin.",
-          "ctx": "90d9f96dabba"
-        },
-        {
-          "pmid": "20129807",
-          "citation": "Wolf B. Clinical issues and frequent questions about biotinidase deficiency. Mol Genet Metab. 2010;100(1):6–13.",
-          "evidence": "abstract",
-          "claim_id": "MCD.treatment.0",
-          "verdict": "partial",
-          "reason": "The abstract confirms biotinidase deficiency is a biotin-responsive, readily treatable, newborn-screened disorder, but gives no dose (5–10 mg/day) and no statement that presymptomatic treatment completely reverses biochemistry and prevents all clinical manifestations.",
-          "quote": "Biotinidase deficiency is a biotin-responsive, inherited neurocutaneous disorder. The disorder is readily treatable and is screened for in the newborn period.",
-          "ctx": "90d9f96dabba"
         }
       ]
     },
@@ -13153,228 +12895,6 @@
           "reason": "The abstract discusses genetic causes including KATP-channel mutations but gives no treatment data, dosing, or diazoxide responsiveness comparison.",
           "quote": "Causal mutations have been uncovered in genes coding for the beta-cell's ATP-sensitive potassium channel and the metabolic enzymes glucokinase and glutamate dehydrogenase.",
           "ctx": "fa4f038c612a"
-        }
-      ]
-    },
-    {
-      "id": "IBD.summary.1",
-      "disorder": "IBD",
-      "text": "The overwhelming majority of individuals identified through newborn screening remain asymptomatic throughout life; the condition is best regarded as a benign biochemical phenotype requiring minimal intervention, with rare reports of secondary carnitine deficiency and occasional cardiomyopathy [1,2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "12872837",
-          "citation": "Koeberl DD et al. Evaluation of 3-methylcrotonyl-CoA carboxylase deficiency and other disorders detected by expanded newborn screening. J Pediatr. 2003;142(2):131–5.",
-          "evidence": "abstract",
-          "claim_id": "IBD.summary.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns 3-methylcrotonyl-CoA carboxylase deficiency and C5OH elevation, and says nothing about isobutyryl-CoA dehydrogenase deficiency outcomes, carnitine deficiency, or cardiomyopathy.",
-          "quote": "",
-          "ctx": "41640b2cd326"
-        },
-        {
-          "pmid": "16857760",
-          "citation": "Pedersen CB et al. Variations in IBD (ACAD8) in children with elevated C4-carnitine detected by tandem mass spectrometry newborn screening. Pediatr Res. 2006;60(3):315–20.",
-          "evidence": "abstract",
-          "claim_id": "IBD.summary.1",
-          "verdict": "unsupported",
-          "reason": "The abstract reports four newborns with elevated C4-carnitine detected by MS/MS and their ACAD8 variants and enzyme/folding studies, but says nothing about clinical course, asymptomatic status, benign phenotype, secondary carnitine deficiency, or cardiomyopathy.",
-          "quote": "We present IBD deficiency in an additional four newborns with elevated C(4)-carnitine identified by tandem mass spectrometry (MS/MS) screening in Denmark and the United States.",
-          "ctx": "41640b2cd326"
-        }
-      ]
-    },
-    {
-      "id": "IBD.introduction.0",
-      "disorder": "IBD",
-      "text": "IBD deficiency (OMIM #611283) entered the medical literature after expansion of MS/MS newborn screening in the early 2000s [3].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "9889013",
-          "citation": "Roe CR et al. Isolated isobutyryl-CoA dehydrogenase deficiency: an unrecognised defect in valine metabolism. Mol Genet Metab. 1998;65(4):264–71.",
-          "evidence": "abstract",
-          "claim_id": "IBD.introduction.0",
-          "verdict": "unsupported",
-          "reason": "This is the original 1998 report of isolated IBD deficiency in a clinically ascertained infant, which engages the topic of the disorder's entry into the literature but does not support (and effectively contradicts) attribution to early-2000s MS/MS newborn screening expansion.",
-          "quote": "A 2-year-old female was well until 12 months of age when she was found to be anemic and had dilated cardiomyopathy.",
-          "ctx": "1d5529862635"
-        }
-      ]
-    },
-    {
-      "id": "IBD.biochemistry.0",
-      "disorder": "IBD",
-      "text": "Elevated C4 butyrylcarnitine on newborn-screen acylcarnitines (C4 is shared between IBD and SCAD deficiency — distinguishing them requires urine organic acids + molecular testing) [1,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12872837",
-          "citation": "Koeberl DD et al. Evaluation of 3-methylcrotonyl-CoA carboxylase deficiency and other disorders detected by expanded newborn screening. J Pediatr. 2003;142(2):131–5.",
-          "evidence": "abstract",
-          "claim_id": "IBD.biochemistry.0",
-          "verdict": "not-assessable",
-          "reason": "The abstract addresses C5OH (3-hydroxyisovalerylcarnitine) follow-up, not C4 butyrylcarnitine or the IBD/SCAD distinction.",
-          "quote": "",
-          "ctx": "0ba8b13bb199"
-        },
-        {
-          "pmid": "15505379",
-          "citation": "Sass JO et al. Isobutyryl-CoA dehydrogenase deficiency: clinical, biochemical and molecular features of 14 patients. J Inherit Metab Dis. 2004;27(6):741–5.",
-          "evidence": "abstract",
-          "claim_id": "IBD.biochemistry.0",
-          "verdict": "partial",
-          "reason": "The abstract confirms IBD deficiency was detected by newborn tandem-MS screening and confirmed by biochemical (isobutyrylglycinuria) and molecular (ACAD8) studies, but it never mentions C4 butyrylcarnitine or the overlap with SCAD deficiency.",
-          "quote": "We report a third and a fourth child with IBD deficiency who were both detected during newborn screening with tandem mass spectrometry",
-          "ctx": "0ba8b13bb199"
-        }
-      ]
-    },
-    {
-      "id": "IBD.biochemistry.3",
-      "disorder": "IBD",
-      "text": "Butyrylcarnitine on acylcarnitine profile usually 1–3 µmol/L (vs normal <0.6) [4,5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "15505379",
-          "citation": "Sass JO et al. Isobutyryl-CoA dehydrogenase deficiency: clinical, biochemical and molecular features of 14 patients. J Inherit Metab Dis. 2004;27(6):741–5.",
-          "evidence": "abstract",
-          "claim_id": "IBD.biochemistry.3",
-          "verdict": "partial",
-          "reason": "The abstract establishes tandem-MS acylcarnitine detection of IBD deficiency but reports no butyrylcarnitine concentrations, so the specific 1–3 µmol/L range and <0.6 normal cut-off are absent.",
-          "quote": "detected during newborn screening with tandem mass spectrometry",
-          "ctx": "74e3b9468798"
-        },
-        {
-          "pmid": "12359132",
-          "citation": "Nguyen TV et al. Identification of isobutyryl-CoA dehydrogenase and its deficiency. Mol Genet Metab. 2002;77(1–2):68–79.",
-          "evidence": "abstract",
-          "claim_id": "IBD.biochemistry.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns enzymatic characterization of ACAD8 and a mutation in one patient, and does not report acylcarnitine profile values or C4/butyrylcarnitine concentrations.",
-          "quote": "",
-          "ctx": "74e3b9468798"
-        }
-      ]
-    },
-    {
-      "id": "IBD.molecular.0",
-      "disorder": "IBD",
-      "text": "ACAD8 at 11q25 encodes a mitochondrial matrix flavoprotein that is a member of the acyl-CoA dehydrogenase family [6].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "10524212",
-          "citation": "Telford EA et al. Isolation and characterisation of a cDNA encoding the precursor for a novel member of the acyl-CoA dehydrogenase gene family. Biochim Biophys Acta. 1999;1446(3):371–6.",
-          "evidence": "abstract",
-          "claim_id": "IBD.molecular.0",
-          "verdict": "partial",
-          "reason": "The abstract supports mapping to 11q25 and membership in the acyl-CoA dehydrogenase family (and a 'precursor', implying mitochondrial targeting), but does not state that the product is a flavoprotein localised to the mitochondrial matrix, nor does it name the gene ACAD8.",
-          "quote": "A gene encoding the precursor for a novel member of the human acyl-CoA dehydrogenase (ACD) gene family has been isolated which maps to human chromosome 11q25.",
-          "ctx": "2c82b77281cb"
-        }
-      ]
-    },
-    {
-      "id": "IBD.presentation.1",
-      "disorder": "IBD",
-      "text": "Reported rare symptomatic cases: feeding difficulties, mild hypotonia, anaemia, and in a handful of reports dilated cardiomyopathy responsive to carnitine supplementation [3,7].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "9889013",
-          "citation": "Roe CR et al. Isolated isobutyryl-CoA dehydrogenase deficiency: an unrecognised defect in valine metabolism. Mol Genet Metab. 1998;65(4):264–71.",
-          "evidence": "abstract",
-          "claim_id": "IBD.presentation.1",
-          "verdict": "partial",
-          "reason": "The abstract documents anaemia, dilated cardiomyopathy and carnitine deficiency/supplementation in a symptomatic case, but does not report feeding difficulties, hypotonia, or that the cardiomyopathy responded to carnitine.",
-          "quote": "she was found to be anemic and had dilated cardiomyopathy. Total plasma carnitine was 6 microM and acylcarnitine analysis while receiving carnitine supplement revealed an increase in the four-carbon species.",
-          "ctx": "6f1157e95753"
-        },
-        {
-          "pmid": "28053874",
-          "citation": "Santra S et al. Long-term outcome of isobutyryl-CoA dehydrogenase deficiency diagnosed following an episode of ketotic hypoglycaemia. Mol Genet Metab Rep. 2016;10:28–30.",
-          "evidence": "abstract",
-          "claim_id": "IBD.presentation.1",
-          "verdict": "partial",
-          "reason": "The abstract corroborates that a rare non-screened symptomatic patient had dilated cardiomyopathy and anaemia, but it does not mention feeding difficulties, mild hypotonia, or responsiveness of cardiomyopathy to carnitine supplementation (indeed it notes free carnitine was normal in this patient).",
-          "quote": "One reported non-screened patient had dilated cardiomyopathy and anaemia at the age of two years.",
-          "ctx": "6f1157e95753"
-        }
-      ]
-    },
-    {
-      "id": "IBD.presentation.3",
-      "disorder": "IBD",
-      "text": "Adult long-term outcome data consistently benign [2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "16857760",
-          "citation": "Pedersen CB et al. Variations in IBD (ACAD8) in children with elevated C4-carnitine detected by tandem mass spectrometry newborn screening. Pediatr Res. 2006;60(3):315–20.",
-          "evidence": "abstract",
-          "claim_id": "IBD.presentation.3",
-          "verdict": "unsupported",
-          "reason": "The paper studies newborns identified by screening and provides no follow-up or adult outcome data, so the claim of consistently benign adult long-term outcomes is absent.",
-          "quote": "We present IBD deficiency in an additional four newborns with elevated C(4)-carnitine identified by tandem mass spectrometry (MS/MS) screening in Denmark and the United States.",
-          "ctx": "a66bdd85b895"
-        }
-      ]
-    },
-    {
-      "id": "IBD.treatment.1",
-      "disorder": "IBD",
-      "text": "L-carnitine supplementation (50–100 mg/kg/day) may be offered if plasma free carnitine is low; routine carnitine treatment in asymptomatic biochemical-only cases is not evidence-based but is widely practised as a low-risk intervention [1,4].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12872837",
-          "citation": "Koeberl DD et al. Evaluation of 3-methylcrotonyl-CoA carboxylase deficiency and other disorders detected by expanded newborn screening. J Pediatr. 2003;142(2):131–5.",
-          "evidence": "abstract",
-          "claim_id": "IBD.treatment.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract discusses diagnostic evaluation of C5OH elevations and makes no mention of L-carnitine supplementation or dosing.",
-          "quote": "",
-          "ctx": "2e77d492469c"
-        },
-        {
-          "pmid": "15505379",
-          "citation": "Sass JO et al. Isobutyryl-CoA dehydrogenase deficiency: clinical, biochemical and molecular features of 14 patients. J Inherit Metab Dis. 2004;27(6):741–5.",
-          "evidence": "abstract",
-          "claim_id": "IBD.treatment.1",
-          "verdict": "partial",
-          "reason": "The abstract supports that affected children may go untreated and that the need for treatment is uncertain/not established, but says nothing about L-carnitine supplementation or the 50–100 mg/kg/day dose.",
-          "quote": "so far do not receive any treatment... It is as yet uncertain whether IBD deficiency may cause significant morbidity in affected children and whether treatment is necessary.",
-          "ctx": "2e77d492469c"
-        }
-      ]
-    },
-    {
-      "id": "IBD.prognosis.2",
-      "disorder": "IBD",
-      "text": "Rare symptomatic cases respond to supportive measures including carnitine [1,2].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12872837",
-          "citation": "Koeberl DD et al. Evaluation of 3-methylcrotonyl-CoA carboxylase deficiency and other disorders detected by expanded newborn screening. J Pediatr. 2003;142(2):131–5.",
-          "evidence": "abstract",
-          "claim_id": "IBD.prognosis.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract does not discuss symptomatic IBD deficiency cases or their response to carnitine.",
-          "quote": "",
-          "ctx": "44738d60da69"
-        },
-        {
-          "pmid": "16857760",
-          "citation": "Pedersen CB et al. Variations in IBD (ACAD8) in children with elevated C4-carnitine detected by tandem mass spectrometry newborn screening. Pediatr Res. 2006;60(3):315–20.",
-          "evidence": "abstract",
-          "claim_id": "IBD.prognosis.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract is confined to biochemical, molecular and functional characterisation and does not address treatment, supportive measures, or carnitine supplementation at all.",
-          "quote": "",
-          "ctx": "44738d60da69"
         }
       ]
     },
