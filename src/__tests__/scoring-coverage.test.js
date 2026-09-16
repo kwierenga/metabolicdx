@@ -84,16 +84,19 @@ describe("every disorder is reachable from its own signature", () => {
   // Not every disorder can rank #1 on signature alone and that is legitimate —
   // overlapping biochemistry is real, and the sulfite-oxidase axis in
   // golden.test.js is a deliberate example. The floors stop it drifting worse.
-  it("ranks at least 83 disorders first", () => {
-    expect(ranks.filter((r) => r.rank === 0).length).toBeGreaterThanOrEqual(83);
+  it("ranks at least 82 disorders first", () => {
+    expect(ranks.filter((r) => r.rank === 0).length).toBeGreaterThanOrEqual(82);
   });
 
-  // 108, not 109, because the denominator shrank: UROCA left the scoreable set
-  // when its histidine marker went (both molecularly confirmed reports measured
-  // histidine normal), and it had been ranking inside the top 3 on that marker.
-  // Nothing scored worse.
-  it("ranks at least 108 disorders in the top 3", () => {
-    expect(ranks.filter((r) => r.rank >= 0 && r.rank < 3).length).toBeGreaterThanOrEqual(108);
+  // 107, not 109: the denominator shrank twice, and neither time did anything
+  // score worse. UROCA left the scoreable set when its histidine marker went
+  // (both molecularly confirmed reports measured histidine normal), and CTH when
+  // its homocysteine marker went (homocysteine is NORMAL in cystathioninuria --
+  // that is what separates it from homocystinuria). CTH had been ranking FIRST
+  // for an isolated high homocysteine, which is a differential it does not
+  // belong in at all.
+  it("ranks at least 107 disorders in the top 3", () => {
+    expect(ranks.filter((r) => r.rank >= 0 && r.rank < 3).length).toBeGreaterThanOrEqual(107);
   });
 });
 
