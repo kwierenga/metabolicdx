@@ -229,6 +229,33 @@ if (arg("--wanted")) {
   }
   rows.sort((a, b) => b.n - a.n);
 
+  // ── the papers this list used to be blind to ───────────────────────────────
+  // Everything above is keyed by PMID, so a citation without one is invisible —
+  // and those are not rare. Book chapters (OMMBID, Saudubray) are not indexed at
+  // all; some GeneReviews citations never resolved; and since citationStatus
+  // stopped handing out a PMID it had only guessed at, thirteen more "cited
+  // papers" correctly stopped existing. They still carry claims that no abstract
+  // can settle, and they are still retrievable — from a library, or free on
+  // Bookshelf — so leaving them off the list only hides the work.
+  const noPmid = new Map();
+  for (const c of collectClaims()) {
+    for (const r of c.refs) {
+      if (!r.raw || r.pmid) continue;
+      const key = r.text || r.raw;
+      if (!noPmid.has(key)) noPmid.set(key, { citation: key, n: 0, disorders: new Set() });
+      const e = noPmid.get(key);
+      e.n++;
+      e.disorders.add(c.disorder);
+    }
+  }
+  const kindOf = (s) =>
+    /GeneReviews/i.test(s) ? "GeneReviews (free on Bookshelf)"
+    : /\bIn:|eds?\.|OMMBID|Metabolic and Molecular Bases/i.test(s) ? "book chapter (library)"
+    : "journal article (no PMID resolved)";
+  const unindexed = [...noPmid.values()]
+    .map((r) => ({ ...r, disorders: [...r.disorders], kind: kindOf(r.citation) }))
+    .sort((a, b) => b.n - a.n);
+
   const top = Number(flagValue("--top", "40"));
   const held = Object.values(cache).filter((v) => v.text).length;
   const pick = rows.slice(0, top);
@@ -262,14 +289,21 @@ if (arg("--wanted")) {
   // --csv for a spreadsheet: same rows, sortable and filterable, one per line.
   if (arg("--csv")) {
     const esc = (v) => `"${String(v).replace(/"/g, '""')}"`;
-    const lines = ["claims,pmid,author_year,journal,disorders,url,citation"];
+    const lines = ["claims,pmid,author_year,journal,disorders,url,citation,where"];
     for (const r of pick) {
       const { who, journal } = shortOf(r.citation);
       lines.push([r.n, r.pmid, esc(who), esc(journal), esc(r.disorders.join(" ")),
-        `https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`, esc(r.citation)].join(","));
+        `https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`, esc(r.citation), esc("PubMed")].join(","));
+    }
+    // The ones with no PMID go in the same file: a spreadsheet the user works
+    // through should not silently omit a third of the work.
+    for (const r of unindexed) {
+      const { who, journal } = shortOf(r.citation);
+      lines.push([r.n, "", esc(who), esc(journal), esc(r.disorders.join(" ")),
+        "", esc(r.citation), esc(r.kind)].join(","));
     }
     writeFileSync(resolve(HERE, "..", "docs", "fulltext-wanted.csv"), lines.join("\n") + "\n");
-    console.log(`docs/fulltext-wanted.csv written: ${pick.length} rows`);
+    console.log(`docs/fulltext-wanted.csv written: ${pick.length} ranked + ${unindexed.length} without a PMID`);
     process.exit(0);
   }
 
@@ -310,7 +344,24 @@ if (arg("--wanted")) {
       out.push(`| ☐ | ${r.n} | [${r.pmid}](https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/) | ${who} | ${journal} | ${r.disorders.join(", ")} |`);
     }
     out.push("", "Also written as `docs/fulltext-wanted.csv` (`--wanted --csv`) if you would",
-      "rather work in a spreadsheet.", "", "---", "", "## Full citations", "");
+      "rather work in a spreadsheet.", "");
+
+    // The list above can only rank what has a PMID. These carry claims too.
+    out.push("---", "", "## No PMID to look them up by", "",
+      `**${unindexed.length}** citations carry claims and have no PubMed id at all, so they never`,
+      "appear in the ranking above. Most are book chapters, which are not indexed;",
+      "a few are GeneReviews chapters whose citation did not resolve, and those are",
+      "free on Bookshelf; the rest are journal articles the resolver could not",
+      "identify. Drop any of them in `docs/fulltext/` under any name — the ingest",
+      "identifies a paper from its own first page — though one with no PMID in the",
+      "knowledge base cannot be matched automatically, so name those by PMID once",
+      "you have it.", "",
+      "| Claims | Where to get it | Disorders | Citation |",
+      "|---:|---|---|---|");
+    for (const r of unindexed) {
+      out.push(`| ${r.n} | ${r.kind} | ${r.disorders.join(", ")} | ${r.citation.replace(/\|/g, "\\|")} |`);
+    }
+    out.push("", "---", "", "## Full citations", "");
     for (const r of pick) {
       out.push("", `### ${r.n} claims — PMID ${r.pmid}`, "", `*${r.disorders.join(", ")}*`, "",
         r.citation, `<https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/>`);
@@ -322,12 +373,19 @@ if (arg("--wanted")) {
 
   console.log(`${rows.length} closed-access papers carry at least one unsettled claim.`);
   console.log(`Obtaining the top ${pick.length} would resolve ${resolves} claims.`);
+  const unindexedClaims = unindexed.reduce((n, r) => n + r.n, 0);
+  console.log(`${unindexed.length} more citations have no PMID at all, carrying ${unindexedClaims} claims — listed after the ranking.`);
   console.log(`\nDrop each as docs/fulltext/<PMID>.pdf (or .txt), then:`);
   console.log(`  node scripts/fetch-fulltext.mjs --ingest\n`);
   for (const r of pick) {
     console.log(`${String(r.n).padStart(2)} claims  PMID ${r.pmid}  [${r.disorders.join(", ")}]`);
     console.log(`          ${r.citation}`);
     console.log(`          https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`);
+  }
+  console.log(`\nNo PMID to look them up by:\n`);
+  for (const r of unindexed.slice(0, Number(flagValue("--top-unindexed", "20")))) {
+    console.log(`${String(r.n).padStart(2)} claims  ${r.kind}  [${r.disorders.join(", ")}]`);
+    console.log(`          ${r.citation}`);
   }
   process.exit(0);
 }
