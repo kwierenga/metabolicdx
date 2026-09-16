@@ -106,7 +106,13 @@ describe("deterministic claim audit", () => {
   const CLAIM_FLOOR = 1254;          // sentences that cite at least one reference
   const ORPHAN_CEILING = 20;         // substantive sentences in a block citing nothing
   const WITHHELD_ONLY_CEILING = 1;   // claims whose every source is suppressed
-  const NO_PUBMED_CEILING = 26;      // claims no abstract could ever assess
+  // 30, up from 26, and the four are an improvement rather than a regression.
+  // citationStatus stopped handing out a PMID that the resolver had only GUESSED
+  // at ("closest PubMed match is only a partial title match"), so four claims
+  // that appeared to have a source now correctly appear to have none. They never
+  // had one: PCDEF's was the PMID of a DIFFERENT paper the same disorder cites
+  // two slots later. This ceiling still ratchets down from here.
+  const NO_PUBMED_CEILING = 30;      // claims no abstract could ever assess
 
   it(`joins at least ${CLAIM_FLOOR} claims to their references`, () => {
     expect(claims.length).toBeGreaterThanOrEqual(CLAIM_FLOOR);

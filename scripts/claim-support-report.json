@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-16T23:14:10.024Z",
+  "generated": "2026-09-16T23:17:13.664Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -17341,16 +17341,6 @@
       "status": "unverified",
       "judged": [
         {
-          "pmid": "16278852",
-          "citation": "Robinson BH. Pyruvate carboxylase deficiency. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2275–95.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.summary.4",
-          "verdict": "partial",
-          "reason": "The abstract confirms citrulline elevation is invariably present in type B PC deficiency but says nothing about a normal lactate:pyruvate ratio distinguishing it from respiratory chain defects.",
-          "quote": "Hypoglycemia, lactic acidosis, and hypercitrullinemia were invariably found.",
-          "ctx": "25c043fb5c10"
-        },
-        {
           "pmid": "20598931",
           "citation": "Marin-Valencia I et al. Pyruvate carboxylase deficiency: mechanisms, mimics and anaplerosis. Mol Genet Metab. 2010;101(1):9–17.",
           "evidence": "abstract",
@@ -17416,16 +17406,6 @@
       "judged": [
         {
           "pmid": "16278852",
-          "citation": "Robinson BH. Pyruvate carboxylase deficiency. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2275–95.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.biochemistry.2",
-          "verdict": "partial",
-          "reason": "The abstract supports hypercitrullinemia as a characteristic biochemical feature but does not provide the stated 100–300 µmol/L range or the argininosuccinate-synthesis mechanism.",
-          "quote": "Hypoglycemia, lactic acidosis, and hypercitrullinemia were invariably found.",
-          "ctx": "b147110dddfa"
-        },
-        {
-          "pmid": "16278852",
           "citation": "Garcia-Cazorla A et al. Pyruvate carboxylase deficiency: metabolic characteristics and new neurological aspects. Ann Neurol. 2006;59(1):121–7.",
           "evidence": "abstract",
           "claim_id": "PCDEF.biochemistry.2",
@@ -17443,16 +17423,6 @@
       "status": "unverified",
       "judged": [
         {
-          "pmid": "16278852",
-          "citation": "Robinson BH. Pyruvate carboxylase deficiency. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2275–95.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.biochemistry.6",
-          "verdict": "not-assessable",
-          "reason": "The abstract reports plasma/amino acid and acid-base abnormalities but does not address urinary organic acid findings such as α-ketoglutarate or 3-hydroxybutyric acid.",
-          "quote": "",
-          "ctx": "9d0bd86c802f"
-        },
-        {
           "pmid": "20598931",
           "citation": "Marin-Valencia I et al. Pyruvate carboxylase deficiency: mechanisms, mimics and anaplerosis. Mol Genet Metab. 2010;101(1):9–17.",
           "evidence": "abstract",
@@ -17465,49 +17435,11 @@
       ]
     },
     {
-      "id": "PCDEF.molecular.1",
-      "disorder": "PCDEF",
-      "text": "Pathogenic variants (missense, nonsense, splice) throughout the gene; genotype–phenotype correlation is partial (severe loss-of-function variants → types A or B; hypomorphic variants → type C) [6,7].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "20598931",
-          "citation": "Marin-Valencia I, Roe CR, Pascual JM. Pyruvate carboxylase deficiency: mechanisms, mimics and anaplerosis. Mol Genet Metab. 2010;101(1):9–17.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.molecular.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract only alludes generically to genetic aspects and says nothing about variant types, gene locus, or genotype–phenotype correlation.",
-          "quote": "dissect the major clinical, biochemical, and genetic aspects of its dysfunction",
-          "ctx": "86f9be2b299f"
-        },
-        {
-          "pmid": "19306334",
-          "citation": "Monnot S et al. Structural insights on pathogenic effects of novel mutations causing pyruvate carboxylase deficiency. Hum Mutat. 2009;30(5):734–40.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.molecular.1",
-          "verdict": "partial",
-          "reason": "The abstract supports a spectrum of variant types and a genotype–phenotype correlation for forms A and B (truncating vs missense), but it never addresses type C or hypomorphic variants, nor splice variants.",
-          "quote": "Altogether, our data and those previously reported indicate that form B is consistently associated with at least one truncating mutation, mostly lying in CT (C-terminal part) or BCCP domains, whereas form A always results from association of two missense mutations located in BC or CT (N-terminal part) domains.",
-          "ctx": "86f9be2b299f"
-        }
-      ]
-    },
-    {
       "id": "PCDEF.presentation.0",
       "disorder": "PCDEF",
       "text": "Type A (infantile, classic 'American' form): early-infancy onset with metabolic and lactic acidosis, delayed motor development, intellectual disability, seizures; most children die in infancy or early childhood, though survival to teenage years has been reported [1,2].",
-      "status": "contradicted",
+      "status": "unverified",
       "judged": [
-        {
-          "pmid": "16278852",
-          "citation": "Robinson BH. Pyruvate carboxylase deficiency. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 2275–95.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.presentation.0",
-          "verdict": "unsupported",
-          "reason": "The series is explicitly restricted to the severe neonatal (type B) form with rapid fatal outcome, and none of the type A features (early-infancy onset, developmental delay, intellectual disability, survival to teenage years) are described.",
-          "quote": "We aimed to report the largest series of the B type of PC deficiency",
-          "ctx": "21f251800ff1"
-        },
         {
           "pmid": "20598931",
           "citation": "Marin-Valencia I et al. Pyruvate carboxylase deficiency: mechanisms, mimics and anaplerosis. Mol Genet Metab. 2010;101(1):9–17.",
@@ -17535,90 +17467,6 @@
           "reason": "The abstract identifies Type B as the severe neonatal form that typically dies in early life, but does not give the specific features (hypothermia, respiratory distress, vomiting, hyperammonaemia) or the 8-month survival figure.",
           "quote": "a severe neonatal form (Type B)",
           "ctx": "7a95c9ef766d"
-        }
-      ]
-    },
-    {
-      "id": "PCDEF.presentation.3",
-      "disorder": "PCDEF",
-      "text": "Characteristic MRI findings across types: periventricular cysts, white-matter abnormalities, delayed myelination [8,9].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "10323732",
-          "citation": "Brun N et al. Pyruvate carboxylase deficiency: prenatal onset of ischaemia-like brain lesions in two sibs with the acute neonatal form. Am J Med Genet. 1999;84(2):94–101.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.presentation.3",
-          "verdict": "partial",
-          "reason": "The abstract documents periventricular cysts and white-matter (cystic PVL) abnormalities in PC deficiency, but by fetal/cerebral ultrasound rather than MRI, and says nothing about delayed myelination.",
-          "quote": "Discovery of cystic PVL on cerebral ultrasound at birth in a newborn infant presenting with primary lactic acidemia is highly suggestive of PC deficiency.",
-          "ctx": "121e280dcd1f"
-        },
-        {
-          "pmid": "12359142",
-          "citation": "Nyhan WL et al. Pyruvate carboxylase deficiency — insights from liver transplantation. Mol Genet Metab. 2002;77(1–2):143–9.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.presentation.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns metabolic/biochemical features and liver transplantation outcomes in PC deficiency and says nothing about MRI or brain imaging findings.",
-          "quote": "",
-          "ctx": "121e280dcd1f"
-        }
-      ]
-    },
-    {
-      "id": "PCDEF.treatment.3",
-      "disorder": "PCDEF",
-      "text": "Triheptanoin (an odd-chain triglyceride providing anaplerotic propionyl-CoA) has been used with VARIABLE outcomes, particularly in type C [10,11].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "15781190",
-          "citation": "Mochel F et al. Pyruvate carboxylase deficiency: clinical and biochemical response to triheptanoin anaplerotic therapy. Pediatr Res. 2005;58(4):766–70.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.treatment.3",
-          "verdict": "partial",
-          "reason": "The abstract confirms triheptanoin as an odd-carbon triglyceride providing anaplerotic propionyl-CoA with mixed outcome (biochemical/hepatic correction but death from infection), yet this case is type B, so it does not support the claim's specification of type C.",
-          "quote": "Biotin-unresponsive pyruvate carboxylase deficiency type B was diagnosed. Triheptanoin, an odd-carbon triglyceride, was administrated as a source for acetyl-CoA and anaplerotic propionyl-CoA.",
-          "ctx": "1e58f97b1db1"
-        },
-        {
-          "pmid": "26547562",
-          "citation": "Roe CR, Brunengraber H. Anaplerotic treatment of long-chain fat oxidation disorders with triheptanoin: review of 15 years' experience. Mol Genet Metab. 2015;116(4):260–8.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.treatment.3",
-          "verdict": "partial",
-          "reason": "The abstract supports the general characterization of triheptanoin as an anaplerotic triglyceride used in diet therapy, but it concerns long-chain fat oxidation disorders and says nothing about use in pyruvate carboxylase deficiency or variable outcomes in type C.",
-          "quote": "This hypothesis was investigated by diet therapy with carnitine and anaplerotic triheptanoin (TH).",
-          "ctx": "1e58f97b1db1"
-        }
-      ]
-    },
-    {
-      "id": "PCDEF.prognosis.3",
-      "disorder": "PCDEF",
-      "text": "Progressive neurological involvement occurs regardless of biochemical optimization, limiting long-term recovery [10,11].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "15781190",
-          "citation": "Mochel F et al. Pyruvate carboxylase deficiency: clinical and biochemical response to triheptanoin anaplerotic therapy. Pediatr Res. 2005;58(4):766–70.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.prognosis.3",
-          "verdict": "unsupported",
-          "reason": "The abstract reports outcome after biochemical correction but describes no progressive neurological deterioration—instead noting alternative brain fuel delivery and raised CSF glutamine/GABA—and death was attributed to infection, so the claim's content is absent.",
-          "quote": "Although this patient succumbed to a severe infection, during the six months interval of her anaplerotic and biochemical management, the following important observations were documented: (1) the immediate reversal (less than 48 h) of major hepatic failure with full correction of all biochemical abnormalities",
-          "ctx": "9fa65da283f8"
-        },
-        {
-          "pmid": "26547562",
-          "citation": "Roe CR, Brunengraber H. Anaplerotic treatment of long-chain fat oxidation disorders with triheptanoin: review of 15 years' experience. Mol Genet Metab. 2015;116(4):260–8.",
-          "evidence": "abstract",
-          "claim_id": "PCDEF.prognosis.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract addresses morbidity and mortality in long-chain fat oxidation disorders on triheptanoin and does not discuss progressive neurological involvement or long-term neurological outcome despite biochemical control in pyruvate carboxylase deficiency.",
-          "quote": "",
-          "ctx": "9fa65da283f8"
         }
       ]
     },
@@ -19639,16 +19487,6 @@
       "status": "unverified",
       "judged": [
         {
-          "pmid": "20301412",
-          "citation": "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021].",
-          "evidence": "abstract",
-          "claim_id": "CANAVAN.summary.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract covers phenotype, diagnosis, management and autosomal recessive inheritance of Canavan disease but never addresses ethnic prevalence or carrier frequency, so the ~1:40 Ashkenazi figure cannot be evaluated.",
-          "quote": "",
-          "ctx": "252e17595ece"
-        },
-        {
           "pmid": "24977939",
           "citation": "Hoshino H, Kubota M. Canavan disease: clinical features and recent advances in research. Pediatr Int. 2014;56(4):477–83.",
           "evidence": "abstract",
@@ -19692,18 +19530,8 @@
       "id": "CANAVAN.biochemistry.2",
       "disorder": "CANAVAN",
       "text": "Brain MR SPECTROSCOPY shows dramatically elevated NAA peak — often the first clue when leukodystrophy imaging is obtained [1,6].",
-      "status": "supported",
+      "status": "unverified",
       "judged": [
-        {
-          "pmid": "20301412",
-          "citation": "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021].",
-          "evidence": "abstract",
-          "claim_id": "CANAVAN.biochemistry.2",
-          "verdict": "supports",
-          "reason": "The abstract explicitly states that elevated NAA can be demonstrated in the brain by proton magnetic resonance spectroscopy as a diagnostic biochemical finding, though it does not comment on MRS being the first clue.",
-          "quote": "The biochemical diagnosis is established in an individual with suggestive clinical findings and elevated N-acetylaspartic acid (NAA) in urine (using gas chromatography-mass spectrometry) or in the brain by proton magnetic resonance spectroscopy.",
-          "ctx": "a7cfab043b53"
-        },
         {
           "pmid": "16139832",
           "citation": "Tavazzi B, Janson CG, Francis JS et al. Simultaneous high performance liquid chromatographic separation of purines, pyrimidines, N-acetylated amino acids, and dicarboxylic acids for the chemical diagnosis of inborn errors of metabolism. Clin Biochem. 2005;38(11):997–1008.",
@@ -19722,16 +19550,6 @@
       "text": "MRI characteristic: diffuse bilateral SYMMETRICAL white-matter T2 hyperintensity with subcortical U-fibre involvement — a 'spongiform' leukodystrophy pattern — progressing to brain atrophy [1,6,9].",
       "status": "unverified",
       "judged": [
-        {
-          "pmid": "20301412",
-          "citation": "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021].",
-          "evidence": "abstract",
-          "claim_id": "CANAVAN.presentation.2",
-          "verdict": "partial",
-          "reason": "The abstract identifies Canavan disease as a leukodystrophy but gives no MRI description of diffuse symmetrical T2 white-matter hyperintensity, subcortical U-fibre involvement, spongiform change, or progression to atrophy.",
-          "quote": "Canavan disease is a leukodystrophy characterized by neurodevelopmental delays, macrocephaly, and tone abnormalities.",
-          "ctx": "f5b16299dd4f"
-        },
         {
           "pmid": "16139832",
           "citation": "Tavazzi B, Janson CG, Francis JS et al. Simultaneous high performance liquid chromatographic separation of purines, pyrimidines, N-acetylated amino acids, and dicarboxylic acids for the chemical diagnosis of inborn errors of metabolism. Clin Biochem. 2005;38(11):997–1008.",

@@ -345,7 +345,10 @@ describe("knowledge-base citation health", () => {
   // not appear, standing as the support for five claims about how MCEE
   // deficiency behaves. Accurate citation of the wrong paper is invisible to
   // every check in this file; only reading the body catches it.
-  const VERIFIED_FLOOR = 912;     // title matches the paper PubMed holds
+  // 911: the third deletion in two days, and this one was a duplicate rather
+  // than a wrong paper. PCDEF cited Marin-Valencia 2010 twice, as references 2
+  // and 6, written out two different ways over the same PMID. Folded into one.
+  const VERIFIED_FLOOR = 911;     // title matches the paper PubMed holds
 
   const byLevel = {};
   for (const key of new Set(allRefs().map((r) => r.raw))) {

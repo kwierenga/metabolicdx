@@ -54,6 +54,24 @@ export const isWithheld = (raw) => citationStatus(raw).level === "wrong";
 export const citationText = (raw) => String(raw ?? "").replace(/\s*PMID:?\s*\d+\.?\s*$/i, "").trim();
 
 /**
+ * A PMID the resolver only GUESSED at is worse than no PMID.
+ *
+ * "closest PubMed match is only a partial title match" means the pipeline could
+ * not identify the paper and recorded its nearest miss. Downstream that number
+ * is indistinguishable from a resolved one: it links the reference to a PubMed
+ * record, and it tells the claim judge which abstract and which full text to
+ * read the sentence against. PCDEF is the case that proved it — Robinson's MMBID
+ * chapter carried, as its guess, the PMID of Garcia-Cazorla's Ann Neurol paper,
+ * which the same disorder already cites and verifies in the next slot but one.
+ * Four claims were being judged against a paper their citation does not name.
+ *
+ * A date mismatch is different and the PMID there is kept: a GeneReviews record
+ * carries the collection's 1993 PubDate, so citing a chapter by its contribution
+ * year trips the year check while naming exactly the right document.
+ */
+const GUESSED = /partial title match/i;
+
+/**
  * Verification state for one reference string.
  * Returns `{ level, pmid, note }` — never null, so callers can render uniformly.
  */
@@ -61,5 +79,6 @@ export function citationStatus(raw) {
   const entry = CITATION_PROVENANCE[citationKey(raw)];
   const pmid = citedPmid(raw);
   if (!entry) return { level: pmid ? "verified" : "unverified", pmid, note: null };
-  return { level: entry.l, pmid: entry.p ?? pmid, note: entry.n ?? null };
+  const resolved = entry.n && GUESSED.test(entry.n) ? null : entry.p ?? pmid;
+  return { level: entry.l, pmid: resolved, note: entry.n ?? null };
 }
