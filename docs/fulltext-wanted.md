@@ -9,7 +9,7 @@ open-access set, every GeneReviews chapter (free on Bookshelf, fetched with
 `--genereviews`), and the papers already stored under `docs/`.
 
 **585** closed-access papers still carry at least one claim no abstract could
-confirm. The top 40 below would settle **152** of them.
+confirm. The top 30 below would settle **122** of them.
 
 ## How to feed one back
 
@@ -65,16 +65,6 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 | ☐ | 4 | [5050553](https://pubmed.ncbi.nlm.nih.gov/5050553/) | Nyhan WL 1972 | Arch Intern Med | HPRT |
 | ☐ | 4 | [6775961](https://pubmed.ncbi.nlm.nih.gov/6775961/) | Webster DR 2001 | book/chapter | UMPS |
 | ☐ | 4 | [23385875](https://pubmed.ncbi.nlm.nih.gov/23385875/) | El-Hattab AW 2013 | Neurotherapeutics | SUCLA2 |
-| ☐ | 3 | [20971365](https://pubmed.ncbi.nlm.nih.gov/20971365/) | Blau N 2010 | Lancet | PKU |
-| ☐ | 3 | [22885033](https://pubmed.ncbi.nlm.nih.gov/22885033/) | Larochelle J 2012 | Mol Genet Metab | TYR1 |
-| ☐ | 3 | [11916315](https://pubmed.ncbi.nlm.nih.gov/11916315/) | Ellaway CJ 2001 | J Inherit Metab Dis | TYR3 |
-| ☐ | 3 | [12501223](https://pubmed.ncbi.nlm.nih.gov/12501223/) | Phornphutkul C 2002 | N Engl J Med | ALKAPT |
-| ☐ | 3 | [12111366](https://pubmed.ncbi.nlm.nih.gov/12111366/) | Saheki T 2002 | J Hum Genet | CITR1, CITR2 |
-| ☐ | 3 | [14680984](https://pubmed.ncbi.nlm.nih.gov/14680984/) | Kobayashi K 2003 | Mol Genet Metab | CITR2 |
-| ☐ | 3 | [15542392](https://pubmed.ncbi.nlm.nih.gov/15542392/) | Tazawa Y 2004 | J Pediatr | CITR2 |
-| ☐ | 3 | [1720458](https://pubmed.ncbi.nlm.nih.gov/1720458/) | Maestri NE 1991 | J Pediatr | OTC |
-| ☐ | 3 | [15868473](https://pubmed.ncbi.nlm.nih.gov/15868473/) | Nassogne MC 2005 | J Inherit Metab Dis | CPS1 |
-| ☐ | 3 | [11092761](https://pubmed.ncbi.nlm.nih.gov/11092761/) | Baumgartner MR 2000 | Hum Mol Genet | P5CS |
 
 Also written as `docs/fulltext-wanted.csv` (`--wanted --csv`) if you would
 rather work in a spreadsheet.
@@ -361,73 +351,3 @@ Webster DR et al. Hereditary orotic aciduria and other disorders of pyrimidine m
 
 El-Hattab AW, Scaglia F. Mitochondrial DNA depletion syndromes: review and updates of genetic basis, manifestations, and therapeutic options. Neurotherapeutics. 2013;10(2):186–98.
 <https://pubmed.ncbi.nlm.nih.gov/23385875/>
-
-### 3 claims — PMID 20971365
-
-*PKU*
-
-Blau N, van Spronsen FJ, Levy HL. Phenylketonuria. Lancet. 2010;376(9750):1417–27.
-<https://pubmed.ncbi.nlm.nih.gov/20971365/>
-
-### 3 claims — PMID 22885033
-
-*TYR1*
-
-Larochelle J et al. Effect of nitisinone treatment on HCC in tyrosinaemia type 1. Mol Genet Metab. 2012;107(1–2):49–54.
-<https://pubmed.ncbi.nlm.nih.gov/22885033/>
-
-### 3 claims — PMID 11916315
-
-*TYR3*
-
-Ellaway CJ et al. Outcome of tyrosinaemia type III. J Inherit Metab Dis. 2001;24(8):824–32.
-<https://pubmed.ncbi.nlm.nih.gov/11916315/>
-
-### 3 claims — PMID 12501223
-
-*ALKAPT*
-
-Phornphutkul C et al. Natural history of alkaptonuria. N Engl J Med. 2002;347(26):2111–21.
-<https://pubmed.ncbi.nlm.nih.gov/12501223/>
-
-### 3 claims — PMID 12111366
-
-*CITR1, CITR2*
-
-Saheki T, Kobayashi K. Mitochondrial aspartate glutamate carrier (citrin) deficiency as the cause of adult-onset type II citrullinemia (CTLN2) and idiopathic neonatal hepatitis (NICCD). J Hum Genet. 2002;47(7):333–41.
-<https://pubmed.ncbi.nlm.nih.gov/12111366/>
-
-### 3 claims — PMID 14680984
-
-*CITR2*
-
-Kobayashi K et al. Screening of nine SLC25A13 mutations. Mol Genet Metab. 2003;80(1–2):207–13.
-<https://pubmed.ncbi.nlm.nih.gov/14680984/>
-
-### 3 claims — PMID 15542392
-
-*CITR2*
-
-Tazawa Y et al. Clinical heterogeneity of neonatal intrahepatic cholestasis caused by citrin deficiency. J Pediatr. 2004;145(2):231–8.
-<https://pubmed.ncbi.nlm.nih.gov/15542392/>
-
-### 3 claims — PMID 1720458
-
-*OTC*
-
-Maestri NE et al. Prospective treatment of urea cycle disorders. J Pediatr. 1991;119(6):923–8.
-<https://pubmed.ncbi.nlm.nih.gov/1720458/>
-
-### 3 claims — PMID 15868473
-
-*CPS1*
-
-Nassogne MC et al. Urea cycle defects: management and outcome. J Inherit Metab Dis. 2005;28(3):407–14.
-<https://pubmed.ncbi.nlm.nih.gov/15868473/>
-
-### 3 claims — PMID 11092761
-
-*P5CS*
-
-Baumgartner MR et al. Hyperammonaemia with reduced ornithine, citrulline, arginine and proline: a new inborn error caused by a mutation in the gene encoding Δ¹-pyrroline-5-carboxylate synthase. Hum Mol Genet. 2000;9(19):2853–8.
-<https://pubmed.ncbi.nlm.nih.gov/11092761/>

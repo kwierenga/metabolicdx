@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-16T23:35:25.491Z",
+  "generated": "2026-09-17T01:13:37.258Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -19085,6 +19085,16 @@
       "status": "unverified",
       "judged": [
         {
+          "pmid": "20301412",
+          "citation": "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021].",
+          "evidence": "abstract",
+          "claim_id": "CANAVAN.summary.3",
+          "verdict": "not-assessable",
+          "reason": "The abstract covers phenotype, diagnosis, management and autosomal recessive inheritance of Canavan disease but never addresses ethnic prevalence or carrier frequency, so the ~1:40 Ashkenazi figure cannot be evaluated.",
+          "quote": "",
+          "ctx": "252e17595ece"
+        },
+        {
           "pmid": "24977939",
           "citation": "Hoshino H, Kubota M. Canavan disease: clinical features and recent advances in research. Pediatr Int. 2014;56(4):477–83.",
           "evidence": "abstract",
@@ -19128,8 +19138,18 @@
       "id": "CANAVAN.biochemistry.2",
       "disorder": "CANAVAN",
       "text": "Brain MR SPECTROSCOPY shows dramatically elevated NAA peak — often the first clue when leukodystrophy imaging is obtained [1,6].",
-      "status": "unverified",
+      "status": "supported",
       "judged": [
+        {
+          "pmid": "20301412",
+          "citation": "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021].",
+          "evidence": "abstract",
+          "claim_id": "CANAVAN.biochemistry.2",
+          "verdict": "supports",
+          "reason": "The abstract explicitly states that elevated NAA can be demonstrated in the brain by proton magnetic resonance spectroscopy as a diagnostic biochemical finding, though it does not comment on MRS being the first clue.",
+          "quote": "The biochemical diagnosis is established in an individual with suggestive clinical findings and elevated N-acetylaspartic acid (NAA) in urine (using gas chromatography-mass spectrometry) or in the brain by proton magnetic resonance spectroscopy.",
+          "ctx": "a7cfab043b53"
+        },
         {
           "pmid": "16139832",
           "citation": "Tavazzi B, Janson CG, Francis JS et al. Simultaneous high performance liquid chromatographic separation of purines, pyrimidines, N-acetylated amino acids, and dicarboxylic acids for the chemical diagnosis of inborn errors of metabolism. Clin Biochem. 2005;38(11):997–1008.",
@@ -19148,6 +19168,16 @@
       "text": "MRI characteristic: diffuse bilateral SYMMETRICAL white-matter T2 hyperintensity with subcortical U-fibre involvement — a 'spongiform' leukodystrophy pattern — progressing to brain atrophy [1,6,9].",
       "status": "unverified",
       "judged": [
+        {
+          "pmid": "20301412",
+          "citation": "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021].",
+          "evidence": "abstract",
+          "claim_id": "CANAVAN.presentation.2",
+          "verdict": "partial",
+          "reason": "The abstract identifies Canavan disease as a leukodystrophy but gives no MRI description of diffuse symmetrical T2 white-matter hyperintensity, subcortical U-fibre involvement, spongiform change, or progression to atrophy.",
+          "quote": "Canavan disease is a leukodystrophy characterized by neurodevelopmental delays, macrocephaly, and tone abnormalities.",
+          "ctx": "f5b16299dd4f"
+        },
         {
           "pmid": "16139832",
           "citation": "Tavazzi B, Janson CG, Francis JS et al. Simultaneous high performance liquid chromatographic separation of purines, pyrimidines, N-acetylated amino acids, and dicarboxylic acids for the chemical diagnosis of inborn errors of metabolism. Clin Biochem. 2005;38(11):997–1008.",
