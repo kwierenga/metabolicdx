@@ -79,6 +79,11 @@ export function citationStatus(raw) {
   const entry = CITATION_PROVENANCE[citationKey(raw)];
   const pmid = citedPmid(raw);
   if (!entry) return { level: pmid ? "verified" : "unverified", pmid, note: null };
-  const resolved = entry.n && GUESSED.test(entry.n) ? null : entry.p ?? pmid;
+  // Suppressing the guess must not suppress a PMID stamped into the reference
+  // itself. The stamp is the stronger evidence — someone resolved that citation
+  // and wrote the answer down — and a stale provenance entry from an earlier
+  // pass should not outvote it. Getting this backwards stamped three citations
+  // twice: they were repaired, still read as unresolved, and were repaired again.
+  const resolved = entry.n && GUESSED.test(entry.n) ? pmid : entry.p ?? pmid;
   return { level: entry.l, pmid: resolved, note: entry.n ?? null };
 }

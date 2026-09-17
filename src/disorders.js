@@ -743,7 +743,7 @@ export const DISORDERS = [
      references:[
        "van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61. PMID 24530203.",
        "Diez-Fernandez C et al. Defective hepatic bicarbonate production due to carbonic anhydrase VA deficiency leads to early-onset life-threatening metabolic crisis. Genet Med. 2016;18(10):991–1000. PMID 26913920.",
-       "Carbonic Anhydrase VA Deficiency. In: Adam MP et al., eds. GeneReviews®. Seattle: University of Washington; 1993–2024.",
+       "Carbonic Anhydrase VA Deficiency. In: Adam MP et al., eds. GeneReviews®. Seattle: University of Washington; 1993–2024. PMID 25834911.",
        "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230. PMID 30982989.",
      ]},
    signature:[{panel:"PAA",id:"Gln",direction:"high",weight:2,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Ala",direction:"high",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Cit",direction:"low",weight:2,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Arg",direction:"low",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"MISC",id:"Ammonia",direction:"high",weight:1},{panel:"MISC",id:"Lactate",direction:"high",weight:1}],
@@ -825,7 +825,7 @@ export const DISORDERS = [
      treatment:"Moderate protein restriction + oral L-citrulline supplementation (3–8 g/day) — citrulline is neutral (absorbed via separate transporter) and generates arginine + ornithine intracellularly [1,2]. Lysine and arginine supplementation generally ineffective (same transporter defect). Sodium benzoate or phenylbutyrate for chronic hyperammonaemia. Annual surveillance: lung imaging, renal function, bone density, ferritin.",
      prognosis:"Variable. Adequate citrulline + protein restriction largely prevents hyperammonaemic crises, but the multi-system phenotype (lungs, kidneys, bone, immune) progresses regardless of ammonia control [8]. Pulmonary alveolar proteinosis is the leading cause of death in young adults with LPI [7].",
      references:[
-       "Sebastio G et al. Lysinuric protein intolerance. GeneReviews®. 2006 [updated 2021].",
+       "Sebastio G et al. Lysinuric protein intolerance. GeneReviews®. 2006 [updated 2021]. PMID 20301535.",
        "Ogier de Baulny H et al. Lysinuric protein intolerance (LPI): a multi organ disease. Mol Genet Metab. 2012;106(1):12–7. PMID 22402328.",
        "Perheentupa J, Visakorpi JK. Protein intolerance with deficient transport of basic amino acids. Lancet. 1965;2(7417):813–6. PMID 4158034.",
        "Torrents D et al. Identification of SLC7A7, encoding y+LAT-1, as the lysinuric protein intolerance gene. Nat Genet. 1999;21(3):293–6. PMID 10080182.",
@@ -979,7 +979,7 @@ export const DISORDERS = [
        "Matsui SM et al. The natural history of the inherited methylmalonic acidemias. N Engl J Med. 1983;308(15):857–61. PMID 6132336.",
        "Ledley FD et al. Molecular cloning of L-methylmalonyl-CoA mutase. Proc Natl Acad Sci USA. 1988;85(10):3518–21. PMID 2453061.",
        "Forny P et al. Novel mutations in the MUT gene identified from a database of 216 patients with MMA. Hum Mutat. 2016;37(8):745–62. PMID 27167370.",
-       "Manoli I, Venditti CP. Methylmalonic acidemia. GeneReviews®. 2005 [updated 2022].",
+       "Manoli I, Venditti CP. Methylmalonic acidemia. GeneReviews®. 2005 [updated 2022]. PMID 20301409.",
        "Cosson MA et al. Long-term outcome in methylmalonic aciduria. Mol Genet Metab. 2009;97(3):172–8. PMID 19375370.",
        "Heidenreich R et al. Acute extrapyramidal syndrome in methylmalonic acidemia. Neurology. 1988;38(12):1916–9. PMID 3193307.",
        "Chapman KA et al. Acute management of propionic and methylmalonic acidemia. Mol Genet Metab. 2012;105(1):16–25. PMID 22000903.",
@@ -1634,7 +1634,7 @@ export const DISORDERS = [
      prognosis:"Pre-NBS: ~22% mortality at first presentation and ~21% developing disabilities after diagnosis; on follow-up a third of Dutch patients reported fatigue, muscle pain or reduced exercise tolerance, and overweight was common after treatment began [12,13]. Post-NBS: one death among 24 screened patients against six among 35 unscreened, three severe decompensations against 23, and no significant difference in general cognitive outcome on neuropsychological testing of 38 survivors [1,13]. Adult life expectancy is normal on adequate fasting avoidance [14]. Pregnancy is well-tolerated with careful intrapartum glucose management [14].",
      references:[
        "Wilcken B et al. Outcome of neonatal screening for medium-chain acyl-CoA dehydrogenase deficiency. Lancet. 2007;369(9555):37–42. PMID 17208640.",
-       "Merritt JL, Chang IJ. Medium-chain acyl-coenzyme A dehydrogenase deficiency. GeneReviews®. 2000 [updated 2019].",
+       "Merritt JL, Chang IJ. Medium-chain acyl-coenzyme A dehydrogenase deficiency. GeneReviews®. 2000 [updated 2019]. PMID 20301597.",
        "Stanley CA et al. Medium-chain acyl-CoA dehydrogenase deficiency in children with non-ketotic hypoglycemia and low carnitine levels. Pediatr Res. 1983;17(11):877–84. PMID 6646897.",
        "Coates PM, Indo Y, Young D, Hale DE, Tanaka K. Immunochemical characterization of variant medium-chain acyl-CoA dehydrogenase in fibroblasts from patients with medium-chain acyl-CoA dehydrogenase deficiency. Pediatr Res. 1992;31(1):34–8. PMID 1594327.",
        "Chace DH et al. Rapid diagnosis of MCAD deficiency by tandem mass spectrometry. Clin Chem. 1997;43(11):2106–13. PMID 9365395.",
@@ -1669,7 +1669,7 @@ export const DISORDERS = [
        "**Sample collected during acute illness** — transient elevations can occur in healthy infants; repeat when well.",
      ],
      references:[
-       "Merritt JL, Chang IJ. Medium-chain acyl-coenzyme A dehydrogenase deficiency. GeneReviews®. 2000 [updated 2019].",
+       "Merritt JL, Chang IJ. Medium-chain acyl-coenzyme A dehydrogenase deficiency. GeneReviews®. 2000 [updated 2019]. PMID 20301597.",
        "Rossi A et al. A generic emergency protocol for patients with inborn errors of metabolism causing fasting intolerance: a retrospective, single-center study and the generation of www.emergencyprotocol.net. J Inherit Metab Dis. 2021;44(5):1124–35. PMID 33844307.",
        "Wilcken B et al. Outcome of neonatal screening for medium-chain acyl-CoA dehydrogenase deficiency. Lancet. 2007;369(9555):37–42. PMID 17208640.",
        "American College of Medical Genetics and Genomics. ACT Sheets and Confirmatory Algorithms — Newborn Screening. ACMG, 2001 (updated periodically). Available at https://www.acmg.net/ACMG/Medical-Genetics-Practice-Resources/ACT_Sheets_and_Algorithms.aspx",
@@ -1850,7 +1850,7 @@ export const DISORDERS = [
      treatment:"Avoid prolonged fasting (age-specific limits as for MCAD). Frequent high-carbohydrate feeds. MCT oil supplementation provides fatty-acid substrate that bypasses the CPT-I block (MCT uses diffusion, not CPT-I). Emergency protocol with IV 10% dextrose for any illness with poor oral intake [2].",
      prognosis:"With fasting-avoidance and emergency regimen: excellent — long-term outcomes are generally normal. Untreated Arctic P479L: increased SIDS risk, especially with co-factors (viral illness, cold exposure, insufficient feeding) [8,9].",
      references:[
-       "Bennett MJ, Santani AB. Carnitine palmitoyltransferase 1A deficiency. GeneReviews®. 2011 [updated 2021].",
+       "Bennett MJ, Santani AB. Carnitine palmitoyltransferase 1A deficiency. GeneReviews®. 2011 [updated 2021]. PMID 20301700.",
        "Spiekerkoetter U et al. Treatment recommendations in long-chain FAO defects. J Inherit Metab Dis. 2009;32(4):498–505. PMID 19452263.",
        "Brown NF et al. Molecular characterization of L-CPT1 deficiency. J Lipid Res. 2001;42(7):1134–42. PMID 11441142.",
        "Collins SA et al. Carnitine palmitoyltransferase 1A P479L prevalence in Nunavut. Int J Circumpolar Health. 2010;69(2):179–92. PMID 20696606.",
@@ -1897,7 +1897,7 @@ export const DISORDERS = [
      prognosis:"Lethal neonatal: death within days-weeks [1]. Infantile hepatocardiomuscular: 50–75% mortality in the first year [1]. Late-onset myopathic: normal life expectancy with activity modification; episodes can be severe enough to require hospitalisation for rhabdomyolysis [2]. Triheptanoin appears promising for severe long-chain FAO including CPT-II [8].",
      references:[
        "Bonnefont JP et al. Carnitine palmitoyltransferase deficiencies. Mol Genet Metab. 1999;68(4):424–40. PMID 10607472.",
-       "Wieser T. Carnitine palmitoyltransferase II deficiency. GeneReviews®. 2004 [updated 2019].",
+       "Wieser T. Carnitine palmitoyltransferase II deficiency. GeneReviews®. 2004 [updated 2019]. PMID 20301431.",
        "Rinaldo P et al. Fatty acid oxidation disorders. Annu Rev Physiol. 2002;64:477–502. PMID 11826276.",
        "Miller MJ et al. Laboratory analysis of acylcarnitines, 2020 update: a technical standard of the American College of Medical Genetics and Genomics (ACMG). Genet Med. 2021;23(2):249–58. PMID 33071282.",
        "de Sain-van der Velden MGM et al. Differences between acylcarnitine profiles in plasma and bloodspots. Mol Genet Metab. 2013;110(1–2):116–21. PMID 23639448.",
@@ -1924,7 +1924,7 @@ export const DISORDERS = [
        "**Maternal heterozygosity** — passive AC pattern in well infant.",
      ],
      references:[
-       "Wieser T. Carnitine palmitoyltransferase II deficiency. GeneReviews®. 2004 [updated 2019].",
+       "Wieser T. Carnitine palmitoyltransferase II deficiency. GeneReviews®. 2004 [updated 2019]. PMID 20301431.",
        "Bonnefont JP et al. Carnitine palmitoyltransferases 1 and 2: biochemical, molecular and medical aspects. Mol Aspects Med. 2004;25(5–6):495–520. PMID 15363638.",
        "Iacobazzi V et al. Molecular and functional analysis of SLC25A20 mutations causing carnitine-acylcarnitine translocase deficiency. Hum Mutat. 2004;24(4):312–20. PMID 15365988.",
        "American College of Medical Genetics and Genomics. ACT Sheets and Confirmatory Algorithms — Newborn Screening. ACMG, 2001 (updated periodically). Available at https://www.acmg.net/ACMG/Medical-Genetics-Practice-Resources/ACT_Sheets_and_Algorithms.aspx",
@@ -2726,7 +2726,7 @@ export const DISORDERS = [
      treatment:"No disease-modifying therapy established. Supportive care for feeding, seizures, spasticity, airway management. Lithium, glyceryl triacetate (acetate supplementation) and ketogenic diet have been trialled in small series with no proven benefit [2,10]. GENE THERAPY is actively in development — AAV9-ASPA trials have shown safety and some biochemical response in phase I/II studies; longer-term clinical outcome data awaited [11,12]. Physiotherapy, speech therapy, special-needs education.",
      prognosis:"Classical infantile form: median survival 10 years or less; death usually from intercurrent infection or respiratory compromise. Rare juvenile-onset and adult-onset forms have slower progression but ultimately also neurodegenerative. Gene therapy offers the first disease-modifying prospect — outcomes of ongoing trials may shift the prognostic landscape [11,12].",
      references:[
-       "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021].",
+       "Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021]. PMID 20301412.",
        "Hoshino H, Kubota M. Canavan disease: clinical features and recent advances in research. Pediatr Int. 2014;56(4):477–83. PMID 24977939.",
        "Canavan MM. Schilder's encephalitis periaxialis diffusa. Arch Neurol Psychiatry. 1931;25:299–308.",
        "Matalon R et al. Aspartoacylase deficiency and N-acetylaspartic aciduria in patients with Canavan disease. Am J Med Genet. 1988;29(2):463–71. PMID 3354621.",

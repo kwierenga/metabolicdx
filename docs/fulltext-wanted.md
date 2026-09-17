@@ -4,7 +4,7 @@ Regenerate with `node scripts/fetch-fulltext.mjs --wanted --md` rather than
 editing. The ranking moves as claims are settled and as papers arrive, and a
 stale list sends you after something already in hand.
 
-Full text is held for **214 of 861** cited papers. That covers the PMC
+Full text is held for **216 of 868** cited papers. That covers the PMC
 open-access set, every GeneReviews chapter (free on Bookshelf, fetched with
 `--genereviews`), and the papers already stored under `docs/`.
 
@@ -83,7 +83,7 @@ rather work in a spreadsheet.
 
 ## No PMID to look them up by
 
-**59** citations carry claims and have no PubMed id at all, so they never
+**52** citations carry claims and have no PubMed id at all, so they never
 appear in the ranking above. Most are book chapters, which are not indexed;
 a few are GeneReviews chapters whose citation did not resolve, and those are
 free on Bookshelf; the rest are journal articles the resolver could not
@@ -99,13 +99,9 @@ you have it.
 | 7 | book chapter (library) | CBS | Mudd SH et al. Disorders of transsulfuration. In: Scriver et al., OMMBID, ch. 88. |
 | 7 | book chapter (library) | HARTNUP | Levy HL. Hartnup disorder. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 4957–69. |
 | 6 | book chapter (library) | HHH, OAT | Valle D, Simell O. The hyperornithinemias. In: Scriver et al., OMMBID, ch. 83. |
-| 5 | GeneReviews (free on Bookshelf) | MCAD | Merritt JL, Chang IJ. Medium-chain acyl-coenzyme A dehydrogenase deficiency. GeneReviews®. 2000 [updated 2019]. |
-| 5 | GeneReviews (free on Bookshelf) | CPT2 | Wieser T. Carnitine palmitoyltransferase II deficiency. GeneReviews®. 2004 [updated 2019]. |
 | 5 | book chapter (library) | HYDROXYPROLINEMIA | Phang JM et al. Disorders of proline and hydroxyproline metabolism. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. McGraw-Hill; 2001. p. 1821–38. |
 | 5 | book chapter (library) | SARC | Scott CR. Sarcosinaemia. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. McGraw-Hill; 2001. p. 2057–60. |
 | 4 | book chapter (library) | PTPS, GTPCH1 | Blau N et al. Disorders of tetrahydrobiopterin and related biogenic amines. In: Scriver et al., OMMBID. |
-| 4 | GeneReviews (free on Bookshelf) | CAVA | Carbonic Anhydrase VA Deficiency. In: Adam MP et al., eds. GeneReviews®. Seattle: University of Washington; 1993–2024. |
-| 4 | GeneReviews (free on Bookshelf) | LPI | Sebastio G et al. Lysinuric protein intolerance. GeneReviews®. 2006 [updated 2021]. |
 | 4 | book chapter (library) | HAWKINS | Chakrapani A et al. Disorders of tyrosine metabolism. In: Saudubray JM et al., eds. Inborn Metabolic Diseases. 6th ed. Springer; 2016. p. 265–76. |
 | 4 | journal article (no PMID resolved) | HYPERLYS | Dancis J et al. The familial hyperlysinaemias. J Pediatr. 1983;103(5):689–95. |
 | 4 | journal article (no PMID resolved) | GA3 | Knerr I et al. Glutaric aciduria type III: a distinct non-disease? Dev Med Child Neurol. 2002;44(11):787–91. |
@@ -120,14 +116,11 @@ you have it.
 | 3 | journal article (no PMID resolved) | HISTID | Taylor RG et al. Histidinaemia: an update. Mol Genet Metab. 2005;85(1):1–13. |
 | 3 | book chapter (library) | HISTID | Scriver CR, Levy HL. Histidinaemia part 2: impact on laboratory medicine and public health. N Engl J Med. 1983;308(16):993–7. |
 | 3 | book chapter (library) | BALA | Scriver CR, Perry TL. Disorders of β-alanine and related compounds. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. McGraw-Hill; 2001. p. 2079–85. |
-| 3 | GeneReviews (free on Bookshelf) | CANAVAN | Matalon R, Michals-Matalon K. Canavan disease. GeneReviews®. 1999 [updated 2021]. |
 | 3 | book chapter (library) | GSD1A | Chen YT, Burchell A. Glycogen storage diseases. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 1521–51. |
 | 2 | journal article (no PMID resolved) | CITR1 | Häberle J et al. Citrullinemia type I: clinical findings and treatment. Eur J Pediatr. 2002;161 Suppl 2:S96–102. |
 | 2 | book chapter (library) | GATM | Stockler-Ipsiroglu S, Schulze A. Creatine disorders. In: Sarafoglou et al., Pediatric Endocrinology and IEM. 2nd ed. |
 | 2 | journal article (no PMID resolved) | SLC6A8 | Dover GJ et al. Cyclocreatine: first-in-human trial for SLC6A8 deficiency. J Inherit Metab Dis. 2022. |
-| 2 | GeneReviews (free on Bookshelf) | MMA | Manoli I, Venditti CP. Methylmalonic acidemia. GeneReviews®. 2005 [updated 2022]. |
 | 2 | book chapter (library) | GA1 | Goodman SI, Frerman FE. Organic acidemias due to defects in lysine oxidation. In: Scriver et al., OMMBID, ch. 92. |
-| 2 | GeneReviews (free on Bookshelf) | CPT1 | Bennett MJ, Santani AB. Carnitine palmitoyltransferase 1A deficiency. GeneReviews®. 2011 [updated 2021]. |
 | 2 | book chapter (library) | SULFOX, MOCO | Johnson JL, Duran M. Molybdenum cofactor deficiency and isolated sulfite oxidase deficiency. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 3163–77. |
 | 2 | journal article (no PMID resolved) | AKGDH | Bao X et al. Clinical and molecular studies of Chinese patients with mitochondrial α-ketoglutarate dehydrogenase deficiency. Mol Genet Metab Rep. 2014;1:90–4. |
 | 2 | book chapter (library) | TCN2 | Rosenblatt DS. Inborn errors of folate and cobalamin metabolism. In: Scriver CR et al., eds. The Metabolic and Molecular Bases of Inherited Disease. 8th ed. 2001. p. 3897–933. |
