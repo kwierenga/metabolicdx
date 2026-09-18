@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-17T01:13:37.258Z",
+  "generated": "2026-09-18T20:24:19.499Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -2984,7 +2984,7 @@
       "judged": [
         {
           "pmid": "11891283",
-          "citation": "Liu H et al. Genetic variation at the 22q11.2 PRODH locus deregulates translation in schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.",
+          "citation": "Liu H et al. Genetic variation at the 22q11 PRODH2/DGCR6 locus presents an unusual pattern and increases susceptibility to schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.",
           "evidence": "abstract",
           "claim_id": "HYPER_PRO.introduction.1",
           "verdict": "partial",
@@ -3005,34 +3005,6 @@
       ]
     },
     {
-      "id": "HYPER_PRO.molecular.1",
-      "disorder": "HYPER_PRO",
-      "text": "Over 20 variants described; some hypomorphic variants (p.Leu441Pro, p.Arg453Cys) are common in schizophrenia cohorts [3,5]. 22q11.2 deletion patients have haploinsufficiency.",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "11891283",
-          "citation": "Liu H et al. Genetic variation at the 22q11.2 PRODH locus deregulates translation in schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.",
-          "evidence": "abstract",
-          "claim_id": "HYPER_PRO.molecular.1",
-          "verdict": "partial",
-          "reason": "The abstract reports pseudogene-like missense variants at conserved residues that may impair enzyme function in schizophrenia samples, but gives neither a variant count (>20) nor the specific p.Leu441Pro/p.Arg453Cys changes.",
-          "quote": "Several of the pseudogene-like variants we identified result in missense changes at conserved residues and may prevent synthesis of a fully functional enzyme.",
-          "ctx": "98207562712d"
-        },
-        {
-          "pmid": "15662599",
-          "citation": "Bender HU et al. Functional consequences of PRODH missense mutations. Am J Hum Genet. 2005;76(3):409–20.",
-          "evidence": "abstract",
-          "claim_id": "HYPER_PRO.molecular.1",
-          "verdict": "partial",
-          "reason": "The abstract supports that L441P and R453C are hypomorphic (severe POX reduction) alleles associated with schizophrenia and that PRODH lies in the 22q11 deleted region with large deletions causing severe hyperprolinemia, but it reports \"at least 16\" missense mutations rather than the claim's \"over 20 variants,\" and does not establish these alleles as common in schizophrenia cohorts.",
-          "quote": "At least 16 PRODH missense mutations have been identified in studies of type I hyperprolinemia (HPI) and schizophrenia",
-          "ctx": "98207562712d"
-        }
-      ]
-    },
-    {
       "id": "HYPER_PRO.presentation.0",
       "disorder": "HYPER_PRO",
       "text": "Heterogeneous: from incidental biochemical finding to intellectual disability, seizures, psychiatric illness (schizophrenia) [3,4]. 22q11.2 deletion syndrome patients with PRODH variant on the remaining allele have more severe neuropsychiatric phenotype than those without.",
@@ -3040,7 +3012,7 @@
       "judged": [
         {
           "pmid": "11891283",
-          "citation": "Liu H et al. Genetic variation at the 22q11.2 PRODH locus deregulates translation in schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.",
+          "citation": "Liu H et al. Genetic variation at the 22q11 PRODH2/DGCR6 locus presents an unusual pattern and increases susceptibility to schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.",
           "evidence": "abstract",
           "claim_id": "HYPER_PRO.presentation.0",
           "verdict": "partial",
@@ -3068,7 +3040,7 @@
       "judged": [
         {
           "pmid": "11891283",
-          "citation": "Liu H et al. Genetic variation at the 22q11.2 PRODH locus deregulates translation in schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.",
+          "citation": "Liu H et al. Genetic variation at the 22q11 PRODH2/DGCR6 locus presents an unusual pattern and increases susceptibility to schizophrenia. Proc Natl Acad Sci USA. 2002;99(6):3717–22.",
           "evidence": "abstract",
           "claim_id": "HYPER_PRO.prognosis.1",
           "verdict": "partial",
@@ -4193,34 +4165,6 @@
       ]
     },
     {
-      "id": "OTC.presentation.0",
-      "disorder": "OTC",
-      "text": "Classic neonatal male: well for 24–48 h, then progressive vomiting, tachypnoea (respiratory alkalosis from central ammonia stimulation), lethargy, hypothermia, seizures, coma — mortality pre-treatment approaches 100% [1,14].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "30982989",
-          "citation": "Häberle J et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis. 2019;42(6):1192–230.",
-          "evidence": "abstract",
-          "claim_id": "OTC.presentation.0",
-          "verdict": "partial",
-          "reason": "The abstract confirms neonatal-onset hyperammonaemia (~50% of UCDs) that can lead to intellectual disability or death, but does not give the specific 24–48 h symptom sequence or near-100% untreated mortality.",
-          "quote": "UCDs cause hyperammonemia of neonatal (~50%) or late onset that can lead to intellectual disability or death, even while effective therapies do exist",
-          "ctx": "db7ac01f77db"
-        },
-        {
-          "pmid": "17538087",
-          "citation": "Enns GM et al. Survival after treatment with phenylacetate and benzoate for urea-cycle disorders. N Engl J Med. 2007;356(22):2282–92.",
-          "evidence": "abstract",
-          "claim_id": "OTC.presentation.0",
-          "verdict": "partial",
-          "reason": "The abstract's reference to \"historically lethal urea-cycle enzyme defects\" and poor neonatal survival loosely backs the near-total pre-treatment mortality, but none of the described clinical sequence (24–48 h well period, vomiting, tachypnoea/respiratory alkalosis, hypothermia, seizures, coma onset) is characterised, and no pre-treatment mortality figure is given.",
-          "quote": "The combination of intravenous sodium phenylacetate and sodium benzoate has been shown to lower plasma ammonium levels and improve survival in small cohorts of patients with historically lethal urea-cycle enzyme defects.",
-          "ctx": "db7ac01f77db"
-        }
-      ]
-    },
-    {
       "id": "OTC.presentation.2",
       "disorder": "OTC",
       "text": "Symptomatic heterozygous female: protein aversion + migraine + occasional hyperammonaemic episodes; peripartum crisis (catabolism of pregnancy) is a classic presentation [4,16].",
@@ -4329,70 +4273,6 @@
           "reason": "The abstract documents that liver transplantation for UCDs is commonly performed in early childhood with high patient survival, but it does not identify OTC deficiency specifically nor characterise transplantation as curative, and in fact reports persistent morbidity.",
           "quote": "the 5-year patient survival rate was 88% for children with UCDs/OAs who were <2 years old at transplant and 99% for children who were ≥2 years old at transplant",
           "ctx": "bcc71ba66a02"
-        }
-      ]
-    },
-    {
-      "id": "OTC.prognosis.0",
-      "disorder": "OTC",
-      "text": "Untreated neonatal onset: >90% mortality; survivors have severe disability [14].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "17538087",
-          "citation": "Enns GM et al. Survival after treatment with phenylacetate and benzoate for urea-cycle disorders. N Engl J Med. 2007;356(22):2282–92.",
-          "evidence": "abstract",
-          "claim_id": "OTC.prognosis.0",
-          "verdict": "partial",
-          "reason": "The abstract addresses neonatal-onset survival and calls the defects \"historically lethal\" (with only 38% episode survival in neonates with ammonium >1000 µmol/L), but it reports treated outcomes and provides neither the >90% untreated mortality figure nor any data on neurodevelopmental disability in survivors.",
-          "quote": "Patients less than 30 days of age with a peak ammonium level above 1000 micromol per liter (1804 microg per deciliter) were least likely to survive a hyperammonemic episode (38%, P&lt;0.001).",
-          "ctx": "7c028ffa0de9"
-        }
-      ]
-    },
-    {
-      "id": "OTC.prognosis.1",
-      "disorder": "OTC",
-      "text": "Neonatal-onset survivors on modern therapy + early liver transplant can have reasonable neurological outcomes but still suffer from early episode-related injury [19,20].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "24136671",
-          "citation": "Perito ER et al. Pediatric liver transplantation for urea cycle disorders and organic acidemias: United Network for Organ Sharing data for 2002-2012. Liver Transpl. 2014;20(1):89–99.",
-          "evidence": "abstract",
-          "claim_id": "OTC.prognosis.1",
-          "verdict": "partial",
-          "reason": "The abstract supports persistent neurodevelopmental deficits after transplantation in UCD patients but does not support that early transplantation yields reasonable neurological outcomes (it suggests younger age may increase morbidity) and gives no ammonia-IQ relationship.",
-          "quote": "a younger age may increase posttransplant morbidity",
-          "ctx": "52e746ea776b"
-        },
-        {
-          "pmid": "12684900",
-          "citation": "Bachmann C. Outcome and survival of 88 patients with urea cycle disorders. Eur J Pediatr. 2003;162(6):410–6.",
-          "evidence": "abstract",
-          "claim_id": "OTC.prognosis.1",
-          "verdict": "partial",
-          "reason": "The abstract supports that neonates on more extensive modern therapy survive more often yet suffer neurocognitive injury related to hyperammonaemic episodes, but it says nothing about early liver transplantation.",
-          "quote": "While survival was improved in neonates receiving extensive therapy, there was an increased risk of mental retardation on long-term follow-up in this group.",
-          "ctx": "52e746ea776b"
-        }
-      ]
-    },
-    {
-      "id": "OTC.prognosis.4",
-      "disorder": "OTC",
-      "text": "IQ correlates with peak neonatal ammonia × duration [20].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12684900",
-          "citation": "Bachmann C. Outcome and survival of 88 patients with urea cycle disorders. Eur J Pediatr. 2003;162(6):410–6.",
-          "evidence": "abstract",
-          "claim_id": "OTC.prognosis.4",
-          "verdict": "partial",
-          "reason": "The abstract links cognitive outcome to peak/initial plasma ammonia concentrations but explicitly found timing/delay measures unhelpful, so the \"× duration\" component is not carried.",
-          "quote": "when plasma ammonia concentrations exceeded 300 micromol/l initially or 480 micromol/l at its peak, none of the patients had a normal cognitive outcome",
-          "ctx": "7f5cd817e67f"
         }
       ]
     },
@@ -4689,24 +4569,6 @@
       ]
     },
     {
-      "id": "CPS1.prognosis.1",
-      "disorder": "CPS1",
-      "text": "Aggressive modern therapy: reduced mortality but cognitive outcomes correlate with peak neonatal ammonia × duration — substantial residual disability in many survivors [11].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12684900",
-          "citation": "Bachmann C. Outcome and survival of 88 patients with urea cycle disorders. Eur J Pediatr. 2003;162(6):410–6.",
-          "evidence": "abstract",
-          "claim_id": "CPS1.prognosis.1",
-          "verdict": "partial",
-          "reason": "The abstract supports improved survival with more extensive therapy alongside frequent residual cognitive impairment tied to ammonia levels, but the duration component of the correlation is absent (delay/timing measures were reported as non-predictive) and results are for urea cycle disorders generally rather than CPS1.",
-          "quote": "the time at which the first symptoms of hyperammonaemia appeared, the age at diagnosis, and the time of delay in diagnosis after the first symptom were not helpful in predicting outcome",
-          "ctx": "2b4a21529459"
-        }
-      ]
-    },
-    {
       "id": "NAGS.summary.2",
       "disorder": "NAGS",
       "text": "Prompt NCG administration is both diagnostic and curative [1,2].",
@@ -4943,24 +4805,6 @@
           "reason": "The abstract confirms the 2014 identification of CA5A alterations in children with hyperammonemia of unexplained origin, but it does not state that whole-exome sequencing was the method used, nor mention the OMIM number.",
           "quote": "presented with lethargy, hyperlactatemia, and hyperammonemia of unexplained origin during the neonatal period and early childhood. We identified and validated three different CA5A alterations",
           "ctx": "acad89d6c04c"
-        }
-      ]
-    },
-    {
-      "id": "CAVA.introduction.2",
-      "disorder": "CAVA",
-      "text": "Presentation is almost always before 2 years of age; adult-onset disease has not been described [2,3].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "26913920",
-          "citation": "Diez-Fernandez C et al. Defective hepatic bicarbonate production due to carbonic anhydrase VA deficiency leads to early-onset life-threatening metabolic crisis. Genet Med. 2016;18(10):991–1000.",
-          "evidence": "abstract",
-          "claim_id": "CAVA.introduction.2",
-          "verdict": "partial",
-          "reason": "The abstract establishes early-onset presentation but gives no age cut-off of 2 years and makes no statement about the absence of adult-onset disease.",
-          "quote": "CAVA deficiency is a differential diagnosis of early-onset and life-threatening metabolic crisis",
-          "ctx": "621b4b0badba"
         }
       ]
     },
@@ -8137,34 +7981,6 @@
           "reason": "The abstract addresses molecular genetics and genotype-phenotype correlation, not dietary management, carnitine dosing or emergency protocols.",
           "quote": "",
           "ctx": "cabc678ed17b"
-        }
-      ]
-    },
-    {
-      "id": "HMGCL.prognosis.0",
-      "disorder": "HMGCL",
-      "text": "Pre-NBS mortality 20% at first crisis; ~50% developmental delay in survivors [1,8].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "19177531",
-          "citation": "Menao S et al. Clinical, biochemical and molecular study of 24 patients with HMG-CoA lyase deficiency. Hum Mutat. 2009;30(8):E520–40.",
-          "evidence": "abstract",
-          "claim_id": "HMGCL.prognosis.0",
-          "verdict": "not-assessable",
-          "reason": "The abstract reports genotypes and enzyme activity only, with no mortality or developmental outcome data.",
-          "quote": "",
-          "ctx": "a4372e5a9a59"
-        },
-        {
-          "pmid": "28583327",
-          "citation": "Grünert SC et al. 3-Hydroxy-3-methylglutaryl-CoA lyase deficiency: clinical presentation and outcome. Orphanet J Rare Dis. 2017;12(1):162.",
-          "evidence": "abstract",
-          "claim_id": "HMGCL.prognosis.0",
-          "verdict": "partial",
-          "reason": "The abstract supports ~50% developmental delay in survivors, but reports only that 6/37 patients (~16%) died prior to data collection, without establishing a 20% mortality at first crisis.",
-          "quote": "Six patients died prior to data collection. Long-term neurological complications were common. Half of the patients had a normal cognitive development while the remainder showed psychomotor deficits.",
-          "ctx": "a4372e5a9a59"
         }
       ]
     },
@@ -14609,24 +14425,6 @@
       ]
     },
     {
-      "id": "HAWKINS.biochemistry.4",
-      "disorder": "HAWKINS",
-      "text": "Ascorbate level may be low from the 'swimming-pool' odour's sulphur chemistry draining reduced glutathione/ascorbate [2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "20677779",
-          "citation": "Brownlee JM et al. Product analysis and inhibition studies of a causative Asn to Ser variant of 4-hydroxyphenylpyruvate dioxygenase suggest a simple route to the treatment of Hawkinsinuria. Biochemistry. 2010;49(33):7218–26.",
-          "evidence": "abstract",
-          "claim_id": "HAWKINS.biochemistry.4",
-          "verdict": "unsupported",
-          "reason": "The abstract engages the sulphur chemistry of hawkinsin formation (Michael addition of quinolacetic acid with cellular thiols) but never mentions ascorbate, ascorbate depletion, or the urinary odour compound.",
-          "quote": "Quinolacetic acid reacts readily by Michael addition with cellular thiols to form a two-electron oxidized form of hawkinsin.",
-          "ctx": "d6bd43ba0d26"
-        }
-      ]
-    },
-    {
       "id": "HAWKINS.molecular.1",
       "disorder": "HAWKINS",
       "text": "The canonical mutation is c.97G>A (p.Ala33Thr) — a missense change producing a structurally altered HPD that mis-channels its substrate [4,5].",
@@ -15739,212 +15537,6 @@
           "reason": "The abstract addresses pathophysiology and blood-brain-barrier asparagine transfer but says nothing about timing of diagnosis or antenatal/early treatment.",
           "quote": "",
           "ctx": "4ddd9e5ef621"
-        }
-      ]
-    },
-    {
-      "id": "GABAT.summary.2",
-      "disorder": "GABAT",
-      "text": "Severe, often fatal in infancy [1,2].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12743223",
-          "citation": "Pearl PL et al. Clinical spectrum of succinic semialdehyde dehydrogenase deficiency. Neurology. 2003;60(9):1413–7.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.summary.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract describes SSADH deficiency, a distinct disorder with mild-moderate phenotype, and says nothing about the severity or infantile lethality of GABA-transaminase deficiency.",
-          "quote": "Clinical findings include mild-moderate mental retardation, disproportionate language dysfunction, hypotonia, hyporeflexia, autistic behaviors, seizures, and hallucinations.",
-          "ctx": "bf324bab94a7"
-        },
-        {
-          "pmid": "20052547",
-          "citation": "Tsuji M et al. A new case of GABA transaminase deficiency facilitated by proton MR spectroscopy. J Inherit Metab Dis. 2010;33(1):85–90.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.summary.2",
-          "verdict": "partial",
-          "reason": "The abstract documents a severe phenotype (profound psychomotor retardation, intractable seizures) but says nothing about death or fatality in infancy.",
-          "quote": "a Japanese female infant with severe psychomotor retardation and recurrent episodic lethargy with intractable seizures",
-          "ctx": "bf324bab94a7"
-        }
-      ]
-    },
-    {
-      "id": "GABAT.introduction.0",
-      "disorder": "GABAT",
-      "text": "GABA-transaminase deficiency (OMIM #613163) was first described by Jaeken et al. in 1984 [3].",
-      "status": "supported",
-      "judged": [
-        {
-          "pmid": "6148708",
-          "citation": "Jaeken J et al. γ-Aminobutyric acid-transaminase deficiency: a newly recognised inborn error of neurotransmitter metabolism. Neuropediatrics. 1984;15(3):165–9.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.introduction.0",
-          "verdict": "supports",
-          "reason": "The 1984 paper explicitly states it is the first report of GABA-transaminase deficiency, matching the first-description claim.",
-          "quote": "This appears to be the first report of gamma-aminobutyric acid-transaminase deficiency.",
-          "ctx": "2eef2edad2b1"
-        }
-      ]
-    },
-    {
-      "id": "GABAT.biochemistry.6",
-      "disorder": "GABAT",
-      "text": "Targeted brain MR spectroscopy can demonstrate elevated GABA in vivo [2,4].",
-      "status": "supported",
-      "judged": [
-        {
-          "pmid": "20052547",
-          "citation": "Tsuji M et al. A new case of GABA transaminase deficiency facilitated by proton MR spectroscopy. J Inherit Metab Dis. 2010;33(1):85–90.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.biochemistry.6",
-          "verdict": "supports",
-          "reason": "The abstract explicitly reports quantitative 1H-MRS demonstrating elevated brain GABA in vivo and endorses it as a detection tool.",
-          "quote": "(1)H-MRS analysis revealed an elevated GABA concentration in the basal ganglia (2.9 mmol/l)",
-          "ctx": "b3e7409e9ffe"
-        },
-        {
-          "pmid": "28411234",
-          "citation": "Koenig MK et al. Phenotype of GABA-transaminase deficiency. Neurology. 2017;88(20):1919–24.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.biochemistry.6",
-          "verdict": "not-assessable",
-          "reason": "The abstract describes clinical phenotype, EEG findings, and flumazenil treatment but says nothing about MR spectroscopy or in vivo GABA measurement.",
-          "quote": "",
-          "ctx": "b3e7409e9ffe"
-        }
-      ]
-    },
-    {
-      "id": "GABAT.molecular.1",
-      "disorder": "GABAT",
-      "text": "Few pathogenic variants described; most are severe loss-of-function [5,6].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "25738457",
-          "citation": "Besse A et al. The GABA transaminase, ABAT, is essential for mitochondrial nucleoside metabolism. Cell Metab. 2015;21(3):417–27.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.molecular.1",
-          "verdict": "unsupported",
-          "reason": "The abstract reports a single homozygous missense ABAT mutation in one family but says nothing about the overall number of described pathogenic variants or that most are severe loss-of-function.",
-          "quote": "We describe a family with encephalomyopathic MDS caused by a homozygous missense mutation in ABAT",
-          "ctx": "61beddeefe65"
-        },
-        {
-          "pmid": "10407778",
-          "citation": "Medina-Kauwe LK et al. 4-Aminobutyrate aminotransferase (GABA-transaminase) deficiency. J Inherit Metab Dis. 1999;22(4):414–27.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.molecular.1",
-          "verdict": "partial",
-          "reason": "The abstract supports that very few variants are known (one missense in the index proband plus a probable 3' deletion in the second patient), but it does not establish that most are severe loss-of-function — the characterized R220K mutant retained 25% of wild-type Vmax.",
-          "quote": "Expression of the mutant in E. coli, followed by isolation and enzymatic characterization of the recombinant protein, revealed an enzyme whose Vmax was reduced to 25% of wild-type activity.",
-          "ctx": "61beddeefe65"
-        }
-      ]
-    },
-    {
-      "id": "GABAT.presentation.3",
-      "disorder": "GABAT",
-      "text": "MRI may show leukoencephalopathy with cerebral atrophy [1,2,5].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "12743223",
-          "citation": "Pearl PL et al. Clinical spectrum of succinic semialdehyde dehydrogenase deficiency. Neurology. 2003;60(9):1413–7.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.presentation.3",
-          "verdict": "not-assessable",
-          "reason": "The only neuroimaging described is symmetric globus pallidus T2 hyperintensity in SSADH deficiency patients, not leukoencephalopathy with cerebral atrophy in GABA-transaminase deficiency.",
-          "quote": "Brain MRI performed in five patients at the authors' institution revealed symmetric increased T2 signal in the globus pallidi.",
-          "ctx": "21a8fe35e073"
-        },
-        {
-          "pmid": "20052547",
-          "citation": "Tsuji M et al. A new case of GABA transaminase deficiency facilitated by proton MR spectroscopy. J Inherit Metab Dis. 2010;33(1):85–90.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.presentation.3",
-          "verdict": "unsupported",
-          "reason": "The abstract addresses neuroimaging in this patient but reports only MRS metabolite findings, with no mention of leukoencephalopathy or cerebral atrophy.",
-          "quote": "Neuroimaging was performed at the first episode of lethargy.",
-          "ctx": "21a8fe35e073"
-        },
-        {
-          "pmid": "25738457",
-          "citation": "Besse A et al. The GABA transaminase, ABAT, is essential for mitochondrial nucleoside metabolism. Cell Metab. 2015;21(3):417–27.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.presentation.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract addresses ABAT's biochemical role and mtDNA depletion, with no mention of neuroimaging findings such as leukoencephalopathy or cerebral atrophy.",
-          "quote": "",
-          "ctx": "21a8fe35e073"
-        }
-      ]
-    },
-    {
-      "id": "GABAT.treatment.4",
-      "disorder": "GABAT",
-      "text": "Palliative and supportive care for the overwhelming majority of patients [1,2,7].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12743223",
-          "citation": "Pearl PL et al. Clinical spectrum of succinic semialdehyde dehydrogenase deficiency. Neurology. 2003;60(9):1413–7.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.treatment.4",
-          "verdict": "not-assessable",
-          "reason": "The abstract addresses management framing for SSADH deficiency only and does not discuss palliative/supportive care in GABA-transaminase deficiency.",
-          "quote": "SSADH deficiency is an under-recognized, potentially manageable neurometabolic disorder.",
-          "ctx": "7d058570034c"
-        },
-        {
-          "pmid": "20052547",
-          "citation": "Tsuji M et al. A new case of GABA transaminase deficiency facilitated by proton MR spectroscopy. J Inherit Metab Dis. 2010;33(1):85–90.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.treatment.4",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns diagnosis by MRS, enzyme and molecular studies and does not discuss management or palliative/supportive care.",
-          "quote": "",
-          "ctx": "7d058570034c"
-        },
-        {
-          "pmid": "25485164",
-          "citation": "Parviz M et al. Disorders of GABA metabolism: SSADH and GABA-transaminase deficiencies. J Pediatr Epilepsy. 2014;3(4):217–27.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.treatment.4",
-          "verdict": "not-assessable",
-          "reason": "The abstract describes clinical presentations of SSADH and GABA-transaminase deficiency but says nothing about treatment, prognosis, or palliative/supportive care.",
-          "quote": "",
-          "ctx": "7d058570034c"
-        }
-      ]
-    },
-    {
-      "id": "GABAT.prognosis.1",
-      "disorder": "GABAT",
-      "text": "Rare surviving patients have profound disability and persistent seizures [1,2].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "12743223",
-          "citation": "Pearl PL et al. Clinical spectrum of succinic semialdehyde dehydrogenase deficiency. Neurology. 2003;60(9):1413–7.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.prognosis.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract reports outcomes in SSADH deficiency and provides no information on survival or disability in GABA-transaminase deficiency.",
-          "quote": "Ages ranged from 1 to 21 years at diagnosis.",
-          "ctx": "3a438461db43"
-        },
-        {
-          "pmid": "20052547",
-          "citation": "Tsuji M et al. A new case of GABA transaminase deficiency facilitated by proton MR spectroscopy. J Inherit Metab Dis. 2010;33(1):85–90.",
-          "evidence": "abstract",
-          "claim_id": "GABAT.prognosis.1",
-          "verdict": "partial",
-          "reason": "The abstract describes a surviving (third-ever reported) patient with profound psychomotor retardation and intractable seizures, but does not itself characterise survival as rare or address mortality.",
-          "quote": "We report on a third case, a Japanese female infant with severe psychomotor retardation and recurrent episodic lethargy with intractable seizures",
-          "ctx": "3a438461db43"
         }
       ]
     },
