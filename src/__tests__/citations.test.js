@@ -24,6 +24,7 @@ import { DISORDERS } from "../disorders.js";
 import { CITATION_PROVENANCE } from "../citation-provenance.js";
 import { citationKey, citedPmid, citationText, citationStatus, CITATION_LEVELS } from "../citations.js";
 import { parseCitation, ecitEligible, ecitQuery, cacheKey } from "../../scripts/parse-citations.mjs";
+import { stampedTitleMismatches } from "../../scripts/check-stamped-titles.mjs";
 
 /** Every reference string in the knowledge base, with where it lives. */
 const allRefs = () => {
@@ -369,5 +370,39 @@ describe("knowledge-base citation health", () => {
     // reappear anywhere in the narratives either.
     const src = DISORDERS.flatMap((d) => [...(d.narrative?.references ?? []), ...(d.followUp?.references ?? [])]).join("\n");
     for (const ghost of ["Norris et al", "Norris DA"]) expect(src).not.toContain(ghost);
+  });
+});
+
+// ── the check that was missing ──────────────────────────────────────────────
+// A citation carrying "PMID nnnnnnnn." inline reads as verified everywhere
+// downstream, and until now nothing looked at it again. Three defects came
+// through that gap in one week, and the commonest shape is a real paper wearing
+// an invented title: HYPER_PRO cited Liu 2002 with the correct PMID, journal,
+// volume and pages under a title the paper does not have.
+//
+// Every cited abstract is already in .abstract-cache.json, so this costs a file
+// read and no network. It is deliberately lenient — half the distinctive words
+// is a pass — because the job is catching a citation that names a DIFFERENT
+// paper, not policing wording.
+describe("stamped citations name the paper their PMID resolves to", () => {
+  const { counts, mismatches } = stampedTitleMismatches();
+
+  // 26 left. It was 27 when the check was written on 2026-09-18, and the first
+  // one repaired was the worst: HAWKINS cited a PMID belonging to a paper on
+  // congenital adrenal hyperplasia and sudden infant death. This ceiling
+  // ratchets DOWN as they are repaired and must never be raised to admit a new
+  // one — a mismatch is either a wrong title to correct or a wrong paper to
+  // replace, and both are defects.
+  const MISMATCH_CEILING = 26;
+
+  it(`checks every stamped citation it can (${counts.checked} of ${counts.stamped})`, () => {
+    // If this collapses, the abstract cache has been lost or emptied, and the
+    // check above would pass by having nothing left to examine.
+    expect(counts.checked).toBeGreaterThan(700);
+  });
+
+  it(`has no more than ${MISMATCH_CEILING} citations whose title is not the paper's`, () => {
+    const where = mismatches.map((m) => `${m.disorder} PMID ${m.pmid}: "${m.cited}" is really "${m.known}"`);
+    expect(mismatches.length, `\n  - ${where.join("\n  - ")}\n`).toBeLessThanOrEqual(MISMATCH_CEILING);
   });
 });
