@@ -4,12 +4,12 @@ Regenerate with `node scripts/fetch-fulltext.mjs --wanted --md` rather than
 editing. The ranking moves as claims are settled and as papers arrive, and a
 stale list sends you after something already in hand.
 
-Full text is held for **228 of 867** cited papers. That covers the PMC
+Full text is held for **229 of 867** cited papers. That covers the PMC
 open-access set, every GeneReviews chapter (free on Bookshelf, fetched with
 `--genereviews`), and the papers already stored under `docs/`.
 
-**573** closed-access papers still carry at least one claim no abstract could
-confirm. The top 30 below would settle **110** of them.
+**572** closed-access papers still carry at least one claim no abstract could
+confirm. The top 30 below would settle **108** of them.
 
 ## How to feed one back
 
@@ -35,7 +35,6 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 
 | ✓ | Claims | PMID | Author | Journal | Disorders |
 |---|---:|---|---|---|---|
-| ☐ | 5 | [11826276](https://pubmed.ncbi.nlm.nih.gov/11826276/) | Rinaldo P 2002 | Annu Rev Physiol | MCAD, CPT2 |
 | ☐ | 5 | [17393751](https://pubmed.ncbi.nlm.nih.gov/17393751/) | van Calcar SC 2007 | Wis Med J | 2MBD, SBCAD |
 | ☐ | 4 | [1356171](https://pubmed.ncbi.nlm.nih.gov/1356171/) | Chitayat D 1992 | J Inherit Metab Dis | TYR2 |
 | ☐ | 4 | [21353613](https://pubmed.ncbi.nlm.nih.gov/21353613/) | Häberle J 2011 | Mol Genet Metab | GLULSYN |
@@ -65,6 +64,7 @@ Ranked by claims settled. Tick as you go — the numbers shift when you re-run
 | ☐ | 3 | [11092761](https://pubmed.ncbi.nlm.nih.gov/11092761/) | Baumgartner MR 2000 | Hum Mol Genet | P5CS |
 | ☐ | 3 | [15517380](https://pubmed.ncbi.nlm.nih.gov/15517380/) | Baumgartner MR 2005 | Eur J Pediatr | P5CS |
 | ☐ | 3 | [18478038](https://pubmed.ncbi.nlm.nih.gov/18478038/) | Bicknell LS 2008 | Eur J Hum Genet | P5CS |
+| ☐ | 3 | [24268530](https://pubmed.ncbi.nlm.nih.gov/24268530/) | Stockler-Ipsiroglu S 2014 | Mol Genet Metab | GAMT |
 
 Also written as `docs/fulltext-wanted.csv` (`--wanted --csv`) if you would
 rather work in a spreadsheet.
@@ -141,13 +141,6 @@ you have it.
 
 ## Full citations
 
-
-### 5 claims — PMID 11826276
-
-*MCAD, CPT2*
-
-Rinaldo P et al. Fatty acid oxidation disorders. Annu Rev Physiol. 2002;64:477–502.
-<https://pubmed.ncbi.nlm.nih.gov/11826276/>
 
 ### 5 claims — PMID 17393751
 
@@ -351,3 +344,10 @@ Baumgartner MR et al. Δ¹-pyrroline-5-carboxylate synthase deficiency: neurodeg
 
 Bicknell LS et al. A missense mutation in ALDH18A1, encoding Δ¹-pyrroline-5-carboxylate synthase (P5CS), causes an autosomal recessive neurocutaneous syndrome. Eur J Hum Genet. 2008;16(10):1176–86.
 <https://pubmed.ncbi.nlm.nih.gov/18478038/>
+
+### 3 claims — PMID 24268530
+
+*GAMT*
+
+Stockler-Ipsiroglu S et al. Guanidinoacetate methyltransferase (GAMT) deficiency: outcomes in 48 individuals. Mol Genet Metab. 2014;111(1):16–25.
+<https://pubmed.ncbi.nlm.nih.gov/24268530/>
