@@ -387,13 +387,13 @@ describe("knowledge-base citation health", () => {
 describe("stamped citations name the paper their PMID resolves to", () => {
   const { counts, mismatches } = stampedTitleMismatches();
 
-  // 26 left. It was 27 when the check was written on 2026-09-18, and the first
-  // one repaired was the worst: HAWKINS cited a PMID belonging to a paper on
-  // congenital adrenal hyperplasia and sudden infant death. This ceiling
-  // ratchets DOWN as they are repaired and must never be raised to admit a new
-  // one — a mismatch is either a wrong title to correct or a wrong paper to
-  // replace, and both are defects.
-  const MISMATCH_CEILING = 26;
+  // Zero, and it stays zero. All 27 found on 2026-09-18 were repaired the next
+  // day: 26 were real papers under invented titles, rebuilt from the PubMed
+  // record by scripts/repair-stamped-titles.mjs, and the 27th (HAWKINS) named a
+  // paper on congenital adrenal hyperplasia and sudden infant death and had to
+  // be replaced outright. A new one is not a regression to tolerate -- it is
+  // either a title to correct or a paper to replace.
+  const MISMATCH_CEILING = 0;
 
   it(`checks every stamped citation it can (${counts.checked} of ${counts.stamped})`, () => {
     // If this collapses, the abstract cache has been lost or emptied, and the
