@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-18T20:24:19.499Z",
+  "generated": "2026-09-20T18:08:09.545Z",
   "promptVersion": 1,
   "rows": [
     {
@@ -518,7 +518,7 @@
         },
         {
           "pmid": "21867484",
-          "citation": "Werner ER et al. The PTPS enzyme: structure, function and mutations. Biochem J. 2011;438(3):397–414.",
+          "citation": "Werner ER et al. Tetrahydrobiopterin: biochemistry and pathophysiology. Biochem J. 2011;438(3):397–414.",
           "evidence": "abstract",
           "claim_id": "PTPS.molecular.2",
           "verdict": "unsupported",
@@ -838,7 +838,7 @@
         },
         {
           "pmid": "19491146",
-          "citation": "Clot F et al. GCH1 mutation spectrum and genotype-phenotype correlations. Brain. 2009;132(Pt 7):1753–63.",
+          "citation": "Clot F et al. Exhaustive analysis of BH4 and dopamine biosynthesis genes in patients with Dopa-responsive dystonia. Brain. 2009;132(Pt 7):1753–63.",
           "evidence": "abstract",
           "claim_id": "DRD.molecular.1",
           "verdict": "partial",
@@ -1852,7 +1852,7 @@
       "judged": [
         {
           "pmid": "12227460",
-          "citation": "Levy HL et al. Pregnancy in women with homocystinuria. J Inherit Metab Dis. 2002;25(4):299–314.",
+          "citation": "Levy HL et al. Reproductive fitness in maternal homocystinuria due to cystathionine beta-synthase deficiency. J Inherit Metab Dis. 2002;25(4):299–314.",
           "evidence": "abstract",
           "claim_id": "CBS.prognosis.4",
           "verdict": "partial",
@@ -2100,7 +2100,7 @@
       "judged": [
         {
           "pmid": "7927251",
-          "citation": "van Spronsen FJ et al. Tyrosinemia type I: risk of hepatocellular carcinoma. Hepatology. 1994;20(5):1187–91.",
+          "citation": "van Spronsen FJ et al. Hereditary tyrosinemia type I: a new clinical classification with difference in prognosis on dietary treatment. Hepatology. 1994;20(5):1187–91.",
           "evidence": "abstract",
           "claim_id": "TYR1.presentation.1",
           "verdict": "partial",
@@ -2758,7 +2758,7 @@
       "judged": [
         {
           "pmid": "16450403",
-          "citation": "Kure S et al. Molecular analysis of the glycine cleavage system in NKH. Hum Mutat. 2006;27(4):343–52.",
+          "citation": "Kure S et al. Comprehensive mutation analysis of GLDC, AMT, and GCSH in nonketotic hyperglycinemia. Hum Mutat. 2006;27(4):343–52.",
           "evidence": "abstract",
           "claim_id": "NKH.introduction.2",
           "verdict": "partial",
@@ -2812,7 +2812,7 @@
       "judged": [
         {
           "pmid": "16450403",
-          "citation": "Kure S et al. Molecular analysis of the glycine cleavage system in NKH. Hum Mutat. 2006;27(4):343–52.",
+          "citation": "Kure S et al. Comprehensive mutation analysis of GLDC, AMT, and GCSH in nonketotic hyperglycinemia. Hum Mutat. 2006;27(4):343–52.",
           "evidence": "abstract",
           "claim_id": "NKH.molecular.0",
           "verdict": "partial",
@@ -3560,7 +3560,7 @@
       "judged": [
         {
           "pmid": "19635676",
-          "citation": "Ficicioglu C et al. Clinical and biochemical features of argininosuccinic aciduria. Mol Genet Metab. 2009;98(3):273–7.",
+          "citation": "Ficicioglu C et al. Argininosuccinate lyase deficiency: longterm outcome of 13 patients detected by newborn screening. Mol Genet Metab. 2009;98(3):273–7.",
           "evidence": "abstract",
           "claim_id": "ASA_AC.biochemistry.0",
           "verdict": "unsupported",
@@ -4770,7 +4770,7 @@
       "judged": [
         {
           "pmid": "24530203",
-          "citation": "van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61.",
+          "citation": "van Karnebeek CDM et al. Mitochondrial carbonic anhydrase VA deficiency resulting from CA5A alterations presents with hyperammonemia in early childhood. Am J Hum Genet. 2014;94(3):453–61.",
           "evidence": "abstract",
           "claim_id": "CAVA.summary.1",
           "verdict": "supports",
@@ -4798,7 +4798,7 @@
       "judged": [
         {
           "pmid": "24530203",
-          "citation": "van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61.",
+          "citation": "van Karnebeek CDM et al. Mitochondrial carbonic anhydrase VA deficiency resulting from CA5A alterations presents with hyperammonemia in early childhood. Am J Hum Genet. 2014;94(3):453–61.",
           "evidence": "abstract",
           "claim_id": "CAVA.introduction.0",
           "verdict": "partial",
@@ -4852,7 +4852,7 @@
       "judged": [
         {
           "pmid": "24530203",
-          "citation": "van Karnebeek CDM et al. Bi-allelic mutations in the mitochondrial carbonic anhydrase VA gene cause hyperammonaemia, metabolic acidosis, and cognitive impairment. Am J Hum Genet. 2014;94(3):453–61.",
+          "citation": "van Karnebeek CDM et al. Mitochondrial carbonic anhydrase VA deficiency resulting from CA5A alterations presents with hyperammonemia in early childhood. Am J Hum Genet. 2014;94(3):453–61.",
           "evidence": "abstract",
           "claim_id": "CAVA.prognosis.1",
           "verdict": "not-assessable",
@@ -4978,7 +4978,7 @@
       "judged": [
         {
           "pmid": "1755734",
-          "citation": "Kaiser-Kupfer MI et al. Long-term effect of a dietary restriction of arginine on gyrate atrophy. Am J Ophthalmol. 1991;112(1):55–9.",
+          "citation": "Kaiser-Kupfer MI et al. Gyrate atrophy of the choroid and retina. Long-term reduction of ornithine slows retinal degeneration. Arch Ophthalmol. 1991;109(11):1539–48.",
           "evidence": "abstract",
           "claim_id": "OAT.treatment.0",
           "verdict": "partial",
@@ -5032,7 +5032,7 @@
       "judged": [
         {
           "pmid": "1755734",
-          "citation": "Kaiser-Kupfer MI et al. Long-term effect of a dietary restriction of arginine on gyrate atrophy. Am J Ophthalmol. 1991;112(1):55–9.",
+          "citation": "Kaiser-Kupfer MI et al. Gyrate atrophy of the choroid and retina. Long-term reduction of ornithine slows retinal degeneration. Arch Ophthalmol. 1991;109(11):1539–48.",
           "evidence": "abstract",
           "claim_id": "OAT.prognosis.0",
           "verdict": "partial",
@@ -5580,7 +5580,7 @@
       "judged": [
         {
           "pmid": "15234334",
-          "citation": "Almeida LS et al. Creatine deficiency syndromes: molecular characterization. Mol Genet Metab. 2004;82(3):214–9.",
+          "citation": "Almeida LS et al. Creatine and guanidinoacetate: diagnostic markers for inborn errors in creatine biosynthesis and transport. Mol Genet Metab. 2004;82(3):214–9.",
           "evidence": "abstract",
           "claim_id": "GAMT.molecular.1",
           "verdict": "unsupported",
@@ -5644,7 +5644,7 @@
       "judged": [
         {
           "pmid": "23583224",
-          "citation": "El-Gharbawy AH et al. Elevation of guanidinoacetate before measurable symptoms in GAMT. Mol Genet Metab. 2013;109(2):215–7.",
+          "citation": "El-Gharbawy AH et al. Elevation of guanidinoacetate in newborn dried blood spots and impact of early treatment in GAMT deficiency. Mol Genet Metab. 2013;109(2):215–7.",
           "evidence": "abstract",
           "claim_id": "GAMT.treatment.2",
           "verdict": "supports",
@@ -5662,7 +5662,7 @@
       "judged": [
         {
           "pmid": "23583224",
-          "citation": "El-Gharbawy AH et al. Elevation of guanidinoacetate before measurable symptoms in GAMT. Mol Genet Metab. 2013;109(2):215–7.",
+          "citation": "El-Gharbawy AH et al. Elevation of guanidinoacetate in newborn dried blood spots and impact of early treatment in GAMT deficiency. Mol Genet Metab. 2013;109(2):215–7.",
           "evidence": "abstract",
           "claim_id": "GAMT.prognosis.2",
           "verdict": "unsupported",
@@ -7714,7 +7714,7 @@
       "judged": [
         {
           "pmid": "17968484",
-          "citation": "Uematsu M et al. Molecular basis of four cases of 3-MCC deficiency. J Hum Genet. 2007;52(12):1040–3.",
+          "citation": "Uematsu M et al. Novel mutations in five Japanese patients with 3-methylcrotonyl-CoA carboxylase deficiency. J Hum Genet. 2007;52(12):1040–1043.",
           "evidence": "abstract",
           "claim_id": "MCC.molecular.2",
           "verdict": "supports",
@@ -7816,7 +7816,7 @@
       "judged": [
         {
           "pmid": "19177531",
-          "citation": "Menao S et al. Clinical, biochemical and molecular study of 24 patients with HMG-CoA lyase deficiency. Hum Mutat. 2009;30(8):E520–40.",
+          "citation": "Menao S et al. Ten novel HMGCL mutations in 24 patients of different origin with 3-hydroxy-3-methyl-glutaric aciduria. Hum Mutat. 2009;30(3):E520–9.",
           "evidence": "abstract",
           "claim_id": "HMGCL.summary.1",
           "verdict": "supports",
@@ -7862,7 +7862,7 @@
       "judged": [
         {
           "pmid": "19177531",
-          "citation": "Menao S et al. Clinical, biochemical and molecular study of 24 patients with HMG-CoA lyase deficiency. Hum Mutat. 2009;30(8):E520–40.",
+          "citation": "Menao S et al. Ten novel HMGCL mutations in 24 patients of different origin with 3-hydroxy-3-methyl-glutaric aciduria. Hum Mutat. 2009;30(3):E520–9.",
           "evidence": "abstract",
           "claim_id": "HMGCL.biochemistry.0",
           "verdict": "not-assessable",
@@ -7946,7 +7946,7 @@
       "judged": [
         {
           "pmid": "19177531",
-          "citation": "Menao S et al. Clinical, biochemical and molecular study of 24 patients with HMG-CoA lyase deficiency. Hum Mutat. 2009;30(8):E520–40.",
+          "citation": "Menao S et al. Ten novel HMGCL mutations in 24 patients of different origin with 3-hydroxy-3-methyl-glutaric aciduria. Hum Mutat. 2009;30(3):E520–9.",
           "evidence": "abstract",
           "claim_id": "HMGCL.treatment.0",
           "verdict": "not-assessable",
@@ -8711,34 +8711,6 @@
       ]
     },
     {
-      "id": "GA1.biochemistry.4",
-      "disorder": "GA1",
-      "text": "LOW EXCRETER phenotype — approximately 25% of genetically-confirmed GA1 patients have near-normal urinary GA and 3-OHGA; C5DC may also be borderline [9,10].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "15505393",
-          "citation": "Christensen E et al. Correlation of genotype and phenotype in glutaryl-CoA dehydrogenase deficiency. J Inherit Metab Dis. 2004;27(6):861–8.",
-          "evidence": "abstract",
-          "claim_id": "GA1.biochemistry.4",
-          "verdict": "partial",
-          "reason": "The abstract supports the existence of a low-excreter phenotype (mild mutations with residual activity showing low/normal urinary glutaric acid and mild 3-hydroxyglutaric acid elevation) but gives no ~25% prevalence figure and does not mention borderline C5DC.",
-          "quote": "Patients with a mild mutation on at least one chromosome frequently show unusual biochemical findings such as low or normal urinary excretion of glutaric acid and mild or only slightly increased excretion of 3-hydroxyglutaric acid.",
-          "ctx": "c82e6304fcb2"
-        },
-        {
-          "pmid": "10604139",
-          "citation": "Baric I et al. Diagnosis of glutaric acidemia type I: R402W allele in low excretors. J Inherit Metab Dis. 1999;22(7):867–81.",
-          "evidence": "abstract",
-          "claim_id": "GA1.biochemistry.4",
-          "verdict": "unsupported",
-          "reason": "The abstract confirms a low-excretor group exists but gives 12/25 (~48%), not ~25%, and directly contradicts the claim that 3-OHGA is also near-normal, since quantitative 3-OHGA achieved 100% sensitivity and specificity in all patients regardless of GA excretion; C5DC is not addressed.",
-          "quote": "Low excretors (12 patients) were defined by a urinary glutaric acid below 100 mmol/mol creatinine down into the normal range, while high excretors (13 patients) had glutaric acid excretions well above this value... Diagnostic sensitivity and specificity of 100% could only be achieved by the quantitative determination of 3-hydroxyglutaric acid with the newly developed stable-isotope dilution assay, allowing an accurate diagnosis of all patients, regardless of the amount of glutaric acid excreted in urine.",
-          "ctx": "c82e6304fcb2"
-        }
-      ]
-    },
-    {
       "id": "GA1.biochemistry.5",
       "disorder": "GA1",
       "text": "Low excreters carry IDENTICAL neurological risk to high excreters; molecular confirmation is required whenever clinical suspicion exists [9]. 3-OHGA is the more neurotoxic intermediate and its concentration in CSF correlates with basal-ganglia injury [11].",
@@ -8763,52 +8735,6 @@
           "reason": "The abstract engages the topic of 3-OH-GA concentrations and striatal injury but measured brain (not CSF) levels and found no regional correlation with the selective basal-ganglia damage, and it does not establish 3-OHGA as the more neurotoxic intermediate; it also does not address low-excreter risk equivalence.",
           "quote": "All brain regions demonstrated markedly elevated concentrations of GA (3770-21 200 nmol/g protein) and 3-OH-GA (280-740 nmol/g protein), with no evidence of striatal specificity or age dependency.",
           "ctx": "5f35cdaeb1b9"
-        }
-      ]
-    },
-    {
-      "id": "GA1.molecular.2",
-      "disorder": "GA1",
-      "text": "The Amish founder variant is p.Ala421Val; the Lumbee variant is p.Arg402Trp (which uniquely predicts low-excreter phenotype) [5,10].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "16466958",
-          "citation": "Basinger AA et al. Glutaric acidemia type I in patients of Lumbee heritage. Mol Genet Metab. 2006;88(1):90–2.",
-          "evidence": "abstract",
-          "claim_id": "GA1.molecular.2",
-          "verdict": "partial",
-          "reason": "The abstract supports a rare Lumbee founder mutation in GCDH but reports it as \"1240G>A\" without naming p.Arg402Trp, and says nothing about the low-excreter phenotype or the Amish p.Ala421Val variant.",
-          "quote": "Five Lumbee individuals with GA-I had homozygous 1240G&gt;A mutations in GCD. This is a rare, known mutation that was likely introduced by a Lumbee founder.",
-          "ctx": "c08760208dd6"
-        },
-        {
-          "pmid": "10604139",
-          "citation": "Baric I et al. Diagnosis of glutaric acidemia type I: R402W allele in low excretors. J Inherit Metab Dis. 1999;22(7):867–81.",
-          "evidence": "abstract",
-          "claim_id": "GA1.molecular.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns the diagnostic sensitivity/specificity of stable-isotope dilution assays for glutaric and 3-hydroxyglutaric acid and defines low versus high excretors biochemically, but it reports no genotype data and never mentions p.Ala421Val, p.Arg402Trp, or Amish/Lumbee founder populations, so the variant-specific claim cannot be assessed from it.",
-          "quote": "Low excretors (12 patients) were defined by a urinary glutaric acid below 100 mmol/mol creatinine down into the normal range, while high excretors (13 patients) had glutaric acid excretions well above this value.",
-          "ctx": "c08760208dd6"
-        }
-      ]
-    },
-    {
-      "id": "GA1.molecular.3",
-      "disorder": "GA1",
-      "text": "Genotype–phenotype correlation for residual excretion exists but not for neurological outcome — low and high excreters have the same cerebral disease risk [9,12].",
-      "status": "supported",
-      "judged": [
-        {
-          "pmid": "15505393",
-          "citation": "Christensen E et al. Correlation of genotype and phenotype in glutaryl-CoA dehydrogenase deficiency. J Inherit Metab Dis. 2004;27(6):861–8.",
-          "evidence": "abstract",
-          "claim_id": "GA1.molecular.3",
-          "verdict": "supports",
-          "reason": "The abstract shows mild versus severe genotypes track with residual activity and urinary metabolite excretion while explicitly finding no correlation with clinical phenotype.",
-          "quote": "Patients with a mild mutation on at least one chromosome frequently show unusual biochemical findings such as low or normal urinary excretion of glutaric acid ... No correlation with the biochemical phenotype or the genotype could be established.",
-          "ctx": "687a508e0cdc"
         }
       ]
     },
@@ -9992,7 +9918,7 @@
       "judged": [
         {
           "pmid": "22241392",
-          "citation": "Patay Z et al. Diffuse leukoencephalopathy associated with L-2-hydroxyglutaric aciduria. AJNR Am J Neuroradiol. 2012;33(5):940–3.",
+          "citation": "Patay Z et al. Cerebral neoplasms in L-2 hydroxyglutaric aciduria: 3 new cases and meta-analysis of literature data. AJNR Am J Neuroradiol. 2012;33(5):940–3.",
           "evidence": "abstract",
           "claim_id": "L2HGA.presentation.2",
           "verdict": "partial",
@@ -10048,7 +9974,7 @@
       "judged": [
         {
           "pmid": "22241392",
-          "citation": "Patay Z et al. Diffuse leukoencephalopathy associated with L-2-hydroxyglutaric aciduria. AJNR Am J Neuroradiol. 2012;33(5):940–3.",
+          "citation": "Patay Z et al. Cerebral neoplasms in L-2 hydroxyglutaric aciduria: 3 new cases and meta-analysis of literature data. AJNR Am J Neuroradiol. 2012;33(5):940–3.",
           "evidence": "abstract",
           "claim_id": "L2HGA.treatment.3",
           "verdict": "partial",
@@ -10076,7 +10002,7 @@
         },
         {
           "pmid": "22241392",
-          "citation": "Patay Z et al. Diffuse leukoencephalopathy associated with L-2-hydroxyglutaric aciduria. AJNR Am J Neuroradiol. 2012;33(5):940–3.",
+          "citation": "Patay Z et al. Cerebral neoplasms in L-2 hydroxyglutaric aciduria: 3 new cases and meta-analysis of literature data. AJNR Am J Neuroradiol. 2012;33(5):940–3.",
           "evidence": "abstract",
           "claim_id": "L2HGA.prognosis.2",
           "verdict": "partial",
@@ -10418,7 +10344,7 @@
       "judged": [
         {
           "pmid": "17417720",
-          "citation": "Lund AM et al. Primary carnitine deficiency: Faroese population. J Inherit Metab Dis. 2007;30(3):341–9.",
+          "citation": "Lund AM et al. Carnitine transporter and holocarboxylase synthetase deficiencies in The Faroe Islands. J Inherit Metab Dis. 2007;30(3):341–9.",
           "evidence": "abstract",
           "claim_id": "PCD.introduction.1",
           "verdict": "partial",
@@ -10895,42 +10821,6 @@
       ]
     },
     {
-      "id": "MCAD.biochemistry.4",
-      "disorder": "MCAD",
-      "text": "Urinary acylglycines — hexanoylglycine (HG) and suberylglycine (SG) — are more specific than organic acids and are the confirmatory biochemical test [8].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "11826276",
-          "citation": "Rinaldo P et al. Fatty acid oxidation disorders. Annu Rev Physiol. 2002;64:477–502.",
-          "evidence": "abstract",
-          "claim_id": "MCAD.biochemistry.4",
-          "verdict": "not-assessable",
-          "reason": "The abstract makes no mention of urinary acylglycines, hexanoylglycine, suberylglycine, or comparative diagnostic specificity, being only a structural description of the review's scope.",
-          "quote": "This review addresses the normal process of mitochondrial fatty acid beta-oxidation and discusses the clinical, metabolic, and molecular aspects of more than 20 known inherited diseases of this pathway that have been described to date.",
-          "ctx": "aa5bbc01c7bf"
-        }
-      ]
-    },
-    {
-      "id": "MCAD.biochemistry.6",
-      "disorder": "MCAD",
-      "text": "Between crises, urine organic acids are often normal and do not exclude the diagnosis — acylcarnitines and acylglycines remain abnormal [2,8].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "11826276",
-          "citation": "Rinaldo P et al. Fatty acid oxidation disorders. Annu Rev Physiol. 2002;64:477–502.",
-          "evidence": "abstract",
-          "claim_id": "MCAD.biochemistry.6",
-          "verdict": "not-assessable",
-          "reason": "Nothing in the abstract addresses interictal urine organic acid results or the persistence of acylcarnitine/acylglycine abnormalities between crises.",
-          "quote": "",
-          "ctx": "7075505e29f7"
-        }
-      ]
-    },
-    {
       "id": "MCAD.molecular.1",
       "disorder": "MCAD",
       "text": "The c.985A>G (p.Lys329Glu) variant accounts for ~80% of pathogenic alleles in Northern European populations; homozygotes have classic phenotype [4,9].",
@@ -11212,7 +11102,7 @@
         },
         {
           "pmid": "7769092",
-          "citation": "Aoyama T et al. Molecular features of the CPT-I deficiency; purified LCAD does not catalyse oxidation of palmitoyl-CoA. J Clin Invest. 1995;95(6):2465–73.",
+          "citation": "Aoyama T et al. Purification of human very-long-chain acyl-coenzyme A dehydrogenase and characterization of its deficiency in seven patients. J Clin Invest. 1995;95(6):2465–73.",
           "evidence": "abstract",
           "claim_id": "VLCAD.introduction.0",
           "verdict": "partial",
@@ -11743,44 +11633,6 @@
           "reason": "The abstract reports the common c.625G>A variant among variants present in up to 14% of normal populations with questionable clinical relevance and near-normal enzyme activity, and concludes disease arises only in combination with other genetic and environmental factors, matching the claim (the 14% figure is stated for the two common variants collectively).",
           "quote": "two common variations, c.511C &gt; T (p.Arg171Trp) and c.625G &gt; A (p.Gly209Ser), have been identified in patients, but these are also present in up to 14% of normal populations leading to questions of their clinical relevance",
           "ctx": "1c1d204d4194"
-        }
-      ]
-    },
-    {
-      "id": "SCAD.molecular.2",
-      "disorder": "SCAD",
-      "text": "Rare loss-of-function variants may cause a true clinical phenotype when homozygous or compound with the common variants — but penetrance is incomplete and modifier genes likely contribute [2,4,5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "16926354",
-          "citation": "van Maldegem BT et al. Clinical, biochemical, and genetic heterogeneity in short-chain acyl-CoA dehydrogenase deficiency. JAMA. 2006;296(8):943–52.",
-          "evidence": "abstract",
-          "claim_id": "SCAD.molecular.2",
-          "verdict": "partial",
-          "reason": "The abstract supports incomplete penetrance (asymptomatic relatives with the same genotype) and absence of genotype–phenotype correlation, but does not address rare loss-of-function variants causing a true clinical phenotype or modifier genes specifically.",
-          "quote": "Seven out of 8 SCADD relatives were free of symptoms.",
-          "ctx": "0ad671821c84"
-        },
-        {
-          "pmid": "18523805",
-          "citation": "Pedersen CB et al. The ACADS gene variation spectrum in 114 patients with short-chain acyl-CoA dehydrogenase (SCAD) deficiency is dominated by missense variations leading to protein misfolding at the cellular level. Hum Genet. 2008;124(1):43–56.",
-          "evidence": "abstract",
-          "claim_id": "SCAD.molecular.2",
-          "verdict": "partial",
-          "reason": "The abstract clearly supports incomplete penetrance and modifier/environmental contributions, but does not state the specific genotype claim that rare loss-of-function variants cause true clinical disease when homozygous or compound heterozygous with the common variants.",
-          "quote": "However, no correlation was found between the clinical phenotype and the degree of SCAD dysfunction. We propose that SCAD deficiency should be considered as a disorder of protein folding that can lead to clinical disease in combination with other genetic and environmental factors.",
-          "ctx": "0ad671821c84"
-        },
-        {
-          "pmid": "12706374",
-          "citation": "Nagan N et al. SCAD deficiency: identification of a novel missense mutation. Mol Genet Metab. 2003;78(3):239–46.",
-          "evidence": "abstract",
-          "claim_id": "SCAD.molecular.2",
-          "verdict": "partial",
-          "reason": "The abstract supports that the common variants are susceptibility rather than true disease-causing alleles and that phenotype is heterogeneous with some asymptomatic individuals (consistent with incomplete penetrance), but it does not address rare loss-of-function variants in homozygous/compound state or modifier gene contributions.",
-          "quote": "Although they alter the structural and catalytic properties of the SCAD protein, these variants are not true disease-causing mutations but confer disease susceptibility.",
-          "ctx": "0ad671821c84"
         }
       ]
     },
@@ -12482,7 +12334,7 @@
       "judged": [
         {
           "pmid": "20547083",
-          "citation": "Alfardan J et al. Characterisation of new ACADSB gene sequence mutations and delineation of the clinical phenotype in SBCAD deficiency. Mol Genet Metab. 2010;100(4):333–8.",
+          "citation": "Alfardan J et al. Characterization of new ACADSB gene sequence mutations and clinical implications in patients with 2-methylbutyrylglycinuria identified by newborn screening. Mol Genet Metab. 2010;100(4):333–8.",
           "evidence": "abstract",
           "claim_id": "2MBD.presentation.1",
           "verdict": "unsupported",
@@ -13467,34 +13319,6 @@
       ]
     },
     {
-      "id": "GNMT.summary.2",
-      "disorder": "GNMT",
-      "text": "A subset of patients have mild liver dysfunction; neurological features are generally absent [1,2].",
-      "status": "contradicted",
-      "judged": [
-        {
-          "pmid": "12145770",
-          "citation": "Stabler SP et al. Metabolic profiling of total homocysteine and related compounds in hyperhomocysteinaemia. Metabolism. 2002;51(8):981–8.",
-          "evidence": "abstract",
-          "claim_id": "GNMT.summary.2",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns metabolite patterns in MAT I/III and CBS deficiency and says nothing about hepatic or neurological features of GNMT deficiency.",
-          "quote": "",
-          "ctx": "2ee954e900b4"
-        },
-        {
-          "pmid": "19585268",
-          "citation": "Baric I. Inherited disorders in the conversion of methionine to homocysteine. J Inherit Metab Dis. 2009;32(4):459–71.",
-          "evidence": "abstract",
-          "claim_id": "GNMT.summary.2",
-          "verdict": "unsupported",
-          "reason": "The abstract reviews GNMT deficiency and organ damage mechanisms but never states that liver dysfunction is mild in a subset or that neurological features are generally absent; it instead lists brain among affected organs for these disorders collectively.",
-          "quote": "as well as into the mechanisms of damage to various organs (liver, brain, muscle)",
-          "ctx": "2ee954e900b4"
-        }
-      ]
-    },
-    {
       "id": "GNMT.introduction.0",
       "disorder": "GNMT",
       "text": "GNMT deficiency (OMIM #606664) was first described by Mudd and Poeschla in 2001 [3].",
@@ -13520,7 +13344,7 @@
       "judged": [
         {
           "pmid": "12145770",
-          "citation": "Stabler SP et al. Metabolic profiling of total homocysteine and related compounds in hyperhomocysteinaemia. Metabolism. 2002;51(8):981–8.",
+          "citation": "Stabler SP et al. Elevated plasma total homocysteine in severe methionine adenosyltransferase I/III deficiency. Metabolism. 2002;51(8):981–8.",
           "evidence": "abstract",
           "claim_id": "GNMT.biochemistry.2",
           "verdict": "partial",
@@ -13612,7 +13436,7 @@
       "judged": [
         {
           "pmid": "12145770",
-          "citation": "Stabler SP et al. Metabolic profiling of total homocysteine and related compounds in hyperhomocysteinaemia. Metabolism. 2002;51(8):981–8.",
+          "citation": "Stabler SP et al. Elevated plasma total homocysteine in severe methionine adenosyltransferase I/III deficiency. Metabolism. 2002;51(8):981–8.",
           "evidence": "abstract",
           "claim_id": "GNMT.treatment.1",
           "verdict": "not-assessable",
@@ -13640,7 +13464,7 @@
       "judged": [
         {
           "pmid": "12145770",
-          "citation": "Stabler SP et al. Metabolic profiling of total homocysteine and related compounds in hyperhomocysteinaemia. Metabolism. 2002;51(8):981–8.",
+          "citation": "Stabler SP et al. Elevated plasma total homocysteine in severe methionine adenosyltransferase I/III deficiency. Metabolism. 2002;51(8):981–8.",
           "evidence": "abstract",
           "claim_id": "GNMT.prognosis.3",
           "verdict": "not-assessable",
@@ -14421,90 +14245,6 @@
           "reason": "The abstract confirms hawkinsin is a sulfur (cysteine-conjugated) amino acid excreted in urine, but gives a different chemical name and says nothing about 4-hydroxycyclohexylacetate or elevated 4-hydroxyphenyl-lactate/pyruvate.",
           "quote": "Hawkinsin is a sulfur amino acid identified as (2-l-cystein-S-yl, 4-dihydroxycyclohex-5-en-1-yl)acetic acid.",
           "ctx": "83b28f80cd69"
-        }
-      ]
-    },
-    {
-      "id": "HAWKINS.molecular.1",
-      "disorder": "HAWKINS",
-      "text": "The canonical mutation is c.97G>A (p.Ala33Thr) — a missense change producing a structurally altered HPD that mis-channels its substrate [4,5].",
-      "status": "supported",
-      "judged": [
-        {
-          "pmid": "11073718",
-          "citation": "Tomoeda K et al. Mutations in the 4-hydroxyphenylpyruvic acid dioxygenase gene are responsible for Tyrosinaemia type III and Hawkinsinuria. Mol Genet Metab. 2000;71(3):506–10.",
-          "evidence": "abstract",
-          "claim_id": "HAWKINS.molecular.1",
-          "verdict": "supports",
-          "reason": "The abstract reports the p.Ala33Thr missense mutation in hawkinsinuria patients and attributes disease to altered HPD structure/activity, though the nucleotide designation c.97G>A and 'mis-channelling' wording are not spelled out.",
-          "quote": "A heterozygous missense mutation predicting an Ala to Thr change at codon 33 (A33T) was found in the same HPD gene in the two patients with hawkinsinuria.",
-          "ctx": "3a61f035c020"
-        },
-        {
-          "pmid": "17024350",
-          "citation": "Item CB et al. Hawkinsinuria in a consanguineous family: novel HPD mutation and implications for the diagnosis of transient tyrosinaemia. Eur J Pediatr. 2007;166(1):1–5.",
-          "evidence": "abstract",
-          "claim_id": "HAWKINS.molecular.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract concerns congenital adrenal hyperplasia prevalence among sudden infant deaths and says nothing about HPD mutations or hawkinsinuria.",
-          "quote": "",
-          "ctx": "3a61f035c020"
-        }
-      ]
-    },
-    {
-      "id": "HAWKINS.presentation.3",
-      "disorder": "HAWKINS",
-      "text": "Long-term follow-up of affected individuals has been unremarkable [1,2,5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "20677779",
-          "citation": "Brownlee JM et al. Product analysis and inhibition studies of a causative Asn to Ser variant of 4-hydroxyphenylpyruvate dioxygenase suggest a simple route to the treatment of Hawkinsinuria. Biochemistry. 2010;49(33):7218–26.",
-          "evidence": "abstract",
-          "claim_id": "HAWKINS.presentation.3",
-          "verdict": "not-assessable",
-          "reason": "This is a mechanistic enzymology/inhibition study that comments only on illness in early infancy and provides no patient follow-up data on which the claim of unremarkable long-term course could rest.",
-          "quote": "NTBC would be a potent therapeutic for Hawkinisinuria that would alleviate the extreme frailty experienced in the early life period",
-          "ctx": "ac396a0034f3"
-        },
-        {
-          "pmid": "17024350",
-          "citation": "Item CB et al. Hawkinsinuria in a consanguineous family: novel HPD mutation and implications for the diagnosis of transient tyrosinaemia. Eur J Pediatr. 2007;166(1):1–5.",
-          "evidence": "abstract",
-          "claim_id": "HAWKINS.presentation.3",
-          "verdict": "not-assessable",
-          "reason": "The abstract addresses CAH-related sudden infant death, not long-term follow-up of hawkinsinuria patients.",
-          "quote": "",
-          "ctx": "ac396a0034f3"
-        }
-      ]
-    },
-    {
-      "id": "HAWKINS.prognosis.1",
-      "disorder": "HAWKINS",
-      "text": "All reported patients followed into adulthood have been clinically well with normal development and life expectancy [1,2,5].",
-      "status": "unverified",
-      "judged": [
-        {
-          "pmid": "20677779",
-          "citation": "Brownlee JM et al. Product analysis and inhibition studies of a causative Asn to Ser variant of 4-hydroxyphenylpyruvate dioxygenase suggest a simple route to the treatment of Hawkinsinuria. Biochemistry. 2010;49(33):7218–26.",
-          "evidence": "abstract",
-          "claim_id": "HAWKINS.prognosis.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract addresses infantile disease severity and enzyme biochemistry, not outcomes of patients followed into adulthood, development, or life expectancy.",
-          "quote": "Hawkinsinuria is a severe inherited condition that has a significant impact on the health of infants.",
-          "ctx": "9854632633d2"
-        },
-        {
-          "pmid": "17024350",
-          "citation": "Item CB et al. Hawkinsinuria in a consanguineous family: novel HPD mutation and implications for the diagnosis of transient tyrosinaemia. Eur J Pediatr. 2007;166(1):1–5.",
-          "evidence": "abstract",
-          "claim_id": "HAWKINS.prognosis.1",
-          "verdict": "not-assessable",
-          "reason": "The abstract is about CYP21-related CAH mortality and does not address outcomes of hawkinsinuria patients in adulthood.",
-          "quote": "",
-          "ctx": "9854632633d2"
         }
       ]
     },
@@ -17182,7 +16922,7 @@
         },
         {
           "pmid": "12955715",
-          "citation": "Wightman PJ et al. MLYCD mutation analysis: evidence for homozygosity in a sporadic case with malonyl-CoA decarboxylase deficiency. Hum Mutat. 2003;22(4):288–300.",
+          "citation": "Wightman PJ et al. MLYCD mutation analysis: evidence for protein mistargeting as a cause of MLYCD deficiency. Hum Mutat. 2003;22(4):288–300.",
           "evidence": "abstract",
           "claim_id": "MLYCD.presentation.4",
           "verdict": "not-assessable",
@@ -17312,7 +17052,7 @@
         },
         {
           "pmid": "20547083",
-          "citation": "Alfardan J et al. Characterisation of new ACADSB gene sequence mutations and delineation of the clinical phenotype in SBCAD deficiency. Mol Genet Metab. 2010;100(4):333–8.",
+          "citation": "Alfardan J et al. Characterization of new ACADSB gene sequence mutations and clinical implications in patients with 2-methylbutyrylglycinuria identified by newborn screening. Mol Genet Metab. 2010;100(4):333–8.",
           "evidence": "abstract",
           "claim_id": "SBCAD.introduction.2",
           "verdict": "partial",
@@ -17358,7 +17098,7 @@
         },
         {
           "pmid": "20547083",
-          "citation": "Alfardan J et al. Characterisation of new ACADSB gene sequence mutations and delineation of the clinical phenotype in SBCAD deficiency. Mol Genet Metab. 2010;100(4):333–8.",
+          "citation": "Alfardan J et al. Characterization of new ACADSB gene sequence mutations and clinical implications in patients with 2-methylbutyrylglycinuria identified by newborn screening. Mol Genet Metab. 2010;100(4):333–8.",
           "evidence": "abstract",
           "claim_id": "SBCAD.biochemistry.3",
           "verdict": "supports",
@@ -17386,7 +17126,7 @@
         },
         {
           "pmid": "20547083",
-          "citation": "Alfardan J et al. Characterisation of new ACADSB gene sequence mutations and delineation of the clinical phenotype in SBCAD deficiency. Mol Genet Metab. 2010;100(4):333–8.",
+          "citation": "Alfardan J et al. Characterization of new ACADSB gene sequence mutations and clinical implications in patients with 2-methylbutyrylglycinuria identified by newborn screening. Mol Genet Metab. 2010;100(4):333–8.",
           "evidence": "abstract",
           "claim_id": "SBCAD.molecular.2",
           "verdict": "supports",
@@ -17432,7 +17172,7 @@
       "judged": [
         {
           "pmid": "20547083",
-          "citation": "Alfardan J et al. Characterisation of new ACADSB gene sequence mutations and delineation of the clinical phenotype in SBCAD deficiency. Mol Genet Metab. 2010;100(4):333–8.",
+          "citation": "Alfardan J et al. Characterization of new ACADSB gene sequence mutations and clinical implications in patients with 2-methylbutyrylglycinuria identified by newborn screening. Mol Genet Metab. 2010;100(4):333–8.",
           "evidence": "abstract",
           "claim_id": "SBCAD.presentation.2",
           "verdict": "supports",
@@ -17450,7 +17190,7 @@
       "judged": [
         {
           "pmid": "20547083",
-          "citation": "Alfardan J et al. Characterisation of new ACADSB gene sequence mutations and delineation of the clinical phenotype in SBCAD deficiency. Mol Genet Metab. 2010;100(4):333–8.",
+          "citation": "Alfardan J et al. Characterization of new ACADSB gene sequence mutations and clinical implications in patients with 2-methylbutyrylglycinuria identified by newborn screening. Mol Genet Metab. 2010;100(4):333–8.",
           "evidence": "abstract",
           "claim_id": "SBCAD.treatment.4",
           "verdict": "partial",
@@ -17478,7 +17218,7 @@
       "judged": [
         {
           "pmid": "20547083",
-          "citation": "Alfardan J et al. Characterisation of new ACADSB gene sequence mutations and delineation of the clinical phenotype in SBCAD deficiency. Mol Genet Metab. 2010;100(4):333–8.",
+          "citation": "Alfardan J et al. Characterization of new ACADSB gene sequence mutations and clinical implications in patients with 2-methylbutyrylglycinuria identified by newborn screening. Mol Genet Metab. 2010;100(4):333–8.",
           "evidence": "abstract",
           "claim_id": "SBCAD.prognosis.0",
           "verdict": "supports",
@@ -19508,7 +19248,7 @@
         },
         {
           "pmid": "9894884",
-          "citation": "van der Knaap MS et al. D-2-hydroxyglutaric aciduria: biochemical, clinical, magnetic resonance imaging and neuropathological findings. Ann Neurol. 1999;45(1):111–9.",
+          "citation": "van der Knaap MS et al. D-2-Hydroxyglutaric aciduria: biochemical marker or clinical disease entity?. Ann Neurol. 1999;45(1):111–9.",
           "evidence": "abstract",
           "claim_id": "D2HGA.presentation.1",
           "verdict": "partial",
@@ -19526,7 +19266,7 @@
       "judged": [
         {
           "pmid": "9894884",
-          "citation": "van der Knaap MS et al. D-2-hydroxyglutaric aciduria: biochemical, clinical, magnetic resonance imaging and neuropathological findings. Ann Neurol. 1999;45(1):111–9.",
+          "citation": "van der Knaap MS et al. D-2-Hydroxyglutaric aciduria: biochemical marker or clinical disease entity?. Ann Neurol. 1999;45(1):111–9.",
           "evidence": "abstract",
           "claim_id": "D2HGA.presentation.2",
           "verdict": "partial",
@@ -19602,7 +19342,7 @@
         },
         {
           "pmid": "9894884",
-          "citation": "van der Knaap MS et al. D-2-hydroxyglutaric aciduria: biochemical, clinical, magnetic resonance imaging and neuropathological findings. Ann Neurol. 1999;45(1):111–9.",
+          "citation": "van der Knaap MS et al. D-2-Hydroxyglutaric aciduria: biochemical marker or clinical disease entity?. Ann Neurol. 1999;45(1):111–9.",
           "evidence": "abstract",
           "claim_id": "D2HGA.prognosis.1",
           "verdict": "partial",
@@ -19982,7 +19722,7 @@
         },
         {
           "pmid": "3939535",
-          "citation": "Pollitt RJ et al. 3-Hydroxyisobutyric aciduria: heterogeneity within a common biochemical phenotype. J Inherit Metab Dis. 1985;8(Suppl 2):75–6.",
+          "citation": "Pollitt RJ et al. Excessive excretion of beta-alanine and of 3-hydroxypropionic, R- and S-3-aminoisobutyric, R- and S-3-hydroxyisobutyric and S-2-(hydroxymethyl)butyric acids probably due to a defect in the metabolism of the corresponding malonic semialdehydes. J Inherit Metab Dis. 1985;8(2):75–9.",
           "evidence": "abstract",
           "claim_id": "ALDH6A1.molecular.3",
           "verdict": "partial",
@@ -22060,7 +21800,7 @@
         },
         {
           "pmid": "11350878",
-          "citation": "Van Kuilenburg AB et al. Clinical implications of dihydropyrimidine dehydrogenase deficiency in patients with severe 5-fluorouracil-associated toxicity. Clin Cancer Res. 2001;7(5):1149–53.",
+          "citation": "Van Kuilenburg AB et al. Lethal outcome of a patient with a complete dihydropyrimidine dehydrogenase (DPD) deficiency after administration of 5-fluorouracil: frequency of the common IVS14+1G>A mutation causing DPD deficiency. Clin Cancer Res. 2001;7(5):1149–53.",
           "evidence": "abstract",
           "claim_id": "DPD.presentation.1",
           "verdict": "unsupported",
@@ -22674,7 +22414,7 @@
         },
         {
           "pmid": "29053833",
-          "citation": "Manole A et al. Brown-Vialetto-Van Laere syndrome caused by SLC52A2 mutations: a treatable childhood-onset disorder. Brain. 2017;140(11):2820–37.",
+          "citation": "Manole A et al. Clinical, pathological and functional characterization of riboflavin-responsive neuropathy. Brain. 2017;140(11):2820–2837.",
           "evidence": "abstract",
           "claim_id": "RFVT.introduction.1",
           "verdict": "partial",
@@ -22796,7 +22536,7 @@
         },
         {
           "pmid": "29053833",
-          "citation": "Manole A et al. Brown-Vialetto-Van Laere syndrome caused by SLC52A2 mutations: a treatable childhood-onset disorder. Brain. 2017;140(11):2820–37.",
+          "citation": "Manole A et al. Clinical, pathological and functional characterization of riboflavin-responsive neuropathy. Brain. 2017;140(11):2820–2837.",
           "evidence": "abstract",
           "claim_id": "RFVT.treatment.2",
           "verdict": "not-assessable",
@@ -22824,7 +22564,7 @@
         },
         {
           "pmid": "29053833",
-          "citation": "Manole A et al. Brown-Vialetto-Van Laere syndrome caused by SLC52A2 mutations: a treatable childhood-onset disorder. Brain. 2017;140(11):2820–37.",
+          "citation": "Manole A et al. Clinical, pathological and functional characterization of riboflavin-responsive neuropathy. Brain. 2017;140(11):2820–2837.",
           "evidence": "abstract",
           "claim_id": "RFVT.treatment.4",
           "verdict": "not-assessable",
@@ -22852,7 +22592,7 @@
         },
         {
           "pmid": "29053833",
-          "citation": "Manole A et al. Brown-Vialetto-Van Laere syndrome caused by SLC52A2 mutations: a treatable childhood-onset disorder. Brain. 2017;140(11):2820–37.",
+          "citation": "Manole A et al. Clinical, pathological and functional characterization of riboflavin-responsive neuropathy. Brain. 2017;140(11):2820–2837.",
           "evidence": "abstract",
           "claim_id": "RFVT.prognosis.1",
           "verdict": "not-assessable",
