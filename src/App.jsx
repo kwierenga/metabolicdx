@@ -1,19 +1,18 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import * as XLSX from "xlsx";
 import { supabase, STORAGE_MODE } from "./lib/supabase.js";
 import AuthGate, { SignOutButton } from "./components/AuthGate.jsx";
-import { DISORDERS, KB_VERSION, KB_DATE } from "./disorders.js";
-import {
-  REFERENCES, METHOD_REFS, PANEL_STANDARDS,
-  getRef, refUrl, formatRef, shortRef, resolveRefs,
-} from "./references.js";
+import { DISORDERS, KB_VERSION, KB_DATE, KB_HASH } from "./disorders.js";
+import { METHOD_REFS, getRef, refUrl, formatRef, shortRef, resolveRefs } from "./references.js";
 import ReferenceList from "./components/ReferenceList.jsx";
-export { DISORDERS, KB_VERSION, KB_DATE };
-export { REFERENCES, METHOD_REFS, PANEL_STANDARDS };
+import {
+  StorageConflictError, StorageNotMigratedError, currentStamp, isStale,
+  loadList, loadDeleted, loadFullCase, loadTraining, saveCase, deleteCase, restoreCase, seedOnce,
+} from "./storage.js";
+import { buildNarrativePrompt } from "./narrative.js";
+import { EXTRACTION_SCHEMA, foldExtractedValues } from "./extraction.js";
 
-// Reference data, scoring, QC and patient matching now live in their own
-// modules — this file is the React layer. The re-exports below keep existing
-// importers working; new code should import from the module directly.
+// Reference data, scoring, storage, extraction, QC and patient matching live in
+// their own modules — this file is the React layer only.
 import {
   AC_ANALYTES, ANALYTE_DIST, ANALYTE_ID_REFERENCE, ANALYTE_MAP, CAR_ANALYTES,
   COVARIATE_MODELS, DEFAULT_DIST, DISORDER_MAP, MISC_ANALYTES, PAA_ANALYTES,
@@ -21,16 +20,11 @@ import {
 } from "./analytes.js";
 import { CLINICAL_CONTEXTS, MODIFIERS, MODIFIER_GROUPS, MODIFIER_MAP } from "./modifiers.js";
 import {
-  computeCovariateZscore, computeLearnedWeights, confLevel, countAbnormal, countEntered,
-  getAgeGroup, initValues, normalizeValues, parseAgeMonths, parseDemoForCovariates, runAnalysis
+  computeCovariateZscore, computeLearnedWeights, countAbnormal, countEntered,
+  getAgeGroup, normalizeValues, parseAgeMonths, parseDemoForCovariates, rankByPosterior, runAnalysis
 } from "./scoring.js";
 import { detectArtifactSignals, diagnosticRatioFlags, runQcChecks } from "./qc.js";
 import { TREND_KEY_ANALYTES, nearMissKeys, patientKey } from "./patient.js";
-export { AC_ANALYTES, ANALYTE_DIST, ANALYTE_ID_REFERENCE, ANALYTE_MAP, CAR_ANALYTES, COVARIATE_MODELS, DEFAULT_DIST, DISORDER_MAP, MISC_ANALYTES, PAA_ANALYTES, PANEL_ANALYTES, UAG_ANALYTES, UOA_ANALYTES } from "./analytes.js";
-export { CLINICAL_CONTEXTS, MODIFIERS, MODIFIER_GROUPS, MODIFIER_MAP } from "./modifiers.js";
-export { computeCovariateZscore, computeLearnedWeights, confLevel, countAbnormal, countEntered, getAgeGroup, initValues, parseAgeMonths, parseDemoForCovariates, runAnalysis } from "./scoring.js";
-export { detectArtifactSignals, diagnosticRatioFlags, runQcChecks } from "./qc.js";
-export { TREND_KEY_ANALYTES, nearMissKeys, patientKey } from "./patient.js";
 
 
 const FontLink = () => (
@@ -84,6 +78,33 @@ function SourceChips({refs,unsourcedLabel="source not recorded",className=""}){
   );
 }
 
+/** "1 in N births" from a per-100,000 figure. */
+function fmtOneIn(per100k){
+  const n=Math.round(100000/per100k);
+  return n>=1e6?`1 in ${(n/1e6).toFixed(1).replace(/\.0$/,"")} million`:`1 in ${n.toLocaleString("en-GB")}`;
+}
+/** Post-test odds as "1 : N" (or "N : 1" when above evens). */
+function fmtOdds(o){
+  if(!(o>0)) return "—";
+  return o>=1?`${o>=10?o.toFixed(0):o.toFixed(1)} : 1`:`1 : ${Math.round(1/o).toLocaleString("en-GB")}`;
+}
+/**
+ * Sourced birth prevalence for a disorder (disorders.js `incidence`). Shown so
+ * the clinician can weigh a candidate's rarity, and used by the optional
+ * prevalence weighting in the Results tab. `range` is [lo,hi] per 100,000.
+ */
+function IncidenceChip({inc}){
+  const ref=getRef(inc.ref);
+  const range=inc.range?` (${fmtOneIn(inc.range[1])} to ${fmtOneIn(inc.range[0])})`:"";
+  return(
+    <span className="text-[10px] text-slate-500 inline-flex items-center gap-1"
+      title={`Birth prevalence ${inc.per100k} per 100,000${inc.range?`, range ${inc.range[0]}–${inc.range[1]} per 100,000`:""} — ${inc.scope}.${ref?` Source: ${formatRef(ref)}`:""}`}>
+      ≈{fmtOneIn(inc.per100k)} births{range}
+      {ref&&<a href={refUrl(ref)} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline decoration-dotted underline-offset-2">{shortRef(ref)}</a>}
+    </span>
+  );
+}
+
 function mergeExtracted(base,ext){const o={PAA:{...base.PAA},UOA:{...base.UOA},AC:{...base.AC},CAR:{...base.CAR},UAG:{...base.UAG},MISC:{...base.MISC}};for(const[p,vs]of Object.entries(ext||{})){if(!o[p])continue;for(const[id,v]of Object.entries(vs||{})){if(id in o[p]&&v!=null&&v!=="")o[p][id]=String(v);}}return o;}
 const CAT_CLR={Aminoacidopathy:"#1d4ed8","Urea Cycle Disorder":"#7c3aed","Organic Acidemia":"#b45309","Fatty Acid Oxidation":"#065f46","Creatine Disorder":"#0e7490","BH4 Disorder":"#be185d","Mitochondrial Disorder":"#6d28d9","Carbohydrate Disorder":"#c2410c","Purine/Pyrimidine":"#4338ca"};
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
@@ -101,14 +122,22 @@ function wtDelta(adj,prior){const d=(adj-prior)/prior;if(Math.abs(d)<0.05)return
 // bounds thinking + visible text together. The budgets below are sized with
 // that headroom; a low effort level keeps these mechanical tasks cheap.
 async function callClaude({task,system,messages,maxTokens,effort="low",format=null}){
+  // The proxy verifies the Supabase session before it touches the API key
+  // (api/claude.js, verifyBearer). Send the current access token every time.
+  const headers={"Content-Type":"application/json"};
+  if(supabase){
+    const {data}=await supabase.auth.getSession();
+    if(data?.session?.access_token) headers.Authorization=`Bearer ${data.session.access_token}`;
+  }
   let res;
   try{
     res=await fetch("/api/claude",{
-      method:"POST",headers:{"Content-Type":"application/json"},
+      method:"POST",headers,
       body:JSON.stringify({task,system,messages,max_tokens:maxTokens,effort,format})});
   }catch{
     throw new Error("Could not reach the analysis service — check your connection.");
   }
+  if(res.status===401) throw new Error("Your session has expired — sign in again to use the AI features.");
   if(res.status===413) throw new Error("File is too large to send. Use a smaller image or crop to the results table.");
   if(res.status===429) throw new Error("Rate limit reached — wait a minute and try again.");
   let data;
@@ -127,60 +156,14 @@ async function callClaude({task,system,messages,maxTokens,effort="low",format=nu
 }
 
 // ─── CLAUDE EXTRACTION ───────────────────────────────────────
-// Extraction is schema-constrained rather than prompt-constrained. The model is
-// given an explicit output schema whose `id` enum is generated from the panel
-// definitions, so it is structurally unable to return an analyte ID the app does
-// not know, a non-numeric value, or a value for a derived ratio. Previously all
-// three were possible and failed *silently*: mergeExtracted() drops any id it
-// does not recognise, so a mis-mapped analyte simply vanished from the case.
-//
-// A flat array is used rather than a nested object because extraction is sparse
-// — a report contains a handful of the ~134 analytes, and an object schema with
-// `additionalProperties:false` would require every field on every response.
-export const EXTRACTABLE_IDS=Object.values(PANEL_ANALYTES).flat().map(a=>a.id);
-export const EXTRACTION_SCHEMA={
-  type:"object",
-  properties:{
-    values:{
-      type:"array",
-      description:"One entry per analyte with an explicit numeric value in the source. Omit analytes that are absent, qualitative, or below the reporting limit.",
-      items:{
-        type:"object",
-        properties:{
-          panel:{type:"string",enum:Object.keys(PANEL_ANALYTES),
-            description:"Panel the analyte belongs to."},
-          id:{type:"string",enum:EXTRACTABLE_IDS,
-            description:"Exact analyte identifier."},
-          value:{type:"number",description:"Numeric result as reported, in the panel's stated units."},
-        },
-        required:["panel","id","value"],
-        additionalProperties:false,
-      },
-    },
-  },
-  required:["values"],
-  additionalProperties:false,
-};
-
-// Fold the flat array back into the {panel:{id:value}} shape mergeExtracted
-// expects, discarding entries whose analyte does not belong to the named panel.
-function foldExtractedValues(parsed){
-  const out={};
-  let dropped=0;
-  for(const row of parsed?.values??[]){
-    const list=PANEL_ANALYTES[row?.panel];
-    if(!list||!list.some(a=>a.id===row.id)){dropped++;continue;}
-    if(typeof row.value!=="number"||!isFinite(row.value)){dropped++;continue;}
-    (out[row.panel]??={})[row.id]=row.value;
-  }
-  if(dropped) console.warn(`extraction: dropped ${dropped} row(s) with an unknown panel/analyte pairing`);
-  return out;
-}
+// The output schema and the fold/convert step live in ./extraction.js; the
+// unit arithmetic in ./units.js. This file only wires them to the API call.
 
 async function extractWithClaude(content){
   const sys=`You are a metabolic laboratory data extractor. Extract every analyte that has an explicit numeric result in the source.
-Report each value in the units printed on the report; do not convert units.
+Report each value exactly as printed, and report the unit exactly as printed beside it (for example µmol/L, mg/dL, mmol/mol creatinine, µmol/mmol creatinine, U/L). Never convert units yourself — the application converts what it can and refuses what it cannot.
 Do not infer, estimate, or carry values across analytes.
+Ignore patient names, dates of birth, record numbers and any other identifier; extract analyte values only.
 Do not return derived ratios (Phe/Tyr, C8/C10, lactate/pyruvate, etc.) — the application computes these itself.
 Analyte identifier reference:\n${ANALYTE_ID_REFERENCE}`;
   const text=await callClaude({task:"extract",system:sys,
@@ -197,126 +180,30 @@ Analyte identifier reference:\n${ANALYTE_ID_REFERENCE}`;
     catch{ throw new Error("Extracted data was incomplete — enter the values manually."); }
   }
   const folded=foldExtractedValues(parsed);
-  if(!Object.keys(folded).length) throw new Error("No recognised analyte values were found in this file.");
+  if(!Object.keys(folded.values).length){
+    const why=folded.skipped.length
+      ?` ${folded.skipped.length} value(s) were read but could not be converted to the panel units: ${folded.skipped.slice(0,3).map(k=>`${k.name} in ${k.from} (${k.reason})`).join("; ")}.`
+      :"";
+    throw new Error("No usable analyte values were found in this file."+why);
+  }
   return folded;
 }
 async function extractFromImage(b64,mt){return extractWithClaude([{type:"image",source:{type:"base64",media_type:mt,data:b64}},{type:"text",text:"Extract all metabolite values from this lab report image."}]);}
 async function extractFromText(txt){return extractWithClaude([{type:"text",text:"Extract all metabolite values from this lab data:\n\n"+txt}]);}
-function xlsxToText(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>{try{const wb=XLSX.read(new Uint8Array(e.target.result),{type:"array"});const ws=wb.Sheets[wb.SheetNames[0]];res(XLSX.utils.sheet_to_csv(ws));}catch(e){rej(e);}};r.onerror=()=>rej(new Error("Read failed"));r.readAsArrayBuffer(file);});}
+async function xlsxToText(file){
+  // SheetJS is ~330 KB and only needed here: load it on first use, not at startup.
+  const XLSX=await import("xlsx");
+  const buf=await file.arrayBuffer();
+  const wb=XLSX.read(new Uint8Array(buf),{type:"array"});
+  const ws=wb.Sheets[wb.SheetNames[0]];
+  return XLSX.utils.sheet_to_csv(ws);
+}
 function toB64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>res(e.target.result.split(",")[1]);r.onerror=()=>rej(new Error("Read failed"));r.readAsDataURL(file);});}
 
 // ─── STORAGE ─────────────────────────────────────────────────
-// The Supabase client lives in ./lib/supabase.js — see the note there on why
-// there must be exactly one instance once authentication is in play.
-const sb = supabase;
-
-// In-memory fallback — data lost on page reload
-const _mem = {};
-const mem = {
-  get: async (k)    => _mem[k] ? {value:_mem[k]} : null,
-  set: async (k,v)  => { _mem[k]=v; return {value:v}; },
-  del: async (k)    => { delete _mem[k]; return {deleted:true}; },
-};
-
-async function dbGet(key){
-  if(!sb) return mem.get(key);
-  const {data,error}=await sb.from("cases").select("data").eq("id",key).maybeSingle();
-  if(error) throw new Error(error.message);
-  if(!data) return null;
-  return {value:JSON.stringify(data.data)};
-}
-async function dbSet(key,value){
-  if(!sb) return mem.set(key,value);
-  const parsed=JSON.parse(value);
-  const {error}=await sb.from("cases").upsert({id:key,data:parsed,updated_at:new Date()});
-  if(error) throw new Error(`Supabase write failed for key "${key}": ${error.message}`);
-  return {value};
-}
-async function dbDel(key){
-  if(!sb){ delete _mem[key]; return {deleted:true}; }
-  const {error}=await sb.from("cases").delete().eq("id",key);
-  if(error) throw new Error(error.message);
-  return {deleted:true};
-}
-
-// Strip notes and other large fields from results before saving.
-// Notes are already compiled into the bundle — storing them in the DB is
-// redundant and can push individual case payloads over 200KB.
-function stripResultsForStorage(results){
-  if(!results) return null;
-  return results.map(r=>({
-    id:r.id, name:r.name, category:r.category, gene:r.gene,
-    score:r.score, rawScore:r.rawScore, relativePct:r.relativePct,
-    intraCoverage:r.intraCoverage,
-    supporting:r.supporting?.map(s=>({id:s.id,panel:s.panel,direction:s.direction,
-      val:s.val,matchScore:s.matchScore,xLimit:s.xLimit,effectiveWeight:s.effectiveWeight})),
-    missing:r.missing?.map(s=>({id:s.id,panel:s.panel})),
-    notRun:r.notRun?.map(s=>({id:s.id,panel:s.panel})),
-    warnings:r.warnings,
-  }));
-}
-
-// Re-hydrate stripped results with full disorder data (notes, signature etc.)
-function hydrateResults(stripped){
-  if(!stripped) return null;
-  return stripped.map(r=>{
-    const d=DISORDER_MAP[r.id];
-    return d?{...d,...r}:r;
-  });
-}
-
-const CASES_KEY="mdx_cases_v2", TRAINING_KEY="mdx_training_v1";
-
-// Throws on a storage failure rather than returning []. An unreachable database
-// and an empty database are different things, and rendering both as "no cases"
-// hides outages — including an expired session, which under RLS makes every
-// read fail. Callers that must not fail hard catch it themselves.
-async function loadList(){
-  const r=await dbGet(CASES_KEY);
-  return r?JSON.parse(r.value):[];
-}
-async function persistCase(c){
-  const list=await loadList();
-  const idx=list.findIndex(x=>x.id===c.id);
-  const summ={id:c.id,label:c.label,age:c.age??null,sex:c.sex??null,
-    clinicalNote:c.clinicalNote??null,createdAt:c.createdAt,panels:c.panels,
-    enteredCount:c.enteredCount,abnormalCount:c.abnormalCount,
-    topDx:c.results?.[0]?.name??null,confirmedDxId:c.confirmedDxId??null,
-    modifierCount:(c.activeModifiers||[]).length,reportSigned:c.reportSigned??false};
-  if(idx>=0)list[idx]=summ; else list.unshift(summ);
-  // Strip notes from results to keep payload small
-  const caseToStore={...c, results:stripResultsForStorage(c.results)};
-  await dbSet(CASES_KEY,JSON.stringify(list));
-  await dbSet("mdx_case_"+c.id,JSON.stringify(caseToStore));
-}
-async function loadFullCase(id){
-  try{
-    const r=await dbGet("mdx_case_"+id);
-    if(!r) return null;
-    const c=JSON.parse(r.value);
-    // Re-hydrate results with full disorder data
-    return {...c, results:hydrateResults(c.results)};
-  }catch(e){ console.warn("loadFullCase error:",e.message); return null; }
-}
-async function removeCase(id){
-  const list=await loadList();
-  await dbSet(CASES_KEY,JSON.stringify(list.filter(x=>x.id!==id)));
-  await dbDel("mdx_case_"+id);
-}
-async function loadTraining(){
-  try{ const r=await dbGet(TRAINING_KEY); return r?JSON.parse(r.value):[]; }
-  catch(e){ console.warn("loadTraining error:",e.message); return []; }
-}
-async function upsertTrainingExample(ex){
-  const list=await loadTraining();
-  const idx=list.findIndex(x=>x.caseId===ex.caseId);
-  if(idx>=0)list[idx]=ex; else list.push(ex);
-  await dbSet(TRAINING_KEY,JSON.stringify(list));
-}
-async function removeTrainingExample(caseId){
-  const list=await loadTraining();
-  await dbSet(TRAINING_KEY,JSON.stringify(list.filter(x=>x.caseId!==caseId)));
-}
+// Lives in ./storage.js: one row per case, versioned saves that refuse to
+// overwrite someone else's edit, soft delete with restore, a derived training
+// set, and demo cases seeded once. See supabase/migrations/0003_case_records.sql.
 
 // ─── UI PRIMITIVES ───────────────────────────────────────────
 function Spinner({s=4}){return(<svg className={`w-${s} h-${s} animate-spin`} viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>);}
@@ -398,10 +285,12 @@ function DropZone({onFile,busy}){
     <div onDragOver={e=>{e.preventDefault();setDrag(true);}} onDragLeave={()=>setDrag(false)}
       onDrop={e=>{e.preventDefault();setDrag(false);go(e.dataTransfer.files[0]);}}
       onClick={()=>!busy&&ref.current.click()}
+      role="button" tabIndex={0} aria-label="Upload a lab report image, Excel file or CSV"
+      onKeyDown={e=>{if((e.key==="Enter"||e.key===" ")&&!busy){e.preventDefault();ref.current.click();}}}
       className={`flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed py-8 px-6 cursor-pointer select-none transition-all
         ${drag?"border-blue-400 bg-blue-50":"border-slate-200 bg-slate-50 hover:border-slate-300"}
         ${busy?"pointer-events-none opacity-60":""}`}>
-      <input ref={ref} type="file" accept=".png,.jpg,.jpeg,.webp,.xlsx,.xls,.csv" className="hidden" onChange={e=>go(e.target.files[0])}/>
+      <input ref={ref} type="file" accept=".png,.jpg,.jpeg,.webp,.xlsx,.xls,.csv" className="hidden" aria-hidden="true" tabIndex={-1} onChange={e=>go(e.target.files[0])}/>
       {busy?(
         <><Spinner s={7}/><span className="text-sm text-slate-400 font-medium">Extracting via Claude…</span></>
       ):(
@@ -414,6 +303,7 @@ function DropZone({onFile,busy}){
           <div className="text-center">
             <p className="text-sm font-semibold text-slate-700">Drop file or click to upload</p>
             <p className="text-xs text-slate-400 mt-0.5">Upload each report separately — PAA, UOA and/or AC · Screenshot · Excel · CSV</p>
+            <p className="text-[10px] text-amber-700 mt-1.5 max-w-md leading-relaxed">The file is sent to an external AI service (Anthropic) to read the numbers. Crop or black out the patient&apos;s name, date of birth and record number first — only the results table is needed. Units are read as printed and converted; anything that cannot be converted is listed, not guessed.</p>
           </div>
         </>
       )}
@@ -426,19 +316,21 @@ function ValueCell({analyte,value,onChange,highlighted}){
   const v=parseFloat(value);
   const hi=!isNaN(v)&&v>analyte.hi, lo=!isNaN(v)&&analyte.lo>0&&v<analyte.lo;
   const hasVal=!isNaN(v)&&value!=="";
+  const inputId=`val-${analyte.id}`;
   return(
     <div className={`rounded-xl p-2.5 border transition-all ${highlighted?"ring-2 ring-blue-400 border-blue-300":hi?"border-rose-200":lo?"border-sky-200":"border-slate-200"}`}
       style={{background: hi?"#fff5f5":lo?"#f0f9ff":highlighted?"#eff6ff":"white", boxShadow:"0 1px 3px rgba(0,0,0,0.04)"}}>
-      <div className="text-[10px] font-bold text-slate-500 truncate mb-1.5 uppercase tracking-wide" title={analyte.name}>{analyte.name}</div>
-      <input type="number" value={value} step="any" min="0" placeholder="—"
+      <label htmlFor={inputId} className="block text-[10px] font-bold text-slate-500 truncate mb-1.5 uppercase tracking-wide" title={analyte.name}>{analyte.name}</label>
+      <input id={inputId} type="number" value={value} step="any" min="0" placeholder="—"
+        aria-describedby={`${inputId}-ref`} aria-invalid={hi||lo?true:undefined}
         onChange={e=>onChange(analyte.id,e.target.value)}
         style={{fontFamily:"'IBM Plex Mono',monospace", fontWeight: hasVal?"700":"400"}}
         className={`w-full rounded-lg border px-2 py-1.5 text-sm outline-none transition-colors
           ${hi?"border-rose-300 bg-rose-50 text-rose-700":lo?"border-sky-300 bg-sky-50 text-sky-700":"border-slate-200 bg-slate-50 focus:border-blue-400 focus:bg-white text-slate-800"}`}/>
-      <div className="flex justify-between mt-1 text-[9px] text-slate-300">
+      <div id={`${inputId}-ref`} className="flex justify-between mt-1 text-[9px] text-slate-300">
         <span className="font-mono">{analyte.lo>0?`${analyte.lo}–${analyte.hi}`:`≤${analyte.hi}`} <span className="not-italic">{analyte.unit}</span></span>
-        {hi&&<span className="text-rose-500 font-black">↑{(v/analyte.hi).toFixed(1)}×</span>}
-        {lo&&<span className="text-sky-500 font-black">↓{(v/analyte.lo).toFixed(2)}×</span>}
+        {hi&&<span className="text-rose-500 font-black" aria-label={`high, ${(v/analyte.hi).toFixed(1)} times the upper limit`}>H ↑{(v/analyte.hi).toFixed(1)}×</span>}
+        {lo&&<span className="text-sky-500 font-black" aria-label={`low, ${(v/analyte.lo).toFixed(2)} of the lower limit`}>L ↓{(v/analyte.lo).toFixed(2)}×</span>}
       </div>
     </div>
   );
@@ -606,7 +498,10 @@ function ProfileTab({values}){
 
 function ResultCard({result,rank}){
   const [open,setOpen]=useState(rank<=3);
-  const conf=confLevel(result.score);
+  // Separation (leader vs runner-up outside its family) replaces the absolute
+  // HIGH/MODERATE/LOW band, which calibration showed was right 29% of the time.
+  const sep=result.separation;
+  const peers=result.familyPeers||[];
   const cc=CAT_CLR[result.category]??"#64748b";
   const hasLearnedAdjust=result.supporting.some(m=>m.lrInfo&&m.lrInfo.lr!==null);
   const hasSuppressed=result.supporting.some(m=>m.suppFactor<1);
@@ -615,12 +510,17 @@ function ResultCard({result,rank}){
   const hasConcordance=(result.concordantPanels||0)>=2;
   return(
     <div className={`border rounded-xl overflow-hidden bg-white ${warningCount>0?"border-orange-200":"border-slate-200"}`}>
-      <button onClick={()=>setOpen(o=>!o)} className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 transition-colors">
+      <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 transition-colors">
         <span className="text-sm font-black text-slate-200 w-5 flex-shrink-0 text-right">{rank}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-semibold text-sm text-slate-800">{result.name}</span>
-            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${conf.cls}`}>{conf.label}</span>
+            {sep&&<span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${sep.cls}`} title={sep.note}>
+              {sep.label}{Number.isFinite(result.leadRatio)?` · ${result.leadRatio.toFixed(2)}× next`:""}
+            </span>}
+            {!sep&&result.coDifferential&&<span className="text-[10px] font-bold px-1.5 py-0.5 rounded border text-slate-700 bg-slate-100 border-slate-300" title="Within 10% of the leader's score. The biochemistry does not separate these; both need to be pursued.">CO-DIFFERENTIAL</span>}
+            {peers.length>0&&<span className="text-[10px] px-1.5 py-0.5 rounded border text-indigo-700 bg-indigo-50 border-indigo-200" title={`Shares every scored marker with ${peers.join(", ")}. These cannot be separated on these panels; confirmatory testing decides.`}>family of {peers.length+1}</span>}
+            {result.posteriorOdds!=null&&<span className="text-[10px] font-mono px-1.5 py-0.5 rounded border text-indigo-700 bg-white border-indigo-200" title="Prior odds from sourced birth prevalence × this tool's LR product. The LR product is an unvalidated construction, so this is a proxy, not a probability.">post-test odds {fmtOdds(result.posteriorOdds)}</span>}
             {hasLearnedAdjust&&<span className="text-[10px] text-violet-600 bg-violet-50 border border-violet-200 px-1.5 py-0.5 rounded font-semibold">model-adjusted</span>}
             {hasSuppressed&&<span className="text-[10px] text-orange-600 bg-orange-50 border border-orange-200 px-1.5 py-0.5 rounded font-semibold">⚠ context-modified</span>}
             {hasNegEvidence&&<span className="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold" title={`${result.negEarned.toFixed(1)}/${result.negPoss.toFixed(1)} negative-evidence weight: normal analytes in run panels reduce this score`}>↓ neg-evidence</span>}
@@ -630,6 +530,7 @@ function ResultCard({result,rank}){
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
             <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded text-white" style={{background:cc}}>{result.category}</span>
             <span className="text-[10px] text-slate-400 font-mono">{result.gene}</span>
+            {result.incidence&&<IncidenceChip inc={result.incidence}/>}
             {[...new Set(result.supporting.filter(m=>m.rawMatchScore>0).map(m=>m.panel))].map(p=>(
               <span key={p} className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500">{p}</span>
             ))}
@@ -651,7 +552,7 @@ function ResultCard({result,rank}){
             </div>
           )}
         </div>
-        <svg className={`w-4 h-4 text-slate-300 flex-shrink-0 transition-transform ${open?"rotate-180":""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg aria-hidden="true" className={`w-4 h-4 text-slate-300 flex-shrink-0 transition-transform ${open?"rotate-180":""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
@@ -1525,7 +1426,7 @@ function MonitoringReport({disorder, values, activePanels}){
     const inPanel=activePanels.has(sig.panel);
     const raw=values[sig.panel]?.[sig.id];
     const val=(raw===""||raw==null)?null:parseFloat(raw);
-    let status="not-entered", valStr="", foldStr="", interpretation="";
+    let status, valStr, foldStr="", interpretation="";
 
     if(!inPanel){
       status="not-run";
@@ -1679,57 +1580,12 @@ function MonitoringReport({disorder, values, activePanels}){
 }
 
 // ─── NARRATIVE GENERATION ────────────────────────────────────
-async function generateNarrative(caseLabel, values, activeModifiers, knownDxId, results, activePanels, patterns=[]){
-  const panelNames={PAA:"Plasma Amino Acids",UOA:"Urine Organic Acids",AC:"Plasma Acylcarnitines",CAR:"Plasma Carnitine",UAG:"Urine Acylglycines",MISC:"Miscellaneous"};
-  const panels=[...activePanels].map(p=>panelNames[p]||p).join(", ");
-
-  // Build abnormal values summary — all panels including CAR and UAG
-  const abnLines=[];
-  const allLines=[];
-  for(const[panelId,panelVals]of Object.entries(values)){
-    const analytes=PANEL_ANALYTES[panelId]; if(!analytes) continue;
-    for(const a of analytes){
-      const v=parseFloat(panelVals[a.id]);
-      if(isNaN(v)||panelVals[a.id]==="") continue;
-      const hi=v>a.hi, lo=a.lo>0&&v<a.lo;
-      const line=`[${panelId}] ${a.name}: ${v} ${a.unit} [ref ${a.lo>0?a.lo+`–`:"≤"}${a.hi}] ${hi?"HIGH":lo?"LOW":"normal"}`;
-      allLines.push(line);
-      if(hi||lo) abnLines.push(line);
-    }
-  }
-  // Also include all entered normal values so Claude has full context for synthesis
-  const contextLines=abnLines.length?abnLines:allLines;
-
-  // Build top differential
-  const top5=(results||[]).filter(r=>r.score>0.02).slice(0,5);
-  const diffLines=top5.map((r,i)=>`${i+1}. ${r.name} (${r.category}) — score ${(r.score*100).toFixed(0)}/100`);
-
-  const modLabels=activeModifiers.map(id=>MODIFIER_MAP[id]?.label||id);
-  const knownDx=knownDxId?DISORDER_MAP[knownDxId]?.name:null;
-
-  const prompt=`You are a clinical biochemist writing a formal metabolic laboratory report narrative.
-Be precise, factual, and clinical in tone. Use standard medical terminology. Do not speculate beyond the data.
-Write in third person (e.g. "The results show...", "These findings are consistent with...").
-IMPORTANT: When multiple panels are provided (e.g. plasma acylcarnitines AND urine acylglycines), synthesise findings across ALL panels together — explicitly describe how findings from different panels corroborate or complement each other. Do not describe each panel in isolation.
-Structure your response in three paragraphs:
-1. FINDINGS: Summarise the significant biochemical abnormalities from ALL panels performed (${panels}), integrating cross-panel findings into a unified biochemical picture.
-2. INTERPRETATION: Interpret the combined cross-panel pattern in clinical context.${knownDx?" The patient has a known diagnosis of "+knownDx+" — focus on adequacy of metabolic control and whether the biochemical profile is consistent with the known diagnosis.":""}${modLabels.length?" Clinical modifiers active: "+modLabels.join(", ")+".":""}
-3. RECOMMENDATIONS: State what additional investigations or management adjustments are warranted based on these results. Be specific and actionable.
-Keep each paragraph to 3–5 sentences. Do not use bullet points. Do not include headings.
-
-Case: ${caseLabel||"Unnamed"}
-Panels performed: ${panels}
-${modLabels.length?"Clinical context: "+modLabels.join(", "):""}
-${knownDx?"Known diagnosis: "+knownDx:""}
-
-Abnormal analytes:
-${contextLines.length?contextLines.join("\n"):"None flagged"}
-
-${!knownDx?`Top differential (scoring engine):\n${diffLines.join("\n")}`:""}
-${patterns.length?`\nBiochemical patterns active:\n${patterns.map(p=>`[${p.confidence.toUpperCase()}] ${p.name}: ${p.hits.map(h=>h.label).join(" | ")}`).join("\n")}`:""}`;
-
-  return callClaude({task:"narrative",
-    messages:[{role:"user",content:prompt}],maxTokens:8000,effort:"medium"});
+// De-identified by construction — see src/narrative.js. The prompt carries age,
+// sex, panels, values, modifiers and the ranked differential; never the case
+// label (which is the patient identifier), date of birth, notes or reviewer.
+async function generateNarrative({ageStr,sex,values,activeModifiers,knownDxId,results,activePanels,patterns=[]}){
+  const prompt=buildNarrativePrompt({ageStr,sex,values,activeModifiers,knownDxId,results,activePanels,patterns});
+  return callClaude({task:"narrative",messages:[{role:"user",content:prompt}],maxTokens:8000,effort:"medium"});
 }
 
 // ─── REVIEW TAB ──────────────────────────────────────────────
@@ -1857,7 +1713,13 @@ th{background:#f0f0f0;font-weight:700;color:#333;-webkit-print-color-adjust:exac
 }
 
 function ReportTab({caseLabel, createdAt, values, activePanels, activeModifiers, knownDxId,
-                    results, reviewer, narrative, confirmedDxId, demo}){
+                    results, reviewer, narrative, confirmedDxId, demo, scoredWith}){
+  // The stamp names the catalogue and engine that PRODUCED these results, which
+  // is not necessarily the running build — a case re-opened months later keeps
+  // its original scores until re-analysed.
+  const stamp=scoredWith
+    ?`knowledge base v${scoredWith.kbVersion} (${scoredWith.kbDate}, ${scoredWith.kbHash}) · engine ${scoredWith.engineHash}`
+    :`knowledge base v${KB_VERSION} (${KB_DATE}) — these results predate version stamping and may have been scored under an earlier catalogue`;
   const top=(results||[]).filter(r=>r.score>0.02).slice(0,10);
   const cc=knownDxId?CAT_CLR[DISORDER_MAP[knownDxId]?.category]??"#1d4ed8":"#1d4ed8";
   const now=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"long",year:"numeric"});
@@ -1895,7 +1757,7 @@ function ReportTab({caseLabel, createdAt, values, activePanels, activeModifiers,
               {demo?.dob&&<div>DOB: <span className="font-semibold text-slate-600">{demo.dob}</span></div>}
               {demo?.gender&&<div>Gender: <span className="font-semibold text-slate-600">{demo.gender}</span></div>}
               <div>Panels: <span className="font-semibold text-slate-600">{[...activePanels].map(p=>p).join(", ")}</span></div>
-              <div>Knowledge base: <span className="font-semibold text-slate-600">v{KB_VERSION} ({KB_DATE})</span></div>
+              <div>Scored with: <span className="font-semibold text-slate-600">{stamp}</span></div>
             </div>
           </div>
           {(knownDxId||modLabels.length>0)&&(
@@ -1913,7 +1775,7 @@ function ReportTab({caseLabel, createdAt, values, activePanels, activeModifiers,
           <strong>Decision-support tool — not a diagnostic device.</strong> Output is a weighted
           ranking to aid biochemical-genetics interpretation and does not establish or exclude any
           diagnosis. All results require confirmation and review by a qualified metabolic specialist.
-          Knowledge base v{KB_VERSION} ({KB_DATE}).
+          Scored with {stamp}.
         </div>
 
         {/* Biochemical data table */}
@@ -1977,22 +1839,34 @@ function ReportTab({caseLabel, createdAt, values, activePanels, activeModifiers,
               {knownDxId?"Secondary diagnostic considerations":"Differential diagnosis — ranked"}
             </div>
             <div className="space-y-1">
-              {top.filter(r=>r.id!==knownDxId).slice(0,5).map((r,i)=>{
-                const conf=confLevel(r.score);
-                const cc2=CAT_CLR[r.category]??"#64748b";
-                return(
-                  <div key={r.id} className="flex items-center gap-3 py-1.5 border-b border-slate-50 last:border-0">
-                    <span className="text-xs font-black text-slate-200 w-4">{i+1}</span>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-xs font-semibold text-slate-800">{r.name}</span>
-                      <span className="ml-2 text-[10px] font-semibold px-1.5 py-0.5 rounded text-white" style={{background:cc2}}>{r.category}</span>
+              {(()=>{
+                const rows=top.filter(r=>r.id!==knownDxId).slice(0,5);
+                const first=rows[0];
+                return rows.map((r,i)=>{
+                  const cc2=CAT_CLR[r.category]??"#64748b";
+                  const sep=r.separation;
+                  const rel=first&&first.score>0?r.score/first.score:0;
+                  const tail=i===0
+                    ?(r.leadRatio==null?"":Number.isFinite(r.leadRatio)?`${r.leadRatio.toFixed(2)}× next candidate`:"only candidate")
+                    :`${(rel*100).toFixed(0)}% of leader`;
+                  return(
+                    <div key={r.id} className="flex items-center gap-3 py-1.5 border-b border-slate-50 last:border-0">
+                      <span className="text-xs font-black text-slate-200 w-4">{i+1}</span>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-xs font-semibold text-slate-800">{r.name}</span>
+                        <span className="ml-2 text-[10px] font-semibold px-1.5 py-0.5 rounded text-white" style={{background:cc2}}>{r.category}</span>
+                        {r.familyPeers?.length>0&&<span className="ml-2 text-[10px] text-slate-500">not separable on these panels from {r.familyPeers.map(id=>DISORDER_MAP[id]?.name?.split("(")[0].trim()||id).join(", ")}</span>}
+                      </div>
+                      {sep&&<span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${sep.cls}`}>{sep.label}</span>}
+                      <span className="text-[10px] font-mono text-slate-500 w-32 text-right">{tail}</span>
                     </div>
-                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${conf.cls}`}>{conf.label}</span>
-                    <span className="text-[10px] font-mono text-slate-400 w-14 text-right">{(r.score*100).toFixed(0)}/100</span>
-                  </div>
-                );
-              })}
+                  );
+                });
+              })()}
             </div>
+            <p className="text-[10px] text-slate-400 mt-2 leading-relaxed">
+              Ranking by biochemical pattern match. The badge describes how far the leader is ahead of the next candidate outside its family; it is not a probability of disease, and co-differentials within 10% of each other require confirmatory testing to separate.
+            </p>
           </div>
         )}
 
@@ -2091,31 +1965,33 @@ function TrendsTab({currentLabel,currentValues,currentResults,currentDate,curren
     .map(c=>c.id),[allCases,curKey,currentId]);
   const nearMisses=useMemo(()=>nearMissKeys(currentLabel,(allCases||[]).filter(c=>c.id!==currentId)),
     [allCases,currentLabel,currentId]);
-  const [loaded,setLoaded]=useState([]);
-  const [busy,setBusy]=useState(false);
+  // Prior cases are fetched for the current set of matched ids. `loaded.key`
+  // records which set they belong to, so a stale fetch is ignored and "busy"
+  // is derived rather than set from inside the effect.
+  const [loaded,setLoaded]=useState({key:"",items:[]});
   const idsKey=matchIds.join(",");
+  const priorItems=useMemo(()=>loaded.key===idsKey?loaded.items:[],[loaded,idsKey]);
+  const busy=matchIds.length>0&&loaded.key!==idsKey;
   useEffect(()=>{
+    if(!matchIds.length) return;
     let cancelled=false;
-    if(!matchIds.length){ setLoaded([]); return; }
     (async()=>{
-      setBusy(true);
-      const full=await Promise.all(matchIds.map(id=>loadFullCase(id)));
+      const full=await Promise.all(matchIds.map(id=>loadFullCase(id).catch(()=>null)));
       if(cancelled) return;
-      setLoaded(full.filter(Boolean).map(c=>({
+      setLoaded({key:idsKey,items:full.filter(Boolean).map(c=>({
         id:c.id,date:c.demo?.sampleDate||c.createdAt,values:c.values,
-        topDx:c.results?.[0]?.name||c.topDx||null,topScore:c.results?.[0]?.score??null})));
-      setBusy(false);
+        topDx:c.results?.[0]?.name||c.topDx||null,topScore:c.results?.[0]?.score??null}))});
     })();
     return ()=>{cancelled=true;};
   },[idsKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const timeline=useMemo(()=>{
-    const tl=[...loaded,{id:currentId||"current",date:currentDate,values:currentValues,
+    const tl=[...priorItems,{id:currentId||"current",date:currentDate,values:currentValues,
       topDx:currentResults?.[0]?.name||null,topScore:currentResults?.[0]?.score??null,isCurrent:true}]
       .filter(t=>t.values)
       .sort((a,b)=>new Date(a.date||0)-new Date(b.date||0));
     return tl;
-  },[loaded,currentValues,currentResults,currentDate,currentId]);
+  },[priorItems,currentValues,currentResults,currentDate,currentId]);
 
   // Build the rows: any key analyte that is entered in ≥1 timepoint
   const rows=useMemo(()=>{
@@ -2289,7 +2165,11 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
   const [confirmSaved,setConfirmSaved]=useState(!!init?.confirmedDxId);
   const [hits,setHits]=useState(new Set());
   const [extractErr,setExtractErr]=useState(null);
+  const [extractReport,setExtractReport]=useState(null);
   const [extractBusy,setExtractBusy]=useState(false);
+  // Which knowledge base / engine produced `results` (storage.js currentStamp).
+  const [scoredWith,setScoredWith]=useState(init?.scoredWith??null);
+  const [weightByPrevalence,setWeightByPrevalence]=useState(false);
   const [tab,setTab]=useState(init?.results?"results":"data");
   const [panel,setPanel]=useState("PAA");
   const [saving,setSaving]=useState(false);
@@ -2330,10 +2210,11 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
       const ext=file.type.startsWith("image/")
         ?await extractFromImage(await toB64(file),file.type)
         :await extractFromText(await xlsxToText(file));
-      setValues(p=>mergeExtracted(p,ext));
+      setValues(p=>mergeExtracted(p,ext.values));
       const ids=new Set();
-      for(const[,vs]of Object.entries(ext||{}))for(const[id,v]of Object.entries(vs||{}))if(v!=null&&v!=="")ids.add(id);
-      setHits(ids);setResults(null);setNarrative("");setReportSigned(false);
+      for(const[,vs]of Object.entries(ext.values||{}))for(const[id,v]of Object.entries(vs||{}))if(v!=null&&v!=="")ids.add(id);
+      setHits(ids);setExtractReport({converted:ext.converted,skipped:ext.skipped});
+      setResults(null);setNarrative("");setReportSigned(false);
     }catch(e){setExtractErr("Extraction failed: "+e.message);}
     finally{setExtractBusy(false);}
   };
@@ -2362,14 +2243,14 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
         res.covariateInfo=cov;
       }
     }
-    setResults(r); setPatterns(p); setNarrative(""); setReportSigned(false); setTab("results");
+    setResults(r); setPatterns(p); setScoredWith(currentStamp()); setNarrative(""); setReportSigned(false); setTab("results");
   };
 
   const handleGenerateNarrative=async()=>{
     setNarrativeBusy(true); setNarrativeErr(null);
     try{
       const ap=new Set(Object.entries(values).filter(([,p])=>Object.values(p).some(v=>v!=="")).map(([k])=>k));
-      const text=await generateNarrative(label,values,activeModifiers,knownDxId,results,ap,patterns);
+      const text=await generateNarrative({ageStr,sex,values,activeModifiers,knownDxId,results,activePanels:ap,patterns});
       setNarrative(text);
     }catch(e){setNarrativeErr("Narrative generation failed: "+e.message);}
     finally{setNarrativeBusy(false);}
@@ -2386,26 +2267,24 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
     const caseObj={id:init?.id??uid(),label:label||"Untitled",
       age,sex,clinicalNote,
       createdAt:init?.createdAt??new Date().toISOString(),
-      values,results,confirmedDxId,knownDxId,activeModifiers,reviewer,narrative,reportSigned,demo,
+      values,results,confirmedDxId,knownDxId,activeModifiers,reviewer,narrative,reportSigned,demo,scoredWith,
       panels:Object.entries(values).filter(([,p])=>Object.values(p).some(v=>v!=="")).map(([k])=>k),
-      enteredCount:countEntered(values),abnormalCount:countAbnormal(values)};
+      enteredCount:countEntered(values),abnormalCount:countAbnormal(values),
+      version:init?.version};   // the version this case was opened at; storage.js refuses to overwrite a newer one
     try{
-      await persistCase(caseObj);
-      if(confirmedDxId){
-        await upsertTrainingExample({id:uid(),caseId:caseObj.id,confirmedDxId,values,confirmedAt:new Date().toISOString()});
-        setConfirmSaved(true);
-      }else{
-        await removeTrainingExample(caseObj.id);
-      }
+      await saveCase(caseObj);
+      if(confirmedDxId) setConfirmSaved(true);   // the training set is derived from confirmed cases
       setSaving(false); onSave();
     }catch(e){
-      setSaveError(e.message);
+      setSaveError(e instanceof StorageConflictError?e.message:`Save failed: ${e.message}`);
       setSaving(false);
     }
   };
 
   const entered=countEntered(values),abnormal=countAbnormal(values);
   const top=results?.filter(r=>r.score>0.02).slice(0,15)??[];
+  // Optional re-ordering by posterior odds (sourced prevalence × LR product).
+  const shown=weightByPrevalence?rankByPosterior(top):top;
   const totalWarnings=top.reduce((s,r)=>s+(r.warnings?.length??0),0);
   const activePanels=new Set(Object.entries(values).filter(([,p])=>Object.values(p).some(v=>v!=="")).map(([k])=>k));
   // QC guardrails (Feature 4) — recomputed from raw values
@@ -2435,10 +2314,10 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
       {/* Toolbar — row 1: identity + status + actions */}
       <div className="flex-shrink-0 bg-white border-b border-slate-100 px-4 pt-3 pb-0">
         <div className="flex items-center gap-3 pb-2 border-b border-slate-100">
-          <button onClick={onBack} className="text-slate-400 hover:text-slate-700 transition-colors flex-shrink-0 p-1 rounded-lg hover:bg-slate-100">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/></svg>
+          <button onClick={onBack} aria-label="Back to case list" title="Back to case list" className="text-slate-400 hover:text-slate-700 transition-colors flex-shrink-0 p-1 rounded-lg hover:bg-slate-100">
+            <svg aria-hidden="true" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/></svg>
           </button>
-          <input value={label} onChange={e=>setLabel(e.target.value)} placeholder="Case label / patient ID…"
+          <input value={label} onChange={e=>setLabel(e.target.value)} placeholder="Case label / patient ID…" aria-label="Case label or patient identifier"
             className="flex-1 text-base font-semibold text-slate-800 bg-transparent outline-none placeholder-slate-300 min-w-0"/>
           {/* Status chips */}
           <div className="flex items-center gap-2 flex-shrink-0 text-xs text-slate-400">
@@ -2462,7 +2341,7 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
           <div className="flex items-center gap-2 flex-shrink-0">
             <select value={clinicalContext??""} onChange={e=>setClinicalContext(e.target.value||null)}
               className="text-xs border border-slate-200 rounded-lg px-2 py-1.5 bg-white text-slate-700 max-w-[200px] truncate focus:outline-none focus:ring-1 focus:ring-blue-400"
-              title="Clinical context adjusts pre-test probability priors">
+              aria-label="Clinical context" title="Clinical context adjusts pre-test probability priors">
               <option value="">Context: none</option>
               {CLINICAL_CONTEXTS.map(c=><option key={c.id} value={c.id}>{c.label}</option>)}
             </select>
@@ -2478,9 +2357,9 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
           </div>
         </div>
         {/* Row 2: tabs */}
-        <div className="flex items-center gap-0.5 pt-1">
+        <div className="flex items-center gap-0.5 pt-1" role="tablist" aria-label="Case sections">
           {TABS.map(t=>(
-            <button key={t.id} onClick={()=>t.avail&&setTab(t.id)} disabled={!t.avail}
+            <button key={t.id} role="tab" aria-selected={tab===t.id} onClick={()=>t.avail&&setTab(t.id)} disabled={!t.avail}
               className={`text-sm px-4 py-2 font-medium transition-colors border-b-2 -mb-px
                 ${tab===t.id?"border-slate-900 text-slate-900":t.avail?"border-transparent text-slate-400 hover:text-slate-700":"border-transparent text-slate-200 cursor-not-allowed"}`}>
               {t.label}{t.badge?" "+t.badge:""}
@@ -2595,6 +2474,24 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
                 {hits.size} values extracted — blue cells. Review and correct before analyzing.
               </div>
             )}
+            {extractReport&&!extractErr&&(extractReport.converted.length>0||extractReport.skipped.length>0)&&(
+              <div className="text-xs rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 space-y-1.5">
+                {extractReport.converted.length>0&&(
+                  <div className="text-amber-900">
+                    <span className="font-bold">Units converted ({extractReport.converted.length}):</span>{" "}
+                    {extractReport.converted.map(c=>`${c.name} ${c.raw} ${c.from} → ${c.value} ${c.to}`).join("; ")}.
+                    <span className="text-amber-700"> Check these against the report before analysing.</span>
+                  </div>
+                )}
+                {extractReport.skipped.length>0&&(
+                  <div className="text-red-800">
+                    <span className="font-bold">Not entered ({extractReport.skipped.length}) — unit could not be converted:</span>{" "}
+                    {extractReport.skipped.map(k=>`${k.name} ${k.raw} ${k.from} (${k.reason})`).join("; ")}.
+                    <span className="text-red-700"> Enter these by hand in {extractReport.skipped[0].to}.</span>
+                  </div>
+                )}
+              </div>
+            )}
             {/* ── QC guardrails (Feature 4): value plausibility / consistency ── */}
             {qcIssues.length>0&&(()=>{
               const worst=qcIssues.some(i=>i.severity==="error")?"error":"warn";
@@ -2636,12 +2533,12 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
                 )}
               </div>
             </div>
-            <div className="flex gap-0.5 border-b border-slate-200">
+            <div className="flex gap-0.5 border-b border-slate-200" role="tablist" aria-label="Panels">
               {PANELS.map(p=>{
                 const cnt=Object.values(values[p.id]).filter(v=>v!=="").length;
                 const abn=p.analytes.filter(a=>{const v=parseFloat(values[p.id][a.id]);return !isNaN(v)&&(v>a.hi||(a.lo>0&&v<a.lo));}).length;
                 return(
-                  <button key={p.id} onClick={()=>setPanel(p.id)}
+                  <button key={p.id} role="tab" aria-selected={panel===p.id} onClick={()=>setPanel(p.id)}
                     className={`px-4 py-2 text-xs font-semibold transition-colors border-b-2 -mb-px
                       ${panel===p.id?"border-slate-800 text-slate-800":"border-transparent text-slate-400 hover:text-slate-600"}`}>
                     {p.label}{cnt>0&&<span className="ml-1.5 font-normal text-slate-400">({cnt}{abn>0&&<span className="text-rose-500"> · {abn}↑</span>})</span>}
@@ -2674,6 +2571,18 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
 
         {tab==="results"&&results&&(
           <div className="max-w-screen-xl mx-auto px-5 py-4 space-y-4">
+
+            {/* ── Stale results: scored under a different catalogue/engine than this build ── */}
+            {isStale(scoredWith)&&(
+              <div role="status" className="flex items-start gap-3 bg-amber-50 border border-amber-300 rounded-xl px-4 py-3">
+                <span className="text-amber-500 flex-shrink-0 text-lg" aria-hidden="true">⟳</span>
+                <div className="text-xs text-amber-900 leading-relaxed flex-1">
+                  <span className="font-bold">These results were scored under {scoredWith?`knowledge base v${scoredWith.kbVersion} (${scoredWith.kbDate}, ${scoredWith.kbHash}) and engine ${scoredWith.engineHash}`:"an earlier knowledge base, before version stamping"}.</span>{" "}
+                  This build is v{KB_VERSION} ({KB_DATE}, {KB_HASH}). Re-run Analyze to score against the current catalogue{reportSigned?" — the signed report keeps the results it was signed with until you do":""}.
+                </div>
+                <button onClick={analyze} className="flex-shrink-0 text-[11px] font-semibold text-amber-800 border border-amber-400 rounded px-2 py-1 hover:bg-amber-100">Re-run</button>
+              </div>
+            )}
 
             {/* ── NBS / FIA method warning ── */}
             {demo?.method==="MSMS_FIA"&&(
@@ -2885,12 +2794,13 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
                   Score = weighted match sum ÷ max possible × 100. The top result is always 100 pts; others are shown relative to it.
                 </div>
                 <div>
-                  <div className="font-bold text-slate-700 mb-1">Confidence levels</div>
-                  <span className="font-bold text-red-700">HIGH</span> — strong biochemical signal (≥40 pts raw)<br/>
-                  <span className="font-bold text-amber-700">MODERATE</span> — consistent pattern (≥20 pts)<br/>
-                  <span className="font-bold text-blue-700">LOW</span> — partial or weak signal (≥8 pts)<br/>
-                  <span className="font-bold text-slate-500">TRACE</span> — minimal signal (&lt;8 pts)<br/><br/>
-                  <span className="font-bold">↑x.x×</span> on each marker = fold above/below the reference limit.
+                  <div className="font-bold text-slate-700 mb-1">Separation, not confidence</div>
+                  The leader&apos;s badge is its score divided by the next candidate outside its family. Measured against every disorder&apos;s own textbook profile:<br/>
+                  <span className="font-bold text-emerald-800">CLEAR LEAD</span> ≥1.5× — right in 32 of 32<br/>
+                  <span className="font-bold text-emerald-700">LEADS</span> 1.25–1.5× — 45 of 48<br/>
+                  <span className="font-bold text-amber-700">NARROW LEAD</span> 1.1–1.25× — 59 of 70<br/>
+                  <span className="font-bold text-slate-700">CO-DIFFERENTIAL</span> &lt;1.1× — pursue both<br/>
+                  The old absolute HIGH/MODERATE/LOW band was dropped: it marked the right disorder only 29% of the time. A <span className="font-bold">family</span> chip means members share every marker these panels can measure. <span className="font-bold">↑x.x×</span> on a marker = fold beyond the reference limit.
                 </div>
                 <div>
                   <div className="font-bold text-slate-700 mb-1">Cross-panel synthesis</div>
@@ -2900,19 +2810,20 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
                 <div>
                   <div className="font-bold text-slate-700 mb-1">LR product &amp; clinical context</div>
                   The <span className="font-bold">LR ×</span> figure is a naive Bayes likelihood ratio product across all abnormal analytes. The &gt;10 = strong / &gt;100 = very strong bands are the standard interpretive thresholds for diagnostic likelihood ratios (<RefLink k="jaeschke-1994-likelihood-ratios"/>); scoring by likelihood rather than by fixed cut-off follows CLIR (<RefLink k="marquardt-2012-clir"/>). The product itself is this tool&apos;s own construction — <span className="font-semibold text-slate-700">not a published, externally validated algorithm</span>.<br/><br/>
-                  The <span className="font-bold">Context</span> dropdown applies a pre-test probability prior that shifts rankings based on the clinical presentation. This prior is expert-set and bounded to ±0.25; it is not derived from published prevalence data. Biochemical signal always dominates — context provides a tiebreaker when signals are similar.
+                  The <span className="font-bold">Context</span> dropdown applies a pre-test probability prior that shifts rankings based on the clinical presentation. This prior is expert-set and bounded to ±0.25; it is not derived from published prevalence data. Biochemical signal always dominates — context provides a tiebreaker when signals are similar.<br/><br/>
+                  <span className="font-bold">Weight by birth prevalence</span> re-orders by posterior odds = prior odds (from a sourced birth prevalence, shown on each card) × the LR product. Only candidates with both take part; the rest keep their biochemical order below them.
                 </div>
               </div>
             </details>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
               {Object.keys(CAT_CLR).map(cat=>{
                 const best=top.find(r=>r.category===cat);
-                const cc=CAT_CLR[cat],conf=best?confLevel(best.score):null;
+                const cc=CAT_CLR[cat];
                 return(
                   <div key={cat} className="bg-white border border-slate-200 rounded-xl px-3 py-2.5">
                     <div className="text-[9px] font-bold uppercase tracking-wider mb-1" style={{color:cc}}>{cat}</div>
                     {best?(<><div className="text-xs font-semibold text-slate-700 leading-tight truncate" title={best.name}>{best.name.split("(")[0].trim()}</div>
-                      <span className={`text-[10px] font-bold px-1 py-0.5 rounded border mt-1 inline-block ${conf.cls}`}>{conf.label}</span></>)
+                      <span className="text-[10px] font-mono text-slate-500 mt-1 inline-block">{Math.round(best.relativePct)}% of leader</span></>)
                       :<div className="text-xs text-slate-300">No signal</div>}
                   </div>
                 );
@@ -2937,6 +2848,17 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
                 <MonitoringReport disorder={DISORDER_MAP[knownDxId]} values={values} activePanels={ap}/>
               );
             })()}
+
+            {/* Prevalence weighting (optional) */}
+            <div className="flex items-start gap-3 flex-wrap text-xs bg-white border border-slate-200 rounded-xl px-4 py-2.5">
+              <label className="flex items-center gap-2 cursor-pointer select-none flex-shrink-0">
+                <input type="checkbox" checked={weightByPrevalence} onChange={e=>setWeightByPrevalence(e.target.checked)} className="accent-indigo-600"/>
+                <span className="font-semibold text-slate-700">Weight by birth prevalence</span>
+              </label>
+              <span className="text-slate-400 leading-snug flex-1 min-w-[16rem]">
+                Posterior odds = prior odds (1 ÷ births per case, from the sourced prevalence on each card) × LR product. Only candidates with both take part; the others keep their biochemical rank below them. The LR product is this tool&apos;s own unvalidated construction, so treat the result as a proxy.
+              </span>
+            </div>
 
             {/* Confirm diagnosis panel */}
             <div className="bg-white border border-slate-200 rounded-xl px-4 py-3">
@@ -2963,14 +2885,14 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
                   <div className="text-xs font-bold text-slate-600">Secondary diagnostic considerations</div>
                   <div className="text-[11px] text-slate-400">— engine runs on full profile regardless of known diagnosis; review for co-existing or alternative conditions</div>
                 </div>
-                {top.filter(r=>r.id!==knownDxId).length===0
+                {shown.filter(r=>r.id!==knownDxId).length===0
                   ?<div className="text-center py-8 text-slate-400 text-sm">No secondary candidates above threshold.</div>
-                  :top.filter(r=>r.id!==knownDxId).map((r,i)=><ResultCard key={r.id} result={r} rank={i+1}/>)}
+                  :shown.filter(r=>r.id!==knownDxId).map((r,i)=><ResultCard key={r.id} result={r} rank={i+1}/>)}
               </div>
             ):(
               <div className="space-y-2">
-                {top.length===0?<div className="text-center py-12 text-slate-400 text-sm">No disorders scored above threshold.</div>
-                 :top.map((r,i)=><ResultCard key={r.id} result={r} rank={i+1}/>)}
+                {shown.length===0?<div className="text-center py-12 text-slate-400 text-sm">No disorders scored above threshold.</div>
+                 :shown.map((r,i)=><ResultCard key={r.id} result={r} rank={i+1}/>)}
               </div>
             )}
 
@@ -3009,6 +2931,7 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
             narrative={narrative}
             confirmedDxId={confirmedDxId}
             demo={demo}
+            scoredWith={scoredWith}
           />
         )}
       </div>
@@ -3017,7 +2940,7 @@ function CaseEditor({init,onSave,onBack,learnedWeights,allCases=[]}){
 }
 
 // ─── CASE LIST ───────────────────────────────────────────────
-function CaseList({cases,loading,onOpen,onNew,onDelete,onRefresh,onSaveAll,saveAllBusy}){
+function CaseList({cases,loading,onOpen,onNew,onDelete,onRefresh,deletedCases=[],onRestore}){
   const [search,setSearch]=useState("");
   const sorted=[...cases].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
   const filtered=search.trim()===""?sorted:sorted.filter(c=>{
@@ -3037,12 +2960,8 @@ function CaseList({cases,loading,onOpen,onNew,onDelete,onRefresh,onSaveAll,saveA
         <div className="flex items-center gap-2">
           <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search cases…"
             className="text-xs border border-slate-200 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-300 w-40"/>
-          <button onClick={onRefresh} className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" title="Refresh">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          </button>
-          <button onClick={onSaveAll} disabled={saveAllBusy}
-            className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 active:scale-95 transition-all disabled:opacity-40">
-            {saveAllBusy?<><Spinner s={3}/> Saving…</>:"↑ Save all"}
+          <button onClick={onRefresh} aria-label="Refresh case list" className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" title="Refresh">
+            <svg aria-hidden="true" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </button>
           <button onClick={onNew} className="flex items-center gap-1.5 bg-slate-900 text-white text-xs font-semibold px-4 py-2 rounded-xl hover:bg-slate-700 active:scale-95 transition-all">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4"/></svg>
@@ -3085,6 +3004,7 @@ function CaseList({cases,loading,onOpen,onNew,onDelete,onRefresh,onSaveAll,saveA
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="text-[10px] font-black text-slate-300">#{sorted.length-idx}</span>
                           <span className="font-semibold text-sm text-slate-800 truncate">{c.label}</span>
+                          {c.isSeed&&<span className="text-[10px] text-slate-400 border border-slate-200 rounded px-1" title="Demonstration case shipped with the app">demo</span>}
                         </div>
 
                         {/* Demographics row */}
@@ -3136,9 +3056,10 @@ function CaseList({cases,loading,onOpen,onNew,onDelete,onRefresh,onSaveAll,saveA
                           fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
                         </svg>
-                        <button onClick={e=>{e.stopPropagation();if(window.confirm("Delete this case?"))onDelete(c.id);}}
+                        <button onClick={e=>{e.stopPropagation();if(window.confirm("Delete this case? It can be restored from the deleted list."))onDelete(c.id);}}
+                          aria-label={`Delete case ${c.label||"untitled"}`} title="Delete (restorable)"
                           className="text-slate-200 hover:text-red-500 transition-colors p-1 rounded">
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg aria-hidden="true" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                           </svg>
                         </button>
@@ -3150,6 +3071,20 @@ function CaseList({cases,loading,onOpen,onNew,onDelete,onRefresh,onSaveAll,saveA
             );
           })}
         </div>
+      )}
+      {deletedCases.length>0&&(
+        <details className="mt-6 text-xs text-slate-500">
+          <summary className="cursor-pointer select-none font-semibold">Deleted cases ({deletedCases.length}) — kept with their history, restorable</summary>
+          <div className="mt-2 space-y-1">
+            {deletedCases.map(c=>(
+              <div key={c.id} className="flex items-center gap-3 bg-white border border-slate-200 rounded-lg px-3 py-2">
+                <span className="flex-1 min-w-0 truncate text-slate-600">{c.label||"Untitled"}{c.isSeed&&<span className="ml-2 text-[10px] text-slate-400">demo</span>}</span>
+                <span className="text-[10px] text-slate-400">{c.deletedAt?`deleted ${fmtDate(c.deletedAt)}`:""}</span>
+                <button onClick={()=>onRestore?.(c.id)} className="text-[11px] font-semibold text-slate-700 border border-slate-300 rounded px-2 py-0.5 hover:bg-slate-100">Restore</button>
+              </div>
+            ))}
+          </div>
+        </details>
       )}
     </div>
   );
@@ -3382,15 +3317,13 @@ const SEED_CASE_5 = {
   topDx:null,
 };
 
+// Demo cases are inserted ONCE, into a table that has never held anything, and
+// flagged is_seed. Deleting one no longer brings it back on the next load. A
+// storage failure here is not swallowed: reload() shows it as an outage.
 async function seedIfEmpty(){
-  try{
-    const list=await loadList();
-    const ids=new Set(list.map(c=>c.id));
-    const seeds=[SEED_CASE_1,SEED_CASE_2,SEED_CASE_3A,SEED_CASE_3B,SEED_CASE_3C,SEED_CASE_4,SEED_CASE_5];
-    for(const s of seeds){
-      if(!ids.has(s.id)) try{ await persistCase(s); }catch(e){ console.warn("seed failed",s.id,e); }
-    }
-  }catch(e){ console.warn("seedIfEmpty error",e); }
+  const seeds=[SEED_CASE_1,SEED_CASE_2,SEED_CASE_3A,SEED_CASE_3B,SEED_CASE_3C,SEED_CASE_4,SEED_CASE_5]
+    .map(s=>{const v=normalizeValues(s.values);return {...s,enteredCount:s.enteredCount??countEntered(v),abnormalCount:s.abnormalCount??countAbnormal(v)};});
+  await seedOnce(seeds);
 }
 
 // ─── DISORDERS ENCYCLOPEDIA ──────────────────────────────────
@@ -3454,7 +3387,7 @@ function DisordersScreen({onBack}){
                     <div key={d.id} className="rounded-xl overflow-hidden bg-white"
                       style={{border:`1px solid ${isOpen?cc:"#e2e8f0"}`,boxShadow:isOpen?"0 2px 8px rgba(0,0,0,0.07)":"0 1px 2px rgba(0,0,0,0.04)",transition:"border-color 0.15s,box-shadow 0.15s"}}>
                       {/* Collapsed row */}
-                      <button onClick={()=>setExpanded(isOpen?null:d.id)}
+                      <button onClick={()=>setExpanded(isOpen?null:d.id)} aria-expanded={isOpen}
                         className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 transition-colors">
                         {/* Color bar */}
                         <div className="w-1 self-stretch rounded-full flex-shrink-0" style={{background:cc,minHeight:"2rem"}}/>
@@ -3462,7 +3395,7 @@ function DisordersScreen({onBack}){
                           <span className="font-semibold text-sm text-slate-800 leading-tight">{d.name}</span>
                           <span className="text-[11px] text-slate-400 font-mono">{d.gene}</span>
                         </div>
-                        <span className="text-slate-300 text-xs ml-2 flex-shrink-0">{isOpen?"▲":"▼"}</span>
+                        <span className="text-slate-300 text-xs ml-2 flex-shrink-0" aria-hidden="true">{isOpen?"▲":"▼"}</span>
                       </button>
                       {/* Expanded detail — always same 3 sections */}
                       {isOpen&&(
@@ -3470,6 +3403,7 @@ function DisordersScreen({onBack}){
                           {/* Section 1: Key markers */}
                           <div className="px-5 py-3 border-b border-slate-100">
                             <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{color:cc}}>Key diagnostic markers</p>
+                            {d.incidence&&<div className="mb-2"><IncidenceChip inc={d.incidence}/></div>}
                             <div className="flex flex-wrap gap-1.5">
                               {d.signature.map((s,i)=>{
                                 const aInfo=ANALYTE_MAP[s.id];
@@ -3625,29 +3559,44 @@ function AppShell({session}){
   const [editCase,setEditCase]=useState(null);
   const [trainingExamples,setTrainingExamples]=useState([]);
   const [loadError,setLoadError]=useState(null);
+  const [deletedCases,setDeletedCases]=useState([]);
+  const [notMigrated,setNotMigrated]=useState(false);
 
   const reload=async()=>{
     setListLoading(true); setLoadError(null);
     try{
       await seedIfEmpty();
-      const [list,training]=await Promise.all([loadList(),loadTraining()]);
-      setCases(list);setTrainingExamples(training);
+      const [list,training,deleted]=await Promise.all([loadList(),loadTraining(),loadDeleted()]);
+      setCases(list);setTrainingExamples(training);setDeletedCases(deleted);setNotMigrated(false);
     }catch(e){
-      // Distinguish an outage from an empty caseload — see loadList().
+      // Distinguish an outage from an empty caseload — see storage.js loadList().
+      setNotMigrated(e instanceof StorageNotMigratedError);
       setLoadError(e.message||"Could not load saved cases.");
-      setCases([]);setTrainingExamples([]);
+      setCases([]);setTrainingExamples([]);setDeletedCases([]);
     }finally{ setListLoading(false); }
   };
-  useEffect(()=>{reload();},[]);
+  // Deferred one tick so the initial fetch runs as a callback rather than a
+  // synchronous setState inside the effect body; the cleanup also keeps
+  // StrictMode's double invocation from issuing two loads.
+  useEffect(()=>{ const t=setTimeout(reload,0); return ()=>clearTimeout(t); },[]);
 
   const learnedWeights=useMemo(()=>computeLearnedWeights(trainingExamples),[trainingExamples]);
   const confirmedCount=trainingExamples.filter(ex=>ex.confirmedDxId).length;
 
-  const openCase=async(id)=>{const c=await loadFullCase(id);if(c){setEditCase(c);setScreen("editor");}};
-  const deleteCase=async(id)=>{
-    // removeCase reads the index first, so it can fail on a storage outage.
-    try{ await removeCase(id); await removeTrainingExample(id); }
+  const openCase=async(id)=>{
+    try{ const c=await loadFullCase(id); if(c){setEditCase(c);setScreen("editor");} }
+    catch(e){ setLoadError(`Could not open case: ${e.message}`); }
+  };
+  const removeCaseById=async(id)=>{
+    const row=cases.find(c=>c.id===id);
+    try{ await deleteCase(id,row?.version); }
     catch(e){ setLoadError(`Delete failed: ${e.message}`); }
+    await reload();
+  };
+  const restoreCaseById=async(id)=>{
+    const row=deletedCases.find(c=>c.id===id);
+    try{ await restoreCase(id,row?.version); }
+    catch(e){ setLoadError(`Restore failed: ${e.message}`); }
     await reload();
   };
 
@@ -3669,9 +3618,9 @@ function AppShell({session}){
         </button>
         <div className="w-px h-5 bg-white/10 flex-shrink-0"/>
         <div className="flex items-center gap-1">
-          <button onClick={()=>setScreen("list")} className={`text-xs font-semibold px-3 py-1.5 rounded-md transition-colors ${screen==="list"?"bg-white/10 text-white":"text-white/50 hover:text-white/80 hover:bg-white/5"}`}>Cases</button>
-          <button onClick={()=>setScreen("disorders")} className={`text-xs font-semibold px-3 py-1.5 rounded-md transition-colors ${screen==="disorders"?"bg-white/10 text-white":"text-white/50 hover:text-white/80 hover:bg-white/5"}`}>Disorders</button>
-          <button onClick={()=>setScreen("model")} className={`text-xs font-semibold px-3 py-1.5 rounded-md transition-colors flex items-center gap-1.5 ${screen==="model"?"bg-white/10 text-white":"text-white/50 hover:text-white/80 hover:bg-white/5"}`}>
+          <button onClick={()=>setScreen("list")} aria-current={screen==="list"?"page":undefined} className={`text-xs font-semibold px-3 py-1.5 rounded-md transition-colors ${screen==="list"?"bg-white/10 text-white":"text-white/50 hover:text-white/80 hover:bg-white/5"}`}>Cases</button>
+          <button onClick={()=>setScreen("disorders")} aria-current={screen==="disorders"?"page":undefined} className={`text-xs font-semibold px-3 py-1.5 rounded-md transition-colors ${screen==="disorders"?"bg-white/10 text-white":"text-white/50 hover:text-white/80 hover:bg-white/5"}`}>Disorders</button>
+          <button onClick={()=>setScreen("model")} aria-current={screen==="model"?"page":undefined} className={`text-xs font-semibold px-3 py-1.5 rounded-md transition-colors flex items-center gap-1.5 ${screen==="model"?"bg-white/10 text-white":"text-white/50 hover:text-white/80 hover:bg-white/5"}`}>
             Model
             {confirmedCount>0&&<span className="bg-cyan-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full leading-none">{confirmedCount}</span>}
           </button>
@@ -3693,6 +3642,7 @@ function AppShell({session}){
             <span className="font-bold">Saved cases could not be loaded.</span>{" "}
             <span className="text-red-700">{loadError}</span>{" "}
             <span className="text-red-600">Any cases shown may be incomplete — do not treat this list as empty.</span>
+            {notMigrated&&<span className="block mt-1 text-red-800">To fix: open the Supabase dashboard → SQL Editor, paste the contents of <code>supabase/migrations/0003_case_records.sql</code>, click Run, then press Retry here. Existing cases are copied across automatically.</span>}
           </div>
           <button onClick={reload}
             className="flex-shrink-0 text-[11px] font-semibold text-red-700 border border-red-300 rounded px-2 py-1 hover:bg-red-100 transition-colors">
@@ -3754,12 +3704,21 @@ function AppShell({session}){
               </div>
 
               <p className="text-[11px] text-slate-300 border border-slate-200 rounded-xl px-4 py-2.5 bg-white/50">
-                PROTOTYPE · DECISION SUPPORT, NOT A DIAGNOSTIC DEVICE · Results require expert biochemical genetics interpretation · Knowledge base v{KB_VERSION} ({KB_DATE})
+                PROTOTYPE · DECISION SUPPORT, NOT A DIAGNOSTIC DEVICE · Results require expert biochemical genetics interpretation · Knowledge base v{KB_VERSION} ({KB_DATE}) · build {KB_HASH}
               </p>
+              <details className="text-left text-[11px] text-slate-500 border border-slate-200 rounded-xl px-4 py-2.5 bg-white/50">
+                <summary className="cursor-pointer select-none font-semibold text-slate-600">Where case data goes</summary>
+                <ul className="mt-2 space-y-1 list-disc list-outside ml-4 leading-relaxed">
+                  <li><span className="font-semibold">Saved cases</span> are stored in this team&apos;s Supabase database (hosted on AWS in the United States). Every signed-in team member sees every case. Deleted cases are kept and restorable, and every change is recorded.</li>
+                  <li><span className="font-semibold">AI extraction</span> sends a dropped report image or spreadsheet to Anthropic&apos;s API to read the numbers. Crop out identifiers first: the service is instructed to ignore them, but it still receives the image.</li>
+                  <li><span className="font-semibold">AI narrative</span> sends age, sex, panel values, modifiers and the ranked differential only. The case label, date of birth, clinical notes and reviewer are never sent.</li>
+                  <li>No analytics or tracking scripts are loaded. Fonts are fetched from Google Fonts.</li>
+                </ul>
+              </details>
             </div>
           </div>
         )}
-        {screen==="list"&&<div className="h-full overflow-y-auto"><CaseList cases={cases} loading={listLoading} onOpen={openCase} onNew={()=>{setEditCase(null);setScreen("editor");}} onDelete={deleteCase} onRefresh={reload}/></div>}
+        {screen==="list"&&<div className="h-full overflow-y-auto"><CaseList cases={cases} loading={listLoading} onOpen={openCase} onNew={()=>{setEditCase(null);setScreen("editor");}} onDelete={removeCaseById} onRefresh={reload} deletedCases={deletedCases} onRestore={restoreCaseById}/></div>}
         {screen==="model"&&<div className="h-full overflow-y-auto"><ModelView learnedWeights={learnedWeights} trainingExamples={trainingExamples}/></div>}
         {screen==="disorders"&&<div className="h-full overflow-hidden"><DisordersScreen onBack={()=>setScreen("home")}/></div>}
         {screen==="editor"&&<div className="h-full flex flex-col overflow-hidden"><CaseEditor init={editCase} learnedWeights={learnedWeights} allCases={cases} onSave={async()=>{await reload();setScreen("list");}} onBack={()=>setScreen("list")}/></div>}
@@ -3767,3 +3726,6 @@ function AppShell({session}){
     </div>
   );
 }
+
+// Named exports for the render smoke tests (src/__tests__/render.test.jsx).
+export { AppShell, ResultCard, ReportTab, CaseEditor, CaseList, DisordersScreen, ValueCell, ModelView, TrendsTab };

@@ -561,7 +561,7 @@ if (arg("--ingest")) {
     const full = resolve(DROP, file);
     if (!statSync(full).isFile()) continue;
 
-    let text = "";
+    let text;
     if (/\.pdf$/i.test(file)) {
       text = pdfText(full);
       // pdftotext hands a non-ASCII path to the OS in the wrong encoding and

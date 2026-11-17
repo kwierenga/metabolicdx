@@ -13,6 +13,14 @@ import { AC_ANALYTES, AGE_RANGES, AGE_RANGES_AC, ANALYTE_DIST, ANALYTE_MAP, CAR_
 import { applyContextPrior, buildSuppressionMap, getDisorderWarnings } from "./modifiers.js";
 import { detectPatterns } from "./patterns.js";
 
+// ─── ENGINE STAMP ────────────────────────────────────────────
+// ENGINE_HASH is substituted at build time from the engine source files (see
+// vite.config.js); under plain node (scripts/) it reads "dev". A saved case
+// records the hash it was scored under, so the app can tell a current result
+// from one computed by an earlier engine or knowledge base.
+export const ENGINE_VERSION = "2026.11";
+export const ENGINE_HASH = typeof __ENGINE_HASH__ !== "undefined" ? __ENGINE_HASH__ : "dev";
+
 // Derive age group from age in months.
 export function getAgeGroup(ageMonths){
   if(ageMonths===null||ageMonths===undefined) return "adult";
@@ -248,11 +256,19 @@ export function analyteMatchScore(val,analyte,direction){
 
 export function scoreDisorder(disorder, values, activePanels, suppressionMap, learnedWeights, ageMonths=null, covariates=null){
   let earned=0, maxPoss=0, enteredW=0, activeW=0;
-  const supporting=[], missing=[], notRun=[];
+  const supporting=[], missing=[], notRun=[], inert=[];
   for(const sig of disorder.signature){
     const analyteBase=ANALYTE_MAP[sig.id]; if(!analyteBase) continue;
     // Apply covariate-adjusted (neonatal) or discrete age-adjusted reference limits if known
     const analyte=resolveAnalyteLimits(analyteBase,sig.panel,ageMonths,covariates);
+    // A "low" marker on an analyte whose reference floor is 0 can never match
+    // (analyteMatchScore returns 0 when lo<=0). Until 2026-11-13 it still counted
+    // in maxPoss and, at weight >= 2, as automatic negative evidence against its
+    // OWN disorder whenever the value was present — cblC and MTHFR were penalised
+    // by their Met/Hcy ratio marker exactly when Met and Hcy had been measured.
+    // Such markers are set aside here; data-integrity.test.js lists them so the
+    // analyte gets a real lower limit (the data fix) and the list only shrinks.
+    if(sig.direction==="low"&&!(analyte.lo>0)){inert.push({...sig,analyte});continue;}
     if(!activePanels.has(sig.panel)){notRun.push({...sig,analyte});continue;}
     const lw=learnedWeights?.[disorder.id]?.[sig.id];
     const effectiveWeight=lw?lw.adjustedWeight:sig.weight;
@@ -320,7 +336,7 @@ export function scoreDisorder(disorder, values, activePanels, suppressionMap, le
   if(ceilingHit) finalScore=ceiling;
   return{...disorder,rawScore,score:finalScore,intraCoverage:cov,
     negEarned,negPoss,concordantPanels:positivePanels.size,ceilingHit:!!ceilingHit,
-    supporting:supporting.sort((a,b)=>b.rawMatchScore-a.rawMatchScore),missing,notRun};
+    supporting:supporting.sort((a,b)=>b.rawMatchScore-a.rawMatchScore),missing,notRun,inert};
 }
 
 export function computeAcRatios(ac){
@@ -371,6 +387,88 @@ export function computeUoaRatios(uoa){
   return out;
 }
 
+// ─── SEPARATION ──────────────────────────────────────────────
+// What the number means. scripts/calibrate-scores.mjs (commits e1d2f56 and
+// 05beb11) measured the absolute score against every disorder's own textbook
+// profile. A score the UI used to label "HIGH" belonged to the right disorder
+// 29% of the time, and the raw top-1 score told a correct leader from an
+// incorrect one no better than chance (AUC 0.47). The ratio of the leader's
+// score to the runner-up's did (AUC 0.83):
+//
+//   ratio >= 1.50   32 profiles   32 correct   100%
+//   ratio >= 1.25   48 profiles   45 correct    94%
+//   ratio >= 1.10   70 profiles   59 correct    84%
+//   ratio >= 1.00  105 profiles   72 correct    69%
+//
+// So the badge on a result describes SEPARATION — how far the leader is ahead
+// of the field — and never an absolute probability. Those figures are internal
+// discrimination on profiles generated from the same signatures the engine
+// scores, so treat them as a ceiling, not a calibration.
+//
+// Shared-biochemistry families. A subtype set that no plasma/urine profile on
+// these panels can separate is treated as ONE candidate when measuring the
+// lead: the runner-up is the first result OUTSIDE the leader's family, and the
+// family peers are listed beside the leader rather than counted against it.
+// Membership affects only this measurement, never the score itself. Keep the
+// lists to sets that genuinely share every marker the engine can see — two
+// disorders that a panel analyte separates (TYR1 vs TYR2 on succinylacetone,
+// isolated vs combined MMA on homocysteine) do NOT belong in one family.
+// separation.test.js enforces that rule against the live signatures.
+export const DIFFERENTIAL_FAMILIES = {
+  bh4_hyperphenylalaninaemia: ["PTPS","DHPR"],   // GTPCH1 and PCD_DEF lack the Phe/Tyr ratio marker, so the engine can tell them apart
+  combined_mma_homocystinuria:["CBLC","CBLF","CBLJ"],   // TCN2 lacks the C3 marker these three share
+  // Considered and rejected by the same rule: GSD1A/GSD3 (CK and transaminases mark GSD III),
+  // MMA/MCEE (the ratio markers mark isolated MMA), and TCN2 (no propionylcarnitine marker).
+};
+export const FAMILY_OF = Object.fromEntries(
+  Object.entries(DIFFERENTIAL_FAMILIES).flatMap(([fam,ids])=>ids.map(id=>[id,fam])));
+
+// Bands follow the calibration table above. `note` is shown to the clinician.
+export const SEPARATION_LEVELS = [
+  {min:1.5,  label:"CLEAR LEAD",      cls:"text-emerald-800 bg-emerald-50 border-emerald-300",
+   note:"Scores at least 1.5× the next candidate outside its family. Every such leader in the calibration run was the right disorder (32 of 32 textbook profiles)."},
+  {min:1.25, label:"LEADS",           cls:"text-emerald-700 bg-emerald-50 border-emerald-200",
+   note:"Scores 1.25–1.5× the next candidate (45 of 48 correct in calibration)."},
+  {min:1.10, label:"NARROW LEAD",     cls:"text-amber-700 bg-amber-50 border-amber-300",
+   note:"Scores 1.1–1.25× the next candidate (59 of 70 correct in calibration). Treat the runner-up as a live alternative."},
+  {min:0,    label:"CO-DIFFERENTIAL", cls:"text-slate-700 bg-slate-100 border-slate-300",
+   note:"Within 10% of the next candidate. The biochemistry does not separate them; both need to be pursued."},
+];
+export const SOLE_CANDIDATE = {label:"SOLE CANDIDATE", cls:"text-emerald-800 bg-emerald-50 border-emerald-300",
+  note:"No other disorder scored on this profile. In calibration that only happened on a pathognomonic marker, and the leader was right in all 11 such profiles."};
+export const CO_DIFFERENTIAL_RATIO = 1.10;
+
+export function separationLevel(ratio){
+  if(ratio===null||ratio===undefined) return null;
+  if(!Number.isFinite(ratio)) return SOLE_CANDIDATE;
+  return SEPARATION_LEVELS.find(l=>ratio>=l.min);
+}
+
+/**
+ * Attach separation to a result list sorted by score, descending.
+ *   leader: leadRatio (its score over the runner-up outside its family), rivalId, separation
+ *   all:    familyPeers (same-family ids that also scored), coDifferential (within
+ *           CO_DIFFERENTIAL_RATIO of the leader)
+ */
+export function annotateSeparation(results){
+  if(!results.length) return results;
+  const lead=results[0];
+  const fam=FAMILY_OF[lead.id]??null;
+  const rival=results.find((r,i)=>i>0&&r.score>0&&(fam===null||FAMILY_OF[r.id]!==fam))??null;
+  const leadRatio=lead.score>0?(rival?lead.score/rival.score:Infinity):null;
+  const scoring=results.filter(r=>r.score>0);
+  return results.map((r,i)=>{
+    const rf=FAMILY_OF[r.id]??null;
+    const familyPeers=rf===null?[]:scoring.filter(x=>x.id!==r.id&&FAMILY_OF[x.id]===rf).map(x=>x.id);
+    return {...r,
+      familyPeers,
+      coDifferential:i>0&&r.score>0&&lead.score/r.score<CO_DIFFERENTIAL_RATIO,
+      leadRatio:i===0?leadRatio:null,
+      rivalId:i===0?(rival?.id??null):null,
+      separation:i===0?separationLevel(leadRatio):null};
+  });
+}
+
 export function runAnalysis(values, activeModifiers=[], learnedWeights=null, clinicalContext=null, ageMonths=null, covariates=null){
   const suppMap=buildSuppressionMap(activeModifiers);
   // Compute cross-panel ratios (require data from multiple panels)
@@ -396,10 +494,10 @@ export function runAnalysis(values, activeModifiers=[], learnedWeights=null, cli
   const patterns=detectPatterns(enrichedValues,ap);
   if(!r.length) return{results:[],patterns};
   const mx=r[0].score;
-  const results=r.map(x=>({...x,
+  const results=annotateSeparation(r.map(x=>({...x,
     warnings:getDisorderWarnings(activeModifiers,x.id),
     relativePct:mx>0?(x.score/mx)*100:0,
-    lrProduct:scoreLRProduct(x)}));
+    lrProduct:scoreLRProduct(x)})));
   return{results,patterns};
 }
 
@@ -497,4 +595,28 @@ export function countEntered(v){return Object.values(v).reduce((s,p)=>s+Object.v
 
 export function countAbnormal(v){let n=0;for(const[p,pv]of Object.entries(v)){const al=PANEL_ANALYTES[p];if(!al)continue;for(const a of al){const x=parseFloat(pv[a.id]);if(!isNaN(x)&&(x>a.hi||(a.lo>0&&x<a.lo)))n++;}}return n;}
 
+// ─── PREVALENCE WEIGHTING (optional) ─────────────────────────
+// Prior odds from a disorder's sourced birth prevalence (disorders.js
+// `incidence`, per 100,000 births) multiplied by the LR product. The LR product
+// is this tool's own unvalidated construction (see scoreLRProduct), so the
+// result is a PROXY for post-test odds, offered as an optional re-ordering and
+// labelled as such in the UI — never as a probability of disease.
+export function posteriorOdds(r){
+  const inc=r.incidence, lr=r.lrProduct?.lrProduct;
+  if(!inc||!(inc.per100k>0)||!(lr>0)) return null;
+  const p=inc.per100k/100000;
+  return (p/(1-p))*lr;
+}
+/** Candidates with a prevalence and an LR first, by posterior odds; the rest keep their biochemical order below. */
+export function rankByPosterior(results){
+  const withP=results.map(r=>({...r,posteriorOdds:posteriorOdds(r)}));
+  const a=withP.filter(r=>r.posteriorOdds!=null).sort((x,y)=>y.posteriorOdds-x.posteriorOdds);
+  const b=withP.filter(r=>r.posteriorOdds==null);
+  return [...a,...b];
+}
+
+// DEPRECATED for display. These absolute bands were measured at 29% precision
+// for "HIGH" (see SEPARATION above) and are no longer shown anywhere in the UI
+// or on reports. Kept only so scripts/calibrate-scores.mjs can keep reporting
+// the old metric alongside the new one.
 export function confLevel(s){if(s>=0.4)return{label:"HIGH",cls:"text-red-700 bg-red-50 border-red-300"};if(s>=0.2)return{label:"MODERATE",cls:"text-amber-700 bg-amber-50 border-amber-300"};if(s>=0.08)return{label:"LOW",cls:"text-blue-700 bg-blue-50 border-blue-300"};return{label:"TRACE",cls:"text-slate-500 bg-slate-50 border-slate-200"};}

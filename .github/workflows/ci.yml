@@ -1,9 +1,9 @@
 name: CI
 
-# Gate every push / PR on: the scoring engine still ranks the golden cases
-# correctly, the disorder/analyte data is structurally sound, and the app
-# still builds. A red check here means the change must not reach the
-# deployed (Vercel) site.
+# Gate every push / PR on: the code lints, the scoring engine still ranks the
+# golden cases correctly, the disorder/analyte data is structurally sound, the
+# knowledge-base stamp is current, and the app still builds. A red check here
+# means the change must not reach the deployed (Vercel) site.
 
 on:
   push:
@@ -15,6 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history: kb-version.test.js compares KB_DATE with the last
+          # commit that touched src/disorders.js and skips on a shallow clone.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -24,10 +28,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
       - name: Data-integrity linter
         run: npm run lint:data
 
-      - name: Golden-case + data tests
+      - name: Tests (golden cases, data, provenance, units, proxy, render)
         run: npm test
 
       - name: Production build

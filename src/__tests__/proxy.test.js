@@ -91,3 +91,51 @@ describe("proxy body builder — input validation", () => {
     expect(body.system).toBe("You are an extractor.");
   });
 });
+
+// ── Caller authentication ──────────────────────────────────────────────────
+// The Origin check is browser-only; this is the gate that actually holds.
+import { verifyBearer } from "../../api/claude.js";
+
+const ENV = { VITE_SUPABASE_URL: "https://proj.supabase.co", VITE_SUPABASE_ANON_KEY: "anon-key" };
+const okFetch = (body) => async () => ({ ok: true, json: async () => body });
+const failFetch = (status) => async () => ({ ok: false, status, json: async () => ({ message: "bad" }) });
+
+describe("proxy caller authentication", () => {
+  it("is skipped only when no Supabase project is configured (memory-mode demo)", async () => {
+    expect(await verifyBearer(undefined, {}, okFetch({}))).toEqual({ skipped: true });
+  });
+
+  it("refuses a request with no Bearer token", async () => {
+    const r = await verifyBearer(undefined, ENV, okFetch({ id: "u1" }));
+    expect(r.error).toBeTruthy(); expect(r.status).toBe(401);
+  });
+
+  it("refuses the public anon key used as if it were a session", async () => {
+    const r = await verifyBearer("Bearer anon-key", ENV, okFetch({ id: "u1" }));
+    expect(r.error).toBeTruthy();
+  });
+
+  it("asks Supabase Auth and accepts a user it recognises", async () => {
+    const calls = [];
+    const fetchImpl = async (url, init) => { calls.push({ url, init }); return { ok: true, json: async () => ({ id: "user-123", email: "a@b.c" }) }; };
+    const r = await verifyBearer("Bearer tok.en", ENV, fetchImpl);
+    expect(r.user).toEqual({ id: "user-123", email: "a@b.c" });
+    expect(calls[0].url).toBe("https://proj.supabase.co/auth/v1/user");
+    expect(calls[0].init.headers.apikey).toBe("anon-key");
+    expect(calls[0].init.headers.authorization).toBe("Bearer tok.en");
+  });
+
+  it("refuses an expired or forged token", async () => {
+    const r = await verifyBearer("Bearer forged", ENV, failFetch(401));
+    expect(r.error).toMatch(/sign in/i); expect(r.status).toBe(401);
+  });
+
+  it("refuses a 200 that carries no user id", async () => {
+    expect((await verifyBearer("Bearer x", ENV, okFetch({}))).error).toBeTruthy();
+  });
+
+  it("reports a verification outage as 503, not as an open door", async () => {
+    const r = await verifyBearer("Bearer x", ENV, async () => { throw new Error("ECONNRESET"); });
+    expect(r.error).toBeTruthy(); expect(r.status).toBe(503);
+  });
+});

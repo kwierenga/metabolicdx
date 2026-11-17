@@ -204,3 +204,23 @@ describe("modifiers & clinical contexts have stable ids", () => {
     expect(bad, `\n  - ${bad.join("\n  - ")}\n`).toEqual([]);
   });
 });
+
+describe("inert signature markers", () => {
+  // A marker scored "low" against an analyte whose lower limit is 0 can never
+  // fire. scoreDisorder sets such markers aside (scoring.js, `inert`), but they
+  // remain data defects: each analyte needs a real lower reference limit, or the
+  // disorder needs a different marker. Ratchet: the list may shrink, never grow.
+  const KNOWN_INERT_LOW = ["GATM:uGAA", "CBLC:MetHcy", "PCD:CarRatio", "MTHFR:MetHcy"];
+
+  it("no new 'low' marker is wired to an analyte with no lower limit", () => {
+    const found = [];
+    for (const d of DISORDERS) for (const s of d.signature ?? []) {
+      const a = ANALYTE_MAP[s.id];
+      if (s.direction === "low" && a && !(a.lo > 0)) found.push(`${d.id}:${s.id}`);
+    }
+    const added = found.filter((k) => !KNOWN_INERT_LOW.includes(k));
+    expect(added, `new inert low markers: ${added.join(", ")}`).toEqual([]);
+    const fixed = KNOWN_INERT_LOW.filter((k) => !found.includes(k));
+    if (fixed.length) console.log(`inert low markers now fixed — remove from KNOWN_INERT_LOW: ${fixed.join(", ")}`);
+  });
+});

@@ -11,11 +11,19 @@
 //                                model. A caller cannot select a model.
 //   5. hard max_tokens ceiling — caps cost per request
 //   6. field whitelist         — only known fields reach the upstream API
+//   7. caller authentication   — the browser's Supabase session token is
+//                                verified against Supabase Auth. The Origin
+//                                check (1) stops cross-site use from a browser;
+//                                it does nothing against curl, which sets any
+//                                Origin it likes. This is the gate that holds.
 //
 // Env vars:
 //   ANTHROPIC_API_KEY      (required)
 //   MDX_API_SECRET         (optional) — if set, requests must send x-mdx-key
 //   MDX_ALLOWED_ORIGINS    (optional) — extra comma-separated hostnames
+//   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY — already set for the browser
+//                          build; when present, every request must carry a
+//                          valid Supabase user session (see verifyBearer).
 
 const MODEL = "claude-opus-5";
 
@@ -119,6 +127,34 @@ export function buildUpstreamBody(body) {
   return { body: out };
 }
 
+// ── Caller authentication ─────────────────────────────────────────────────
+// Asks Supabase Auth who the Bearer token belongs to. A valid user session is
+// the only thing that lets a request reach the API key. When no Supabase
+// project is configured there is nobody to verify — that is the memory-mode
+// demo, where the app itself shows no login — and the check is skipped.
+// Exported so proxy.test.js can drive it with a stub fetch.
+export async function verifyBearer(authHeader, env = process.env, fetchImpl = fetch) {
+  const url = env.SUPABASE_URL || env.VITE_SUPABASE_URL;
+  const key = env.SUPABASE_ANON_KEY || env.VITE_SUPABASE_ANON_KEY;
+  if (!url || !key) return { skipped: true };
+  const m = /^Bearer\s+(\S+)$/i.exec(authHeader || "");
+  if (!m) return { error: "Sign in required.", status: 401 };
+  if (m[1] === key) return { error: "Sign in required.", status: 401 }; // the public anon key is not a user
+  let r;
+  try {
+    r = await fetchImpl(`${url.replace(/\/$/, "")}/auth/v1/user`, {
+      headers: { apikey: key, authorization: `Bearer ${m[1]}` },
+      signal: AbortSignal.timeout(8_000),
+    });
+  } catch {
+    return { error: "Could not verify your session. Try again.", status: 503 };
+  }
+  if (!r.ok) return { error: "Your session has expired — sign in again.", status: 401 };
+  const u = await r.json().catch(() => null);
+  if (!u || typeof u.id !== "string") return { error: "Your session has expired — sign in again.", status: 401 };
+  return { user: { id: u.id, email: u.email ?? null } };
+}
+
 async function callUpstream(payload, extraHeaders) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
@@ -154,13 +190,19 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: { message: "Forbidden." } });
   }
 
+  const who = await verifyBearer(req.headers.authorization);
+  if (who.error) {
+    return res.status(who.status ?? 401).json({ error: { message: who.error } });
+  }
+
   const declared = Number(req.headers["content-length"] || 0);
   if (declared > MAX_BODY_BYTES) {
     return res.status(413).json({ error: { message: "Request too large." } });
   }
 
+  // Rate-limit per signed-in user when we know who it is, else per IP.
   const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
-  if (rateLimited(ip)) {
+  if (rateLimited(who.user?.id ? `u:${who.user.id}` : `ip:${ip}`)) {
     res.setHeader("Retry-After", "60");
     return res.status(429).json({ error: { message: "Rate limit exceeded. Try again shortly." } });
   }

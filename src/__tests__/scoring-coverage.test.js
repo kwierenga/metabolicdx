@@ -151,7 +151,7 @@ describe("clinical context priors", () => {
     // a strong prior could put a disorder on top of a profile that argues
     // against it — the failure mode clinical decision support must not have.
     for (const c of CLINICAL_CONTEXTS) {
-      for (const [id, adj] of Object.entries(c.priors ?? {})) {
+      for (const [id] of Object.entries(c.priors ?? {})) {
         for (const base of [0.1, 0.5, 0.9]) {
           const out = applyContextPrior(base, id, c.id);
           expect(out).toBeGreaterThanOrEqual(0);

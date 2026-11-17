@@ -6,11 +6,16 @@
 
 // Knowledge-base stamp — bump KB_DATE whenever disorder/marker content here
 // is changed so the UI can show clinicians how current the catalogue is.
-export const KB_VERSION = "2026.05";
-export const KB_DATE = "2026-05-18";
+export const KB_VERSION = "2026.11";
+export const KB_DATE = "2026-11-16";
+// Content hash of this file, substituted at build time (vite.config.js); under
+// plain node it reads "dev". Saved cases record it, so a result scored under an
+// earlier catalogue is recognisable as stale even within the same KB_DATE.
+export const KB_HASH = typeof __KB_HASH__ !== "undefined" ? __KB_HASH__ : "dev";
 
 export const DISORDERS = [
   {id:"PKU",      name:"Phenylketonuria (PKU) / HPA",          category:"Aminoacidopathy",     gene:"PAH",
+   incidence:{"per100k":6.55,"range":[5.34,7.76],"ref":"waters-2018-iem-prevalence","scope":"global pooled birth prevalence, 95% CI"},
    signature:[{panel:"PAA",id:"Phe",direction:"high",weight:3,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Tyr",direction:"low",weight:2,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"PheTyr",direction:"high",weight:2,ref:["sharer-2018-amino-acids"]}],
    narrative:{
      summary:"Autosomal recessive deficiency of phenylalanine hydroxylase (PAH) causing hyperphenylalaninaemia. If untreated, it produces severe and permanent intellectual disability; if detected at newborn screening and treated with early dietary Phe restriction, normal cognitive development is the expected outcome [1,2].",
@@ -189,6 +194,7 @@ export const DISORDERS = [
    signature:[{panel:"PAA",id:"Phe",direction:"high",weight:2},{panel:"PAA",id:"Tyr",direction:"low",weight:1}],
    notes:"PCBD1 deficiency. Transient mild HPA, urinary primapterin. Mostly benign but MODY-like diabetes risk in adolescence."},
   {id:"MSUD",     name:"Maple Syrup Urine Disease",             category:"Aminoacidopathy",     gene:"BCKDHA, BCKDHB, DBT, DLD",
+   incidence:{"per100k":1.22,"range":[0.82,1.61],"ref":"waters-2018-iem-prevalence","scope":"global pooled birth prevalence, 95% CI"},
    signature:[{panel:"PAA",id:"Leu",direction:"high",weight:3,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"AlloIle",direction:"high",weight:3,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Ile",direction:"high",weight:2,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Val",direction:"high",weight:2,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"LeuAla",direction:"high",weight:2,ref:["sharer-2018-amino-acids"]}],
    narrative:{
      summary:"Autosomal recessive deficiency of the branched-chain α-ketoacid dehydrogenase complex (BCKDC). Accumulation of leucine and its ketoacid α-ketoisocaproate causes acute neurotoxicity presenting in the first week of life. Untreated, classic MSUD runs from a maple syrup odour in cerumen at 12–24 hours to critical cerebral oedema, coma and central respiratory failure by 7–10 days [1].",
@@ -245,6 +251,7 @@ export const DISORDERS = [
    },
    notes:"BCKDC deficiency. Alloisoleucine pathognomonic. Elevated BCAAs; intermittent forms may normalise between crises."},
   {id:"CBS",      name:"Homocystinuria (CBS def.)",             category:"Aminoacidopathy",     gene:"CBS",
+   incidence:{"per100k":0.41,"range":[0.2,0.63],"ref":"waters-2018-iem-prevalence","scope":"homocystinuria, global pooled birth prevalence, 95% CI"},
    signature:[{panel:"PAA",id:"Hcy",direction:"high",weight:3,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Met",direction:"high",weight:2,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"MetHcy",direction:"high",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"MISC",id:"tHcy",direction:"high",weight:2}],
    narrative:{
      summary:"Autosomal recessive deficiency of cystathionine β-synthase (CBS), the first step of the trans-sulfuration pathway. Homocysteine accumulates in plasma while cysteine becomes deficient, producing ectopia lentis, marfanoid habitus, thromboembolism and progressive cognitive decline. Pyridoxine-responsive forms have a markedly milder natural history than non-responsive forms [1,2].",
@@ -418,6 +425,7 @@ export const DISORDERS = [
    signature:[{panel:"UOA",id:"HGA",direction:"high",weight:3}],
    notes:"HGD deficiency. Urine darkens on alkalinisation. Ochronotic arthropathy in adulthood. Nitisinone effective."},
   {id:"NKH",      name:"Non-ketotic hyperglycinemia (GCE)",      category:"Aminoacidopathy",     gene:"GLDC, AMT, GCSH",
+   incidence:{"per100k":1.59,"range":[1.59,1.82],"ref":"genereviews-nkh","scope":"birth incidence 1:63,000 (British Columbia) to 1:55,000 (Finland)"},
    narrative:{
      summary:"Autosomal recessive deficiency of the glycine cleavage system (GCS), an inner-mitochondrial enzyme complex. Glycine accumulates in plasma, urine and — critically — the CNS, where it acts as an excitotoxic ligand at NMDA receptor glycine-binding sites and an inhibitory neurotransmitter at spinal/brainstem glycine receptors. The classic neonatal form is severe, with intractable epilepsy, apnoea and poor long-term outcome despite treatment. CSF:plasma glycine ratio >0.08 is the diagnostic hallmark [1,2].",
      introduction:"Non-ketotic hyperglycinaemia (NKH; glycine encephalopathy; OMIM #605899) is distinct from ketotic hyperglycinaemia (which is a secondary elevation seen in PA/MMA/IVA) [1]. Incidence is ~1:76,000 in Finland (highest), ~1:230,000 worldwide. GCS is a mitochondrial tetrameric complex (P-, T-, H- and L-proteins); defects in any subunit cause NKH [3].",
@@ -459,6 +467,7 @@ export const DISORDERS = [
    signature:[{panel:"PAA",id:"Pro",direction:"high",weight:3}],
    notes:"PRODH deficiency. Pro >500. PRODH within 22q11.2 deletion region — associated with schizophrenia."},
   {id:"CITR1",    name:"Citrullinemia type I (ASS1)",           category:"Urea Cycle Disorder", gene:"ASS1",
+   incidence:{"per100k":0.45,"ref":"genereviews-ctln1","scope":"estimated 1:220,000 births"},
    narrative:{
      summary:"Autosomal recessive deficiency of argininosuccinate synthetase (ASS1), the third enzyme of the urea cycle. The block is distal to citrulline synthesis, so citrulline accumulates dramatically (often >1000 µmol/L in classic neonatal disease). Two main phenotypes: severe neonatal (acute hyperammonaemic encephalopathy, days 2–7) and milder late-onset forms with episodic crises. Early recognition and urea-scavenging therapy are life-saving [1,2].",
      introduction:"Citrullinaemia type I (OMIM #215700) was described by McMurray in 1962 [3]. Incidence ~1:57,000 worldwide; it is distinct from CTLN2 (adult-onset, SLC25A13, citrin deficiency). Neonatal presentation typically on the RUSP via elevated citrulline on dried-blood-spot MS/MS [4,5].",
@@ -582,6 +591,7 @@ export const DISORDERS = [
    },
    notes:"ASL deficiency. ASA pathognomonic. Dual hit: hyperammonaemia + NO deficiency → chronic hepatopathy, hypertension, neurocognitive impairment."},
   {id:"ARG1",     name:"Argininemia (ARG1 def.)",               category:"Urea Cycle Disorder", gene:"ARG1",
+   incidence:{"per100k":0.17,"range":[0.1,0.29],"ref":"genereviews-arg1","scope":"estimated 1:350,000 to 1:1,000,000; true incidence unknown"},
    narrative:{
      summary:"Autosomal recessive deficiency of arginase 1 (ARG1), the fifth and final urea cycle enzyme. Unlike other UCDs, hyperammonaemia is usually mild and episodic; the dominant clinical feature is progressive spastic diplegia, intellectual disability and seizures from chronic arginine toxicity. Late onset and slow progression often delay diagnosis [1,2].",
      introduction:"Arginase deficiency (OMIM #207800) is the rarest UCD, incidence ~1:300,000–1:1,000,000. Clinically distinct from other UCDs because it presents as a progressive neurological disorder rather than an acute metabolic crisis in most cases [1,3].",
@@ -628,6 +638,7 @@ export const DISORDERS = [
    },
    notes:"ARG1 deficiency. Progressive spastic diplegia rather than acute hyperammonaemia. Pegzilarginase is novel targeted therapy."},
   {id:"OTC",      name:"OTC deficiency",                        category:"Urea Cycle Disorder", gene:"OTC (X-linked)",
+   incidence:{"per100k":1.4,"range":[1.3,1.6],"ref":"genereviews-otc","scope":"Italy, Finland and New South Wales, 1:62,000 to 1:77,000; an older US estimate gave 1:14,000"},
    signature:[{panel:"UOA",id:"Orotic",direction:"high",weight:3},{panel:"PAA",id:"Gln",direction:"high",weight:2,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Ala",direction:"high",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Cit",direction:"low",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"Arg",direction:"low",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"GlnAla",direction:"high",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"PAA",id:"GlyCit",direction:"high",weight:1,ref:["sharer-2018-amino-acids"]},{panel:"MISC",id:"Ammonia",direction:"high",weight:1}],
    narrative:{
      summary:"X-linked deficiency of ornithine transcarbamylase (OTC), the most common urea cycle disorder. Hemizygous males typically present with severe neonatal hyperammonaemic coma; heterozygous females are variably affected, often with late presentation during intercurrent illness, surgery, high-protein meal, or the postpartum period. Elevated urinary orotic acid with low citrulline is the biochemical hallmark and distinguishes OTC from CPS1/NAGS [1,2].",
@@ -837,6 +848,7 @@ export const DISORDERS = [
    signature:[{panel:"PAA",id:"Lys",direction:"low",weight:2},{panel:"PAA",id:"Arg",direction:"low",weight:2},{panel:"PAA",id:"Orn",direction:"low",weight:2},{panel:"PAA",id:"Gln",direction:"high",weight:1},{panel:"UOA",id:"Orotic",direction:"high",weight:1}],
    notes:"SLC7A7 deficiency — defect of the y+LAT1 light chain of the cationic amino acid transporter (heterodimer with 4F2hc). Impairs transport of all dibasic amino acids (Lys, Arg, Orn) at both intestinal epithelium (absorption) and renal tubular epithelium (reabsorption). All three are therefore LOW in plasma despite being abundant in food, and ELEVATED in urine (dibasic hyperaminoaciduria). Hyperammonemia mechanism: post-prandial protein digestion generates ammonia, but inadequate Orn and Arg availability limits urea cycle capacity → ammonia accumulates. Patients develop protein aversion and self-restrict protein to avoid post-prandial symptoms (nausea, vomiting, drowsiness). Key clinical distinction from other UCDs: hyperammonemia occurs AFTER, not during fasting. Treatment principle: citrulline supplementation is preferred over arginine or ornithine supplementation — citrulline is NOT a dibasic amino acid and crosses the intestinal barrier normally via neutral amino acid transporters; once absorbed, it is converted to arginine by ASS1+ASL in peripheral tissues, bypassing the SLC7A7 defect. Oral L-lysine supplementation separately (lysine is essential and dietary intake is impaired). Protein restriction during acute hyperammonemia; moderate restriction chronically. The arginine-lysine transport competition described by Bouchereau & Schiff (2020): at y+LAT transporters, arginine and lysine compete for entry — this is exploited therapeutically in PDE (arginine supplementation reduces lysine brain transport) and explains why all dibasic AAs are mutually competitive. Serious systemic complications beyond hyperammonemia: (1) Pulmonary alveolar proteinosis (PAP) — secondary to impaired alveolar macrophage function; can be life-threatening; (2) Haematological: haemophagocytic lymphohistiocytosis (HLH), pancytopenia, bone marrow abnormalities; (3) Renal disease (glomerulosclerosis, focal segmental); (4) Osteoporosis. Monitor these complications regularly regardless of metabolic control status. Autosomal recessive; incidence ~1:50,000–1:70,000 in Finland (Finnish disease enrichment)."},
   {id:"GAMT",     name:"Guanidinoacetate methyltransferase def.", category:"Creatine Disorder",   gene:"GAMT",
+   incidence:{"per100k":0.25,"range":[0.04,0.4],"ref":"genereviews-creatine","scope":"Utah and New York newborn screening, 1:405,655; estimates range 1:2,640,000 to 1:250,000"},
    narrative:{
      summary:"Autosomal recessive deficiency of guanidinoacetate methyltransferase (GAMT), the second enzyme of creatine biosynthesis. GAA accumulates — it is neurotoxic through binding to GABA and glycine receptors — and cerebral creatine is absent. Intellectual disability, speech absence, autistic features and seizures are the typical phenotype. Triple therapy (creatine + ornithine + arginine restriction) is highly effective and GAMT was added to the RUSP in the US in 2023 [1,2].",
      introduction:"GAMT deficiency (OMIM #612736) was the first cerebral creatine deficiency to be described (Stöckler 1994) [3]. Incidence ~1:250,000 worldwide with founder variants in Portuguese and Arab populations. Addition to the RUSP followed demonstration that early treatment prevents the severe phenotype [4].",
@@ -903,6 +915,7 @@ export const DISORDERS = [
    signature:[{panel:"MISC",id:"uCreat",direction:"high",weight:3},{panel:"PAA",id:"Arg",direction:"high",weight:1},{panel:"PAA",id:"Gly",direction:"high",weight:1}],
    notes:"SLC6A8 deficiency (X-linked). Urine creatine:creatinine markedly elevated (diagnostic in males — renal reabsorption transporter defect). Plasma creatine and GAA NORMAL (distinguishes from GAMT and GATM). Brain MRS shows absent creatine despite normal plasma creatine."},
   {id:"PA",       name:"Propionic acidemia",                    category:"Organic Acidemia",    gene:"PCCA, PCCB",
+   incidence:{"per100k":1.07,"range":[0.73,1.42],"ref":"waters-2018-iem-prevalence","scope":"global pooled birth prevalence, 95% CI"},
    signature:[{panel:"AC",id:"C3",direction:"high",weight:3,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C3C2",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"UOA",id:"MCA",direction:"high",weight:3,ref:["gallagher-2018-organic-acids"]},{panel:"UOA",id:"3OHprop",direction:"high",weight:2,ref:["gallagher-2018-organic-acids"]},{panel:"UOA",id:"PG",direction:"high",weight:2,ref:["gallagher-2018-organic-acids"]},{panel:"PAA",id:"Gly",direction:"high",weight:1},{panel:"PAA",id:"C3Gly",direction:"high",weight:2},{panel:"AC",id:"C3C16",direction:"high",weight:1,ref:["miller-2021-acylcarnitine"]},{panel:"MISC",id:"Ammonia",direction:"high",weight:1},{panel:"MISC",id:"UricAc",direction:"high",weight:1},{panel:"MISC",id:"Lactate",direction:"high",weight:1}],
    narrative:{
      summary:"Autosomal recessive deficiency of propionyl-CoA carboxylase (PCC), a biotin-dependent mitochondrial enzyme. Accumulation of propionyl-CoA and its downstream metabolites (methylcitrate, 3-hydroxypropionate, propionylglycine) produces severe metabolic acidosis, hyperammonaemia, cardiomyopathy, neutropenia and a high lifetime risk of neurological and cardiac complications. Despite NBS detection and optimal management, long-term outcomes remain significantly compromised [1,2].",
@@ -958,6 +971,7 @@ export const DISORDERS = [
    },
    notes:"PCC deficiency. C3 and methylcitric acid primary markers. MCA more prominent than in MMA. Neutropenia, cardiomyopathy."},
   {id:"MMA",      name:"Methylmalonic acidemia (mut/cblA/B)",   category:"Organic Acidemia",    gene:"MMUT, MMAA, MMAB",
+   incidence:{"per100k":1.68,"range":[1.19,2.16],"ref":"waters-2018-iem-prevalence","scope":"methylmalonic aciduria (all forms), global pooled, 95% CI"},
    signature:[{panel:"AC",id:"C3",direction:"high",weight:3,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C3C2",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"UOA",id:"MMA",direction:"high",weight:3,ref:["gallagher-2018-organic-acids"]},{panel:"UOA",id:"MCA",direction:"high",weight:1,ref:["gallagher-2018-organic-acids"]},{panel:"PAA",id:"Gly",direction:"high",weight:1},{panel:"PAA",id:"C3Gly",direction:"high",weight:2},{panel:"UOA",id:"MMAtoMCA",direction:"high",weight:2,ref:["gallagher-2018-organic-acids"]},{panel:"AC",id:"C3C16",direction:"high",weight:1,ref:["miller-2021-acylcarnitine"]},{panel:"MISC",id:"Ammonia",direction:"high",weight:1},{panel:"MISC",id:"UricAc",direction:"high",weight:1},{panel:"MISC",id:"Lactate",direction:"high",weight:1}],
    narrative:{
      summary:"Autosomal recessive deficiency of methylmalonyl-CoA mutase (MMUT) or its cobalamin cofactor synthesis (cblA: MMAA, cblB: MMAB). Massive accumulation of methylmalonic acid causes metabolic acidosis, hyperammonaemia, stroke-like basal-ganglia injury and, uniquely among organic acidemias, progressive chronic kidney disease. Distinct from combined MMA+homocystinuria (cblC/D/F/J) by normal plasma homocysteine [1,2].",
@@ -1017,6 +1031,7 @@ export const DISORDERS = [
    },
    notes:"MUT/cblA/cblB defect. MMA markedly elevated. Normal Hcy distinguishes from cblC. Chronic kidney disease is the signature long-term complication."},
   {id:"CBLC",     name:"Combined MMA + Homocystinuria (cblC/D)",category:"Organic Acidemia",    gene:"MMACHC, MMADHC",
+   incidence:{"per100k":0.5,"range":[0.5,1.5],"ref":"genereviews-cobalamin","scope":"estimated 1:200,000; US newborn screening 1:100,000 (New York) to 1:67,000 (California)"},
    analyticalCeiling:0.76, // Oglesbee 2017: AA clinical sensitivity 76.3% for combined MMA+Hcy
    signature:[{panel:"PAA",id:"Hcy",direction:"high",weight:3},{panel:"AC",id:"C3",direction:"high",weight:2},{panel:"UOA",id:"MMA",direction:"high",weight:2},{panel:"PAA",id:"Met",direction:"low",weight:1},{panel:"PAA",id:"MetHcy",direction:"low",weight:2},{panel:"MISC",id:"tHcy",direction:"high",weight:2}],
    narrative:{
@@ -1075,6 +1090,7 @@ export const DISORDERS = [
    },
    notes:"cblC/D defect. Elevated Hcy + elevated MMA + LOW Met. Pigmentary retinopathy. Urgent ophthalmology review. See Treatment for hydroxocobalamin."},
   {id:"IVA",      name:"Isovaleric acidemia",                   category:"Organic Acidemia",    gene:"IVD",
+   incidence:{"per100k":0.51,"range":[0.28,0.73],"ref":"waters-2018-iem-prevalence","scope":"global pooled birth prevalence, 95% CI"},
    narrative:{
      summary:"Autosomal recessive deficiency of isovaleryl-CoA dehydrogenase (IVD), the third step in leucine catabolism. Isovaleryl-CoA and its glycine conjugate isovalerylglycine accumulate, producing the characteristic 'sweaty feet' odour, metabolic acidosis with hyperammonaemia and, in severe form, neonatal encephalopathy. NBS detection and protein-restricted diet with glycine/carnitine supplementation give excellent outcomes [1,2].",
      introduction:"Isovaleric acidemia (OMIM #243500) was described in 1966 by Budd and colleagues as the first organic acidemia recognised by mass spectrometry [3]. Global incidence is ~1:200,000 on NBS; clinically-ascertained incidence is lower because many NBS-detected cases carry the mild c.932C>T (p.Ala282Val) variant and remain asymptomatic [4,5].",
@@ -1450,6 +1466,7 @@ export const DISORDERS = [
    },
    notes:"ETF/ETFDH deficiency. Multi-chain AC elevations + dicarboxylic aciduria. Late-onset form dramatically riboflavin-responsive."},
   {id:"MCD",      name:"Multiple carboxylase deficiency",       category:"Organic Acidemia",    gene:"BTD / HLCS",
+   incidence:{"per100k":1.64,"range":[1.02,2.26],"ref":"waters-2018-iem-prevalence","scope":"biotinidase deficiency, global pooled, 95% CI"},
    narrative:{
      summary:"Two autosomal recessive disorders producing combined deficiency of all four human biotin-dependent carboxylases (propionyl-CoA carboxylase, 3-methylcrotonyl-CoA carboxylase, pyruvate carboxylase, acetyl-CoA carboxylase): biotinidase deficiency (late-onset, BTD) and holocarboxylase synthetase deficiency (neonatal, HLCS). Both present with a distinctive combined organic acid + acylcarnitine pattern and — critically — both respond dramatically to oral biotin. This is one of the most gratifying treatable inborn errors of metabolism [1,2].",
      introduction:"Biotinidase deficiency (OMIM #253260) has an NBS incidence of ~1:60,000, varying with population [3]. HLCS deficiency (OMIM #253270) is much rarer. Biotinidase is on the RUSP — measured by serum enzyme activity on dried blood spot rather than by metabolite analysis [4]. Biotinidase cleaves biotin from dietary biocytin; loss of activity → progressive biotin depletion → secondary carboxylase deficiency. HLCS attaches biotin to the apo-carboxylases; it usually presents before three months, but late-onset families are described — the index patient in one first decompensated at 13 months and recovered without biotin at all [1,5].",
@@ -1567,6 +1584,7 @@ export const DISORDERS = [
    signature:[{panel:"UOA",id:"Fumaric",direction:"high",weight:3},{panel:"UOA",id:"Succinic",direction:"high",weight:1}],
    notes:"FH deficiency. Profound fumaric aciduria. Severe encephalopathy, brain malformations, polycythemia."},
   {id:"PCD",      name:"Primary carnitine deficiency (OCTN2)",  category:"Fatty Acid Oxidation", gene:"SLC22A5",
+   incidence:{"per100k":0.8,"range":[0.78,0.82],"ref":"genereviews-pcd","scope":"newborn screening, North America 1:121,609 and Europe 1:127,912; Faroese founder figure excluded"},
    narrative:{
      summary:"Autosomal recessive deficiency of the high-affinity carnitine transporter OCTN2 (SLC22A5), which normally reabsorbs carnitine from urine and imports carnitine into cardiac and skeletal muscle. Profoundly low plasma free and total carnitine leads to impaired long-chain fatty acid oxidation, presenting with infantile hypoglycaemic encephalopathy, progressive dilated cardiomyopathy, or skeletal myopathy depending on age. Uniquely among FAO disorders, treatment (lifelong oral L-carnitine) is fully replete and prevents virtually all disease sequelae [1,2].",
      introduction:"Primary carnitine deficiency (carnitine uptake defect; OMIM #212140) was described in 1988 by Treem and colleagues [3]. Incidence varies dramatically with population: ~1:40,000 in NBS cohorts overall but 1:300 in the Faroe Islands (c.95A>G founder variant) [4,5]. NBS has dramatically increased ascertainment, including detection of asymptomatic carrier mothers via their infant's low C0 [6].",
@@ -1623,6 +1641,7 @@ export const DISORDERS = [
    },
    notes:"OCTN2 (SLC22A5) deficiency — carnitine uptake transporter defect. Free and total carnitine profoundly low (<5 µmol/L in symptomatic cases). Acylcarnitine profile normal or shows low absolute values across all species. Clinical: cardiomyopathy (infantile), hypoglycaemia, skeletal muscle weakness. Maternal PCD may be identified incidentally via infant NBS showing low C0. Responds dramatically to high-dose oral L-carnitine supplementation. Distinguish from secondary carnitine depletion (organic acidemias, FAO disorders, dietary, renal losses, valproate)."},
   {id:"MCAD",     name:"MCAD deficiency",                       category:"Fatty Acid Oxidation", gene:"ACADM",
+   incidence:{"per100k":5.78,"range":[4.38,7.18],"ref":"waters-2018-iem-prevalence","scope":"global pooled birth prevalence, 95% CI"},
    signature:[{panel:"AC",id:"C8",direction:"high",weight:3,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C8C10",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C6",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C10",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"UAG",id:"HG",direction:"high",weight:2},{panel:"UAG",id:"SG",direction:"high",weight:2},{panel:"UAG",id:"PPG",direction:"high",weight:2},{panel:"UOA",id:"Adipic",direction:"high",weight:1,ref:["gallagher-2018-organic-acids"]},{panel:"UOA",id:"Suberic",direction:"high",weight:1,ref:["gallagher-2018-organic-acids"]},{panel:"MISC",id:"Glucose",direction:"low",weight:1}],
    narrative:{
      summary:"Autosomal recessive deficiency of medium-chain acyl-CoA dehydrogenase (MCAD) — the most common inherited fatty acid oxidation disorder. Inability to oxidise C6–C10 fatty acids during fasting or illness produces hypoketotic hypoglycaemia, seizures and sudden death. Before newborn screening, 20–25% of clinically diagnosed patients died, usually during a first episode, and a further 20% sustained neurological damage; screening cuts deaths and severe episodes sharply but not to zero — one of 24 screened Australian patients died at three days of age, before the screening result was available [1,2].",
@@ -1677,6 +1696,7 @@ export const DISORDERS = [
    },
    notes:"ACADM deficiency. C8 primary marker. Most common FAO disorder. Hypoketotic hypoglycaemia risk."},
   {id:"VLCAD",    name:"VLCAD deficiency",                      category:"Fatty Acid Oxidation", gene:"ACADVL",
+   incidence:{"per100k":1.8,"range":[1,3.3],"ref":"genereviews-vlcad","scope":"newborn screening estimate 1:30,000 to 1:100,000"},
    signature:[{panel:"AC",id:"C14_1",direction:"high",weight:3,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C14_1C16",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C14",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C12",direction:"high",weight:1,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C14_1C14",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C14_1C12",direction:"high",weight:1,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C16C18_1C2",direction:"high",weight:1,ref:["miller-2021-acylcarnitine"]},{panel:"MISC",id:"CK",direction:"high",weight:1},{panel:"MISC",id:"Glucose",direction:"low",weight:1}],
    narrative:{
      summary:"Autosomal recessive deficiency of very-long-chain acyl-CoA dehydrogenase (VLCAD), a mitochondrial inner-membrane enzyme catalysing the first dehydrogenation step for C14–C20 fatty acids. Three clinical phenotypes are recognised — severe neonatal cardiomyopathic, infantile hepatic and late-onset myopathic — and the phenotype is strongly predicted by residual enzyme activity. Early NBS detection and MCT-based fat-modified diet markedly improve outcome [1,2].",
@@ -1735,6 +1755,7 @@ export const DISORDERS = [
    },
    notes:"ACADVL deficiency. C14:1 primary. Three phenotypes: neonatal cardiomyopathic, infantile hepatic, late-onset myopathic. See Treatment for triheptanoin/MCT; carnitine not routine."},
   {id:"LCHAD",    name:"LCHAD / TFP deficiency",                category:"Fatty Acid Oxidation", gene:"HADHA, HADHB",
+   incidence:{"per100k":0.4,"ref":"genereviews-lchad","scope":"isolated LCHAD on newborn screening in Australia, Germany and the US, 1:250,000; TFP 1:750,000"},
    analyticalCeiling:0.65, // Oglesbee 2017 (PMID 28661487): 64.5% analytic sensitivity on the 2009A LCHAD challenge — the lowest in the whole CAP/ACMG acylcarnitine scheme
    flags:[{type:"analytical",text:"ANALYTICAL SENSITIVITY WARNING: LCHAD/TFP has the lowest real-world acylcarnitine analytic sensitivity of any screened FAO disorder (~64.5%, Oglesbee 2017). C16-OH and C18:1-OH elevations can be subtle — a near-normal result does NOT exclude LCHAD in a clinically suspicious case (neuropathy, pigmentary retinopathy, rhabdomyolysis, or maternal AFLP/HELLP history). Confirmatory testing by acylcarnitines and urine organic acids alone has repeatedly failed — normal organic acids led to the diagnosis being rejected in reported fatal cases, and preterm infants may show only moderate elevations with normal secondary markers and ratios. If clinical suspicion is high, pursue HADHA/HADHB molecular analysis and/or enzyme assay regardless of acylcarnitine result, and involve a metabolic centre in confirmation."}],
    signature:[{panel:"AC",id:"C16OH",direction:"high",weight:3,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C18_1OH",direction:"high",weight:3,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C18OH",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C16OHC16",direction:"high",weight:2,ref:["miller-2021-acylcarnitine"]},{panel:"AC",id:"C16OHC18_1OH",direction:"high",weight:1,ref:["miller-2021-acylcarnitine"]},{panel:"MISC",id:"CK",direction:"high",weight:1},{panel:"MISC",id:"Glucose",direction:"low",weight:1}],
@@ -1799,6 +1820,7 @@ export const DISORDERS = [
    },
    notes:"HADHA/HADHB deficiency. 3-OH long-chain acylcarnitines hallmark. RETINOPATHY and NEUROPATHY develop despite treatment. Maternal AFLP/HELLP association."},
   {id:"SCAD",     name:"SCAD deficiency",                       category:"Fatty Acid Oxidation", gene:"ACADS",
+   incidence:{"per100k":2.86,"range":[2,2.86],"ref":"genereviews-scad","scope":"California newborn screening 1:35,000; Netherlands at least 1:50,000 on strict biochemical and molecular criteria"},
    narrative:{
      summary:"Autosomal recessive deficiency of short-chain acyl-CoA dehydrogenase (SCAD), catalysing the first dehydrogenation of C4 acyl-CoAs. The clinical significance of SCAD deficiency is debated — most cases identified by NBS are clinically benign, and ACADS variants of modest effect (c.625G>A, c.511C>T) are common in the general population. Severe deficiency is probably a complex condition involving additional modifier factors [1,2].",
      introduction:"SCAD deficiency (OMIM #201470) has an NBS incidence of ~1:30,000–1:50,000. Early reports of developmental delay and hypoglycaemia have not been reproducibly confirmed in NBS-detected cohorts; most such children are asymptomatic [2,3]. The common c.625G>A variant is present in ~14% of the general population and does not reliably cause disease — many consider SCAD a biochemical finding rather than a clinical disorder unless additional rare variants are present [2,4].",
@@ -1841,6 +1863,7 @@ export const DISORDERS = [
    },
    notes:"ACADS deficiency. Usually benign. Clinical significance debated."},
   {id:"CPT1",     name:"CPT-I deficiency",                      category:"Fatty Acid Oxidation", gene:"CPT1A",
+   incidence:{"per100k":0.08,"range":[0.05,0.13],"ref":"genereviews-cpt1a","scope":"newborn screening estimate 1:750,000 to 1:2,000,000; the 1:780 Alaskan Inuit founder figure is excluded"},
    narrative:{
      summary:"Autosomal recessive deficiency of carnitine palmitoyltransferase I (CPT-I), the mitochondrial outer-membrane enzyme that conjugates long-chain fatty acids to carnitine for mitochondrial import. CPT-I deficiency blocks long-chain β-oxidation entry and causes hypoketotic hypoglycaemia, Reye-like hepatic crises and, in the Arctic P479L variant, high rates of sudden unexpected infant death. Treatment is avoidance of fasting and MCT-supplemented diet [1,2].",
      introduction:"CPT-I deficiency (OMIM #255120) is rare in most populations (~1:1,000,000) but common among Arctic Inuit and First Nations populations due to the CPT1A c.1436C>T (p.Pro479Leu) founder variant, at an allele frequency of 0.77 across Nunavut with 64% of infants homozygous, against 3% in the Northwest Territories and 0% in Yukon [3,4]. Whether that accounts for the regional SIDS rate — more than seven times the national average in Inuit-inhabited areas — is the open question those prevalence data were gathered to answer [4]. The P479L variant produces partial enzyme activity with paradoxically cold-adaptive properties that may have been historically favourable [5].",
@@ -1887,6 +1910,7 @@ export const DISORDERS = [
    },
    notes:"CPT1A deficiency. High C0, low long-chain AC. Arctic P479L common."},
   {id:"CPT2",     name:"CPT-II / CACT deficiency",              category:"Fatty Acid Oxidation", gene:"CPT2 / SLC25A20",
+   incidence:{"per100k":0.08,"range":[0.05,0.13],"ref":"genereviews-cpt2","scope":"newborn screening in Australia, Germany and the US, 1:750,000 to 1:2,000,000"},
    narrative:{
      summary:"Autosomal recessive deficiency of carnitine palmitoyltransferase II (CPT-II, mitochondrial inner-membrane) or the carnitine-acylcarnitine translocase (CACT, SLC25A20). Both disorders block long-chain fatty acid entry into the mitochondrial matrix. CPT-II has three clinical phenotypes (lethal neonatal, severe infantile hepatocardiomuscular, late-onset myopathic); CACT deficiency almost always presents in the neonatal period with cardiomyopathy and metabolic crisis [1,2].",
      introduction:"CPT-II deficiency (OMIM #255110) is the most common inherited disorder of lipid metabolism in adults, mainly via the late-onset myopathic phenotype. CACT deficiency (OMIM #212138) is much rarer. Both produce overlapping biochemistry (elevated long-chain acylcarnitines) and are grouped clinically [1,3].",
@@ -2891,6 +2915,7 @@ export const DISORDERS = [
 
   // ─── CARBOHYDRATE METABOLISM ────────────────────────────────
   {id:"GALT",     name:"Classic galactosemia (GALT def.)",                  category:"Carbohydrate Disorder", gene:"GALT",
+   incidence:{"per100k":2.08,"ref":"genereviews-galactosemia","scope":"classic galactosemia, US newborn screening, 1:48,000"},
    narrative:{
      summary:"Autosomal recessive deficiency of galactose-1-phosphate uridylyltransferase (GALT) — the second enzyme of the Leloir pathway of galactose metabolism. Loss of function causes accumulation of galactose-1-phosphate (Gal-1-P; hepatotoxic and neurotoxic) and galactitol (accumulates in lens causing cataract). Presents in neonates after initiation of milk feeds with hepatopathy, jaundice, hypoglycaemia, gram-negative sepsis (especially E. coli — galactose-dependent increased sepsis risk), cataracts and encephalopathy. Immediate lactose/galactose elimination is life-saving, but despite early treatment, long-term complications (ovarian failure in females, speech and cognitive deficits, tremor) persist — making GALT one of the most paradigmatic 'treated but still affected' inborn errors [1,2].",
      introduction:"Classic galactosaemia (OMIM #230400) was first described by von Reuss in 1908 [3]; the enzymatic defect was delineated by Isselbacher in 1956 [4]. Incidence ~1:40,000–1:60,000. It is on virtually all NBS panels. The 'Duarte variant' (N314D in compound heterozygosity with a classical allele) reduces GALT activity to ~25% and is generally benign — no treatment required [5].",
@@ -2986,6 +3011,7 @@ export const DISORDERS = [
    signature:[{panel:"MISC",id:"Glucose",direction:"low",weight:3},{panel:"MISC",id:"Lactate",direction:"high",weight:3},{panel:"MISC",id:"UricAc",direction:"high",weight:2},{panel:"MISC",id:"Triglyc",direction:"high",weight:2}],
    notes:"G6PC1 deficiency. Glucose-6-phosphatase block → severe fasting hypoglycaemia + lactic acidosis + hyperuricaemia + hyperlipidaemia (triglycerides AND cholesterol). Hepatomegaly. Characteristic tetrad on routine metabolic screen: low glucose, high lactate, high uric acid, high triglycerides. Treatment: frequent feeds + uncooked cornstarch (every 4–6h); restrict fructose/galactose (feed into pathway above the block)."},
   {id:"GSD3",     name:"Glycogen storage disease type III (Cori/Forbes)",   category:"Carbohydrate Disorder", gene:"AGL",
+   incidence:{"per100k":1,"ref":"genereviews-gsd3","scope":"estimated prevalence 1:100,000; founder populations excluded"},
    narrative:{
      summary:"Autosomal recessive deficiency of glycogen debranching enzyme (AGL) — a bifunctional enzyme with 4-α-glucanotransferase + amylo-1,6-glucosidase activities required to process glycogen branch points during glycogenolysis. Loss of function causes accumulation of abnormal dextrin-like (limit dextrin) glycogen. Presents with hepatomegaly + fasting hypoglycaemia + ketosis (less severe than GSD Ia) + progressive myopathy and cardiomyopathy in adults. Subtypes IIIa (liver + muscle) and IIIb (liver only) determined by tissue-specific splicing. Dietary management differs from GSD I — the emphasis for adults with GSD IIIa is a higher percentage of protein, with complex rather than simple carbohydrate [1,2].",
      introduction:"GSD III (OMIM #232400) was described clinically by Forbes in 1953 and enzymatically by Illingworth and Cori in 1956 [3,4]. Incidence 1:100,000 in most populations; markedly higher in the Faroe Islands (~1:3,100), Inuit populations of Nunavik (~1:2,500) and North African Jewish (~1:5,400). ~85% of patients have type IIIa (liver + muscle); ~15% type IIIb (liver only). The disease differs from GSD I in preserved gluconeogenesis, so management is less restrictive and prognosis generally more favourable.",

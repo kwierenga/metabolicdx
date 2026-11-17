@@ -24,7 +24,7 @@ async function eutils(path, params) {
     try {
       const r = await fetch(`${EUTILS}/${path}?${qs}`);
       if (r.ok) return await r.json();
-    } catch {}
+    } catch { /* transient failure: retried below */ }
     await sleep(800 * (attempt + 1));
   }
   return null;

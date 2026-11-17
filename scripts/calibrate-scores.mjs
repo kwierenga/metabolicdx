@@ -176,6 +176,10 @@ for (const d of DISORDERS) {
     gap: r1.score - r2.score,
     ratio: r1.score / r2.score,
     margin: (r1.score - r2.score) / r1.score,
+    // What the UI now shows: #1 over the first candidate OUTSIDE its family
+    // (scoring.js annotateSeparation). Falls back to the plain ratio when the
+    // leader has no family or nothing else scores.
+    famRatio: Number.isFinite(r1.leadRatio) ? r1.leadRatio : r1.score / r2.score,
   });
 }
 
@@ -205,6 +209,7 @@ for (const [key, label] of [
   ["gap", "gap: #1 minus #2"],
   ["ratio", "ratio: #1 over #2"],
   ["margin", "margin: gap / #1"],
+  ["famRatio", "ratio: #1 over next outside family (UI)"],
 ]) {
   const a = auc(top, key);
   console.log(`  ${label.padEnd(24)} ${a === null ? "—" : a.toFixed(3)}`);

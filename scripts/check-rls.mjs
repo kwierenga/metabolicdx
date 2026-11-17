@@ -32,6 +32,13 @@ function loadEnv(path) {
 }
 
 const env = loadEnv(process.argv[2] || ".env.local");
+// Which table to probe. Since migration 0003 the live data is in case_records
+// (with case_history beside it); the original `cases` table is kept as a backup
+// until it is dropped. Run once per table:
+//   node scripts/check-rls.mjs .env.local case_records
+//   node scripts/check-rls.mjs .env.local case_history
+//   node scripts/check-rls.mjs .env.local cases
+const TABLE = process.argv[3] || "case_records";
 const url = process.env.VITE_SUPABASE_URL || env.VITE_SUPABASE_URL;
 const key = process.env.VITE_SUPABASE_ANON_KEY || env.VITE_SUPABASE_ANON_KEY;
 
@@ -41,7 +48,8 @@ if (!url || !key) {
 }
 
 console.log(`Project host : ${new URL(url).host}`);
-console.log(`Anon key     : present (${key.length} chars, not shown)\n`);
+console.log(`Anon key     : present (${key.length} chars, not shown)`);
+console.log(`Table        : ${TABLE}\n`);
 
 const H = { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
 const rest = (p, init) => fetch(`${url}/rest/v1/${p}`, { ...init, headers: { ...H, ...(init?.headers || {}) } });
@@ -76,7 +84,7 @@ async function classify(r) {
 // rather than an error, so "policy denied" and "table is empty" look identical.
 let readOpen = false, readDenied = false;
 try {
-  const r = await rest("cases?select=id", { headers: { Prefer: "count=exact", Range: "0-4" } });
+  const r = await rest(`${TABLE}?select=id`, { headers: { Prefer: "count=exact", Range: "0-4" } });
   const c = await classify(r);
   if (c.kind === "ALLOWED") {
     const rows = c.body ?? [];
@@ -103,7 +111,7 @@ try {
 const probeId = `__rls_probe_${Date.now()}`;
 let writeOpen = null; // true = open, false = denied, null = undetermined
 try {
-  const r = await rest("cases", {
+  const r = await rest(TABLE, {
     method: "POST",
     headers: { Prefer: "return=minimal" },
     body: JSON.stringify({ id: probeId, data: { probe: true } }),
@@ -127,7 +135,7 @@ try {
 // ── Cleanup ──────────────────────────────────────────────────────────────
 if (writeOpen === true) {
   try {
-    const r = await rest(`cases?id=eq.${probeId}`, { method: "DELETE" });
+    const r = await rest(`${TABLE}?id=eq.${probeId}`, { method: "DELETE" });
     line(r.ok ? "ok" : "!!", "cleanup",
       r.ok ? "probe row removed" : `could not delete probe row "${probeId}" — remove it manually`);
   } catch {

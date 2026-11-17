@@ -69,11 +69,11 @@ if (!auth.ok) {
 }
 const { access_token } = await auth.json();
 
-// A case is one JSON blob in `data`, holding the panel values, the narrative,
-// the reviewer and the patient's identifiers. Selecting `data` would pull all of
-// that across the wire to count a single field, so the confirmed diagnosis is
-// extracted server-side with a JSON path and nothing else is requested.
-const res = await fetch(`${url}/rest/v1/cases?select=dx:data->>confirmedDxId`, {
+// Since migration 0003 each case is a row in case_records with the confirmed
+// diagnosis in its own column, so only that column is requested — never `data`,
+// which holds the panel values, the narrative and the patient's identifiers.
+// Soft-deleted cases are excluded.
+const res = await fetch(`${url}/rest/v1/case_records?select=dx:confirmed_dx_id&deleted_at=is.null`, {
   headers: { apikey: key, Authorization: `Bearer ${access_token}` },
 });
 if (!res.ok) { console.error(`read failed (${res.status})`); process.exit(1); }

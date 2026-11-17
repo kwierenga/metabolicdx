@@ -49,6 +49,7 @@ function allUsedRefKeys() {
     for (const m of d.signature ?? []) {
       for (const k of m.ref ?? []) note(k, `${d.id}.signature[${m.panel}:${m.id}]`);
     }
+    if (d.incidence?.ref) note(d.incidence.ref, `${d.id}.incidence`);
   }
   for (const [name, m] of Object.entries(METHOD_REFS)) {
     for (const k of m.ref ?? []) note(k, `METHOD_REFS.${name}`);
@@ -275,7 +276,6 @@ describe("provenance coverage ratchet", () => {
     const verified = ratios.filter((r) => r.ref?.length).length;
     const pending = ratios.filter((r) => r.refPending && !r.ref?.length).length;
     const disputed = ratios.filter((r) => r.refDisputed).length;
-    // eslint-disable-next-line no-console
     console.log(
       `\n  provenance: signature markers ${sourced}/${markers.length} ` +
         `(${((100 * sourced) / markers.length).toFixed(1)}%) verified · ` +

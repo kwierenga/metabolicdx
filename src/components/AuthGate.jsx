@@ -120,12 +120,13 @@ export function SignOutButton({ email }) {
 
 export default function AuthGate({ children }) {
   const [session, setSession] = useState(null);
-  const [checking, setChecking] = useState(true);
+  // No credentials at build time → in-memory mode. There is no database to
+  // protect, so requiring a login would only lock the user out of a demo:
+  // start with nothing to check rather than flipping state inside the effect.
+  const [checking, setChecking] = useState(!!supabase);
 
   useEffect(() => {
-    // No credentials at build time → in-memory mode. There is no database to
-    // protect, so requiring a login would only lock the user out of a demo.
-    if (!supabase) { setChecking(false); return; }
+    if (!supabase) return;
 
     let active = true;
     supabase.auth.getSession().then(({ data }) => {

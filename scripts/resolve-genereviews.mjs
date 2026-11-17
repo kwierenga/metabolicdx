@@ -249,7 +249,7 @@ if (existsSync(PROVENANCE)) {
   const keys = new Set(found.map((f) => citationKey(f.raw)));
   const lines = readFileSync(PROVENANCE, "utf8").split("\n");
   const kept = lines.filter((l) => {
-    const key = l.match(/^  "([^"]+)":/)?.[1];
+    const key = l.match(/^ {2}"([^"]+)":/)?.[1];
     return !(key && keys.has(key));
   });
   if (kept.length !== lines.length) {
